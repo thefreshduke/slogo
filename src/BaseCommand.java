@@ -23,5 +23,12 @@ public abstract class BaseCommand {
 	 */
 	public abstract Turtle update(Turtle turtle);
 
+	/**
+	 * Checks validity of the given command
+	 * @return true if command is valid, else false
+	 */
+	public boolean getCommandValidity() {
+		return false;
+	}
 
 }
