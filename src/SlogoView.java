@@ -1,8 +1,5 @@
-package src;
-
 import java.awt.Dimension;
 import java.util.ArrayList;
-
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
