@@ -9,6 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
+import backendExceptions.BackendException;
+import backendExceptions.ExceptionMessages;
+import backendExceptions.SlogoFileNotFoundException;
 import commands.BaseCommand;
 
 public class CommandFactory {
@@ -18,13 +21,12 @@ public class CommandFactory {
     private String myEquals;
     private String myComma;
     
-    protected void parseLanguageFile(String fileName) {
+    protected void parseLanguageFile(String fileName) throws BackendException {
     	BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader(fileName));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			throw new SlogoFileNotFoundException(e1, fileName);
 		}
     	String line;
     	try {
