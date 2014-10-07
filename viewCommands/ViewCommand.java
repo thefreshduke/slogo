@@ -14,14 +14,11 @@ public abstract class ViewCommand extends BaseCommand {
 
 	}
 
+	public abstract void updateTurtle(Turtle turtle);
+
 
 	@Override
-	public void updateTurtle(Turtle turtle) {
-
-	}
-
-	@Override
-	public double executeCommand() {
+	public double execute() {
 		return 0;
 	}
 }

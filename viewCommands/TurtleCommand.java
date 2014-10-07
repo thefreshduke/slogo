@@ -3,12 +3,10 @@ package viewCommands;
 import turtle.Turtle;
 
 public abstract class TurtleCommand extends ModelCommand {
-
-	private Turtle myTurtle;
 	
-	public TurtleCommand(String userInput, Turtle turtle) {
+	public TurtleCommand(String userInput) {
 		this(userInput);
-		myTurtle = turtle;
+
 	}
 	public TurtleCommand(String userInput) {
 		super(userInput);
@@ -16,11 +14,16 @@ public abstract class TurtleCommand extends ModelCommand {
 	}
 	
 	@Override
-	public double executeCommand() {
-		updateTurtle(myTurtle);
+	public double execute(View view, Turtle turtle) {
+		updateTurtle();
+		sendTurtleToView();
 		return calculateResult();
 	}
 	
+	private void sendTurtleToView() {
+		// Fire event to front end notifying of turtle update
+	}
+	public abstract void updateTurtle();
 	public abstract double calculateResult();
 	
 }

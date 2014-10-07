@@ -16,11 +16,17 @@ public abstract class ControlCommand extends ModelCommand {
 		// TODO: Take matching bracket from resource file for 
 		// closing bracket
 		int endIndex = findLastIndexOfCharacter(userInput, ']');
-		
-
-		
 	}
 	
+	@Override
+	public final double execute(View view, Turtle turtle) {
+		return execute();
+	}
+
+	public abstract int execute();
+	
+
+
 	
 	private int findLastIndexOfCharacter(String userInput, char character) {
 		for (int i = userInput.length()-1; i >= 0; i--) {
@@ -29,11 +35,6 @@ public abstract class ControlCommand extends ModelCommand {
 			}
 		}
 		return -1;
-	}
-
-	public static void main(String [] args) {
-		String s = "983[[;";
-		System.out.println(s.indexOf('[', -2));
 	}
 	
 }

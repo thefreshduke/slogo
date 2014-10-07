@@ -7,8 +7,8 @@ import turtle.Turtle;
  */
 public abstract class ModelCommand extends BaseCommand {
 
-	public ModelCommand(String userInput) {
-		super(userInput);
+	public ModelCommand(String userInput, View view, Turtle turtle) {
+		super(userInput, view, turtle);
 	}
 
 	protected abstract void parseArguments(String userInput);

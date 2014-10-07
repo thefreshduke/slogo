@@ -12,10 +12,12 @@ public abstract class LogicCommand extends ModelCommand {
 		parseArguments(userInput);
 	}
 	
-	@Override 
-	public final void updateTurtle(Turtle turtle) {
-		return;
+	@Override
+	public final double execute(View view, Turtle turtle) {
+		return execute();
 	}
+
+	public abstract double execute();
 
 	protected List<String> getExpressionArguments() {
 		return myExpressionArguments;
