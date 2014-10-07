@@ -18,6 +18,7 @@ public abstract class BaseCommand {
 	 * @param userInput
 	 */
 	public BaseCommand(String userInput) {
+		parseArguments(userInput);
 	}
 
 	/**
@@ -26,4 +27,21 @@ public abstract class BaseCommand {
 	 */
 	public abstract double execute(View view, Turtle turtle);
 
+	protected BaseCommand getNextCommand(){
+		return myNextCommand;
+	}
+
+	protected abstract void parseArguments(String userInput);
+	
+	protected void setNextCommand(BaseCommand command){
+		myNextCommand = command;
+	}
+	
+	protected BaseCommand getInternalCommand(){
+		return myInternalCommand;
+	}
+	
+	protected void setInternalCommand(BaseCommand command){
+		myInternalCommand = command;
+	}
 }

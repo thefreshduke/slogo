@@ -9,7 +9,6 @@ public abstract class LogicCommand extends ModelCommand {
 
 	public LogicCommand(String userInput) {
 		super(userInput);
-		parseArguments(userInput);
 	}
 	
 	@Override

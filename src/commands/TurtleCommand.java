@@ -6,7 +6,6 @@ public abstract class TurtleCommand extends ModelCommand {
 	
 	public TurtleCommand(String userInput) {
 		super(userInput);
-		parseArguments(userInput);
 	}
 	
 	@Override
@@ -19,7 +18,9 @@ public abstract class TurtleCommand extends ModelCommand {
 	private void sendTurtleToView() {
 		// Fire event to front end notifying of turtle update
 	}
-	public abstract void updateTurtle();
-	public abstract double calculateResult();
+	
+	protected abstract void updateTurtle();
+	
+	protected abstract double calculateResult();
 	
 }
