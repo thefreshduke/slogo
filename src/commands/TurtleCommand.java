@@ -1,13 +1,9 @@
-package viewCommands;
+package commands;
 
 import turtle.Turtle;
 
 public abstract class TurtleCommand extends ModelCommand {
 	
-	public TurtleCommand(String userInput) {
-		this(userInput);
-
-	}
 	public TurtleCommand(String userInput) {
 		super(userInput);
 		parseArguments(userInput);

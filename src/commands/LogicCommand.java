@@ -1,4 +1,4 @@
-package viewCommands;
+package commands;
 
 import java.util.List;
 

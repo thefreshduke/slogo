@@ -1,4 +1,4 @@
-package viewCommands;
+package commands;
 import turtle.Turtle;
 
 /**
@@ -16,9 +16,4 @@ public abstract class ViewCommand extends BaseCommand {
 
 	public abstract void updateTurtle(Turtle turtle);
 
-
-	@Override
-	public double execute() {
-		return 0;
-	}
 }

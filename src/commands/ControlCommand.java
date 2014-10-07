@@ -1,6 +1,8 @@
-package viewCommands;
+package commands;
 
 import java.util.List;
+
+import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	public ControlCommand(String userInput) {
@@ -8,7 +10,7 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
 	// Create static factory to generate commands
-	private void findBrackets(String userInput) {
+	protected void findBrackets(String userInput) {
 		//Factory.makeCommand(substring);
 		// TODO: Resource File reference to bracket
 		
@@ -25,10 +27,7 @@ public abstract class ControlCommand extends ModelCommand {
 
 	public abstract int execute();
 	
-
-
-	
-	private int findLastIndexOfCharacter(String userInput, char character) {
+	protected int findLastIndexOfCharacter(String userInput, char character) {
 		for (int i = userInput.length()-1; i >= 0; i--) {
 			if (userInput.charAt(i) == character) {
 				return i;

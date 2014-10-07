@@ -1,4 +1,4 @@
-package viewCommands;
+package commands;
 
 import turtle.Turtle;
 
@@ -13,7 +13,6 @@ import turtle.Turtle;
 public abstract class BaseCommand {
 	private BaseCommand myNextCommand;
 	private BaseCommand myInternalCommand;
-
 	/**
 	 * 
 	 * @param userInput
