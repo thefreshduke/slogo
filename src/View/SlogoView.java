@@ -1,25 +1,42 @@
 package View;
 
+import java.awt.Dimension;
 import java.util.ArrayList;
 
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuBar;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class SlogoView {
 
 	//list of all the objects on the GUI that the user can interact with
 	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
+	private Grid myGrid=new Grid();
+	private BaseController myController =new BaseController(myGrid);
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public ArrayList<String> myCommands=new ArrayList<String>();
+	private Scene myScene;
+	public final static Dimension DEFAULT_SIZE=new Dimension(1000,1000);
 
-	public SlogoView(){}
-
+	public SlogoView(){
+		BorderPane mainLayout=new BorderPane();
+		mainLayout.setCenter(addGrid());
+		mainLayout.setTop(addMenuBar());
+		mainLayout.setBottom(addButtons());
+		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+		
+	
+	}	
 	/**
 	 * Makes a Button that is to be added to the GUI's Stage
 	 * Adds the Button to the userInteractions List
@@ -128,7 +145,12 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(String s){}
+	private MenuBar addMenuBar(){
+		return null;};
+	private GridPane addGrid(){
+		return null;};
 
-
-
+	private Pane addButtons(){
+		return null;
+	}
 }
