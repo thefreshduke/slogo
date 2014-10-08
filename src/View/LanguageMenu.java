@@ -16,8 +16,8 @@ public class LanguageMenu extends MenuTemplate {
 		
 	}
 
-	public void addMenuItem(String name, String url, EventHandler<ActionEvent> handler){
-		LanguageMenuItem item = new LanguageMenuItem(name, url, handler);
+	public void addMenuItem(String name, EventHandler<ActionEvent> handler){
+		LanguageMenuItem item = new LanguageMenuItem(name, handler);
 		this.getItems().add(item);
 	}
 	

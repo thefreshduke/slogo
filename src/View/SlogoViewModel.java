@@ -23,6 +23,7 @@ public class SlogoViewModel {
 
 	public void loadLanguageResource(String url){
 //		myBaseController.loadLanguage(url);
+		System.out.println("Loading " + url);
 	}
 	
 	public void sendCommand(String command){
@@ -48,8 +49,9 @@ public class SlogoViewModel {
 	public void helpPage(){
 		WebView browser = new WebView();
 		WebEngine webEngine = browser.getEngine();
-		webEngine.load("./resources/helpInfo/commands.PHP");
-//		webEngine.load("http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php");
+//		webEngine.load("./resources/helpInfo/commands.PHP");
+		webEngine.load("http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php");
+		System.out.println("HElP Page");
 	}
 	
 	public void clear(){

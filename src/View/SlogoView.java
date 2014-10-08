@@ -11,7 +11,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -168,13 +170,47 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(String s){}
+	
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
 		//myMenu.setStyle("-fx-background-color:#000080");
 		myMenu.setStyle( "-fx-border-width: 5");
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
+		MenuTemplate fileMenu = new MenuTemplate("File");
+		MenuTemplate languages = new MenuTemplate("Languages");
+		MenuTemplate help = new MenuTemplate("Help");
+		this.createMenuItemsUnderFile(fileMenu);
+		this.createMenuItemsUnderLanguages(languages);
+		this.createMenuItemsUnderHelp(help);
+		myMenu.getMenus().addAll(fileMenu, languages, help);
 		return myMenu;
 	}
+	
+	
+
+	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
+		
+		fileMenu.addMenuItem("Export to XML", null);
+		fileMenu.addMenuItem("Import to XML", null);
+	}
+	
+	public void createMenuItemsUnderLanguages(MenuTemplate languages){
+		
+		languages.addMenuItem("English", event -> myModel.loadLanguageResource("English"));
+		languages.addMenuItem("French", event -> myModel.loadLanguageResource("French"));
+		languages.addMenuItem("Portuguese", event -> myModel.loadLanguageResource("Portuguese"));
+		languages.addMenuItem("Italian", event -> myModel.loadLanguageResource("Italian"));
+		languages.addMenuItem("Chinese", event -> myModel.loadLanguageResource("Chinese"));
+		languages.addMenuItem("Russian", event -> myModel.loadLanguageResource("Russian"));
+
+	}
+	
+	public void createMenuItemsUnderHelp(MenuTemplate help){	
+		
+		help.addMenuItem("Help Page", event -> myModel.helpPage());
+	}
+	
+	
 	private Pane setTextArea(){
 		VBox myTextArea=new VBox();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");

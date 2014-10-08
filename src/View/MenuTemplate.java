@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 
 
-public abstract class MenuTemplate extends Menu implements UserObjects{
+public  class MenuTemplate extends Menu implements UserObjects{
 	
 	/**
 	 * Constructor
@@ -17,6 +17,13 @@ public abstract class MenuTemplate extends Menu implements UserObjects{
 	}
 	
 	public void addMenuItem(String name, EventHandler<ActionEvent> handler){
+		MenuItemTemplate item = new MenuItemTemplate(name, handler);
+		this.getItems().add(item);
+	}
+
+	@Override
+	public void addEvent(EventHandler<ActionEvent> handler) {
+		// TODO Auto-generated method stub
 		
 	}
 

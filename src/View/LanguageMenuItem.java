@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 
 public class LanguageMenuItem extends MenuItemTemplate{
 
-	public LanguageMenuItem(String s, String url, EventHandler<ActionEvent> handler) {
+	public LanguageMenuItem(String s, EventHandler<ActionEvent> handler) {
 		super(s, handler);
 		
 	}
