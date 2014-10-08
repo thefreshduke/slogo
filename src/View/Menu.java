@@ -1,5 +1,7 @@
 package View;
 
-public class Menu {
+
+
+public class Menu{
 
 }
