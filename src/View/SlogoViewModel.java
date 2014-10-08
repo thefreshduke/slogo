@@ -2,6 +2,7 @@ package View;
 
 import java.io.File;
 
+import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -48,7 +49,10 @@ public class SlogoViewModel {
 		WebEngine webEngine = browser.getEngine();
 //		webEngine.load("./resources/helpInfo/commands.PHP");
 		webEngine.load("http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php");
-		System.out.println("HElP Page");
+		Stage helpStage = new Stage();
+		Scene scene = new Scene(browser, 500, 480);
+		helpStage.setScene(scene);
+		helpStage.show();
 	}
 	
 	public void clear(){
