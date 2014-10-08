@@ -3,6 +3,8 @@ package View;
 import java.awt.Dimension;
 import java.util.ArrayList;
 
+import communicator.BaseController;
+
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,20 +24,21 @@ public class SlogoView {
 	//list of all the objects on the GUI that the user can interact with
 	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
 	private Grid myGrid;
-	//private BaseController myController =new BaseController(myGrid);
+	private BaseController myController;
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public ArrayList<String> myCommands=new ArrayList<String>();
 	private Scene myScene;
-
+	private SlogoViewModel myModel;
 	//flag for if pen is up or down
 	private boolean penIsDown;
-	public final static Dimension DEFAULT_SIZE=new Dimension(1000,1000);
+	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
 	
 	public SlogoView(){
-		myGrid=new Grid(DEFAULT_SIZE.height-175, DEFAULT_SIZE.width-200, this.build(5));
-	
+		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5));
+		myModel=new SlogoViewModel(myController, this);
+
 	}	
 	/**
 	 * Makes a Button that is to be added to the GUI's Stage
@@ -47,14 +50,11 @@ public class SlogoView {
 	 */
 	private UserObjects makeUserObject(String s, EventHandler<ActionEvent> handler){
 		return null;
-
 	}
-
 	/**
 	 * Clears everything in the mainSimulationPanel (can be called by the controller when the command clear is given)
 	 */
-	public void clear(){}
-
+	//public void clear()
 
 	/**
 	 * 
@@ -80,10 +80,10 @@ public class SlogoView {
 	public void initialize(Stage mainStage){
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
-		mainLayout.setCenter(myGrid);
 		mainLayout.setTop(addMenuBar());
 		mainLayout.setBottom(addButtons());
 		mainLayout.setLeft(setTextArea());
+		mainLayout.setCenter(myGrid);
 		root.getChildren().add(mainLayout);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainStage.setScene(myScene);
@@ -167,23 +167,28 @@ public class SlogoView {
 	private void sendCommand(String s){}
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
-		myMenu.setStyle("-fx-background-color:BLUE");
-		myMenu.setPrefSize(DEFAULT_SIZE.width, 100);
+		//myMenu.setStyle("-fx-background-color:#000080");
+		myMenu.setStyle( "-fx-border-width: 5");
+		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
 		return myMenu;
 	}
 	private Pane setTextArea(){
 		VBox myTextArea=new VBox();
-		myTextArea.setStyle("-fx-background-color: BLUE");
+		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
 		return myTextArea;
 	}
 	private Pane addButtons(){
 		VBox myButtonPanel=new VBox();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
-		myButtonPanel.setStyle("-fx-background-color:BLUE");
+		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
+		ButtonTemplate draw=new ButtonTemplate("Home", 0, 0, event->home());
+		myButtonPanel.getChildren().add(draw);
 		return myButtonPanel;
 	}
-	
+	public void home(){
+		
+	}
 	public void setPenDown(boolean b){
 		penIsDown = b;
 	}
