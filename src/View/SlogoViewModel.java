@@ -53,6 +53,7 @@ public class SlogoViewModel {
 	}
 	
 	public void clear(){
+		//
 		mySlogoView.clear();
 	}
 	

@@ -2,9 +2,9 @@ package View;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 
 import communicator.BaseController;
-
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,6 +15,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -34,16 +35,13 @@ public class SlogoView {
 	private SlogoViewModel myModel;
 	//flag for if pen is up or down
 	private boolean penIsDown;
+	ResourceBundle myResources;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
-	
+	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
-<<<<<<< HEAD
+		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
 		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5));
 		myModel=new SlogoViewModel(myController, this);
-
-=======
-		myGrid=new Grid(DEFAULT_SIZE.height-175, DEFAULT_SIZE.width-200, this.build(5));
->>>>>>> 17d35d6cc78c0741cc747749491655ff8587f717
 	}	
 	/**
 	 * Makes a Button that is to be added to the GUI's Stage
@@ -184,11 +182,16 @@ public class SlogoView {
 		return myTextArea;
 	}
 	private Pane addButtons(){
-		VBox myButtonPanel=new VBox();
+		int x=0;
+		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-		ButtonTemplate draw=new ButtonTemplate("Home", 0, 0, event->home());
-		myButtonPanel.getChildren().add(draw);
+		
+		ButtonTemplate draw=new ButtonTemplate(myResources.getString("uploadImage"), x, 0, event->myModel.uploadTurtleImage());
+	
+		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=110, 0, event->myModel.undo());
+		
+		myButtonPanel.getChildren().addAll(draw, undo);
 		return myButtonPanel;
 	}
 	public void home(){
