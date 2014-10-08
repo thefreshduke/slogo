@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -35,7 +36,6 @@ public class SlogoView {
 	
 	public SlogoView(){
 		myGrid=new Grid(DEFAULT_SIZE.height-175, DEFAULT_SIZE.width-200, this.build(5));
-	
 	}	
 	/**
 	 * Makes a Button that is to be added to the GUI's Stage
