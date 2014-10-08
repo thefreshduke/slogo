@@ -27,6 +27,8 @@ public class SlogoView {
 	//an ArrayList of all the working commands given by the user
 	public ArrayList<String> myCommands=new ArrayList<String>();
 	private Scene myScene;
+	//flag for if pen is up or down
+	private boolean penIsDown;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,1000);
 	
 	public SlogoView(){
@@ -131,7 +133,7 @@ public class SlogoView {
 	/**
 	 * Displays the Turtle and the Line at it's position before the last command
 	 */
-	private void undo(){
+	public void undo(){
 
 	}
 	/**
@@ -162,5 +164,9 @@ public class SlogoView {
 
 	private Pane addButtons(){
 		return null;
+	}
+	
+	public void setPenDown(boolean b){
+		penIsDown = b;
 	}
 }
