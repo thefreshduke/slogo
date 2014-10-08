@@ -244,7 +244,11 @@ public class SlogoView {
 	
 		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=110, 0, event->myModel.undo());
 		
-		myButtonPanel.getChildren().addAll(draw, undo);
+		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=110, 0, event->myModel.penDown());
+
+		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=110, 0, event->myModel.penUp());
+
+		myButtonPanel.getChildren().addAll(draw, undo, penDown, penUp);
 		return myButtonPanel;
 	}
 	public void home(){

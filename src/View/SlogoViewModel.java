@@ -26,9 +26,6 @@ public class SlogoViewModel {
 		System.out.println("Loading " + url);
 	}
 	
-	public void sendCommand(String command){
-		myBaseController.receiveCommand(command);
-	}
 	
 	public void penDown(){
 		mySlogoView.setPenDown(true);
@@ -55,8 +52,8 @@ public class SlogoViewModel {
 	}
 	
 	public void clear(){
-		//
-		mySlogoView.clear();
+		
+//		mySlogoView.clear();
 	}
 	
 	public void undo(){
