@@ -39,7 +39,7 @@ public class SlogoView {
 	private Scene myScene;
 	private SlogoViewModel myModel;
 	//flag for if pen is up or down
-	private boolean penIsDown;
+	private boolean penIsDown, refGridOn;
 	private TextField commandLine;
 	ResourceBundle myResources;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
@@ -242,13 +242,18 @@ public class SlogoView {
 		
 		ButtonTemplate draw=new ButtonTemplate(myResources.getString("uploadImage"), x, 0, event->myModel.uploadTurtleImage());
 	
+		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=110, 0, event->myModel.clear());
+		
 		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=110, 0, event->myModel.undo());
 		
 		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=110, 0, event->myModel.penDown());
 
 		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=110, 0, event->myModel.penUp());
 
-		myButtonPanel.getChildren().addAll(draw, undo, penDown, penUp);
+		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=110, 0, event->toggleRefGrid());
+
+		myButtonPanel.getChildren().addAll(draw, clear, undo, penDown, penUp, refGrid);
+		
 		return myButtonPanel;
 	}
 	public void home(){
@@ -256,5 +261,9 @@ public class SlogoView {
 	}
 	public void setPenDown(boolean b){
 		penIsDown = b;
+	}
+	
+	public void toggleRefGrid(){
+		this.refGridOn = !refGridOn;
 	}
 }

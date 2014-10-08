@@ -22,9 +22,10 @@ public class SlogoViewModel {
 	
 	
 
-	public void loadLanguageResource(String url){
+	public void loadLanguageResource(String language){
+		String filePath = "/resources/languages/" + language + ".Properties"; 
 //		myBaseController.loadLanguage(url);
-		System.out.println("Loading " + url);
+		System.out.println(filePath);
 	}
 	
 	
@@ -36,13 +37,6 @@ public class SlogoViewModel {
 		mySlogoView.setPenDown(false);
 	}
 
-	public void referenceGridOn(){
-		
-	}
-	
-	public void referenceGridOff(){
-		
-	}
 	
 	public void helpPage(){
 		WebView browser = new WebView();
