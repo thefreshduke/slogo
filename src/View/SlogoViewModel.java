@@ -67,6 +67,7 @@ public class SlogoViewModel {
 		File file = fileChooser.showOpenDialog(myStage);
 		if(file != null){
 			String url = file.getPath();
+			
 		}
 	}
 	
