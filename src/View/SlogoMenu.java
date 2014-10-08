@@ -14,6 +14,10 @@ public class SlogoMenu extends MenuBar {
 		createMenus();
 	}
 	
+	public void addMenuItem(){
+		
+	}
+	
 	public void createMenus(){
 		Menu fileMenu = new Menu("File");
 		Menu languages = new Menu("Languages");
