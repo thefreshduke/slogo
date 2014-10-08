@@ -11,15 +11,18 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -37,6 +40,7 @@ public class SlogoView {
 	private SlogoViewModel myModel;
 	//flag for if pen is up or down
 	private boolean penIsDown;
+	private TextField commandLine;
 	ResourceBundle myResources;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
@@ -169,7 +173,11 @@ public class SlogoView {
 	 * @param s		String representing the command to send that was inputed by the user
 	 *  
 	 */
-	private void sendCommand(String s){}
+	private void sendCommand(){
+		System.out.println(commandLine.getText());
+//		myController.receiveCommand(commandLine.getText());
+		commandLine.clear();
+	}
 	
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
@@ -215,6 +223,15 @@ public class SlogoView {
 		VBox myTextArea=new VBox();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
+		
+//		create command line
+		Label label = new Label("Commands:");
+		label.setTextFill(Color.WHITE);
+		commandLine = new TextField();
+		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),0,0, event-> this.sendCommand());
+		myTextArea.getChildren().addAll(label, commandLine, enter);
+		myTextArea.setSpacing(10);	
+		
 		return myTextArea;
 	}
 	private Pane addButtons(){
