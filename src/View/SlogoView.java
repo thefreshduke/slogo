@@ -14,27 +14,23 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class SlogoView {
 
 	//list of all the objects on the GUI that the user can interact with
 	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
-	private Grid myGrid=new Grid();
-	private BaseController myController =new BaseController(myGrid);
+	private Grid myGrid;
+	//private BaseController myController =new BaseController(myGrid);
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public ArrayList<String> myCommands=new ArrayList<String>();
 	private Scene myScene;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,1000);
-
+	
 	public SlogoView(){
-		BorderPane mainLayout=new BorderPane();
-		mainLayout.setCenter(addGrid());
-		mainLayout.setTop(addMenuBar());
-		mainLayout.setBottom(addButtons());
-		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
-		
+		myGrid=new Grid((DEFAULT_SIZE.height)/2, (DEFAULT_SIZE.width)/2, this.build(5));
 	
 	}	
 	/**
@@ -60,14 +56,28 @@ public class SlogoView {
 	 * 
 	 * @return A KeyFrame for the TimeLine of the program
 	 */
-	private KeyFrame build(){
-		return null;}
+	private KeyFrame build(int fps){
+		Duration speed=Duration.millis(1000/fps);
+		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent evt){
+				//update(my);
+			}
+		};
+		return new KeyFrame(speed, loop);
+	}
 
 	/**
 	 * Creates a layout of the GUI and adds the objects to the Stage
 	 * @param mainStage   the Stage for the GUI to operate on 
 	 */
-	public void initialize(Stage mainStage){}
+	public void initialize(Stage mainStage){
+		BorderPane mainLayout=new BorderPane();
+		mainLayout.setCenter(addGrid());
+		mainLayout.setTop(addMenuBar());
+		mainLayout.setBottom(addButtons());
+		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+	}
 
 	/**
 	 * Draws a line from its location to (x,y)
