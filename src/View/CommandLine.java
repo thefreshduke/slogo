@@ -12,15 +12,13 @@ public class CommandLine extends HBox {
 
 	public CommandLine(EventHandler<ActionEvent> handler){
 
-		Label label1 = new Label("Commands:");
+		Label label = new Label("Commands:");
 		TextField text = new TextField();
 		Button enter = new Button("Enter");
 		enter.setOnAction(handler);
-		this.getChildren().addAll(label1, text, enter);
+		this.getChildren().addAll(label, text, enter);
 		this.setSpacing(10);	
 	}
-
-
 
 
 

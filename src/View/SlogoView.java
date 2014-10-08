@@ -28,7 +28,10 @@ public class SlogoView {
 	//an ArrayList of all the working commands given by the user
 	public ArrayList<String> myCommands=new ArrayList<String>();
 	private Scene myScene;
-	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
+
+	//flag for if pen is up or down
+	private boolean penIsDown;
+	public final static Dimension DEFAULT_SIZE=new Dimension(1000,1000);
 	
 	public SlogoView(){
 		myGrid=new Grid(DEFAULT_SIZE.height-175, DEFAULT_SIZE.width-200, this.build(5));
@@ -138,7 +141,7 @@ public class SlogoView {
 	/**
 	 * Displays the Turtle and the Line at it's position before the last command
 	 */
-	private void undo(){
+	public void undo(){
 
 	}
 	/**
@@ -179,5 +182,9 @@ public class SlogoView {
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color:BLUE");
 		return myButtonPanel;
+	}
+	
+	public void setPenDown(boolean b){
+		penIsDown = b;
 	}
 }

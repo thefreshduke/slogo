@@ -12,12 +12,12 @@ public abstract class MenuTemplate extends Menu implements UserObjects{
 	 * @param s			String representing the title of the Menu
 	 * @param handler	Event for which the Menu reacts upon
 	 */
-	public MenuTemplate(String s, EventHandler<ActionEvent> handler){
+	public MenuTemplate(String s){
 		super(s);
 	}
 	
-	public void addMenuItem(String name, EventHandler<ActionEvent> handler, MenuItemTemplate menuItem){
-		this.getItems().addAll(menuItem);
+	public void addMenuItem(String name, EventHandler<ActionEvent> handler){
+		
 	}
 
 
