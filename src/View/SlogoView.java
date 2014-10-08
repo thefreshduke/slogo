@@ -13,6 +13,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -27,10 +28,10 @@ public class SlogoView {
 	//an ArrayList of all the working commands given by the user
 	public ArrayList<String> myCommands=new ArrayList<String>();
 	private Scene myScene;
-	public final static Dimension DEFAULT_SIZE=new Dimension(1000,1000);
+	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
 	
 	public SlogoView(){
-		myGrid=new Grid((DEFAULT_SIZE.height)/2, (DEFAULT_SIZE.width)/2, this.build(5));
+		myGrid=new Grid(DEFAULT_SIZE.height-175, DEFAULT_SIZE.width-200, this.build(5));
 	
 	}	
 	/**
@@ -71,12 +72,18 @@ public class SlogoView {
 	 * Creates a layout of the GUI and adds the objects to the Stage
 	 * @param mainStage   the Stage for the GUI to operate on 
 	 */
+	
+	
 	public void initialize(Stage mainStage){
 		BorderPane mainLayout=new BorderPane();
-		mainLayout.setCenter(addGrid());
+		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+		mainLayout.setCenter(myGrid);
 		mainLayout.setTop(addMenuBar());
 		mainLayout.setBottom(addButtons());
+		mainLayout.setLeft(setTextArea());
+		root.getChildren().add(mainLayout);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+		mainStage.setScene(myScene);
 	}
 
 	/**
@@ -156,11 +163,21 @@ public class SlogoView {
 	 */
 	private void sendCommand(String s){}
 	private MenuBar addMenuBar(){
-		return null;};
-	private GridPane addGrid(){
-		return null;};
-
+		MenuBar myMenu=new MenuBar();
+		myMenu.setStyle("-fx-background-color:BLUE");
+		myMenu.setPrefSize(DEFAULT_SIZE.width, 100);
+		return myMenu;
+	}
+	private Pane setTextArea(){
+		VBox myTextArea=new VBox();
+		myTextArea.setStyle("-fx-background-color: BLUE");
+		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
+		return myTextArea;
+	}
 	private Pane addButtons(){
-		return null;
+		VBox myButtonPanel=new VBox();
+		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
+		myButtonPanel.setStyle("-fx-background-color:BLUE");
+		return myButtonPanel;
 	}
 }
