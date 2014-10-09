@@ -109,7 +109,16 @@ public class SlogoView {
 	 * @param y			y location
 	 * 
 	 */
-	private void drawLine(int x, int y){}
+	private void drawLine(int x, int y){
+		
+//		check if pen is down before drawing
+		if(penIsDown){
+			
+			
+		}
+		
+		
+	}
 
 	/**
 	 * Displays the error message "message" on the screen
@@ -287,13 +296,17 @@ public class SlogoView {
 	
 	public void toggleRefGrid(){
 		this.refGridOn = !refGridOn;
+		myGrid.toggleRefGrid(refGridOn);
 		
-		updateTurtleStats(1,2,3);
 	}
 	
 	public void updateTurtleStats(int x, int y, int or){
 		lastX.setText("X Position: " + x);
 		lastY.setText("Y Position: " + y);
 		lastOrientation.setText("Orientation " + or);
+	}
+	
+	public void setBackgroundColor(String color){
+		myGrid.setBackgroundColor(color);
 	}
 }

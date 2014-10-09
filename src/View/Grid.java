@@ -4,17 +4,21 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Grid extends GridPane {
 	final int rows=10;
 	final int columns=10;
+
+	private String backgroundColor = "BLACK";
 	public Grid(int height, int width, KeyFrame frame){
-		
+
 		this.setPrefSize(width,height);
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
@@ -23,7 +27,7 @@ public class Grid extends GridPane {
 		//this.createStyle();
 	}
 	public void makeGrid(int height, int width){
-		
+
 		for (int i=0; i<rows; i++){
 			this.getRowConstraints().add(new RowConstraints(height/rows));
 		}
@@ -33,12 +37,33 @@ public class Grid extends GridPane {
 		for (int i=0; i<rows; i++){
 			for (int b=0; b<columns; b++){
 				Pane a=new Pane();
-				a.setStyle("-fx-background-color:BLACK; -fx-border-color: WHITE");
+				a.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: WHITE");
 				this.add(a, b, i);
 			}
 		}
 	}
+
+	public void setBackgroundColor(String color){
+		backgroundColor = color;
+		for(Node n :this.getChildren()){
+			n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: WHITE");
+		}
+	}
+
+	public void toggleRefGrid(boolean b){
+
+		for(Node n :this.getChildren()){
+			if(b){
+				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: "+ backgroundColor);
+			}
+			else{
+				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: WHITE");
+
+			}
+		}
+
+	}
 }
-	
-	
+
+
 
