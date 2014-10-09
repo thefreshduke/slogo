@@ -1,17 +1,26 @@
 package View;
 
 import java.awt.Point;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Stack;
+
+import javax.imageio.ImageIO;
 
 import turtle.Turtle;
 import communicator.BaseController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -19,6 +28,8 @@ import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Grid extends Pane {
@@ -39,13 +50,14 @@ public class Grid extends Pane {
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
-		setBackgroundColor(backgroundColor);
+		//setBackgroundColor(backgroundColor);
 		makeGridLines();
 		//myTurtle=turtle;
+		//getChildren().add(myTurtle);
 	}
 	
 	public void setBackgroundColor(String color){
-		setStyle("-fx-background-color: "+"WHITE");
+		setStyle("-fx-background-color: "+color);
 	}
 	public void toggleRefGrid(boolean b){
 		if (b){
@@ -63,25 +75,50 @@ public class Grid extends Pane {
 			}
 		}
 	}
+	public void uploadMyBackgroundImage(Stage mainStage){
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Select Turtle Image");
+		fileChooser.setInitialDirectory(new File("./"));
+		File file = fileChooser.showOpenDialog(mainStage);
+		if(file != null){
+			String url = file.getPath();	
+		}
+		ImageView myImage=new ImageView();
+		BufferedImage buffer;
+		try {
+			buffer = ImageIO.read(file);
+			Image img=SwingFXUtils.toFXImage(buffer, null);
+			myImage.setImage(img);
+			myImage.setFitHeight(myHeight);
+			myImage.setFitWidth(myWidth);
+			myImage.setVisible(true);
+			this.getChildren().add(myImage);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+				
+	}
 	private void drawLine(int y, int x){
 		Line verticalGridLine=new Line(x, 0, x, myHeight);
-		verticalGridLine.setFill(Paint.valueOf("PINK"));
+		verticalGridLine.setStroke(Paint.valueOf("WHITE"));
+		verticalGridLine.setStyle("-fx-fill: WHITE");
 		Line horizontalGridLine=new Line(0, y, myWidth, y);
-		verticalGridLine.setFill(Paint.valueOf("PINK"));
+		horizontalGridLine.setStroke(Paint.valueOf("WHITE"));
 		this.getChildren().addAll(verticalGridLine, horizontalGridLine);
 		myGridLines.add(verticalGridLine);
 		myGridLines.add(horizontalGridLine);
 	}
 	
 	private int translateX(int number){
-		return number*25;
+		return number*translate;
 	}
 	private int translateY(int number){
-		return myHeight-(number*25);
+		return myHeight-(number*translate);
 	}
 	public void drawLine(int startX, int startY, int endX, int endY, String myColor){
 		Line myLine=new Line(translateX(startX), translateY(startY), translateX(endX), translateY(endY));
-		myLine.setFill(Paint.valueOf(myColor));
+		myLine.setStroke(Paint.valueOf(myColor));
 		myLines.push(myLine);
 		getChildren().add(myLine);
 	}
@@ -90,14 +127,20 @@ public class Grid extends Pane {
 		this.getChildren().clear();
 	}
 	
-	public void undoLine(){
+	private void undoLine(){
 		this.getChildren().remove(myLines.pop());
 	}
+	
 	public void moveTurtle(int x, int y){
 		//myTurtle.move(x, y);
 	}
-	public void undoTurtleMove(int x, int y){
+	
+	private void undoTurtleMove(int x, int y){
 		myTurtle.move(x,y);
+	}
+	public void undo(int x, int y){
+		undoTurtleMove(x,y);
+		undoLine();
 	}
 }
 

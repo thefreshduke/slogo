@@ -58,6 +58,7 @@ public class SlogoView {
 	private VBox commandHistoryBox;
 	private String penColor;
 	ResourceBundle myResources;
+	private Stage myStage;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
@@ -105,12 +106,14 @@ public class SlogoView {
 	
 	
 	public void initialize(Stage mainStage){
+		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainLayout.setTop(addMenuBar());
-		mainLayout.setBottom(addButtons());
+		
 		mainLayout.setLeft(setTextArea());
 		mainLayout.setCenter(myGrid);
+		mainLayout.setBottom(addButtons());
 		root.getChildren().add(mainLayout);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainStage.setScene(myScene);
@@ -176,9 +179,8 @@ public class SlogoView {
 	 * Displays the Turtle and the Line at it's position before the last command
 	 */
 	public void undo(){
-		myGrid.undoLine();
 		Point lastMove=myPoints.pop();
-		myGrid.undoTurtleMove(lastMove.x, lastMove.y);
+		myGrid.undo(myPoints.peek().x, myPoints.peek().y);
 	}
 	/**
 	 * Makes Buttons for the top 5 recent commands and displays them on the GUI
@@ -266,24 +268,27 @@ public class SlogoView {
 	
 	
 	private Pane setTextArea(){
-		VBox myTextArea=new VBox();
+		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
 		
 //		create command line
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
+		label.setStyle("-fx-font-size: 25");
+		label.setPrefSize(200, 50);
+		label.relocate(10, 5);
 		commandLine = new TextField();
-		
 		commandLine.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) sendCommand();
 			}
 		});
-		
+		commandLine.relocate(5, 60);
+		commandLine.setPrefSize(190,100);
 		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),0,0, event-> this.sendCommand());
-		myTextArea.setSpacing(10);	
+		enter.relocate(50, 180);
 		
 //		create Turtle display stats
 		lastX = new Text("X Position: " + 0);
@@ -295,6 +300,9 @@ public class SlogoView {
 		lastX.setFill(Color.WHITE);
 		lastY.setFill(Color.WHITE);
 		lastOrientation.setFill(Color.WHITE);
+		lastX.relocate(5, 250);
+		lastY.relocate(5, 280);
+		lastOrientation.relocate(5, 310);
 		
 //		temporary background color chooser
 		MenuBar mBar = new MenuBar();
@@ -305,6 +313,9 @@ public class SlogoView {
 		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
 		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
 		mBar.getMenus().add(m);
+		mBar.setPrefSize(150, 25);
+		mBar.relocate(25, 350);
+	
 
 //		temporary pen color chooser
 		MenuBar pBar = new MenuBar();
@@ -315,39 +326,47 @@ public class SlogoView {
 		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
 		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
 		pBar.getMenus().add(p);
-		
+		pBar.relocate(25, 385);
+		pBar.setPrefSize(150, 25);
 //		command History
 		
 		commandHistoryBox = new VBox();
-		Text history = new Text("Command History");
+		Text history = new Text("  Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		history.setFill(Color.WHITE);
+		history.relocate(0, 420);
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
-		
+		commandHistoryBox.relocate(0, 450);
 		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation,
 				mBar, pBar, history, commandHistoryBox);
 		return myTextArea;
 	}
+	
+	
 	private Pane addButtons(){
-		int x=0;
+		int x=100;
+		int y=10;
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		
-		ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, 0, event->myModel.uploadTurtleImage(), 150, 75);
+		ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, y, event->myModel.uploadTurtleImage(), 150, 55);
+		
+		ButtonTemplate backgroundImage=new ButtonTemplate("Upload Background\n\t  Image", x+=160,y, event->
+						myGrid.uploadMyBackgroundImage(myStage), 150, 55);
 	
-		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=200, 0, event->myModel.clear());
+		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=160, y, event->myGrid.clear());
 		
-		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=110, 0, event->myModel.undo());
+		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
 		
-		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=110, 0, event->myModel.penDown());
+		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event->myModel.penDown());
 
-		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=110, 0, event->myModel.penUp());
+		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event->myModel.penUp());
 
-		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=110, 0, event->toggleRefGrid(), 150, 75);
+		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
 
-		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid);
+		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid, backgroundImage);
 		
 		return myButtonPanel;
 	}
