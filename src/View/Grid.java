@@ -23,7 +23,7 @@ import javafx.util.Duration;
 
 public class Grid extends Pane {
 	private static final String REFERENCE_GRID_COLOR = "GREY";
-	private String backgroundColor = "BLACK";
+	private String backgroundColor = "WHITE";
 	private int myHeight;
 	private int myWidth;
 	private int translate=50;
@@ -45,7 +45,8 @@ public class Grid extends Pane {
 	}
 	
 	public void setBackgroundColor(String color){
-		setStyle("-fx-background-color: "+"WHITE");
+		backgroundColor = color;
+		setStyle("-fx-background-color: "+backgroundColor);
 	}
 	public void toggleRefGrid(boolean b){
 		if (b){
