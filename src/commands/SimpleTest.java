@@ -7,7 +7,7 @@ public class SimpleTest {
 
 //    @Test
 //    public void testSumParses(){
-//        String input = "SUM SUM 6 7 SUM 6 7";
+//        String input = "SUM 6 SUM 6 7";
 //        BaseCommand command = TestFactory.createCommand(input, true);
 //        double x = command.execute(null, null);
 //        assertEquals(new Double(command.execute(null, null)), new Double(26.0));
