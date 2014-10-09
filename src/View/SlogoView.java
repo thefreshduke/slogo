@@ -23,6 +23,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -38,9 +41,11 @@ public class SlogoView {
 	public ArrayList<String> myCommands=new ArrayList<String>();
 	private Scene myScene;
 	private SlogoViewModel myModel;
-	//flag for if pen is up or down
+	//flag for if pen is up or down, flag for if ref grid is visible
 	private boolean penIsDown, refGridOn;
 	private TextField commandLine;
+	//used to display Turtles most recent stats
+	private Text lastX, lastY, lastOrientation;
 	ResourceBundle myResources;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
@@ -117,7 +122,12 @@ public class SlogoView {
 	 * @param x     x location on a Grid
 	 * @param y		y location on a Grid
 	 */
-	public void moveTurtle(int x, int y){}
+	public void moveTurtle(int x, int y){
+		
+		
+//		update turtles most current stats for display
+		updateTurtleStats(x, y, 0);
+	}
 
 
 	/**
@@ -229,9 +239,21 @@ public class SlogoView {
 		label.setTextFill(Color.WHITE);
 		commandLine = new TextField();
 		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),0,0, event-> this.sendCommand());
-		myTextArea.getChildren().addAll(label, commandLine, enter);
 		myTextArea.setSpacing(10);	
 		
+//		create Turtle display stats
+		lastX = new Text("X Position: " + 0);
+		lastY = new Text("Y Position: " + 0);
+		lastOrientation = new Text("Orientation: " + 0);
+		lastX.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		lastY.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		lastOrientation.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		lastX.setFill(Color.WHITE);
+		lastY.setFill(Color.WHITE);
+		lastOrientation.setFill(Color.WHITE);
+
+		
+		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation);
 		return myTextArea;
 	}
 	private Pane addButtons(){
@@ -265,5 +287,13 @@ public class SlogoView {
 	
 	public void toggleRefGrid(){
 		this.refGridOn = !refGridOn;
+		
+		updateTurtleStats(1,2,3);
+	}
+	
+	public void updateTurtleStats(int x, int y, int or){
+		lastX.setText("X Position: " + x);
+		lastY.setText("Y Position: " + y);
+		lastOrientation.setText("Orientation " + or);
 	}
 }
