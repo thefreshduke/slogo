@@ -2,6 +2,8 @@ package View;
 
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.ResourceBundle;
 
 import communicator.BaseController;
@@ -16,6 +18,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -38,7 +42,7 @@ public class SlogoView {
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
-	public ArrayList<String> myCommands=new ArrayList<String>();
+	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
 	private Scene myScene;
 	private SlogoViewModel myModel;
 	//flag for if pen is up or down, flag for if ref grid is visible
@@ -46,6 +50,8 @@ public class SlogoView {
 	private TextField commandLine;
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
+	//for displaying command history
+	private VBox commandHistory;
 	ResourceBundle myResources;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
@@ -193,10 +199,29 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(){
-		System.out.println(commandLine.getText());
 //		myController.receiveCommand(commandLine.getText());
+		
+		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
+		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
+		myCommands.add(mostRecent);
 		commandLine.clear();
+		
+		updateCommandHistory();
 	}
+	
+//	ugly workaround, need to find elegant solution to get rid of repeated code
+	private void sendButtonCommand(ButtonTemplate b){
+//		myController.receiveCommand(commandLine.getText());
+		ButtonTemplate mostRecent = new ButtonTemplate(b.getText(), 0, 0, null, 180, 35);
+		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
+		myCommands.add(mostRecent);
+		commandLine.clear();
+		
+		updateCommandHistory();
+
+	}
+	
+
 	
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
@@ -247,6 +272,14 @@ public class SlogoView {
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
 		commandLine = new TextField();
+		
+		commandLine.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+			@Override
+			public void handle(KeyEvent event) {
+				if(event.getCode().equals(KeyCode.ENTER)) sendCommand();
+			}
+		});
+		
 		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),0,0, event-> this.sendCommand());
 		myTextArea.setSpacing(10);	
 		
@@ -272,9 +305,16 @@ public class SlogoView {
 		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
 		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
 
-
+//		command History
 		
-		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation, bar);
+		commandHistory = new VBox();
+		Text history = new Text("Command History");
+		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		history.setFill(Color.WHITE);
+		commandHistory.setSpacing(10);		
+		updateCommandHistory();
+		
+		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation, bar,history, commandHistory);
 		return myTextArea;
 	}
 	private Pane addButtons(){
@@ -283,9 +323,9 @@ public class SlogoView {
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		
-		ButtonTemplate draw=new ButtonTemplate(myResources.getString("uploadImage"), x, 0, event->myModel.uploadTurtleImage());
+		ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, 0, event->myModel.uploadTurtleImage(), 150, 75);
 	
-		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=110, 0, event->myModel.clear());
+		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=200, 0, event->myModel.clear());
 		
 		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=110, 0, event->myModel.undo());
 		
@@ -295,7 +335,7 @@ public class SlogoView {
 
 		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=110, 0, event->toggleRefGrid());
 
-		myButtonPanel.getChildren().addAll(draw, clear, undo, penDown, penUp, refGrid);
+		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid);
 		
 		return myButtonPanel;
 	}
@@ -316,6 +356,16 @@ public class SlogoView {
 		lastX.setText("X Position: " + x);
 		lastY.setText("Y Position: " + y);
 		lastOrientation.setText("Orientation " + or);
+	}
+	
+	public void updateCommandHistory(){
+		if(myCommands.size() > 5){
+			myCommands.poll();
+		}
+		commandHistory.getChildren().clear();
+		for(ButtonTemplate b : myCommands){
+			commandHistory.getChildren().add(b);
+		}
 	}
 	
 	public void setBackgroundColor(String color){

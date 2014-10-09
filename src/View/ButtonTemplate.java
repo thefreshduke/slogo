@@ -18,6 +18,13 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.addEvent(handler);
 		this.setPrefSize(75, 75);
 	}
+	
+	public ButtonTemplate(String s, int x, int y, EventHandler<ActionEvent> handler, int width, int height){
+		this.relocate(x, y);
+		this.setText(s);
+		this.addEvent(handler);
+		this.setPrefSize(width, height);
+	}
 
 	@Override
 	public void addEvent(EventHandler<ActionEvent> handler) {
