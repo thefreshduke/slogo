@@ -24,8 +24,8 @@ public class SlogoViewModel {
 
 	public void loadLanguageResource(String language){
 		String filePath = "/resources/languages/" + language + ".Properties"; 
-//		myBaseController.loadLanguage(url);
-		System.out.println(filePath);
+		File file = new File(filePath);
+		myBaseController.loadLanguage(file);
 	}
 	
 	

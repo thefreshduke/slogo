@@ -38,7 +38,8 @@ public class Grid extends Pane {
 	private int myHeight;
 	private int myWidth;
 	private int translate=50;
-	
+	private ImageView myImageView;
+
 	private Turtle myTurtle;
 	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
@@ -56,13 +57,14 @@ public class Grid extends Pane {
 		//myTurtle=turtle;
 		//getChildren().add(myTurtle);
 	}
-	
+
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
+		this.getChildren().remove(myImageView);
 		setStyle("-fx-background-color: "+backgroundColor);
 	}
-	
-	
+
+
 	public void toggleRefGrid(boolean b){
 		if (b){
 			makeGridLines();
@@ -87,21 +89,21 @@ public class Grid extends Pane {
 		if(file != null){
 			String url = file.getPath();	
 		}
-		ImageView myImage=new ImageView();
+		myImageView=new ImageView();
 		BufferedImage buffer;
 		try {
 			buffer = ImageIO.read(file);
 			Image img=SwingFXUtils.toFXImage(buffer, null);
-			myImage.setImage(img);
-			myImage.setFitHeight(myHeight);
-			myImage.setFitWidth(myWidth);
-			myImage.setVisible(true);
-			this.getChildren().add(myImage);
+			myImageView.setImage(img);
+			myImageView.setFitHeight(myHeight);
+			myImageView.setFitWidth(myWidth);
+			myImageView.setVisible(true);
+			this.getChildren().add(myImageView);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-				
+
+
 	}
 	private void drawLine(int y, int x){
 		Line verticalGridLine=new Line(x, 0, x, myHeight);
@@ -113,7 +115,7 @@ public class Grid extends Pane {
 		myGridLines.add(verticalGridLine);
 		myGridLines.add(horizontalGridLine);
 	}
-	
+
 	private int translateX(int number){
 		return number*translate;
 	}
@@ -126,24 +128,22 @@ public class Grid extends Pane {
 		myLines.push(myLine);
 		getChildren().add(myLine);
 	}
-	
+
 	public void clear(){
 		this.getChildren().clear();
 	}
-	
+
 	private void undoLine(){
 		this.getChildren().remove(myLines.pop());
 	}
-	
+
 	public void moveTurtle(int x, int y){
-		//myTurtle.move(x, y);
+		myTurtle.move(translateX(x),translateY(y));
 	}
-	
-	private void undoTurtleMove(int x, int y){
-		myTurtle.move(x,y);
-	}
+
+
 	public void undo(int x, int y){
-		undoTurtleMove(x,y);
+		moveTurtle(x,y);
 		undoLine();
 	}
 }
