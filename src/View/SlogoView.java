@@ -51,9 +51,11 @@ public class SlogoView {
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
 	//for displaying command history
-	private VBox commandHistory;
+	private VBox commandHistoryBox;
+	private String penColor;
 	ResourceBundle myResources;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
+	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
@@ -118,6 +120,7 @@ public class SlogoView {
 	private void drawLine(int x, int y){
 		
 //		check if pen is down before drawing
+//		also have access to private variable pen color to determine what color the line should be
 		if(penIsDown){
 			
 			
@@ -295,26 +298,36 @@ public class SlogoView {
 		lastOrientation.setFill(Color.WHITE);
 		
 //		temporary background color chooser
-		MenuBar bar = new MenuBar();
+		MenuBar mBar = new MenuBar();
 		MenuTemplate m = new MenuTemplate("Background Color");
-		bar.getMenus().add(m);
-		
 		m.addMenuItem("RED", event -> setBackgroundColor("RED"));
 		m.addMenuItem("BLUE", event -> setBackgroundColor("BLUE"));
 		m.addMenuItem("GREEN", event -> setBackgroundColor("GREEN"));
 		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
 		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
+		mBar.getMenus().add(m);
 
+//		temporary pen color chooser
+		MenuBar pBar = new MenuBar();
+		MenuTemplate p = new MenuTemplate("Pen Color");
+		p.addMenuItem("RED", event -> setPenColor("RED"));
+		p.addMenuItem("BLUE", event -> setPenColor("BLUE"));
+		p.addMenuItem("GREEN", event -> setPenColor("GREEN"));
+		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
+		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
+		pBar.getMenus().add(p);
+		
 //		command History
 		
-		commandHistory = new VBox();
+		commandHistoryBox = new VBox();
 		Text history = new Text("Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		history.setFill(Color.WHITE);
-		commandHistory.setSpacing(10);		
+		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		
-		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation, bar,history, commandHistory);
+		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation,
+				mBar, pBar, history, commandHistoryBox);
 		return myTextArea;
 	}
 	private Pane addButtons(){
@@ -333,7 +346,7 @@ public class SlogoView {
 
 		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=110, 0, event->myModel.penUp());
 
-		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=110, 0, event->toggleRefGrid());
+		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=110, 0, event->toggleRefGrid(), 150, 75);
 
 		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid);
 		
@@ -359,16 +372,21 @@ public class SlogoView {
 	}
 	
 	public void updateCommandHistory(){
-		if(myCommands.size() > 5){
+		commandHistoryBox.getChildren().clear();
+		
+		if(myCommands.size() > MAX_COMMAND_HISTORY){
 			myCommands.poll();
 		}
-		commandHistory.getChildren().clear();
 		for(ButtonTemplate b : myCommands){
-			commandHistory.getChildren().add(b);
+			commandHistoryBox.getChildren().add(b);
 		}
 	}
 	
 	public void setBackgroundColor(String color){
 		myGrid.setBackgroundColor(color);
+	}
+	
+	public void setPenColor(String color){
+		
 	}
 }

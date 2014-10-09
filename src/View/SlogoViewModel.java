@@ -69,12 +69,7 @@ public class SlogoViewModel {
 		}
 	}
 	
-	public void setPenColor(Color c){
-		
-	}
 	
-	public void setBackgroundColor(Color c){
-		
-	}
+
 	
 }
