@@ -260,9 +260,21 @@ public class SlogoView {
 		lastX.setFill(Color.WHITE);
 		lastY.setFill(Color.WHITE);
 		lastOrientation.setFill(Color.WHITE);
+		
+//		temporary background color chooser
+		MenuBar bar = new MenuBar();
+		MenuTemplate m = new MenuTemplate("Background Color");
+		bar.getMenus().add(m);
+		
+		m.addMenuItem("RED", event -> setBackgroundColor("RED"));
+		m.addMenuItem("BLUE", event -> setBackgroundColor("BLUE"));
+		m.addMenuItem("GREEN", event -> setBackgroundColor("GREEN"));
+		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
+		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
+
 
 		
-		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation);
+		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation, bar);
 		return myTextArea;
 	}
 	private Pane addButtons(){

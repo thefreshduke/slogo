@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 public class Grid extends GridPane {
+	private static final String REFERENCE_GRID_COLOR = "GREY";
 	final int rows=10;
 	final int columns=10;
 
@@ -37,7 +38,7 @@ public class Grid extends GridPane {
 		for (int i=0; i<rows; i++){
 			for (int b=0; b<columns; b++){
 				Pane a=new Pane();
-				a.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: WHITE");
+				a.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: " + REFERENCE_GRID_COLOR);
 				this.add(a, b, i);
 			}
 		}
@@ -46,7 +47,7 @@ public class Grid extends GridPane {
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		for(Node n :this.getChildren()){
-			n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: WHITE");
+			n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: "+ REFERENCE_GRID_COLOR);
 		}
 	}
 
@@ -55,9 +56,10 @@ public class Grid extends GridPane {
 		for(Node n :this.getChildren()){
 			if(b){
 				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: "+ backgroundColor);
+
 			}
 			else{
-				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: WHITE");
+				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: " + REFERENCE_GRID_COLOR);
 
 			}
 		}
