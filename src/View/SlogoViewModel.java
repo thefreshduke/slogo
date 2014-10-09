@@ -49,14 +49,6 @@ public class SlogoViewModel {
 		helpStage.show();
 	}
 	
-	public void clear(){
-		
-//		mySlogoView.clear();
-	}
-	
-	public void undo(){
-		mySlogoView.undo();
-	}
 	
 	public void uploadTurtleImage(){
 		FileChooser fileChooser = new FileChooser();
