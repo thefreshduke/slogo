@@ -1,10 +1,12 @@
 package View;
 
 import java.awt.Dimension;
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
+import java.util.Stack;
 
 import communicator.BaseController;
 import javafx.animation.KeyFrame;
@@ -27,6 +29,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -48,6 +51,7 @@ public class SlogoView {
 	//flag for if pen is up or down, flag for if ref grid is visible
 	private boolean penIsDown, refGridOn;
 	private TextField commandLine;
+	private Stack<Point> myPoints=new Stack<Point>();
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
 	//for displaying command history
@@ -59,7 +63,8 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
-		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5));
+		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5) //ADD TURTLE*
+				);
 		myModel=new SlogoViewModel(myController, this);
 	}	
 	/**
@@ -122,11 +127,8 @@ public class SlogoView {
 //		check if pen is down before drawing
 //		also have access to private variable pen color to determine what color the line should be
 		if(penIsDown){
-			
-			
+			myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
 		}
-		
-		
 	}
 
 	/**
@@ -135,17 +137,7 @@ public class SlogoView {
 	 */
 	private void showError(String message){}
 
-	/**
-	 * Moves the Turtle from its current location to (x, y)
-	 * @param x     x location on a Grid
-	 * @param y		y location on a Grid
-	 */
-	public void moveTurtle(int x, int y){
-		
-		
-//		update turtles most current stats for display
-		updateTurtleStats(x, y, 0);
-	}
+	
 
 
 	/**
@@ -155,7 +147,8 @@ public class SlogoView {
 	 * 
 	 */
 	public void move(int x, int y){
-
+		myGrid.moveTurtle(x, y);
+		drawLine(x, y);
 	}
 
 
@@ -164,8 +157,12 @@ public class SlogoView {
 	 * @param x		x location on the Grid
 	 * @param y		y location on the Grid
 	 */
-	private void update(int x, int y){}
-
+	private void update(int x, int y){
+		move(x, y);
+		drawLine(x, y);
+		myPoints.push(new Point(x, y));
+	}
+		
 	
 	/**
 	 * Changes the Turtle's visibility (called by controller)
@@ -179,7 +176,9 @@ public class SlogoView {
 	 * Displays the Turtle and the Line at it's position before the last command
 	 */
 	public void undo(){
-
+		myGrid.undoLine();
+		Point lastMove=myPoints.pop();
+		myGrid.undoTurtleMove(lastMove.x, lastMove.y);
 	}
 	/**
 	 * Makes Buttons for the top 5 recent commands and displays them on the GUI

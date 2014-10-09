@@ -1,5 +1,12 @@
 package View;
 
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Stack;
+
+import turtle.Turtle;
+import communicator.BaseController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -10,62 +17,87 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.util.Duration;
 
-public class Grid extends GridPane {
+public class Grid extends Pane {
 	private static final String REFERENCE_GRID_COLOR = "GREY";
-	final int rows=10;
-	final int columns=10;
-
 	private String backgroundColor = "BLACK";
-	public Grid(int height, int width, KeyFrame frame){
-
+	private int myHeight;
+	private int myWidth;
+	private int translate=50;
+	private Turtle myTurtle;
+	private Stack<Line> myLines=new Stack<Line>();
+	private HashSet<Line> myGridLines=new HashSet<Line>();
+	public Grid(int height, int width, KeyFrame frame){//Turtle turtle){
 		this.setPrefSize(width,height);
+		myHeight=height/translate;
+		myHeight=myHeight*translate;
+		myWidth=width/translate;
+		myWidth=myWidth*translate;
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
-		this.makeGrid(height, width);
-		//this.createStyle();
+		setBackgroundColor(backgroundColor);
+		makeGridLines();
+		//myTurtle=turtle;
 	}
-	public void makeGrid(int height, int width){
-
-		for (int i=0; i<rows; i++){
-			this.getRowConstraints().add(new RowConstraints(height/rows));
-		}
-		for (int i=0; i<columns; i++){
-			this.getColumnConstraints().add(new ColumnConstraints(width/columns));
-		}
-		for (int i=0; i<rows; i++){
-			for (int b=0; b<columns; b++){
-				Pane a=new Pane();
-				a.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: " + REFERENCE_GRID_COLOR);
-				this.add(a, b, i);
-			}
-		}
-	}
-
+	
 	public void setBackgroundColor(String color){
-		backgroundColor = color;
-		for(Node n :this.getChildren()){
-			n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: "+ REFERENCE_GRID_COLOR);
+		setStyle("-fx-background-color: "+"WHITE");
+	}
+	public void toggleRefGrid(boolean b){
+		if (b){
+			makeGridLines();
+		}
+		else{
+			this.getChildren().removeAll(myGridLines);
+			myGridLines.clear();
 		}
 	}
-
-	public void toggleRefGrid(boolean b){
-
-		for(Node n :this.getChildren()){
-			if(b){
-				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: "+ backgroundColor);
-
-			}
-			else{
-				n.setStyle("-fx-background-color:" + backgroundColor + "; -fx-border-color: " + REFERENCE_GRID_COLOR);
-
+	private void makeGridLines(){
+		for (int i=0; i<myHeight; i+=translate){
+			for (int j=0; j<myWidth; j+=translate){
+				drawLine(i, j);
 			}
 		}
-
+	}
+	private void drawLine(int y, int x){
+		Line verticalGridLine=new Line(x, 0, x, myHeight);
+		verticalGridLine.setFill(Paint.valueOf("PINK"));
+		Line horizontalGridLine=new Line(0, y, myWidth, y);
+		verticalGridLine.setFill(Paint.valueOf("PINK"));
+		this.getChildren().addAll(verticalGridLine, horizontalGridLine);
+		myGridLines.add(verticalGridLine);
+		myGridLines.add(horizontalGridLine);
+	}
+	
+	private int translateX(int number){
+		return number*25;
+	}
+	private int translateY(int number){
+		return myHeight-(number*25);
+	}
+	public void drawLine(int startX, int startY, int endX, int endY, String myColor){
+		Line myLine=new Line(translateX(startX), translateY(startY), translateX(endX), translateY(endY));
+		myLine.setFill(Paint.valueOf(myColor));
+		myLines.push(myLine);
+		getChildren().add(myLine);
+	}
+	
+	public void clear(){
+		this.getChildren().clear();
+	}
+	
+	public void undoLine(){
+		this.getChildren().remove(myLines.pop());
+	}
+	public void moveTurtle(int x, int y){
+		//myTurtle.move(x, y);
+	}
+	public void undoTurtleMove(int x, int y){
+		myTurtle.move(x,y);
 	}
 }
-
-
 
