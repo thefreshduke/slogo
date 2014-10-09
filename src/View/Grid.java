@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Stack;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import turtle.Turtle;
 import communicator.BaseController;
@@ -37,7 +38,7 @@ public class Grid extends Pane {
 	private int myHeight;
 	private int myWidth;
 	private int translate=50;
-	
+
 	private Turtle myTurtle;
 	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
@@ -50,18 +51,17 @@ public class Grid extends Pane {
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
-		//setBackgroundColor(backgroundColor);
+		setBackgroundColor(backgroundColor);
 		makeGridLines();
 		//myTurtle=turtle;
 		//getChildren().add(myTurtle);
 	}
-	
+
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		setStyle("-fx-background-color: "+backgroundColor);
 	}
-	
-	
+
 	public void toggleRefGrid(boolean b){
 		if (b){
 			makeGridLines();
@@ -71,6 +71,7 @@ public class Grid extends Pane {
 			myGridLines.clear();
 		}
 	}
+
 	private void makeGridLines(){
 		for (int i=0; i<myHeight; i+=translate){
 			for (int j=0; j<myWidth; j+=translate){
@@ -78,29 +79,32 @@ public class Grid extends Pane {
 			}
 		}
 	}
+
 	public void uploadMyBackgroundImage(Stage mainStage){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select Turtle Image");
 		fileChooser.setInitialDirectory(new File("./"));
 		File file = fileChooser.showOpenDialog(mainStage);
-		if(file != null){
-			String url = file.getPath();	
+		if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
+			ImageView myImage=new ImageView();
+			BufferedImage buffer;
+			try {
+				buffer = ImageIO.read(file);
+				Image img=SwingFXUtils.toFXImage(buffer, null);
+				myImage.setImage(img);
+				myImage.setFitHeight(myHeight);
+				myImage.setFitWidth(myWidth);
+				myImage.setVisible(true);
+				this.getChildren().add(myImage);
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Please select another file");
+			}
 		}
-		ImageView myImage=new ImageView();
-		BufferedImage buffer;
-		try {
-			buffer = ImageIO.read(file);
-			Image img=SwingFXUtils.toFXImage(buffer, null);
-			myImage.setImage(img);
-			myImage.setFitHeight(myHeight);
-			myImage.setFitWidth(myWidth);
-			myImage.setVisible(true);
-			this.getChildren().add(myImage);
-		} catch (IOException e) {
-			e.printStackTrace();
+		else{
+			JOptionPane.showMessageDialog(null, "Please select another file");
 		}
-		
-				
+		drawLine(0, 9, 1,2, "BLUE");
+
 	}
 	private void drawLine(int y, int x){
 		Line verticalGridLine=new Line(x, 0, x, myHeight);
@@ -112,7 +116,7 @@ public class Grid extends Pane {
 		myGridLines.add(verticalGridLine);
 		myGridLines.add(horizontalGridLine);
 	}
-	
+
 	private int translateX(int number){
 		return number*translate;
 	}
@@ -125,19 +129,19 @@ public class Grid extends Pane {
 		myLines.push(myLine);
 		getChildren().add(myLine);
 	}
-	
+
 	public void clear(){
-		this.getChildren().clear();
+		this.getChildren().removeAll(myLines);
 	}
-	
+
 	private void undoLine(){
 		this.getChildren().remove(myLines.pop());
 	}
-	
+
 	public void moveTurtle(int x, int y){
 		//myTurtle.move(x, y);
 	}
-	
+
 	private void undoTurtleMove(int x, int y){
 		myTurtle.move(x,y);
 	}
