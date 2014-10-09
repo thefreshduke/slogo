@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.Stack;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 import turtle.Turtle;
 import communicator.BaseController;
@@ -37,8 +38,8 @@ public class Grid extends Pane {
 	private int myHeight;
 	private int myWidth;
 	private int translate=50;
-	private ImageView myImageView;
 
+	private ImageView myImageView;
 	private Turtle myTurtle;
 	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
@@ -51,7 +52,7 @@ public class Grid extends Pane {
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
-		//setBackgroundColor(backgroundColor);
+		setBackgroundColor(backgroundColor);
 		makeGridLines();
 		//myTurtle=turtle;
 		//getChildren().add(myTurtle);
@@ -73,6 +74,7 @@ public class Grid extends Pane {
 			myGridLines.clear();
 		}
 	}
+
 	private void makeGridLines(){
 		for (int i=0; i<myHeight; i+=translate){
 			for (int j=0; j<myWidth; j+=translate){
@@ -80,14 +82,32 @@ public class Grid extends Pane {
 			}
 		}
 	}
+
 	public void uploadMyBackgroundImage(Stage mainStage){
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Select Turtle Image");
 		fileChooser.setInitialDirectory(new File("./"));
 		File file = fileChooser.showOpenDialog(mainStage);
-		if(file != null){
-			String url = file.getPath();	
+		if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
+			ImageView myImage=new ImageView();
+			BufferedImage buffer;
+			try {
+				buffer = ImageIO.read(file);
+				Image img=SwingFXUtils.toFXImage(buffer, null);
+				myImage.setImage(img);
+				myImage.setFitHeight(myHeight);
+				myImage.setFitWidth(myWidth);
+				myImage.setVisible(true);
+				this.getChildren().add(myImage);
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Please select another file");
+			}
 		}
+
+		else{
+			JOptionPane.showMessageDialog(null, "Please select another file");
+		}
+
 		myImageView=new ImageView();
 		BufferedImage buffer;
 		try {
@@ -129,7 +149,7 @@ public class Grid extends Pane {
 	}
 
 	public void clear(){
-		this.getChildren().clear();
+		this.getChildren().removeAll(myLines);
 	}
 
 	private void undoLine(){
@@ -139,8 +159,6 @@ public class Grid extends Pane {
 	public void moveTurtle(int x, int y){
 		myTurtle.move(translateX(x),translateY(y));
 	}
-
-
 	public void undo(int x, int y){
 		moveTurtle(x,y);
 		undoLine();
