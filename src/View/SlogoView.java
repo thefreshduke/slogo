@@ -143,9 +143,7 @@ public class SlogoView {
 	 * 
 	 */
 	private void showError(String message){
-
-		JOptionPane pane = new JOptionPane();
-		System.out.println(message);
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 
@@ -436,7 +434,8 @@ public class SlogoView {
 		//		myController.receiveCommand(commandLine.getText());
 
 		commandLine.setText(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
+		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
+				0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
