@@ -320,11 +320,11 @@ public class SlogoView {
 //		temporary pen color chooser
 		MenuBar pBar = new MenuBar();
 		MenuTemplate p = new MenuTemplate("Pen Color");
-		p.addMenuItem("RED", event -> myGrid.setPenColor("RED"));
-		p.addMenuItem("BLUE", event -> myGrid.setPenColor("BLUE"));
-		p.addMenuItem("GREEN", event -> myGrid.setPenColor("GREEN"));
-		p.addMenuItem("WHITE", event -> myGrid.setPenColor("WHITE"));
-		p.addMenuItem("BLACK", event -> myGrid.setPenColor("BLACK"));
+		p.addMenuItem("RED", event -> setPenColor("RED"));
+		p.addMenuItem("BLUE", event -> setPenColor("BLUE"));
+		p.addMenuItem("GREEN", event -> setPenColor("GREEN"));
+		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
+		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
 		pBar.getMenus().add(p);
 		pBar.relocate(25, 385);
 		pBar.setPrefSize(150, 25);
@@ -360,9 +360,9 @@ public class SlogoView {
 		
 		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
 		
-		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event->myModel.penDown());
+		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event-> setPenDown(true));
 
-		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event->myModel.penUp());
+		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event-> setPenDown(false));
 
 		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
 
@@ -375,6 +375,7 @@ public class SlogoView {
 	}
 	public void setPenDown(boolean b){
 		penIsDown = b;
+
 	}
 	
 	public void toggleRefGrid(){
@@ -402,6 +403,10 @@ public class SlogoView {
 	
 	public void setBackgroundColor(String color){
 		myGrid.setBackgroundColor(color);
+	}
+	
+	public void setPenColor(String color){
+		penColor = color;
 	}
 	
 }
