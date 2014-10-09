@@ -35,8 +35,8 @@ import javafx.util.Duration;
 public class Grid extends Pane {
 	private static final String REFERENCE_GRID_COLOR = "GREY";
 	private String backgroundColor = "WHITE";
-	private int myHeight;
-	private int myWidth;
+	public int myHeight;
+	public int myWidth;
 	private int translate=50;
 
 	private ImageView myImageView;
@@ -102,6 +102,7 @@ public class Grid extends Pane {
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Please select another file");
 			}
+			
 		}
 
 		else{
