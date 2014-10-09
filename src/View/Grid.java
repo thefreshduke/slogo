@@ -35,9 +35,11 @@ import javafx.util.Duration;
 public class Grid extends Pane {
 	private static final String REFERENCE_GRID_COLOR = "GREY";
 	private String backgroundColor = "WHITE";
+	private String penColor = "BLACK";
 	private int myHeight;
 	private int myWidth;
 	private int translate=50;
+	
 	private Turtle myTurtle;
 	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
@@ -59,6 +61,10 @@ public class Grid extends Pane {
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		setStyle("-fx-background-color: "+backgroundColor);
+	}
+	
+	public void setPenColor(String color){
+		penColor = color;
 	}
 	
 	public void toggleRefGrid(boolean b){
@@ -103,10 +109,10 @@ public class Grid extends Pane {
 	}
 	private void drawLine(int y, int x){
 		Line verticalGridLine=new Line(x, 0, x, myHeight);
-		verticalGridLine.setStroke(Paint.valueOf("WHITE"));
-		verticalGridLine.setStyle("-fx-fill: WHITE");
+		verticalGridLine.setStroke(Paint.valueOf(penColor));
+		verticalGridLine.setStyle("-fx-fill: " + penColor);
 		Line horizontalGridLine=new Line(0, y, myWidth, y);
-		horizontalGridLine.setStroke(Paint.valueOf("WHITE"));
+		horizontalGridLine.setStroke(Paint.valueOf(penColor));
 		this.getChildren().addAll(verticalGridLine, horizontalGridLine);
 		myGridLines.add(verticalGridLine);
 		myGridLines.add(horizontalGridLine);

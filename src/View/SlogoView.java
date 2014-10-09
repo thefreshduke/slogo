@@ -59,7 +59,7 @@ public class SlogoView {
 	private String penColor;
 	ResourceBundle myResources;
 	private Stage myStage;
-	public final static Dimension DEFAULT_SIZE=new Dimension(1000,800);
+	public final static Dimension DEFAULT_SIZE=new Dimension(800,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
@@ -320,11 +320,11 @@ public class SlogoView {
 //		temporary pen color chooser
 		MenuBar pBar = new MenuBar();
 		MenuTemplate p = new MenuTemplate("Pen Color");
-		p.addMenuItem("RED", event -> setPenColor("RED"));
-		p.addMenuItem("BLUE", event -> setPenColor("BLUE"));
-		p.addMenuItem("GREEN", event -> setPenColor("GREEN"));
-		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
-		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
+		p.addMenuItem("RED", event -> myGrid.setPenColor("RED"));
+		p.addMenuItem("BLUE", event -> myGrid.setPenColor("BLUE"));
+		p.addMenuItem("GREEN", event -> myGrid.setPenColor("GREEN"));
+		p.addMenuItem("WHITE", event -> myGrid.setPenColor("WHITE"));
+		p.addMenuItem("BLACK", event -> myGrid.setPenColor("BLACK"));
 		pBar.getMenus().add(p);
 		pBar.relocate(25, 385);
 		pBar.setPrefSize(150, 25);
@@ -404,7 +404,4 @@ public class SlogoView {
 		myGrid.setBackgroundColor(color);
 	}
 	
-	public void setPenColor(String color){
-		
-	}
 }
