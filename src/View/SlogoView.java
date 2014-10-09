@@ -8,6 +8,9 @@ import java.util.Queue;
 import java.util.ResourceBundle;
 import java.util.Stack;
 
+import javax.swing.JOptionPane;
+
+import turtle.Turtle;
 import communicator.BaseController;
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
@@ -57,9 +60,10 @@ public class SlogoView {
 	//for displaying command history
 	private VBox commandHistoryBox;
 	private String penColor;
+	private MenuTemplate userCommands;
 	ResourceBundle myResources;
 	private Stage myStage;
-	public final static Dimension DEFAULT_SIZE=new Dimension(800,600);
+	public final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
@@ -103,14 +107,14 @@ public class SlogoView {
 	 * Creates a layout of the GUI and adds the objects to the Stage
 	 * @param mainStage   the Stage for the GUI to operate on 
 	 */
-	
-	
+
+
 	public void initialize(Stage mainStage){
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainLayout.setTop(addMenuBar());
-		
+
 		mainLayout.setLeft(setTextArea());
 		mainLayout.setCenter(myGrid);
 		mainLayout.setBottom(addButtons());
@@ -126,9 +130,9 @@ public class SlogoView {
 	 * 
 	 */
 	private void drawLine(int x, int y){
-		
-//		check if pen is down before drawing
-//		also have access to private variable pen color to determine what color the line should be
+
+		//		check if pen is down before drawing
+		//		also have access to private variable pen color to determine what color the line should be
 		if(penIsDown){
 			myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
 		}
@@ -138,9 +142,13 @@ public class SlogoView {
 	 * Displays the error message "message" on the screen
 	 * 
 	 */
-	private void showError(String message){}
+	private void showError(String message){
 
-	
+		JOptionPane pane = new JOptionPane();
+		System.out.println(message);
+	}
+
+
 
 
 	/**
@@ -165,16 +173,16 @@ public class SlogoView {
 		drawLine(x, y);
 		myPoints.push(new Point(x, y));
 	}
-		
-	
+
+
 	/**
 	 * Changes the Turtle's visibility (called by controller)
 	 * @param b		Representing a boolean that determines whether or not
 	 * 				the turtle should be visible
 	 */
 	public void setTurtleVisible(boolean b){} 
-	
-	
+
+
 	/**
 	 * Displays the Turtle and the Line at it's position before the last command
 	 */
@@ -203,30 +211,30 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(){
-//		myController.receiveCommand(commandLine.getText());
-		
+		//		myController.receiveCommand(commandLine.getText());
+
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-		
+
 		updateCommandHistory();
 	}
-	
-//	ugly workaround, need to find elegant solution to get rid of repeated code
+
+	//	ugly workaround, need to find elegant solution to get rid of repeated code
 	private void sendButtonCommand(ButtonTemplate b){
-//		myController.receiveCommand(commandLine.getText());
+		//		myController.receiveCommand(commandLine.getText());
 		ButtonTemplate mostRecent = new ButtonTemplate(b.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-		
+
 		updateCommandHistory();
 
 	}
-	
 
-	
+
+
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
 		//myMenu.setStyle("-fx-background-color:#000080");
@@ -235,23 +243,24 @@ public class SlogoView {
 		MenuTemplate fileMenu = new MenuTemplate("File");
 		MenuTemplate languages = new MenuTemplate("Languages");
 		MenuTemplate help = new MenuTemplate("Help");
+		userCommands = new MenuTemplate("User Commands");
 		this.createMenuItemsUnderFile(fileMenu);
 		this.createMenuItemsUnderLanguages(languages);
 		this.createMenuItemsUnderHelp(help);
-		myMenu.getMenus().addAll(fileMenu, languages, help);
+		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help);
 		return myMenu;
 	}
-	
-	
+
+
 
 	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
-		
+
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
 	}
-	
+
 	public void createMenuItemsUnderLanguages(MenuTemplate languages){
-		
+
 		languages.addMenuItem("English", event -> myModel.loadLanguageResource("English"));
 		languages.addMenuItem("French", event -> myModel.loadLanguageResource("French"));
 		languages.addMenuItem("Portuguese", event -> myModel.loadLanguageResource("Portuguese"));
@@ -260,19 +269,19 @@ public class SlogoView {
 		languages.addMenuItem("Russian", event -> myModel.loadLanguageResource("Russian"));
 
 	}
-	
+
 	public void createMenuItemsUnderHelp(MenuTemplate help){	
-		
+
 		help.addMenuItem("Help Page", event -> myModel.helpPage());
 	}
-	
-	
+
+
 	private Pane setTextArea(){
 		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
-		
-//		create command line
+
+		//		create command line
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
 		label.setStyle("-fx-font-size: 25");
@@ -287,10 +296,18 @@ public class SlogoView {
 		});
 		commandLine.relocate(5, 60);
 		commandLine.setPrefSize(190,100);
-		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),0,0, event-> this.sendCommand());
-		enter.relocate(50, 180);
-		
-//		create Turtle display stats
+		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),
+				0,0, event-> this.sendCommand());
+		enter.relocate(5, 180);
+
+		//		create make Command Button
+		ButtonTemplate makeCommand = new ButtonTemplate(myResources.getString("makeCommand"),
+				0,0, event-> makeUserCommand(commandLine.getText()), 110, 55);
+		makeCommand.relocate(85, 180);
+
+
+
+		//		create Turtle display stats
 		lastX = new Text("X Position: " + 0);
 		lastY = new Text("Y Position: " + 0);
 		lastOrientation = new Text("Orientation: " + 0);
@@ -303,8 +320,8 @@ public class SlogoView {
 		lastX.relocate(5, 250);
 		lastY.relocate(5, 280);
 		lastOrientation.relocate(5, 310);
-		
-//		temporary background color chooser
+
+		//		temporary background color chooser
 		MenuBar mBar = new MenuBar();
 		MenuTemplate m = new MenuTemplate("Background Color");
 		m.addMenuItem("RED", event -> setBackgroundColor("RED"));
@@ -315,9 +332,9 @@ public class SlogoView {
 		mBar.getMenus().add(m);
 		mBar.setPrefSize(150, 25);
 		mBar.relocate(25, 350);
-	
 
-//		temporary pen color chooser
+
+		//		temporary pen color chooser
 		MenuBar pBar = new MenuBar();
 		MenuTemplate p = new MenuTemplate("Pen Color");
 		p.addMenuItem("RED", event -> setPenColor("RED"));
@@ -328,8 +345,8 @@ public class SlogoView {
 		pBar.getMenus().add(p);
 		pBar.relocate(25, 385);
 		pBar.setPrefSize(150, 25);
-//		command History
-		
+		//		command History
+
 		commandHistoryBox = new VBox();
 		Text history = new Text("  Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -338,28 +355,28 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		commandHistoryBox.relocate(0, 450);
-		myTextArea.getChildren().addAll(label, commandLine, enter, lastX, lastY, lastOrientation,
+		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand, lastX, lastY, lastOrientation,
 				mBar, pBar, history, commandHistoryBox);
 		return myTextArea;
 	}
-	
-	
+
+
 	private Pane addButtons(){
 		int x=100;
 		int y=10;
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-		
+
 		ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, y, event->myModel.uploadTurtleImage(), 150, 55);
-		
+
 		ButtonTemplate backgroundImage=new ButtonTemplate("Upload Background\n\t  Image", x+=160,y, event->
-						myGrid.uploadMyBackgroundImage(myStage), 150, 55);
-	
+		myGrid.uploadMyBackgroundImage(myStage), 150, 55);
+
 		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=160, y, event->myGrid.clear());
-		
+
 		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
-		
+
 		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event-> setPenDown(true));
 
 		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event-> setPenDown(false));
@@ -367,32 +384,32 @@ public class SlogoView {
 		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
 
 		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid, backgroundImage);
-		
+
 		return myButtonPanel;
 	}
 	public void home(){
-		
+
 	}
 	public void setPenDown(boolean b){
 		penIsDown = b;
 
 	}
-	
+
 	public void toggleRefGrid(){
 		this.refGridOn = !refGridOn;
 		myGrid.toggleRefGrid(refGridOn);
-		
+
 	}
-	
+
 	public void updateTurtleStats(int x, int y, int or){
 		lastX.setText("X Position: " + x);
 		lastY.setText("Y Position: " + y);
 		lastOrientation.setText("Orientation " + or);
 	}
-	
+
 	public void updateCommandHistory(){
 		commandHistoryBox.getChildren().clear();
-		
+
 		if(myCommands.size() > MAX_COMMAND_HISTORY){
 			myCommands.poll();
 		}
@@ -400,14 +417,31 @@ public class SlogoView {
 			commandHistoryBox.getChildren().add(b);
 		}
 	}
-	
+
 	public void setBackgroundColor(String color){
 		myGrid.setBackgroundColor(color);
 	}
-	
+
 	public void setPenColor(String color){
 		penColor = color;
 	}
-	
-	
+
+	public void makeUserCommand(String command){
+		commandLine.clear();
+		String name = JOptionPane.showInputDialog("Give a Name for your Command");
+		userCommands.addMenuItem(name, event->executeUserCommand(command));
+	}
+
+	public void executeUserCommand(String command){
+		//		myController.receiveCommand(commandLine.getText());
+
+		commandLine.setText(command);
+		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
+		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
+		myCommands.add(mostRecent);
+		commandLine.clear();
+
+		updateCommandHistory();
+	}
+
 }

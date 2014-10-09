@@ -39,6 +39,7 @@ public class Grid extends Pane {
 	private int myWidth;
 	private int translate=50;
 
+	private ImageView myImageView;
 	private Turtle myTurtle;
 	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
@@ -59,8 +60,10 @@ public class Grid extends Pane {
 
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
+		this.getChildren().remove(myImageView);
 		setStyle("-fx-background-color: "+backgroundColor);
 	}
+
 
 	public void toggleRefGrid(boolean b){
 		if (b){
@@ -100,10 +103,25 @@ public class Grid extends Pane {
 				JOptionPane.showMessageDialog(null, "Please select another file");
 			}
 		}
+
 		else{
 			JOptionPane.showMessageDialog(null, "Please select another file");
 		}
-		drawLine(0, 9, 1,2, "BLUE");
+
+		myImageView=new ImageView();
+		BufferedImage buffer;
+		try {
+			buffer = ImageIO.read(file);
+			Image img=SwingFXUtils.toFXImage(buffer, null);
+			myImageView.setImage(img);
+			myImageView.setFitHeight(myHeight);
+			myImageView.setFitWidth(myWidth);
+			myImageView.setVisible(true);
+			this.getChildren().add(myImageView);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 	private void drawLine(int y, int x){
@@ -139,14 +157,10 @@ public class Grid extends Pane {
 	}
 
 	public void moveTurtle(int x, int y){
-		//myTurtle.move(x, y);
-	}
-
-	private void undoTurtleMove(int x, int y){
-		myTurtle.move(x,y);
+		myTurtle.move(translateX(x),translateY(y));
 	}
 	public void undo(int x, int y){
-		undoTurtleMove(x,y);
+		moveTurtle(x,y);
 		undoLine();
 	}
 }

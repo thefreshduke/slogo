@@ -1,4 +1,6 @@
 package communicator;
+import java.io.File;
+
 import javafx.scene.Node;
 
 public abstract class BaseController {
@@ -70,4 +72,10 @@ public abstract class BaseController {
      * @param orientation New orientation
      */
     public void hardSetTurtleOrientation(double orientation){}
+    
+    public void loadLanguage(File file){
+    	
+    }
 }
+
+
