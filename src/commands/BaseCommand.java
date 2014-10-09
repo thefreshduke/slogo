@@ -13,12 +13,15 @@ import turtle.Turtle;
 public abstract class BaseCommand {
 	private BaseCommand myNextCommand;
 	private BaseCommand myInternalCommand;
+	private String myLeftoverString = "";
+	private boolean myExpressionFlag;
 	/**
 	 * 
 	 * @param userInput
 	 */
-	public BaseCommand(String userInput) {
-		parseArguments(userInput);
+	public BaseCommand(String userInput, boolean isExpression) {
+	    myExpressionFlag = isExpression;
+	    parseArguments(userInput);
 	}
 
 	/**
@@ -43,5 +46,18 @@ public abstract class BaseCommand {
 	
 	protected void setInternalCommand(BaseCommand command){
 		myInternalCommand = command;
+	}
+	
+	protected String getLeftoverString(){
+	    return myLeftoverString;
+	}
+	
+	protected void setLeftoverCommands(String string){
+	    if(myExpressionFlag){
+	        myLeftoverString = string;
+	    }
+	    else if(string != null || string != ""){
+	        myNextCommand = TestFactory.createCommand(string, true);
+	    }
 	}
 }

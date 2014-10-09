@@ -4,15 +4,15 @@ import turtle.Turtle;
 
 public abstract class TurtleCommand extends ModelCommand {
 	
-	public TurtleCommand(String userInput) {
-		super(userInput);
+	public TurtleCommand(String userInput, boolean isExpression) {
+		super(userInput, isExpression);
 	}
 	
 	@Override
 	public double execute(View view, Turtle turtle) {
-		updateTurtle();
-		sendTurtleToView();
-		return calculateResult();
+	    updateTurtle();
+	    sendTurtleToView();
+	    return calculateResult();
 	}
 	
 	private void sendTurtleToView() {

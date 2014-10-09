@@ -7,8 +7,8 @@ import turtle.Turtle;
 public abstract class LogicCommand extends ModelCommand {
 	private List<String> myExpressionArguments; 
 
-	public LogicCommand(String userInput) {
-		super(userInput);
+	public LogicCommand(String userInput, boolean isExpression) {
+		super(userInput, isExpression);
 	}
 	
 	@Override

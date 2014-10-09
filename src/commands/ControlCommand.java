@@ -4,8 +4,8 @@ import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	
-	public ControlCommand(String userInput) {
-		super(userInput);
+	public ControlCommand(String userInput, boolean isExpression) {
+		super(userInput, isExpression);
 	}
 	
 	// Create static factory to generate commands
@@ -24,7 +24,7 @@ public abstract class ControlCommand extends ModelCommand {
 		return execute();
 	}
 
-	public abstract int execute();
+	public abstract double execute();
 	
 	protected int findLastIndexOfCharacter(String userInput, char character) {
 		for (int i = userInput.length()-1; i >= 0; i--) {
