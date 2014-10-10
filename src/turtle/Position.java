@@ -38,6 +38,7 @@ public class Position {
 	public Position(double xPos, double yPos) {
 		myXPosList = new ArrayList<Double>();
 		myYPosList = new ArrayList<Double>();
+		myRotateList = new ArrayList<Double>();
 		myXPos = xPos;
 		myXPosList.add(myXPos);
 		myYPos = yPos;
@@ -53,7 +54,6 @@ public class Position {
 	public Position(double xPos, double yPos, double rotatePos) {
 		this(xPos, yPos);
 		myRotate = rotatePos;
-		myRotateList = new ArrayList<Double>();
 		myRotateList.add(myRotate);
 	}
 
