@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 
 import turtle.Turtle;
 import communicator.BaseController;
+import communicator.MainController;
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,7 +45,7 @@ public class SlogoView {
 	//list of all the objects on the GUI that the user can interact with
 	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
 	private Grid myGrid;
-	private BaseController myController;
+	private MainController myController;
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
@@ -68,8 +69,8 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
-		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5) //ADD TURTLE*
-				);
+		myController=new MainController(this);
+		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getTurtle());
 		myModel=new SlogoViewModel(myController, this);
 	}	
 	/**
@@ -170,10 +171,11 @@ public class SlogoView {
 	 * @param x		x location on the Grid
 	 * @param y		y location on the Grid
 	 */
-	private void update(int x, int y){
-		move(x, y);
-		drawLine(x, y);
-		myPoints.push(new Point(x, y));
+	public void update(double x, double y){
+		System.out.println("H");
+		move((int)x, (int)y);
+		drawLine((int)x, (int)y);
+		myPoints.push(new Point((int)x, (int)y));
 	}
 
 
@@ -213,8 +215,8 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(){
-		//		myController.receiveCommand(commandLine.getText());
-
+		
+		myController.receiveCommand(commandLine.getText());
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
@@ -225,7 +227,7 @@ public class SlogoView {
 
 	//	ugly workaround, need to find elegant solution to get rid of repeated code
 	private void sendButtonCommand(ButtonTemplate b){
-		//		myController.receiveCommand(commandLine.getText());
+		myController.receiveCommand(commandLine.getText());
 		ButtonTemplate mostRecent = new ButtonTemplate(b.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);

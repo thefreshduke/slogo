@@ -43,7 +43,9 @@ public class Grid extends Pane {
 	private Turtle myTurtle;
 	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
-	public Grid(int height, int width, KeyFrame frame){//Turtle turtle){
+	
+	
+	public Grid(int height, int width, KeyFrame frame, Turtle turtle){//Turtle turtle){
 		this.setPrefSize(width,height);
 		myHeight=height/translate;
 		myHeight=myHeight*translate;
@@ -52,16 +54,18 @@ public class Grid extends Pane {
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
-		setBackgroundColor(backgroundColor);
+		
 		makeGridLines();
-		//myTurtle=turtle;
-		//getChildren().add(myTurtle);
+		myTurtle=turtle;
+		getChildren().add(myTurtle);
+		setBackgroundColor(backgroundColor);
 	}
 
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		this.getChildren().remove(myImageView);
 		setStyle("-fx-background-color: "+backgroundColor);
+		moveTurtle(50, 50);
 	}
 
 
@@ -155,8 +159,11 @@ public class Grid extends Pane {
 		this.getChildren().remove(myLines.pop());
 	}
 
-	public void moveTurtle(int x, int y){
+	public void gridMoveTurtle(int x, int y){
 		myTurtle.move(translateX(x),translateY(y));
+	}
+	public void moveTurtle(int x, int y){
+		myTurtle.relocate(x, y);
 	}
 	public void undo(int x, int y){
 		moveTurtle(x,y);

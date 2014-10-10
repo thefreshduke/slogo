@@ -71,14 +71,10 @@ public class MainController extends BaseController {
             @Override
             public void handle (long now) {
                 if(!myCommandQueue.isEmpty() && !myCommandIsExecuting.getAndSet(true)){
-//                    try{
-//                        BaseCommand command = myCommandQueue.poll();
-//                        executeCommand(command); 
-//                    }
-//                    catch(BackendException ex){
-//                        reportErrorToView(ex);
-//                    }
-                	
+                        BaseCommand command = myCommandQueue.poll();
+                        executeCommand(command); 
+                    
+          
                 }
             }
         };
@@ -91,7 +87,7 @@ public class MainController extends BaseController {
 
     @Override
     protected void initializeModel () {
-    	Image image = new Image("\bowser.png");
+    	Image image = new Image("bowser.png");
         myTurtle = new Turtle(new Position(0,0), image);
         myTurtle.setFitWidth(60);
         myTurtle.setPreserveRatio(true);;

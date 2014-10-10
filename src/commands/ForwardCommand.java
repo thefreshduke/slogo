@@ -34,9 +34,11 @@ public class ForwardCommand extends TurtleCommand {
 	public double execute(SlogoView view, Turtle turtle) {
 		double movedDistance = myDistance.execute(view, turtle);
 		turtle.moveVertical(movedDistance);
-		view.updateTurtle(turtle.getX(), turtle.getY());
+		view.update(turtle.getX(), turtle.getY());
+		return movedDistance;
 	}
 
+	
 
 
 }
