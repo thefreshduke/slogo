@@ -37,6 +37,7 @@ public class ForwardCommand extends TurtleCommand {
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double movedDistance = myDistance.execute(view, turtle);
 		turtle.move(movedDistance);
+		System.out.println("ForwardCommand Turtle: " + turtle.getXPos() + ", " + turtle.getYPos());
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
 		if(nextCommand != null){

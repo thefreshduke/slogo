@@ -58,6 +58,8 @@ public class Grid extends Pane {
 		time.getKeyFrames().add(frame);
 		makeGridLines();
 		myTurtle=turtle;
+		System.out.println("width: " + myWidth);
+		System.out.println("height: " + myHeight);
 		System.out.println("View turtle1: " + myTurtle.getXPos() + ", " + myTurtle.getYPos());
 		myTurtle.setXPos(myTurtle.getXPos() + myWidth/2);
 		myTurtle.setYPos(myTurtle.getYPos() + myHeight/2);
