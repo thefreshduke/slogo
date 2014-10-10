@@ -27,7 +27,7 @@ public class ForwardCommand extends TurtleCommand {
 
 	@Override
 	protected void parseArguments(String userInput) {
-		BaseCommand command = TestFactory.createCommand(userInput, true);
+		BaseCommand command = CommandFactory.createCommand(userInput, true);
 		myDistance = command;
 		setLeftoverCommands(command.getLeftoverString());// TODO Auto-generated method stub
 	}
