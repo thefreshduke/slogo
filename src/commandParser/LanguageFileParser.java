@@ -5,7 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import backendExceptions.BackendException;
 import backendExceptions.SlogoFileNotFoundException;
 
@@ -13,8 +15,11 @@ public class LanguageFileParser {
     
         public LanguageFileParser(String fileName) throws BackendException{
             extractFromLanguageFile(fileName);
+            SPECIAL_CHARACTERS.add("[");
+            SPECIAL_CHARACTERS.add("]");
         }
         
+        private static final Set<String> SPECIAL_CHARACTERS = new HashSet<>();
         private static final char COMMENT_INDICATOR = '#';
 	private static String myCommandSeparator = " ";
 	private String myEquals = "=";
@@ -58,18 +63,33 @@ public class LanguageFileParser {
 	
 	public String translateUserInputIntoEnglish(String userInput) {
 		String translatedUserInput = "";
+		//TODO: Change to string builder
 		String[] userInputWords = userInput.split(myCommandSeparator);
 		for (int i = 0; i < userInputWords.length; i++) {
-		        String userInputWord = userInputWords[i].toLowerCase();
+		        String word = userInputWords[i].toLowerCase();
+		        if(SPECIAL_CHARACTERS.contains(word) || isNumber(word)){
+                            translatedUserInput += word + myCommandSeparator;
+                        }
 		        String translatedInputWord ="";
-			if (myUserInputToEnglishTranslationMap.containsKey(userInputWord)) {
-				translatedInputWord = myUserInputToEnglishTranslationMap.get(userInputWord);
-				translatedUserInput = translatedUserInput + translatedInputWord + myCommandSeparator;
+		        
+			if (myUserInputToEnglishTranslationMap.containsKey(word)) {
+				translatedInputWord = myUserInputToEnglishTranslationMap.get(word);
+				translatedUserInput += translatedInputWord + myCommandSeparator;
 			}
 			else{
 			    //TODO: throw
 			}
 		}
 		return translatedUserInput.trim();
+	}
+	
+	private boolean isNumber(String input){
+	    try{
+	        Double.parseDouble(input);
+	        return true;
+	    }
+	    catch(NumberFormatException ex){
+	        return false;
+	    }
 	}
 }
