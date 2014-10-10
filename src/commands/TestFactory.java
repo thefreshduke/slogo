@@ -11,7 +11,7 @@ public class TestFactory {
     
     public static BaseCommand createCommand(String input, boolean isExpression){
         myCommandToClassMap = new HashMap<>();
-        myCommandToClassMap.put("SUM", TestSumCommand.class);
+        myCommandToClassMap.put("SUM", SumCommand.class);
         myCommandToClassMap.put("IFELSE", IfElseCommand.class);
         myCommandToClassMap.put("FD", ForwardCommand.class);
         String firstCommand = identifyFirstCommand(input);
