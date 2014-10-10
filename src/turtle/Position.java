@@ -76,16 +76,15 @@ public class Position {
 		myYPosList.add(myYPos);
 	}
 
-
 	/**
-	 * Move specified amount in the horizontal and vertical directions
-	 * @param xIncrement
-	 * @param yIncrement
+	 * Move amount specified at current heading 
+	 * @param increment - straight-line distance to be moved
 	 */
-	public void move(double xIncrement,  double yIncrement) {
-		moveHorizontal(xIncrement);
-		moveVertical(yIncrement);
+	public void move(double increment) {
+		moveHorizontal(increment*(Math.cos(Math.toRadians(myRotate))));
+		moveVertical(increment*(Math.sin(Math.toRadians(myRotate))));
 	}
+
 
 	/**
 	 * Rotate by specified increment

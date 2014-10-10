@@ -176,7 +176,6 @@ public class SlogoView {
 	 * @param y		y location on the Grid
 	 */
 	public void update(double x, double y){
-		System.out.println("H");
 		move((int)x, (int)y);
 		drawLine((int)x, (int)y);
 		myPoints.push(new Point((int)x, (int)y));

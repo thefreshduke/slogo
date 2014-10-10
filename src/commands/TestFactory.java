@@ -14,6 +14,8 @@ public class TestFactory {
         myCommandToClassMap.put("SUM", TestSumCommand.class);
         myCommandToClassMap.put("IFELSE", IfElseCommand.class);
         myCommandToClassMap.put("FD", ForwardCommand.class);
+        myCommandToClassMap.put("BK", BackCommand.class);
+
         String firstCommand = identifyFirstCommand(input);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         if(checkIfInt(firstCommand)){

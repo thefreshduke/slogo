@@ -58,7 +58,7 @@ public abstract class BaseCommand {
 	        myLeftoverString = string;
 	    }
 	    else if(string != null || string != ""){
-	        myNextCommand = TestFactory.createCommand(string, true);
+	        myNextCommand = TestFactory.createCommand(string, false);
 	    }
 	}
 }
