@@ -1,17 +1,22 @@
 package communicator;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import backendExceptions.BackendException;
 import turtle.Position;
 import turtle.Turtle;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
+import commands.TestFactory;
 import commands.View;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.shape.Rectangle;
 
 public class MainController extends BaseController {
     
@@ -38,6 +43,7 @@ public class MainController extends BaseController {
         myCommandIsExecuting = new AtomicBoolean(false);
         myExecutedCommands = new ArrayList<>();
         setTimers();
+        initializeModel();
     }
 
     private void setTimers(){
@@ -54,6 +60,8 @@ public class MainController extends BaseController {
 //                    catch(BackendException ex) {
 //                        reportErrorToView(ex);
 //                    }
+                      BaseCommand command = TestFactory.createCommand(input, true);
+                      myCommandQueue.add(command);
                     
                 }
             }
@@ -70,6 +78,7 @@ public class MainController extends BaseController {
 //                    catch(BackendException ex){
 //                        reportErrorToView(ex);
 //                    }
+                	
                 }
             }
         };
@@ -82,7 +91,11 @@ public class MainController extends BaseController {
 
     @Override
     protected void initializeModel () {
-        myTurtle = new Turtle(new Position(0,0));
+    	Image image = new Image("\bowser.png");
+        myTurtle = new Turtle(new Position(0,0), image);
+        myTurtle.setFitWidth(60);
+        myTurtle.setPreserveRatio(true);;
+        myTurtle.setSmooth(true);
     }
 
     @Override
@@ -116,4 +129,14 @@ public class MainController extends BaseController {
         myExecutedCommands.add(command);
         myCommandIsExecuting.set(false);
     }
+
+	@Override
+	public Turtle getTurtle() {
+		return myTurtle;
+	}
+
+	@Override
+	public void setTurtleImage(Image image) {
+		myTurtle.setImage(image);
+	}
 }

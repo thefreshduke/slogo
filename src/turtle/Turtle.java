@@ -1,18 +1,23 @@
 package turtle;
+import java.io.File;
 import java.util.List;
+
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
  *    
  */
-public class Turtle {
+public class Turtle extends ImageView{
 	private Position myPosition;
 
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
 	 */
-	public Turtle(Position position) {
+	public Turtle(Position position, Image image) {
+		super(image);
 		myPosition = position;
 	}
 	
@@ -77,7 +82,7 @@ public class Turtle {
 	/**
 	 * @return Current angle orientation
 	 */
-	public double getRotate() {
+	public double getOrientation() {
 		return myPosition.getRotate();
 	}
 

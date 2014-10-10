@@ -1,6 +1,8 @@
 package communicator;
+import turtle.Turtle;
 import commands.View;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 
 public abstract class BaseController {
     
@@ -52,4 +54,7 @@ public abstract class BaseController {
     
     public abstract void start();
     
+    public abstract Turtle getTurtle();
+    
+    public abstract void setTurtleImage(Image image);
 }
