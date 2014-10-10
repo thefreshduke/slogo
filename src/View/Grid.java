@@ -54,9 +54,9 @@ public class Grid extends Pane {
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
-		
 		makeGridLines();
 		myTurtle=turtle;
+		moveTurtle(myWidth/2, myHeight/2);
 		getChildren().add(myTurtle);
 		setBackgroundColor(backgroundColor);
 	}
@@ -65,7 +65,7 @@ public class Grid extends Pane {
 		backgroundColor = color;
 		this.getChildren().remove(myImageView);
 		setStyle("-fx-background-color: "+backgroundColor);
-		moveTurtle(50, 50);
+		
 	}
 
 
@@ -145,7 +145,7 @@ public class Grid extends Pane {
 		return myHeight-(number*translate);
 	}
 	public void drawLine(int startX, int startY, int endX, int endY, String myColor){
-		Line myLine=new Line(translateX(startX), translateY(startY), translateX(endX), translateY(endY));
+		Line myLine=new Line(startX, startY, endX, endY);
 		myLine.setStroke(Paint.valueOf(myColor));
 		myLines.push(myLine);
 		getChildren().add(myLine);

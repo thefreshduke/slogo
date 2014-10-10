@@ -60,7 +60,7 @@ public class SlogoView {
 	private Text lastX, lastY, lastOrientation;
 	//for displaying command history
 	private VBox commandHistoryBox;
-	private String penColor;
+	private String penColor="BLACK";
 	private MenuTemplate userCommands;
 	ResourceBundle myResources;
 	private Stage myStage;
@@ -134,14 +134,17 @@ public class SlogoView {
 
 		//		check if pen is down before drawing
 		//		also have access to private variable pen color to determine what color the line should be
-		
-		if (myPoints.peek()==null){
-			myGrid.drawLine(myGrid.myHeight/2, myGrid.myWidth/2, x, y, penColor);
-		}
+	
+		penIsDown=true;
 		if(penIsDown){
+			if (myPoints.size()==0){
+				myGrid.drawLine(myGrid.myWidth/2, myGrid.myHeight/2, x, y, penColor);
+			}
 			myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
+			
 		}
 	}
+	
 
 	/**
 	 * Displays the error message "message" on the screen
@@ -427,6 +430,8 @@ public class SlogoView {
 	}
 
 	public void setPenColor(String color){
+		
+		update(50,50);
 		penColor = color;
 	}
 
