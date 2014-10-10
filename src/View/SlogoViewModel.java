@@ -3,6 +3,7 @@ package View;
 import java.io.File;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -57,7 +58,6 @@ public class SlogoViewModel {
 		File file = fileChooser.showOpenDialog(myStage);
 		if(file != null){
 			String url = file.getPath();
-			
 		}
 	}
 	
