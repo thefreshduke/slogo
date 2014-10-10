@@ -12,6 +12,6 @@ public class ArcTanCommand extends SingleExpressionMathCommand{
     @Override
     public double mathExecute () throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.atan(angle);
+        return Math.atan(Math.toRadians(angle));
     }
 }

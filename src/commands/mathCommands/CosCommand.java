@@ -12,6 +12,6 @@ public class CosCommand extends SingleExpressionMathCommand{
     @Override
     public double mathExecute() throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.cos(angle);
+        return Math.cos(Math.toRadians(angle));
     }
 }

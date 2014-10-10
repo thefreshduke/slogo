@@ -12,6 +12,6 @@ public class SinCommand extends SingleExpressionMathCommand{
     @Override
     public double mathExecute() throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.sin(Math.toDegrees(angle));
+        return Math.sin(Math.toRadians(angle));
     }
 }

@@ -12,6 +12,6 @@ public class TanCommand extends SingleExpressionMathCommand{
     @Override
     public double mathExecute() throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.tan(angle);
+        return Math.tan(Math.toRadians(angle));
     }
 }
