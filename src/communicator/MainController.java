@@ -13,7 +13,6 @@ import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
-import commands.TestFactory;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
