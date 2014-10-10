@@ -1,6 +1,11 @@
 package communicator;
+<<<<<<< HEAD
 import turtle.Turtle;
 import commands.View;
+=======
+import java.io.File;
+
+>>>>>>> origin/frontend
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
@@ -54,7 +59,25 @@ public abstract class BaseController {
     
     public abstract void start();
     
+<<<<<<< HEAD
     public abstract Turtle getTurtle();
     
     public abstract void setTurtleImage(Image image);
+=======
+    /**
+     * Hard sets just the orientation. Still clears any queued commands and coordinates
+     * @param orientation New orientation
+     */
+    public void hardSetTurtleOrientation(double orientation){}
+    
+    /**
+     * Gives the controller the language file resource selected by the user
+     * @param file File of language resource to be used
+     */
+    public void loadLanguage(File file){
+    	
+    }
+>>>>>>> origin/frontend
 }
+
+
