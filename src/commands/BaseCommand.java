@@ -1,5 +1,6 @@
 package commands;
 
+import commandParser.CommandFactory;
 import View.SlogoView;
 import turtle.Turtle;
 
@@ -58,7 +59,7 @@ public abstract class BaseCommand {
 	        myLeftoverString = string;
 	    }
 	    else if(string != null || string != ""){
-	        myNextCommand = TestFactory.createCommand(string, false);
+	        myNextCommand = CommandFactory.createCommand(string, false);
 	    }
 	}
 }
