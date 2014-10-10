@@ -1,29 +1,41 @@
-/*package commands;
+package commands;
 
-// sum fd 1 sum 6 7 
 public class RepeatCommand extends ControlCommand {
 
-	public RepeatCommand(String userInput) {
-		super(userInput);
+	private BaseCommand myExpression;
+	private BaseCommand myInternalCommand;
+	
+	public RepeatCommand(String userInput, boolean isExpression) {
+		super(userInput, isExpression);
 	}
 
 	@Override
-	public int execute() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double execute() {
+		double returnValue = 0;
+		double expressionResult = executeCommand(myExpression);
+		if(expressionResult < 1){
+			returnValue = 0;
+		}
+		else{
+			int repetitionCount = (int)expressionResult;
+			for(int i = 0; i < repetitionCount; i++){
+				returnValue = executeCommand(myInternalCommand);
+			}
+		}
+		if(getNextCommand() != null){
+			returnValue = executeCommand(getNextCommand());
+		}
+		return returnValue;
 	}
-
+	
 	@Override
 	protected void parseArguments(String userInput) {
-		int openingBracketLocation = findBrackets(userInput);
-		int correspondingClosingLocation = findClosingBracket(userInput);
-		
-		String  = userInput.substring(openingBracketLocation + 1, correspondingClosingLocation);
-		
-		
+		myExpression = TestFactory.createCommand(userInput, true);
+		String leftOver = new String(myExpression.getLeftoverString().trim());
+		int closingBracketIndex = findClosingBracketIndex(leftOver);
+		String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
+		myInternalCommand = TestFactory.createCommand(innerCommand, true);
+		// find next string.
 	}
 
-	
-
 }
-*/
