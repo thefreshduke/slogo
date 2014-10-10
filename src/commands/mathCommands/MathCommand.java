@@ -13,7 +13,17 @@ public abstract class MathCommand extends LogicCommand {
     public MathCommand(String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
+    
 
+    @Override
+    public final double execute() throws BackendException{
+        double result = mathExecute();
+        BaseCommand nextCommand = getNextCommand();
+        return nextCommand == null ? result : executeCommand(nextCommand);
+    }
+    
+    public abstract double mathExecute() throws BackendException;
+    
     @Override
     protected void parseArguments(String userInput) {
         int argumentCount = getArgumentCount();

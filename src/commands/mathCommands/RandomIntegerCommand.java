@@ -10,7 +10,7 @@ public class RandomIntegerCommand extends SingleExpressionMathCommand{
     }
 
     @Override
-    public double execute () throws BackendException {
+    public double mathExecute() throws BackendException {
         double limit = executeCommand(getArgument());
         double randomOrigin = Math.random();
         return (int)randomOrigin*limit;

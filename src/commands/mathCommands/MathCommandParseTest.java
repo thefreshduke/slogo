@@ -76,6 +76,7 @@ public class MathCommandParseTest {
         assertEquals(result, new Double(Math.sin(angle)));
     }
     
+    
     private void setFactory(){
         Map commandToClassMap = new HashMap<>();
         commandToClassMap.put("SUM", SumCommand.class);
