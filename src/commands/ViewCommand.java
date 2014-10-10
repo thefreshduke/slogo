@@ -9,8 +9,8 @@ import turtle.Turtle;
 public abstract class ViewCommand extends BaseCommand {
 
 
-	public ViewCommand(String command) {
-		super(command);
+	public ViewCommand(String command, boolean isExpression) {
+		super(command, isExpression);
 
 	}
 

@@ -1,11 +1,17 @@
 package communicator;
+<<<<<<< HEAD
 import java.io.File;
 
+=======
+import turtle.Turtle;
+import commands.View;
+>>>>>>> 044de2ea85eef91fa79fec6f282d3e911f353f61
 import javafx.scene.Node;
+import javafx.scene.image.Image;
 
 public abstract class BaseController {
     
-    public BaseController(Node view){
+    public BaseController(View view){
     }
     
     /**
@@ -19,27 +25,13 @@ public abstract class BaseController {
      * @param initialTurtlePosition
      * @param initialOrientation
      */
-    protected abstract void initializeModel(int turtleX, int turtleY, double turtleOrientation);
-    
-    /**
-     * Send resulting turtle coordinates to view
-     */
-    protected void sendTurtleResultsToView() {
-        
-    }
-    
-    
-    /**
-     * Does the next queued command for turtle
-     */
-    protected abstract void doNextTurtleCommand();
+    protected abstract void initializeModel();
     
     /**
      * Pauses the turtle. Changes what coordinates are sent to front end.
      * @param stoppedPosition The stopped position on the front end. Takes into account lag.
      */
     public abstract void pause(int x, int y);
-    
     
     /**
      * Hard stops the turtle. Erases all coordinates and commands that it was supposed to do.
@@ -64,9 +56,10 @@ public abstract class BaseController {
      * Hard sets just the position. Still clears any queued commands and coordinates
      * @param position New position
      */
-    public void hardSetTurtlePosition(double x, double y){}
     
+    public abstract void start();
     
+
     /**
      * Hard sets just the orientation. Still clears any queued commands and coordinates
      * @param orientation New orientation
@@ -76,6 +69,11 @@ public abstract class BaseController {
     public void loadLanguage(File file){
     	
     }
+
+    public abstract Turtle getTurtle();
+    
+    public abstract void setTurtleImage(Image image);
+
 }
 
 

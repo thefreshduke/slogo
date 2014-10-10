@@ -76,8 +76,6 @@ public class SlogoViewModel {
 		}
 			else
 				JOptionPane.showMessageDialog(null, "Please select another file");
-
-		
 	}
 
 

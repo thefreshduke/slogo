@@ -102,9 +102,7 @@ public class Grid extends Pane {
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Please select another file");
 			}
-			
 		}
-
 		else{
 			JOptionPane.showMessageDialog(null, "Please select another file");
 		}
