@@ -1,6 +1,7 @@
 package commands;
 
 import java.util.Stack;
+import commandParser.CommandFactory;
 import backendExceptions.BackendException;
 
 public class IfElseCommand extends ControlCommand {
@@ -31,7 +32,7 @@ public class IfElseCommand extends ControlCommand {
 
     @Override
     protected void parseArguments (String userInput) {
-        myExpression = TestFactory.createCommand(userInput, true);
+        myExpression = CommandFactory.createCommand(userInput, true);
         String innerCommandsInput = myExpression.getLeftoverString().trim();
         String[] splitInput = innerCommandsInput.split("\\s+");
         if(splitInput.length <= 0 || !splitInput[0].equals("[")){
@@ -40,13 +41,13 @@ public class IfElseCommand extends ControlCommand {
         
         int firstClosingBracketIndex = findClosingBracketIndex(innerCommandsInput);
         String ifCommandInput = innerCommandsInput.substring(1, firstClosingBracketIndex);
-        myIfCommand = TestFactory.createCommand(ifCommandInput, true);
+        myIfCommand = CommandFactory.createCommand(ifCommandInput, true);
         
         String elseCommandInputUntrimmed = innerCommandsInput.substring(firstClosingBracketIndex + 1).trim();
         
         int secondClosingBracketIndex = findClosingBracketIndex(elseCommandInputUntrimmed);
         String elseCommandInput = elseCommandInputUntrimmed.substring(1, secondClosingBracketIndex);
-        myElseCommand = TestFactory.createCommand(elseCommandInput, true);
+        myElseCommand = CommandFactory.createCommand(elseCommandInput, true);
         
         String leftOverString = innerCommandsInput.substring(secondClosingBracketIndex + 1).trim();
         setLeftoverCommands(leftOverString);

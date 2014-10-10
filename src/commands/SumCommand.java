@@ -25,7 +25,7 @@ public class SumCommand extends LogicCommand{
     protected void parseArguments (String userInput) {
         BaseCommand firstExpression = CommandFactory.createCommand(userInput, true);
         myFirstExpression = firstExpression;
-        BaseCommand secondExpression = TestFactory.createCommand(firstExpression.getLeftoverString(), true);
+        BaseCommand secondExpression = CommandFactory.createCommand(firstExpression.getLeftoverString(), true);
         mySecondExpression = secondExpression;
         setLeftoverCommands(mySecondExpression.getLeftoverString());
     }
