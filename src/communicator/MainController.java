@@ -73,6 +73,7 @@ public class MainController extends BaseController {
             @Override
             public void handle (long now) {
                 if(!myCommandQueue.isEmpty() && !myCommandIsExecuting.getAndSet(true)){
+                	System.out.println("ff");
                         BaseCommand command = myCommandQueue.poll();
                         executeCommand(command); 
                     

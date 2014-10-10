@@ -3,7 +3,7 @@ package commands;
 import View.SlogoView;
 import turtle.Turtle;
 
-public class NumericalCommand extends BaseCommand{
+public final class NumericalCommand extends BaseCommand{
 
     private int myNumber;
     

@@ -5,6 +5,9 @@ import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	
+	private SlogoView myView;
+	private Turtle myTurtle;
+	
 	public ControlCommand(String userInput, boolean isExpression) {
 		super(userInput, isExpression);
 	}
@@ -22,9 +25,15 @@ public abstract class ControlCommand extends ModelCommand {
 	
 	@Override
 	public final double execute(SlogoView view, Turtle turtle) {
+		myView = view;
+		myTurtle = turtle;
 		return execute();
 	}
 
+	protected double executeCommand(BaseCommand command){
+		return command.execute(myView, myTurtle);
+	}
+	
 	public abstract double execute();
 	
 	protected int findLastIndexOfCharacter(String userInput, char character) {

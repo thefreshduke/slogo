@@ -3,7 +3,7 @@ package commands;
 import java.util.Stack;
 import backendExceptions.BackendException;
 
-public class IfElseCommand extends ControlCommand{
+public class IfElseCommand extends ControlCommand {
 
     private BaseCommand myIfCommand;
     private BaseCommand myElseCommand;
@@ -15,16 +15,16 @@ public class IfElseCommand extends ControlCommand{
     }
 
     @Override
-    public double execute () {
+    public double execute() {
         double returnValue;
-        if(myExpression.execute(null, null) != 0){
-            returnValue = myIfCommand.execute(null, null);
+        if(executeCommand(myExpression) != 0){
+            returnValue = executeCommand(myIfCommand);
         }
         else{
-            returnValue = myElseCommand.execute(null, null);
+            returnValue = executeCommand(myElseCommand);
         }
         if(getNextCommand() != null){
-            returnValue = getNextCommand().execute(null, null);
+            returnValue = executeCommand(getNextCommand());
         }
         return returnValue;
     }
