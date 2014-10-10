@@ -44,6 +44,8 @@ public class MainController extends BaseController {
         myExecutedCommands = new ArrayList<>();
         setTimers();
         initializeModel();
+        myCommandParserTimer.start();
+        myCommandExecutionTimer.start();
     }
 
     private void setTimers(){
