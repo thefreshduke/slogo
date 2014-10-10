@@ -4,7 +4,6 @@ import View.SlogoView;
 
 import java.io.File;
 
-import turtle.Turtle;
 import javafx.scene.image.Image;
 
 public abstract class BaseController {

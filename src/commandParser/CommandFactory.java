@@ -22,7 +22,10 @@ public class CommandFactory {
 		try {
 			command = (BaseCommand) commandClass.getConstructor(String.class).newInstance(subInput);
 		}
-		catch(Exception ex){
+		catch(Exception ex){ //Does this check for the error mentioned in CommandToClassTranslator.java on line 33?
+			//fd 50 --- VALID --- map to Forward.java
+			//forward 50 --- VALID --- map to Forward.java
+			//fde 50 --- ERROR --- notify user of invalid input???
 			//TODO: Change to more specific exceptions;
 		}
 		//TODO: Throw exception
