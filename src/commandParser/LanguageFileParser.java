@@ -8,16 +8,18 @@ import java.util.HashMap;
 import java.util.Map;
 import backendExceptions.BackendException;
 import backendExceptions.SlogoFileNotFoundException;
-import commands.BaseCommand;
 
 public class LanguageFileParser {
 	private static String myCommandSeparator = " ";
 	private String myEquals = "=";
 	private String myComma = ",";
+	private Map<String, String> myUserInputToEnglishTranslationMap;
 
-	protected Map<String, Class<BaseCommand>> parseLanguageFile(String fileName) throws BackendException, IOException {
+	protected Map<String, String> translateUserInputToEnglishTranslation(String fileName) throws BackendException, IOException, ClassNotFoundException {
 		BufferedReader reader = null;
-		Map<String, Class<BaseCommand>> myCommandToClassMap = new HashMap<String, Class<BaseCommand>>();
+		myUserInputToEnglishTranslationMap = new HashMap<String, String>();
+		//		CommandToClassTranslator myTranslator = new CommandToClassTranslator();
+		//		myTranslator.translateCommandToClass();
 
 		try {
 			reader = new BufferedReader(new FileReader(fileName));
@@ -29,26 +31,29 @@ public class LanguageFileParser {
 			while((line = reader.readLine()) != null) {
 				String spaceRemovedLine = line.replaceAll(myCommandSeparator, "");
 				String[] splitLine = spaceRemovedLine.split(myEquals, 2);
-				String className = splitLine[0];
+				String commandName = splitLine[0];
 				String[] possibleInputs = splitLine[1].split(myComma);
-				Class commandClass = Class.forName(className);
-				boolean extendsBaseCommand = BaseCommand.class.isAssignableFrom(commandClass);
-				if(extendsBaseCommand){
-					for(String possibleInput : possibleInputs){
-						myCommandToClassMap.put(possibleInput, commandClass);
-					}
-				}
-				else{
-					//TODO: Throw exception;
+				for(String possibleInput : possibleInputs){
+					myUserInputToEnglishTranslationMap.put(possibleInput, commandName);
 				}
 			}
-		} catch (ClassNotFoundException e) {
-			// TODO: Make Exception 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("IOException detected");
+			//TODO: throw exception
 		}
 		reader.close();
-		return myCommandToClassMap;
+		return myUserInputToEnglishTranslationMap;
+	}
+	
+	protected String translateUserInputIntoEnglish(String userInput) {
+		String translatedUserInput = "";
+		String[] userInputWords = userInput.split(myCommandSeparator);
+		for (int i = 0; i < userInputWords.length; i++) {
+			if (myUserInputToEnglishTranslationMap.containsKey(userInputWords[i])) {
+				userInputWords[i] = myUserInputToEnglishTranslationMap.get(userInputWords[i]);
+			}
+			translatedUserInput = translatedUserInput + userInputWords[i] + myCommandSeparator;
+		}
+		return translatedUserInput.trim();
 	}
 }

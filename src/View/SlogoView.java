@@ -134,16 +134,17 @@ public class SlogoView {
 
 		//		check if pen is down before drawing
 		//		also have access to private variable pen color to determine what color the line should be
-	
+
 		if(penIsDown){
 			if (myPoints.size()==0){
 				myGrid.drawLine(myGrid.myWidth/2, myGrid.myHeight/2, x, y, penColor);
+			} else { 
+				myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
 			}
-			myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
-			
+
 		}
 	}
-	
+
 
 	/**
 	 * Displays the error message "message" on the screen
@@ -219,7 +220,7 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(){
-		
+
 		myController.receiveCommand(commandLine.getText());
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
@@ -431,8 +432,6 @@ public class SlogoView {
 	}
 
 	public void setPenColor(String color){
-		
-		update(50,50);
 		penColor = color;
 	}
 

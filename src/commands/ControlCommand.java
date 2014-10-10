@@ -1,9 +1,14 @@
 package commands;
 
+import java.util.Stack;
+
 import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
+	
+	private SlogoView myView;
+	private Turtle myTurtle;
 	
 	public ControlCommand(String userInput, boolean isExpression) {
 		super(userInput, isExpression);
@@ -22,9 +27,15 @@ public abstract class ControlCommand extends ModelCommand {
 	
 	@Override
 	public final double execute(SlogoView view, Turtle turtle) {
+		myView = view;
+		myTurtle = turtle;
 		return execute();
 	}
 
+	protected double executeCommand(BaseCommand command){
+		return command.execute(myView, myTurtle);
+	}
+	
 	public abstract double execute();
 	
 	protected int findLastIndexOfCharacter(String userInput, char character) {
@@ -36,4 +47,20 @@ public abstract class ControlCommand extends ModelCommand {
 		return -1;
 	}
 	
+    protected int findClosingBracketIndex(String input){
+        Stack<Character> checkStack = new Stack<>();
+        for(int i=0; i < input.length(); i++){
+            char character = input.charAt(i);
+            if(character == '['){
+                checkStack.push(character);
+            }
+            else if(character == ']'){
+                checkStack.pop();
+            }
+            if(checkStack.size() == 0){
+                return i;
+            }
+        }
+        return -1;
+    }
 }

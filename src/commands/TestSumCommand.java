@@ -12,9 +12,9 @@ public class TestSumCommand extends LogicCommand{
 
     @Override
     public double execute () {
-        double returnValue = myFirstExpression.execute(null, null) + mySecondExpression.execute(null, null);
+        double returnValue = executeCommand(myFirstExpression) + executeCommand(mySecondExpression);
         if(getNextCommand() != null){
-            returnValue = getNextCommand().execute(null, null);
+            returnValue = executeCommand(getNextCommand());
         }
         return returnValue;
     }

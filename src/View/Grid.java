@@ -56,6 +56,8 @@ public class Grid extends Pane {
 		time.getKeyFrames().add(frame);
 		makeGridLines();
 		myTurtle=turtle;
+		myTurtle.setXPos(myWidth/2);
+		myTurtle.setYPos(myHeight/2);
 		moveTurtle(myWidth/2, myHeight/2);
 		getChildren().add(myTurtle);
 		setBackgroundColor(backgroundColor);

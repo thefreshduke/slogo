@@ -86,7 +86,8 @@ public class Turtle extends ImageView{
 	public double getOrientation() {
 		return myPosition.getRotate();
 	}
-
+	
+	
 	/**
 	 * @return Current x-coordinate
 	 */
