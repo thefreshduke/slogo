@@ -1,6 +1,7 @@
 package commandParser;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import backendExceptions.SlogoFileNotFoundException;
 
 public class LanguageFileParser {
     
-        public LanguageFileParser(String fileName) throws BackendException{
+        public LanguageFileParser(File fileName) throws BackendException{
             extractFromLanguageFile(fileName);
             SPECIAL_CHARACTERS.add("[");
             SPECIAL_CHARACTERS.add("]");
@@ -26,16 +27,15 @@ public class LanguageFileParser {
 	private String myComma = ",";
 	private Map<String, String> myUserInputToEnglishTranslationMap;
 
-	public Map<String, String> extractFromLanguageFile(String fileName) throws BackendException {
+	public Map<String, String> extractFromLanguageFile(File file) throws BackendException {
 		BufferedReader reader = null;
 		myUserInputToEnglishTranslationMap = new HashMap<String, String>();
 		//		CommandToClassTranslator myTranslator = new CommandToClassTranslator();
 		//		myTranslator.translateCommandToClass();
-
 		try {
-			reader = new BufferedReader(new FileReader(fileName));
+			reader = new BufferedReader(new FileReader(file));
 		} catch (FileNotFoundException e1) {
-			throw new SlogoFileNotFoundException(e1, fileName);
+			throw new SlogoFileNotFoundException(e1, file.getName());
 		}
 		String line;
 		try {

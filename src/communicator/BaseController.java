@@ -67,9 +67,7 @@ public abstract class BaseController {
 	 * Gives the controller the language file resource selected by the user
 	 * @param file File of language resource to be used
 	 */
-	public void loadLanguage(File file){
-
-	}
+	public abstract void loadLanguage(File file);
 
 	public abstract Turtle getTurtle();
 

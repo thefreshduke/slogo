@@ -60,7 +60,7 @@ public class MainController extends BaseController {
             e1.printStackTrace();
         }
         try {
-            myTranslator = new LanguageFileParser("src/resources/languages/English.properties");
+            myTranslator = new LanguageFileParser(new File("src/resources/languages/English.properties"));
         }
         catch (BackendException e) {
             System.out.println("ff'");
@@ -166,6 +166,18 @@ public class MainController extends BaseController {
     @Override
     protected void reportErrorToView (Exception ex) {
         //TODO: view takes error myView.
+        
+    }
+
+    @Override
+    public void loadLanguage (File file) {
+        try {
+            myTranslator.extractFromLanguageFile(file);
+        }
+        catch (BackendException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
     }
 }
