@@ -1,5 +1,6 @@
 package commands;
 
+import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
 
@@ -18,7 +19,7 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    public double execute (SlogoView view, Turtle turtle) {
+    public double execute (SlogoView view, Turtle turtle) throws BackendException {
         return myNumber;
     }
 

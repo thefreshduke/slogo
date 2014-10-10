@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.Test;
+import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 
 public class SimpleTest {
@@ -19,8 +20,13 @@ public class SimpleTest {
         CommandFactory.setCommandToClassRelation(myCommandToClassMap);
         String input = "SUM 6 SUM 7 8 SUM 8 9 SUM 9 10";
         BaseCommand command = CommandFactory.createCommand(input, false);
-        double x = command.execute(null, null);
-        assertEquals(new Double(command.execute(null, null)), new Double(19.0));
+        try{
+            Double result = command.execute(null, null);
+            assertEquals(result, new Double(19.0));
+        }
+        catch(BackendException ex){
+            
+        }
 
     }
     

@@ -1,5 +1,6 @@
 package commands;
 
+import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 
 public class RepeatCommand extends ControlCommand {
@@ -12,7 +13,7 @@ public class RepeatCommand extends ControlCommand {
 	}
 
 	@Override
-	public double execute() {
+	public double execute() throws BackendException {
 		double returnValue = 0;
 		double expressionResult = executeCommand(myExpression);
 		if(expressionResult < 1){

@@ -1,5 +1,6 @@
 package commands;
 
+import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
 
@@ -28,7 +29,7 @@ public class LeftCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) {
+	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double rotateLeft = myPixelsCommand.execute(view, turtle);
 		rotateLeft*=-1;
 		turtle.rotate(rotateLeft);

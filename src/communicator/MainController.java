@@ -143,9 +143,14 @@ public class MainController extends BaseController {
     }
 
     private void executeCommand (BaseCommand command) {
-        command.execute(myView, myTurtle);
-        myExecutedCommands.add(command);
-        myCommandIsExecuting.set(false);
+        try{
+            command.execute(myView, myTurtle);
+            myExecutedCommands.add(command);
+            myCommandIsExecuting.set(false);
+        }
+        catch(BackendException ex){
+            reportErrorToView(ex);
+        }
     }
 
     @Override
@@ -156,5 +161,11 @@ public class MainController extends BaseController {
     @Override
     public void setTurtleImage (Image image) {
         myTurtle.setImage(image);
+    }
+
+    @Override
+    protected void reportErrorToView (Exception ex) {
+        //TODO: view takes error myView.
+        
     }
 }

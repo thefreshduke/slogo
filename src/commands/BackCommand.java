@@ -1,5 +1,6 @@
 package commands;
 
+import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import turtle.Turtle;
 import View.SlogoView;
@@ -29,7 +30,7 @@ public class BackCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) {
+	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double movedDistance = myPixelsCommand.execute(view, turtle);
 		movedDistance*=-1.0;
 		turtle.move(movedDistance);

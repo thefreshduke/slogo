@@ -1,5 +1,6 @@
 package commands;
 
+import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import turtle.Turtle;
 import View.SlogoView;
@@ -33,7 +34,7 @@ public class ForwardCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) {
+	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double movedDistance = myDistance.execute(view, turtle);
 		turtle.move(movedDistance);
 		view.update(turtle.getXPos(), turtle.getYPos());
