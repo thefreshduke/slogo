@@ -66,6 +66,10 @@ public abstract class BaseController {
      */
     public void hardSetTurtleOrientation(double orientation){}
     
+    /**
+     * Gives the controller the language file resource selected by the user
+     * @param file File of language resource to be used
+     */
     public void loadLanguage(File file){
     	
     }

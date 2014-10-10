@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.web.WebEngine;
@@ -63,6 +64,7 @@ public class SlogoViewModel {
 		fileChooser.setTitle("Select Turtle Image");
 		fileChooser.setInitialDirectory(new File("./"));
 		File file = fileChooser.showOpenDialog(myStage);
+
 		if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
 			BufferedImage buffer;
 			try {
