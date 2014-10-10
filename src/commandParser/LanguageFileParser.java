@@ -69,6 +69,7 @@ public class LanguageFileParser {
 		        String word = userInputWords[i].toLowerCase();
 		        if(SPECIAL_CHARACTERS.contains(word) || isNumber(word)){
                             translatedUserInput += word + myCommandSeparator;
+                            continue;
                         }
 		        String translatedInputWord ="";
 		        
