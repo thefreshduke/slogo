@@ -2,16 +2,16 @@ package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
-public class CosCommand extends SingleExpressionMathCommand{
+public class ArcTanCommand extends SingleExpressionMathCommand{
 
-    public CosCommand (String userInput, boolean isExpression) throws BackendException {
+    public ArcTanCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }
 
     @Override
-    public double mathExecute() throws BackendException {
+    public double mathExecute () throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.cos(angle);
+        return Math.atan(angle);
     }
 }
