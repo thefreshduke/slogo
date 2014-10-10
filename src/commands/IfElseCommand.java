@@ -51,21 +51,4 @@ public class IfElseCommand extends ControlCommand {
         String leftOverString = innerCommandsInput.substring(secondClosingBracketIndex + 1).trim();
         setLeftoverCommands(leftOverString);
     }
-    
-    private int findClosingBracketIndex(String input){
-        Stack<Character> checkStack = new Stack<>();
-        for(int i=0; i < input.length(); i++){
-            char character = input.charAt(i);
-            if(character == '['){
-                checkStack.push(character);
-            }
-            else if(character == ']'){
-                checkStack.pop();
-            }
-            if(checkStack.size() == 0){
-                return i;
-            }
-        }
-        return -1;
-    }
 }
