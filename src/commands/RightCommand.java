@@ -1,5 +1,7 @@
 package commands;
 
+import commandParser.CommandFactory;
+
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
@@ -24,7 +26,7 @@ public class RightCommand extends TurtleCommand {
 
 	@Override
 	protected void parseArguments(String userInput) {
-		myDegreesCommand = TestFactory.createCommand(userInput, true);
+		myDegreesCommand = CommandFactory.createCommand(userInput, true);
 		setLeftoverCommands(myDegreesCommand.getLeftoverString());// TODO Auto-generated method stub
 	}
 

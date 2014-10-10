@@ -8,10 +8,8 @@ import turtle.Turtle;
 
 public abstract class ViewCommand extends BaseCommand {
 
-
 	public ViewCommand(String command, boolean isExpression) {
 		super(command, isExpression);
-
 	}
 
 	public abstract void updateTurtle(Turtle turtle);

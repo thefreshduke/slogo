@@ -58,8 +58,11 @@ public class Grid extends Pane {
 		time.getKeyFrames().add(frame);
 		makeGridLines();
 		myTurtle=turtle;
-		myTurtle.setXPos(myWidth/2);
-		myTurtle.setYPos(myHeight/2);
+		System.out.println("View turtle1: " + myTurtle.getXPos() + ", " + myTurtle.getYPos());
+		myTurtle.setXPos(myTurtle.getXPos() + myWidth/2);
+		myTurtle.setYPos(myTurtle.getYPos() + myHeight/2);
+		System.out.println("View turtle2: " + myTurtle.getXPos() + ", " + myTurtle.getYPos());
+		System.out.println();
 		moveTurtle(myWidth/2, myHeight/2);
 		getChildren().add(myTurtle);
 		setBackgroundColor(backgroundColor);
@@ -163,7 +166,7 @@ public class Grid extends Pane {
 	}
 
 	private void undoLine(){
-		System.out.println(myLines.size());
+		System.out.println("myLines.size: " + myLines.size());
 		this.getChildren().remove(myLines.pop());
 		this.getChildren().remove(myLines.pop());
 	}

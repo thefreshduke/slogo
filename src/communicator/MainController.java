@@ -13,12 +13,8 @@ import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
-import commands.TestFactory;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Node;
 import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
-
 
 public class MainController extends BaseController {
 
@@ -63,7 +59,7 @@ public class MainController extends BaseController {
             myTranslator = new LanguageFileParser(new File("src/resources/languages/English.properties"));
         }
         catch (BackendException e) {
-            System.out.println("ff'");
+            System.out.println("BackendException in MainController.java, line 62");
         }
     }
 
