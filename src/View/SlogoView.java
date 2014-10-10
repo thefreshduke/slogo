@@ -53,7 +53,7 @@ public class SlogoView {
 	private Scene myScene;
 	private SlogoViewModel myModel;
 	//flag for if pen is up or down, flag for if ref grid is visible
-	private boolean penIsDown, refGridOn;
+	private boolean penIsDown=true, refGridOn;
 	private TextField commandLine;
 	private Stack<Point> myPoints=new Stack<Point>();
 	//used to display Turtles most recent stats
@@ -135,7 +135,6 @@ public class SlogoView {
 		//		check if pen is down before drawing
 		//		also have access to private variable pen color to determine what color the line should be
 
-		penIsDown=true;
 		if(penIsDown){
 			if (myPoints.size()==0){
 				myGrid.drawLine(myGrid.myWidth/2, myGrid.myHeight/2, x, y, penColor);
@@ -176,7 +175,9 @@ public class SlogoView {
 	 * @param y		y location on the Grid
 	 */
 	public void update(double x, double y){
-		System.out.println("H");
+		if (myPoints.size()==0){
+			myPoints.push(new Point(myGrid.myWidth/2, myGrid.myHeight/2));
+		}
 		move((int)x, (int)y);
 		drawLine((int)x, (int)y);
 		myPoints.push(new Point((int)x, (int)y));
