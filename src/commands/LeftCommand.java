@@ -3,6 +3,7 @@ package commands;
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
+import commandParser.CommandFactory;
 
 public class LeftCommand extends TurtleCommand {
 
@@ -24,7 +25,7 @@ public class LeftCommand extends TurtleCommand {
 
 	@Override
 	protected void parseArguments(String userInput) {
-		myDegreesCommand = TestFactory.createCommand(userInput, true);
+		myDegreesCommand = CommandFactory.createCommand(userInput, true);
 		setLeftoverCommands(myDegreesCommand.getLeftoverString());// TODO Auto-generated method stub
 	}
 

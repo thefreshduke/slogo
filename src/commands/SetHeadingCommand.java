@@ -1,22 +1,21 @@
 package commands;
 
-import commandParser.CommandFactory;
-
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
+import commandParser.CommandFactory;
 
-public class RightCommand extends TurtleCommand {
+public class SetHeadingCommand extends TurtleCommand {
 
 	private BaseCommand myDegreesCommand;
-	
-	public RightCommand(String userInput, boolean isExpression) {
+
+	public SetHeadingCommand(String userInput, boolean isExpression) {
 		super(userInput, isExpression);
 	}
 
 	@Override
 	protected void updateTurtle() {
-		
+
 	}
 
 	@Override
@@ -32,14 +31,15 @@ public class RightCommand extends TurtleCommand {
 
 	@Override
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double rotateRight = myDegreesCommand.execute(view, turtle);
-		turtle.rotate(rotateRight);
+		double currentRotate = turtle.getOrientation();
+		double absoluteRotate = myDegreesCommand.execute(view, turtle);
+		turtle.setRotation(absoluteRotate);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
-		
+
 		if(nextCommand != null){
-		    return nextCommand.execute(view, turtle);
+			return nextCommand.execute(view, turtle);
 		}
-		return rotateRight;
+		return (absoluteRotate - currentRotate);
 	}
 }
