@@ -13,6 +13,7 @@ public class TestFactory {
         myCommandToClassMap = new HashMap<>();
         myCommandToClassMap.put("SUM", TestSumCommand.class);
         myCommandToClassMap.put("IFELSE", IfElseCommand.class);
+        myCommandToClassMap.put("FD", ForwardCommand.class);
         String firstCommand = identifyFirstCommand(input);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         if(checkIfInt(firstCommand)){

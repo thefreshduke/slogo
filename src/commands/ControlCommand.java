@@ -1,5 +1,6 @@
 package commands;
 
+import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
@@ -20,7 +21,7 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(View view, Turtle turtle) {
+	public final double execute(SlogoView view, Turtle turtle) {
 		return execute();
 	}
 

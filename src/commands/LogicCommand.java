@@ -2,6 +2,7 @@ package commands;
 
 import java.util.List;
 
+import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class LogicCommand extends ModelCommand {
@@ -12,7 +13,7 @@ public abstract class LogicCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(View view, Turtle turtle) {
+	public final double execute(SlogoView view, Turtle turtle) {
 		return execute();
 	}
 	

@@ -1,5 +1,6 @@
 package commands;
 
+import View.SlogoView;
 import turtle.Turtle;
 
 public class NumericalCommand extends BaseCommand{
@@ -17,7 +18,7 @@ public class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    public double execute (View view, Turtle turtle) {
+    public double execute (SlogoView view, Turtle turtle) {
         return myNumber;
     }
 

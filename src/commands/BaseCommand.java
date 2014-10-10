@@ -1,5 +1,6 @@
 package commands;
 
+import View.SlogoView;
 import turtle.Turtle;
 
 /**
@@ -28,7 +29,7 @@ public abstract class BaseCommand {
 	 * Method returns the computation of the turtle command
 	 * 
 	 */
-	public abstract double execute(View view, Turtle turtle);
+	public abstract double execute(SlogoView view, Turtle turtle);
 
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;

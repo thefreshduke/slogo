@@ -1,5 +1,6 @@
 package commands;
 
+import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class TurtleCommand extends ModelCommand {
@@ -8,15 +9,15 @@ public abstract class TurtleCommand extends ModelCommand {
 		super(userInput, isExpression);
 	}
 	
-	@Override
-	public double execute(View view, Turtle turtle) {
-	    updateTurtle();
-	    sendTurtleToView();
-	    return calculateResult();
-	}
-	
+//	@Override
+//	public double execute(SlogoView view, Turtle turtle) {
+//	    updateTurtle();
+//	    sendTurtleToView();
+//	    return calculateResult();
+//	}
+//	
 	private void sendTurtleToView() {
-		// Fire event to front end notifying of turtle update
+		
 	}
 	
 	protected abstract void updateTurtle();

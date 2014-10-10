@@ -1,14 +1,15 @@
 package communicator;
 import turtle.Turtle;
-import commands.View;
+import View.SlogoView;
+
 import java.io.File;
+
 import turtle.Turtle;
-import commands.View;
 import javafx.scene.image.Image;
 
 public abstract class BaseController {
 
-	public BaseController(View view){
+	public BaseController(SlogoView view){
 	}
 
 	/**

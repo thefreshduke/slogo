@@ -6,13 +6,13 @@ import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import View.SlogoView;
 import backendExceptions.BackendException;
 import turtle.Position;
 import turtle.Turtle;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.TestFactory;
-import commands.View;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -20,7 +20,7 @@ import javafx.scene.shape.Rectangle;
 
 public class MainController extends BaseController {
     
-    private View myView;
+    private SlogoView myView;
     private Turtle myTurtle;
     private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
     private ConcurrentLinkedQueue<String> myInputsToParse;
@@ -34,7 +34,7 @@ public class MainController extends BaseController {
     
     private CommandFactory myFactory; 
     
-    public MainController (View view) {
+    public MainController (SlogoView view) {
         super(view);
         myView = view;
         
