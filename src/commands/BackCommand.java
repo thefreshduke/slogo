@@ -1,21 +1,20 @@
 package commands;
 
 import commandParser.CommandFactory;
-
 import turtle.Turtle;
 import View.SlogoView;
 
 public class BackCommand extends TurtleCommand {
 
 	private BaseCommand myPixelsCommand;
-	
+
 	public BackCommand(String userInput, boolean isExpression) {
 		super(userInput, isExpression);
 	}
 
 	@Override
 	protected void updateTurtle() {
-		
+
 	}
 
 	@Override
@@ -35,6 +34,10 @@ public class BackCommand extends TurtleCommand {
 		movedDistance*=-1.0;
 		turtle.move(movedDistance);
 		view.update(turtle.getXPos(), turtle.getYPos());
+		BaseCommand nextCommand = getNextCommand();
+		if(nextCommand != null){
+			return nextCommand.execute(view, turtle);
+		}
 		return movedDistance;
 	}
 }
