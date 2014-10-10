@@ -81,7 +81,7 @@ public class MainController extends BaseController {
                     // catch(BackendException ex) {
                     // reportErrorToView(ex);
                     // }
-                    BaseCommand command = TestFactory.createCommand(input, true);
+                    BaseCommand command = CommandFactory.createCommand(input, false);
                     myCommandQueue.add(command);
 
                 }

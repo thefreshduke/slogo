@@ -1,5 +1,7 @@
 package commands;
 
+import commandParser.CommandFactory;
+
 
 public class SumCommand extends LogicCommand{
     
@@ -21,7 +23,7 @@ public class SumCommand extends LogicCommand{
 
     @Override
     protected void parseArguments (String userInput) {
-        BaseCommand firstExpression = TestFactory.createCommand(userInput, true);
+        BaseCommand firstExpression = CommandFactory.createCommand(userInput, true);
         myFirstExpression = firstExpression;
         BaseCommand secondExpression = TestFactory.createCommand(firstExpression.getLeftoverString(), true);
         mySecondExpression = secondExpression;

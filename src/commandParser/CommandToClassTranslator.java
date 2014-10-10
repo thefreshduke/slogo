@@ -17,11 +17,11 @@ public class CommandToClassTranslator {
 
     private String myCommandToClassDelimeter = "=";
 
-    public Map<String, Class<BaseCommand>> translateCommandToClass (File file) throws BackendException {
+    public Map<String, Class> translateCommandToClass (File file) throws BackendException {
         BufferedReader reader = null;
         // Maps command name to corresponding package class name (for instance, if commands
         // are in a different package.
-        Map<String, Class<BaseCommand>> commandToClassTranslation = new HashMap<>();
+        Map<String, Class> commandToClassTranslation = new HashMap<>();
         try {
             reader = new BufferedReader(new FileReader(file));
             String line;
