@@ -1,10 +1,10 @@
-package commands;
+package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
 public class QuotientCommand extends ArithmeticCommand{
 
-    public QuotientCommand (String userInput, boolean isExpression) {
+    public QuotientCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }

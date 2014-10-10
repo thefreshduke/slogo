@@ -16,8 +16,8 @@ public class CommandFactory {
     public static BaseCommand createCommand (String input, boolean isExpression) {
         String firstCommand = identifyFirstCommand(input);
         String subInput = input.replaceFirst(firstCommand, "").trim();
-        if(checkIfInt(firstCommand)){
-            int integerValue = Integer.parseInt(firstCommand);
+        if(checkIfNumerical(firstCommand)){
+            double integerValue = Double.parseDouble(firstCommand);
             return new NumericalCommand(subInput, integerValue);
         }
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
@@ -26,16 +26,16 @@ public class CommandFactory {
         }
         BaseCommand command = null;
         try {
-            command = (BaseCommand) commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
+            command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
         }
         catch (Exception ex) {
         }
         return command;
     }
 
-    private static boolean checkIfInt(String string){
+    private static boolean checkIfNumerical(String string){
         try{
-            Integer.parseInt(string);
+            Double.parseDouble(string);
             return true;
         }
         catch(NumberFormatException ex){

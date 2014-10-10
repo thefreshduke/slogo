@@ -3,6 +3,7 @@ package commands;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
+import commands.mathCommands.SumCommand;
 
 public class TestFactory {
     

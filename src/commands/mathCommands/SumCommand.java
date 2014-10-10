@@ -1,4 +1,4 @@
-package commands;
+package commands.mathCommands;
 
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
@@ -6,7 +6,7 @@ import commandParser.CommandFactory;
 
 public class SumCommand extends ArithmeticCommand{
     
-    public SumCommand (String userInput, boolean isExpression) {
+    public SumCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 

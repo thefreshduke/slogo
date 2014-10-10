@@ -1,10 +1,10 @@
-package commands;
+package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
 public class DifferenceCommand extends ArithmeticCommand {
 
-    public DifferenceCommand (String userInput, boolean isExpression) {
+    public DifferenceCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 

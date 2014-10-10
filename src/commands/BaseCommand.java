@@ -52,7 +52,7 @@ public abstract class BaseCommand {
 		myInternalCommand = command;
 	}
 	
-	protected String getLeftoverString(){
+	public String getLeftoverString(){
 	    return myLeftoverString;
 	}
 	
