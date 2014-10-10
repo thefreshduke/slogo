@@ -53,6 +53,8 @@ public class Grid extends Pane {
 		myWidth=myWidth*translate;
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
+		myImageView=new ImageView();
+		getChildren().add(myImageView);
 		time.getKeyFrames().add(frame);
 		makeGridLines();
 		myTurtle=turtle;
@@ -61,6 +63,7 @@ public class Grid extends Pane {
 		moveTurtle(myWidth/2, myHeight/2);
 		getChildren().add(myTurtle);
 		setBackgroundColor(backgroundColor);
+		
 	}
 
 	public void setBackgroundColor(String color){
@@ -113,7 +116,6 @@ public class Grid extends Pane {
 			JOptionPane.showMessageDialog(null, "Please select another file");
 		}
 
-		myImageView=new ImageView();
 		BufferedImage buffer;
 		try {
 			buffer = ImageIO.read(file);
@@ -122,7 +124,10 @@ public class Grid extends Pane {
 			myImageView.setFitHeight(myHeight);
 			myImageView.setFitWidth(myWidth);
 			myImageView.setVisible(true);
-			this.getChildren().add(myImageView);
+			getChildren().removeAll(myLines);
+			getChildren().remove(myTurtle);
+			getChildren().addAll(myLines);
+			getChildren().add(myTurtle);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -158,6 +163,8 @@ public class Grid extends Pane {
 	}
 
 	private void undoLine(){
+		System.out.println(myLines.size());
+		this.getChildren().remove(myLines.pop());
 		this.getChildren().remove(myLines.pop());
 	}
 

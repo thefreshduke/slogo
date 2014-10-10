@@ -32,10 +32,13 @@ public class RepeatCommand extends ControlCommand {
 	protected void parseArguments(String userInput) {
 		myExpression = TestFactory.createCommand(userInput, true);
 		String leftOver = new String(myExpression.getLeftoverString().trim());
+		if(leftOver.charAt(0) != COMMAND_INDICATOR){
+		    //throw 
+		}
 		int closingBracketIndex = findClosingBracketIndex(leftOver);
 		String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
 		myInternalCommand = TestFactory.createCommand(innerCommand, true);
-		// find next string.
+		setLeftoverCommands(leftOver.substring(closingBracketIndex +1).trim());
 	}
 
 }

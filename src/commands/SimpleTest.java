@@ -9,8 +9,9 @@ public class SimpleTest {
     public void testSumParses(){
         String input = "SUM 6 SUM 7 8 SUM 8 9 SUM 9 10";
         BaseCommand command = TestFactory.createCommand(input, false);
-        //double x = command.execute(null, null);
-        assertEquals(new Double(command.getNextCommand().execute(null, null)), new Double(19.0));
+        double x = command.execute(null, null);
+        assertEquals(new Double(command.execute(null, null)), new Double(19.0));
+
     }
     
     @Test

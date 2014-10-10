@@ -7,6 +7,8 @@ import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	
+        protected static char COMMAND_INDICATOR = '[';
+        protected static char COMMAND_END_INDICATOR = ']';
 	private SlogoView myView;
 	private Turtle myTurtle;
 	
@@ -51,10 +53,10 @@ public abstract class ControlCommand extends ModelCommand {
         Stack<Character> checkStack = new Stack<>();
         for(int i=0; i < input.length(); i++){
             char character = input.charAt(i);
-            if(character == '['){
+            if(character == COMMAND_INDICATOR){
                 checkStack.push(character);
             }
-            else if(character == ']'){
+            else if(character == COMMAND_END_INDICATOR){
                 checkStack.pop();
             }
             if(checkStack.size() == 0){

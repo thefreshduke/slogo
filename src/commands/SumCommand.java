@@ -1,12 +1,12 @@
 package commands;
 
 
-public class TestSumCommand extends LogicCommand{
+public class SumCommand extends LogicCommand{
     
     private BaseCommand myFirstExpression;
     private BaseCommand mySecondExpression;
     
-    public TestSumCommand (String userInput, boolean isExpression) {
+    public SumCommand (String userInput, boolean isExpression) {
         super(userInput, isExpression);
     }
 
