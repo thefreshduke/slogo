@@ -1,15 +1,13 @@
 package commands;
 
-import commandParser.CommandFactory;
-
 import turtle.Turtle;
 import View.SlogoView;
 
-public class BackCommand extends TurtleCommand {
+public class LeftCommand extends TurtleCommand {
 
 	private BaseCommand myPixelsCommand;
 	
-	public BackCommand(String userInput, boolean isExpression) {
+	public LeftCommand(String userInput, boolean isExpression) {
 		super(userInput, isExpression);
 	}
 
@@ -25,16 +23,16 @@ public class BackCommand extends TurtleCommand {
 
 	@Override
 	protected void parseArguments(String userInput) {
-		myPixelsCommand = CommandFactory.createCommand(userInput, true);
+		myPixelsCommand = TestFactory.createCommand(userInput, true);
 		setLeftoverCommands(myPixelsCommand.getLeftoverString());// TODO Auto-generated method stub
 	}
 
 	@Override
 	public double execute(SlogoView view, Turtle turtle) {
-		double movedDistance = myPixelsCommand.execute(view, turtle);
-		movedDistance*=-1.0;
-		turtle.move(movedDistance);
+		double rotateLeft = myPixelsCommand.execute(view, turtle);
+		rotateLeft*=-1;
+		turtle.rotate(rotateLeft);
 		view.update(turtle.getXPos(), turtle.getYPos());
-		return movedDistance;
+		return rotateLeft;
 	}
 }
