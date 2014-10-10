@@ -133,6 +133,10 @@ public class SlogoView {
 
 		//		check if pen is down before drawing
 		//		also have access to private variable pen color to determine what color the line should be
+		
+		if (myPoints.peek()==null){
+			myGrid.drawLine(myGrid.myHeight/2, myGrid.myWidth/2, x, y, penColor);
+		}
 		if(penIsDown){
 			myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
 		}
