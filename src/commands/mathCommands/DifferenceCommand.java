@@ -9,11 +9,8 @@ public class DifferenceCommand extends ArithmeticCommand {
     }
 
     @Override
-    public double execute () throws BackendException {
+    public double mathExecute() throws BackendException {
         double returnValue = executeCommand(getFirstExpression()) - executeCommand(getSecondExpression());
-        if(getNextCommand() != null){
-            returnValue = executeCommand(getNextCommand());
-        }
         return returnValue;
     }
 

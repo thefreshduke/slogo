@@ -2,9 +2,9 @@ package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
-public class SinCommand extends SingleExpressionMathCommand{
+public class CosCommand extends SingleExpressionMathCommand{
 
-    public SinCommand (String userInput, boolean isExpression) throws BackendException {
+    public CosCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }
@@ -12,6 +12,6 @@ public class SinCommand extends SingleExpressionMathCommand{
     @Override
     public double mathExecute() throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.sin(Math.toDegrees(angle));
+        return Math.cos(angle);
     }
 }
