@@ -67,7 +67,7 @@ public class LanguageFileParser {
 		String[] userInputWords = userInput.split(myCommandSeparator);
 		for (int i = 0; i < userInputWords.length; i++) {
 	        String word = userInputWords[i].toLowerCase();
-	        if(!myUserInputToEnglishTranslationMap.containsKey(word)){
+	        if(!myUserInputToEnglishTranslationMap.containsKey(word) || SPECIAL_CHARACTERS.contains(word) || isNumber(word)){
 	        	translatedUserInput += word + myCommandSeparator;
                 continue;
             }
