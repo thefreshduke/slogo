@@ -5,7 +5,6 @@ import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
 
-
 public class CommandFactory {
 
     private static Map<String, Class> myCommandToClassMap;

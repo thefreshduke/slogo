@@ -1,9 +1,12 @@
 package commands;
 
 import static org.junit.Assert.*;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Test;
+
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.mathCommands.RandomIntegerCommand;
@@ -41,7 +44,7 @@ public class SimpleTest {
     }
     
     private void setFactory(){
-        Map commandToClassMap = new HashMap<>();
+        Map<String, Class> commandToClassMap = new HashMap<>();
         commandToClassMap.put("SUM", SumCommand.class);
         commandToClassMap.put("IFELSE", IfElseCommand.class);
         commandToClassMap.put("FD", ForwardCommand.class);

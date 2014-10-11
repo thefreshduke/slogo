@@ -2,9 +2,12 @@ package commands.mathCommands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Test;
+
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
@@ -220,7 +223,7 @@ public class MathCommandParseTest {
     }
     
     private void setFactory(){
-        Map commandToClassMap = new HashMap<>();
+        Map<String, Class> commandToClassMap = new HashMap<>();
         commandToClassMap.put("SUM", SumCommand.class);
         commandToClassMap.put("DIFFERENCE", DifferenceCommand.class);
         commandToClassMap.put("PRODUCT", ProductCommand.class);
