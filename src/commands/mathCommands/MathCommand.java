@@ -40,8 +40,10 @@ public abstract class MathCommand extends LogicCommand {
             else {
                 subInput = myArgumentList[i-1].getLeftoverString();
             }
-            BaseCommand argument = CommandFactory.createCommand(subInput, true);
-            myArgumentList[i] = argument;
+            if(!subInput.equals("")){
+            	BaseCommand argument = CommandFactory.createCommand(subInput, true);
+                myArgumentList[i] = argument;
+            }
         }
         setLeftoverCommands(myArgumentList[myArgumentList.length-1].getLeftoverString());
     }

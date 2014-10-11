@@ -18,7 +18,7 @@ public class CommandFactory {
 
     public static BaseCommand createCommand (String input, boolean isExpression) {
     	String trimmedInput = input.trim();
-    	if(input.charAt(0) == ':'){
+    	if(input.length() > 0 && input.charAt(0) == ':'){
     		try {
 				return new GetVariableCommand(trimmedInput.substring(1), isExpression);
 			} catch (BackendException e) {
@@ -34,6 +34,7 @@ public class CommandFactory {
                 return new NumericalCommand(subInput, integerValue);
             }
             catch (BackendException ex){
+            	return null;
                //TODO:  
             }
         }
@@ -46,6 +47,7 @@ public class CommandFactory {
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
         }
         catch (Exception ex) {
+        	return null;
         }
         return command;
     }
