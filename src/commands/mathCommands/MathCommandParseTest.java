@@ -152,7 +152,7 @@ public class MathCommandParseTest {
         catch (BackendException ex){
             
         }
-        assertEquals(result, new Double(Math.sin(angle)));
+        assertEquals(result, new Double(Math.sin(Math.toRadians(angle))));
     }
     
     @Test
@@ -168,7 +168,7 @@ public class MathCommandParseTest {
         catch (BackendException ex){
             
         }
-        assertEquals(result, new Double(Math.cos(angle)));
+        assertEquals(result, new Double(Math.cos(Math.toRadians(angle))));
     }
     
     @Test
@@ -184,7 +184,7 @@ public class MathCommandParseTest {
         catch (BackendException ex){
             
         }
-        assertEquals(result, new Double(Math.tan(angle)));
+        assertEquals(result, new Double(Math.tan(Math.toRadians(angle))));
     }
     
     @Test
@@ -200,7 +200,7 @@ public class MathCommandParseTest {
         catch (BackendException ex){
             
         }
-        assertEquals(result, new Double(Math.atan(angle)));
+        assertEquals(result, new Double(Math.atan(Math.toRadians(angle))));
     }
     
     @Test
