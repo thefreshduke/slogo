@@ -4,13 +4,14 @@ import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 
 public class SetPositionCommand extends TurtleCommand {
 
 	private BaseCommand myFirstExpression;
 	private BaseCommand mySecondExpression;
 
-	public SetPositionCommand(String userInput, boolean isExpression) {
+	public SetPositionCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 
@@ -34,15 +35,15 @@ public class SetPositionCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
+	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 		double currentXPos = turtle.getXPos();
 		double currentYPos = turtle.getYPos();
-		turtle.setXPos(myFirstExpression.execute(view, turtle));
-		turtle.setYPos(mySecondExpression.execute(view, turtle));
+		turtle.setXPos(myFirstExpression.execute(view, turtle, null));
+		turtle.setYPos(mySecondExpression.execute(view, turtle, null));
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
 		if(nextCommand != null){
-			return nextCommand.execute(view, turtle);
+			return nextCommand.execute(view, turtle, null);
 		}
 		double distance = Math.sqrt(Math.pow(currentXPos-turtle.getXPos(), 2) + Math.pow(currentYPos - turtle.getYPos(), 2));
 		return distance;

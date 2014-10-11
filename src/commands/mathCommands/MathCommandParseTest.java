@@ -20,7 +20,7 @@ public class MathCommandParseTest {
         String input = "SUM 6 SUM 7 8 SUM 8 9 SUM 9 10";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
+            Double result = command.execute(null, null, null);
             assertEquals(result, new Double(19.0));
         }
         catch(BackendException ex){
@@ -34,7 +34,7 @@ public class MathCommandParseTest {
         String input = "DIFFERENCE 6.8 SUM 7 8";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
+            Double result = command.execute(null, null, null);
             assertEquals(result, new Double(6.8 - (7 + 8)));
         }
         catch(BackendException ex){
@@ -50,7 +50,7 @@ public class MathCommandParseTest {
         String input = "PRODUCT " + first + " " + second;
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
+            Double result = command.execute(null, null, null);
             assertEquals(result, new Double(first * second));
         }
         catch(BackendException ex){
@@ -65,7 +65,7 @@ public class MathCommandParseTest {
         String input = "QUOTIENT " + first + " " + second;
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
+            Double result = command.execute(null, null, null);
             assertEquals(result, new Double(first/second));
         }
         catch(BackendException ex){
@@ -80,7 +80,7 @@ public class MathCommandParseTest {
         String input = "REMAINDER " + first + " " + second;
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
+            Double result = command.execute(null, null, null);
             assertEquals(result, new Double(first % second));
         }
         catch(BackendException ex){
@@ -98,7 +98,7 @@ public class MathCommandParseTest {
             BaseCommand command = CommandFactory.createCommand(input, false);
             double result = 100;
             try {
-                result = command.execute(null, null);
+                result = command.execute(null, null, null);
             }
             catch (BackendException e) {
             }
@@ -115,7 +115,7 @@ public class MathCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         Double result = null;
         try {
-            result = command.execute(null, null);
+            result = command.execute(null, null, null);
         }
         catch (BackendException ex){
             
@@ -131,7 +131,7 @@ public class MathCommandParseTest {
         String input = "POW " + first + " " + second;
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
+            Double result = command.execute(null, null, null);
             assertEquals(result, new Double(Math.pow(first, second)));
         }
         catch(BackendException ex){
@@ -147,7 +147,7 @@ public class MathCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         Double result = null;
         try {
-            result = command.execute(null, null);
+            result = command.execute(null, null, null);
         }
         catch (BackendException ex){
             
@@ -163,7 +163,7 @@ public class MathCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         Double result = null;
         try {
-            result = command.execute(null, null);
+            result = command.execute(null, null, null);
         }
         catch (BackendException ex){
             
@@ -179,7 +179,7 @@ public class MathCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         Double result = null;
         try {
-            result = command.execute(null, null);
+            result = command.execute(null, null, null);
         }
         catch (BackendException ex){
             
@@ -195,7 +195,7 @@ public class MathCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         Double result = null;
         try {
-            result = command.execute(null, null);
+            result = command.execute(null, null, null);
         }
         catch (BackendException ex){
             
@@ -211,7 +211,7 @@ public class MathCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         Double result = null;
         try {
-            result = command.execute(null, null);
+            result = command.execute(null, null, null);
         }
         catch (BackendException ex){
             

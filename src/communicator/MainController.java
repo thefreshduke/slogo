@@ -143,7 +143,7 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myTurtle);
+            command.execute(myView, myTurtle, null);
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }

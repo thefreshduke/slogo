@@ -1,6 +1,7 @@
 package commands;
 
 import java.util.Stack;
+import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
@@ -12,7 +13,7 @@ public abstract class ControlCommand extends ModelCommand {
 	private SlogoView myView;
 	private Turtle myTurtle;
 	
-	public ControlCommand(String userInput, boolean isExpression) {
+	public ControlCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 	
@@ -28,14 +29,14 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(SlogoView view, Turtle turtle) throws BackendException {
+	public final double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 		myView = view;
 		myTurtle = turtle;
 		return execute();
 	}
 
 	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute(myView, myTurtle);
+		return command.execute(myView, myTurtle, null);
 	}
 	
 	public abstract double execute() throws BackendException;

@@ -4,12 +4,13 @@ import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 
 public class SetHeadingCommand extends TurtleCommand {
 
 	private BaseCommand myDegreesCommand;
 
-	public SetHeadingCommand(String userInput, boolean isExpression) {
+	public SetHeadingCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 
@@ -30,15 +31,15 @@ public class SetHeadingCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
+	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 		double currentRotate = turtle.getOrientation();
-		double absoluteRotate = myDegreesCommand.execute(view, turtle);
+		double absoluteRotate = myDegreesCommand.execute(view, turtle, null);
 		turtle.setRotation(absoluteRotate);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
 
 		if(nextCommand != null){
-			return nextCommand.execute(view, turtle);
+			return nextCommand.execute(view, turtle, null);
 		}
 		return (absoluteRotate - currentRotate);
 	}

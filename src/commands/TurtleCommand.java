@@ -1,11 +1,12 @@
 package commands;
 
+import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class TurtleCommand extends ModelCommand {
 	
-	public TurtleCommand(String userInput, boolean isExpression) {
+	public TurtleCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 	

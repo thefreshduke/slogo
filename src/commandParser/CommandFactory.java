@@ -1,6 +1,7 @@
 package commandParser;
 
 import java.util.Map;
+import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
 
@@ -18,7 +19,12 @@ public class CommandFactory {
         String subInput = input.replaceFirst(firstCommand, "").trim();
         if(checkIfNumerical(firstCommand)){
             double integerValue = Double.parseDouble(firstCommand);
-            return new NumericalCommand(subInput, integerValue);
+            try{
+                return new NumericalCommand(subInput, integerValue);
+            }
+            catch (BackendException ex){
+               //TODO:  
+            }
         }
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
         if (commandClass == null) {
@@ -32,7 +38,7 @@ public class CommandFactory {
         }
         return command;
     }
-
+    
     private static boolean checkIfNumerical(String string){
         try{
             Double.parseDouble(string);
