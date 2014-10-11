@@ -4,13 +4,14 @@ import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 
 public class TowardsCommand extends TurtleCommand {
 
 	private BaseCommand myFirstExpression;
 	private BaseCommand mySecondExpression;
 
-	public TowardsCommand(String userInput, boolean isExpression) {
+	public TowardsCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 
@@ -34,11 +35,11 @@ public class TowardsCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
+	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 		double currentXPos = turtle.getXPos();
 		double currentYPos = turtle.getYPos();
-		double newXPos = myFirstExpression.execute(view, turtle);
-		double newYPos = mySecondExpression.execute(view, turtle);
+		double newXPos = myFirstExpression.execute(view, turtle, null);
+		double newYPos = mySecondExpression.execute(view, turtle, null);
 		double angleRadians = Math.atan(((currentYPos-newYPos)/ (currentXPos - newXPos)));
 		double angleDegrees = Math.toDegrees(angleRadians);
 		System.out.println(angleDegrees);
@@ -47,7 +48,7 @@ public class TowardsCommand extends TurtleCommand {
 		turtle.setRotation(angleDegrees);
 		BaseCommand nextCommand = getNextCommand();
 		if(nextCommand != null){
-			return nextCommand.execute(view, turtle);
+			return nextCommand.execute(view, turtle, null);
 		}
 		return angleDegrees;
 	}

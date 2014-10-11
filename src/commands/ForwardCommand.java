@@ -36,12 +36,12 @@ public class ForwardCommand extends TurtleCommand {
 
 	@Override
 	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		double movedDistance = myDistance.execute(view, turtle, null);
+		double movedDistance = myDistance.execute(view, turtle, variableContainer);
 		turtle.move(movedDistance);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
 		if(nextCommand != null){
-		    return nextCommand.execute(view, turtle, null);
+		    return nextCommand.execute(view, turtle, variableContainer);
 		}
 		return movedDistance;
 	}
