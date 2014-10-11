@@ -1,7 +1,7 @@
-package commands;
+package commands.turtleCommands;
 
+import commands.BaseCommand;
 import communicator.IVariableContainer;
-
 import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;

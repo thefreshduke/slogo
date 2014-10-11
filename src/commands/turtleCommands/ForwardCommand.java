@@ -1,28 +1,29 @@
-package commands;
+package commands.turtleCommands;
 
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
+import commands.BaseCommand;
+import communicator.IVariableContainer;
 import turtle.Turtle;
 import View.SlogoView;
 
-public class BackCommand extends TurtleCommand {
+public class ForwardCommand extends TurtleCommand {
 
-	private BaseCommand myPixelsCommand;
+	private BaseCommand myDistance;
 
-	public BackCommand(String userInput, boolean isExpression) throws BackendException {
+	public ForwardCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 
 	@Override
 	protected void parseArguments(String userInput) {
-		myPixelsCommand = CommandFactory.createCommand(userInput, true);
-		setLeftoverCommands(myPixelsCommand.getLeftoverString());
+		BaseCommand command = CommandFactory.createCommand(userInput, true);
+		myDistance = command;
+		setLeftoverCommands(command.getLeftoverString());
 	}
 
-	@Override
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double movedDistance = executeCommand(myPixelsCommand);
-		movedDistance*=-1.0;
+		double movedDistance = executeCommand(myDistance);
 		turtle.move(movedDistance);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();

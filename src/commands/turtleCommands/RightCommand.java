@@ -1,6 +1,7 @@
-package commands;
+package commands.turtleCommands;
 
 import commandParser.CommandFactory;
+import commands.BaseCommand;
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 import turtle.Turtle;

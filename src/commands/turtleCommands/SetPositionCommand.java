@@ -1,9 +1,10 @@
-package commands;
+package commands.turtleCommands;
 
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
 import commandParser.CommandFactory;
+import commands.BaseCommand;
 
 public class SetPositionCommand extends TurtleCommand {
 
