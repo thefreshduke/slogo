@@ -26,27 +26,45 @@ import static org.junit.Assert.assertEquals;
 
 public class VariableCommandParseTest {
 
+//    @Test
+//    public void testThatVariableIsAdded() {
+//        setFactory();
+//        IVariableContainer container = new MapBasedVariableContainer();
+//        String variable1 = "variable1";
+//        String value = " SUM 10 60";
+//        String input = "MAKE " + variable1 + value;
+//        BaseCommand variableSetCommand = CommandFactory.createCommand(input, false);
+//        try {
+//            variableSetCommand.execute(null, null, container);
+//            BaseCommand command = container.getValue(variable1);
+//            Double result = command.execute(null, null, container);
+//            assertEquals(result, new Double(70));
+//            
+//            Double nonExistentResult = container.getValue("fff").execute(null, null, container);
+//            assertEquals(nonExistentResult, new Double(0.0));
+//        }
+//        catch (Exception ex){
+//            
+//        }
+//    }
+    
     @Test
-    public void testThatAddsVariable(){
-        setFactory();
-        IVariableContainer container = new MapBasedVariableContainer();
+    public void testThatVariableIsGet() {
+    	setFactory();
+    	IVariableContainer container = new MapBasedVariableContainer();
         String variable1 = "variable1";
-        String value = " SUM 10 60";
-        String input = "MAKE " + variable1 + value;
-        BaseCommand variableSetCommand = CommandFactory.createCommand(input, false);
-        try {
-            variableSetCommand.execute(null, null, container);
-            BaseCommand command = container.getValue(variable1);
-            Double result = command.execute(null, null, container);
-            assertEquals(result, new Double(70));
-            
-            Double nonExistentResult = container.getValue("fff").execute(null, null, container);
-            assertEquals(nonExistentResult, new Double(0.0));
+        String valueString = "SUM 10 60";
+        BaseCommand value = CommandFactory.createCommand(valueString, true);
+        String commandString = ":" + variable1;
+        BaseCommand command = CommandFactory.createCommand(commandString, true);
+        try{
+        	container.addVariable(variable1, value);
+        	Double result = command.execute(null,  null, container);
+        	assertEquals(result, new Double(70));
         }
         catch (Exception ex){
-            
+        	
         }
-        
     }
     
     private void setFactory(){
@@ -65,8 +83,8 @@ public class VariableCommandParseTest {
         commandToClassMap.put("TAN", TanCommand.class);
         commandToClassMap.put("ATAN", ArcTanCommand.class);
         commandToClassMap.put("LOG", NaturalLogCommand.class);
-        commandToClassMap.put("MAKE", SetVariableCommand.class);
         
+        commandToClassMap.put("MAKE", SetVariableCommand.class);
         CommandFactory.setCommandToClassRelation(commandToClassMap);
     }
 }

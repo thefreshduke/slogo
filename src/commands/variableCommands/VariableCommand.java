@@ -29,7 +29,7 @@ public abstract class VariableCommand extends BaseCommand{
         return result;
     }
     
-    protected double executeCommand(BaseCommand command) throws BackendException{
+    protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
         return command.execute(myView, myTurtle, myVariableContainer);
     }
     
