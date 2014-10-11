@@ -65,12 +65,7 @@ public abstract class BaseCommand {
 	        myLeftoverString = string;
 	    }
 	    else if(string != null && string != ""){
-<<<<<<< HEAD
 	        myNextCommand = CommandFactory.createCommand(string, false);
-=======
-	    	BaseCommand command = CommandFactory.createCommand(string, false);
-	        myNextCommand = command;
->>>>>>> c86634b1e003d0449f9159040822c0c717b8d525
 	    }
 	}
 }
