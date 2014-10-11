@@ -4,7 +4,6 @@ import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
 import commandParser.CommandFactory;
-import communicator.IVariableContainer;
 
 public class SetPositionCommand extends TurtleCommand {
 
@@ -13,16 +12,6 @@ public class SetPositionCommand extends TurtleCommand {
 
 	public SetPositionCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
-	}
-
-	@Override
-	protected void updateTurtle() {
-
-	}
-
-	@Override
-	protected double calculateResult() {
-		return 0;
 	}
 
 	protected void parseArguments (String userInput) {
@@ -35,11 +24,11 @@ public class SetPositionCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double currentXPos = turtle.getXPos();
 		double currentYPos = turtle.getYPos();
-		turtle.setXPos(myFirstExpression.execute(view, turtle, null));
-		turtle.setYPos(mySecondExpression.execute(view, turtle, null));
+		turtle.setXPos(executeCommand(myFirstExpression));
+		turtle.setYPos(executeCommand(mySecondExpression));
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
 		if(nextCommand != null){

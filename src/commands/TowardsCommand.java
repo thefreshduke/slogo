@@ -15,16 +15,6 @@ public class TowardsCommand extends TurtleCommand {
 		super(userInput, isExpression);
 	}
 
-	@Override
-	protected void updateTurtle() {
-
-	}
-
-	@Override
-	protected double calculateResult() {
-		return 0;
-	}
-
 	protected void parseArguments (String userInput) {
 		BaseCommand firstExpression = CommandFactory.createCommand(userInput, true);
 		myFirstExpression = firstExpression;
@@ -35,7 +25,7 @@ public class TowardsCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double currentXPos = turtle.getXPos();
 		double currentYPos = turtle.getYPos();
 		double newXPos = myFirstExpression.execute(view, turtle, null);

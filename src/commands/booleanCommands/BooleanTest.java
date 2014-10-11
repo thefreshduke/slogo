@@ -18,11 +18,11 @@ public class BooleanTest {
     @Test
     public void testSumParses(){
         setFactory();
-        String input = "SUM 6 SUM 7 8 SUM 8 9 SUM 9 10";
+        String input = "EQUAL 5 7";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null);
-            assertEquals(result, new Double(19.0));
+            Double result = command.execute(null, null, null);
+            assertEquals(result, new Double(0.0));
         }
         catch(BackendException ex){
             
