@@ -2,6 +2,7 @@ package commands;
 
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 import View.SlogoView;
 import turtle.Turtle;
 
@@ -21,24 +22,26 @@ public abstract class BaseCommand {
 	/**
 	 * 
 	 * @param userInput
+	 * @throws BackendException TODO
 	 */
-	public BaseCommand(String userInput, boolean isExpression) {
+	public BaseCommand(String userInput, boolean isExpression) throws BackendException {
 	    myExpressionFlag = isExpression;
 	    parseArguments(userInput);
 	}
 
 	/**
 	 * Method returns the computation of the turtle command
+	 * @param variableContainer TODO
 	 * @throws BackendException TODO
 	 * 
 	 */
-	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
+	public abstract double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
 
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;
 	}
 
-	protected abstract void parseArguments(String userInput);
+	protected abstract void parseArguments(String userInput) throws BackendException;
 	
 	protected void setNextCommand(BaseCommand command){
 		myNextCommand = command;

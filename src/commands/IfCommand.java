@@ -8,7 +8,7 @@ public class IfCommand extends ControlCommand{
     private BaseCommand myExpression;
     private BaseCommand myInternalCommand;
     
-    public IfCommand (String userInput, boolean isExpression) {
+    public IfCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }

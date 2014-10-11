@@ -8,7 +8,7 @@ public class RepeatCommand extends ControlCommand {
 	private BaseCommand myExpression;
 	private BaseCommand myInternalCommand;
 	
-	public RepeatCommand(String userInput, boolean isExpression) {
+	public RepeatCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 

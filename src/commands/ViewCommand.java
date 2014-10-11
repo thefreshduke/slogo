@@ -1,4 +1,5 @@
 package commands;
+import backendExceptions.BackendException;
 import turtle.Turtle;
 
 /**
@@ -9,7 +10,7 @@ import turtle.Turtle;
 public abstract class ViewCommand extends BaseCommand {
 
 
-	public ViewCommand(String command, boolean isExpression) {
+	public ViewCommand(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 
 	}

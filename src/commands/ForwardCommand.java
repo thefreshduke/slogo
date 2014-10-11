@@ -2,6 +2,7 @@ package commands;
 
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 import turtle.Turtle;
 import View.SlogoView;
 
@@ -9,7 +10,7 @@ public class ForwardCommand extends TurtleCommand {
 
 	private BaseCommand myDistance;
 	
-	public ForwardCommand(String userInput, boolean isExpression) {
+	public ForwardCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 		// TODO Auto-generated constructor stub
 	}
@@ -34,13 +35,13 @@ public class ForwardCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double movedDistance = myDistance.execute(view, turtle);
+	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+		double movedDistance = myDistance.execute(view, turtle, variableContainer);
 		turtle.move(movedDistance);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
 		if(nextCommand != null){
-		    return nextCommand.execute(view, turtle);
+		    return nextCommand.execute(view, turtle, variableContainer);
 		}
 		return movedDistance;
 	}

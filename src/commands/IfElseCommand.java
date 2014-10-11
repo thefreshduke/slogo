@@ -10,7 +10,7 @@ public class IfElseCommand extends ControlCommand {
     private BaseCommand myElseCommand;
     private BaseCommand myExpression;
     
-    public IfElseCommand (String userInput, boolean isExpression) {
+    public IfElseCommand (String userInput, boolean isExpression) throws BackendException{
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }
