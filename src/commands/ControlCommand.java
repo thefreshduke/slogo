@@ -8,10 +8,11 @@ import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	
-        protected static char COMMAND_INDICATOR = '[';
-        protected static char COMMAND_END_INDICATOR = ']';
+    protected static char COMMAND_INDICATOR = '[';
+    protected static char COMMAND_END_INDICATOR = ']';
 	private SlogoView myView;
 	private Turtle myTurtle;
+	private IVariableContainer myVariableContainer;
 	
 	public ControlCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
@@ -32,14 +33,15 @@ public abstract class ControlCommand extends ModelCommand {
 	public final double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 		myView = view;
 		myTurtle = turtle;
-		return execute();
+		myVariableContainer = variableContainer;
+		return execute(null);
 	}
 
-	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute(myView, myTurtle, null);
+	protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
+		return command.execute(myView, myTurtle, myVariableContainer);
 	}
 	
-	public abstract double execute() throws BackendException;
+	public abstract double execute(IVariableContainer variableContainer) throws BackendException;
 	
 	protected int findLastIndexOfCharacter(String userInput, char character) {
 		for (int i = userInput.length()-1; i >= 0; i--) {

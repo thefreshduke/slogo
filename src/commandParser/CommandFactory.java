@@ -1,9 +1,12 @@
 package commandParser;
 
 import java.util.Map;
+
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
+import commands.variableCommands.GetVariableCommand;
+import commands.variableCommands.SetVariableCommand;
 
 public class CommandFactory {
 
@@ -14,6 +17,15 @@ public class CommandFactory {
     // only once. This populates the myCommandToClassMap object.
 
     public static BaseCommand createCommand (String input, boolean isExpression) {
+    	String trimmedInput = input.trim();
+    	if(input.charAt(0) == ':'){
+    		try {
+				return new GetVariableCommand(trimmedInput.substring(1), isExpression);
+			} catch (BackendException e) {
+				return null;
+				//TODO: 
+			}
+    	}
         String firstCommand = identifyFirstCommand(input);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         if(checkIfNumerical(firstCommand)){

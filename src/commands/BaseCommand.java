@@ -19,6 +19,7 @@ public abstract class BaseCommand {
 	private BaseCommand myInternalCommand;
 	private String myLeftoverString = "";
 	private boolean myExpressionFlag;
+    protected final String COMMAND_DELIMITER = "\\s+";
 	/**
 	 * 
 	 * @param userInput

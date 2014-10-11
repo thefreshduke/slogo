@@ -35,6 +35,8 @@ public class MainController extends BaseController {
     private LanguageFileParser myTranslator;
     private CommandToClassTranslator myCommandToClassTranslator;
 
+    private IVariableContainer myVariableContainer;
+    
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
     public MainController (SlogoView view) {
         super(view);
@@ -64,6 +66,7 @@ public class MainController extends BaseController {
         catch (BackendException e) {
             System.out.println("ff'");
         }
+        myVariableContainer = new MapBasedVariableContainer();
     }
 
     private void setTimers () {
@@ -143,7 +146,7 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myTurtle, null);
+            command.execute(myView, myTurtle, myVariableContainer);
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }

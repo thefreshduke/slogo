@@ -1,7 +1,9 @@
 package commands;
 
 import java.util.Stack;
+
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfElseCommand extends ControlCommand {
@@ -16,16 +18,16 @@ public class IfElseCommand extends ControlCommand {
     }
 
     @Override
-    public double execute() throws BackendException {
+    public double execute(IVariableContainer variableContainer) throws BackendException {
         double returnValue;
-        if(executeCommand(myExpression) != 0){
-            returnValue = executeCommand(myIfCommand);
+        if(executeCommand(myExpression, variableContainer) != 0){
+            returnValue = executeCommand(myIfCommand, variableContainer);
         }
         else{
-            returnValue = executeCommand(myElseCommand);
+            returnValue = executeCommand(myElseCommand, variableContainer);
         }
         if(getNextCommand() != null){
-            returnValue = executeCommand(getNextCommand());
+            returnValue = executeCommand(getNextCommand(), variableContainer);
         }
         return returnValue;
     }

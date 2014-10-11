@@ -8,7 +8,6 @@ import backendExceptions.BackendException;
 
 public class SetVariableCommand extends VariableCommand{
 
-    private static final String COMMAND_DELIMITER = "\\s+";
     private String myVariableName;
     private BaseCommand myExpression;
     
@@ -19,7 +18,7 @@ public class SetVariableCommand extends VariableCommand{
 
     @Override
     protected double execute (IVariableContainer variableContainer) throws BackendException {
-        double expressionResult = executeCommand(myExpression);
+        double expressionResult = executeCommand(myExpression, variableContainer);
         IVariableContainer container = getVariableContainer();
         container.addVariable(myVariableName, expressionResult);
         return expressionResult;
