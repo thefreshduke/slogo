@@ -64,8 +64,9 @@ public abstract class BaseCommand {
 	    if(myExpressionFlag){
 	        myLeftoverString = string;
 	    }
-	    else if(string != null || string != ""){
-	        myNextCommand = CommandFactory.createCommand(string, false);
+	    else if(string != null && string != ""){
+	    	BaseCommand command = CommandFactory.createCommand(string, false);
+	        myNextCommand = command;
 	    }
 	}
 }
