@@ -2,7 +2,9 @@ package commands.variableCommands;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.Test;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.mathCommands.ArcTanCommand;
@@ -48,7 +50,7 @@ public class VariableCommandParseTest {
     }
     
     private void setFactory(){
-        Map commandToClassMap = new HashMap<>();
+        Map<String, Class> commandToClassMap = new HashMap<>();
         commandToClassMap.put("SUM", SumCommand.class);
         commandToClassMap.put("DIFFERENCE", DifferenceCommand.class);
         commandToClassMap.put("PRODUCT", ProductCommand.class);
