@@ -22,14 +22,8 @@ public class LeftCommand extends TurtleCommand {
 
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double rotateLeft = executeCommand(myDegreesCommand);
-		rotateLeft*=-1;
-		turtle.rotate(rotateLeft);
+		turtle.rotate(rotateLeft*-1);
 		view.update(turtle.getXPos(), turtle.getYPos());
-		BaseCommand nextCommand = getNextCommand();
-
-		if(nextCommand != null){
-			return executeCommand(nextCommand);
-		}
 		return rotateLeft;
 	}
 }

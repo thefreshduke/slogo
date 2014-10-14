@@ -10,7 +10,7 @@ import View.SlogoView;
 public class RightCommand extends TurtleCommand {
 
 	private BaseCommand myDegreesCommand;
-	
+
 	public RightCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
@@ -26,11 +26,6 @@ public class RightCommand extends TurtleCommand {
 		double rotateRight = myDegreesCommand.execute(view, turtle, null);
 		turtle.rotate(rotateRight);
 		view.update(turtle.getXPos(), turtle.getYPos());
-		BaseCommand nextCommand = getNextCommand();
-		
-		if(nextCommand != null){
-		    return nextCommand.execute(view, turtle, null);
-		}
 		return rotateRight;
 	}
 }

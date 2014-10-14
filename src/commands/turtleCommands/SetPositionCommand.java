@@ -31,10 +31,6 @@ public class SetPositionCommand extends TurtleCommand {
 		turtle.setXPos(executeCommand(myFirstExpression));
 		turtle.setYPos(executeCommand(mySecondExpression));
 		view.update(turtle.getXPos(), turtle.getYPos());
-		BaseCommand nextCommand = getNextCommand();
-		if(nextCommand != null){
-			return nextCommand.execute(view, turtle, null);
-		}
 		double distance = Math.sqrt(Math.pow(currentXPos-turtle.getXPos(), 2) + Math.pow(currentYPos - turtle.getYPos(), 2));
 		return distance;
 	}

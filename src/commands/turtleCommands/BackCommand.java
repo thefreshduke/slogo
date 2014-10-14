@@ -23,13 +23,8 @@ public class BackCommand extends TurtleCommand {
 	@Override
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double movedDistance = executeCommand(myPixelsCommand);
-		movedDistance*=-1.0;
-		turtle.move(movedDistance);
+		turtle.move(movedDistance*-1);
 		view.update(turtle.getXPos(), turtle.getYPos());
-		BaseCommand nextCommand = getNextCommand();
-		if(nextCommand != null){
-			return executeCommand(nextCommand);
-		}
 		return movedDistance;
 	}
 }

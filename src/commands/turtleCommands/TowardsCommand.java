@@ -37,10 +37,6 @@ public class TowardsCommand extends TurtleCommand {
 
 		//TODO: Figure out if angle computations work out correctly
 		turtle.setRotation(angleDegrees);
-		BaseCommand nextCommand = getNextCommand();
-		if(nextCommand != null){
-			return nextCommand.execute(view, turtle, null);
-		}
 		return angleDegrees;
 	}
 }

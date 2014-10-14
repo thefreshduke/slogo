@@ -26,11 +26,6 @@ public class SetHeadingCommand extends TurtleCommand {
 		double absoluteRotate = executeCommand(myDegreesCommand);
 		turtle.setRotation(absoluteRotate);
 		view.update(turtle.getXPos(), turtle.getYPos());
-		BaseCommand nextCommand = getNextCommand();
-
-		if(nextCommand != null){
-			return nextCommand.execute(view, turtle, null);
-		}
 		return (absoluteRotate - currentRotate);
 	}
 }

@@ -22,9 +22,9 @@ public abstract class TurtleCommand extends BaseCommand {
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
 		//	double result = execute();
-		//	if(getNextCommand() != null){
-		//	    return getNextCommand().execute(view, turtle, variableContainer);
-		//	}
+			if(getNextCommand() != null){
+			    return getNextCommand().execute(view, turtle, variableContainer);
+			}
 		//	return result;
 		return execute(view, turtle);
 	}
