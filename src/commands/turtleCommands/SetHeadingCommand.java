@@ -3,29 +3,24 @@ package commands.turtleCommands;
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
-import commandParser.CommandFactory;
-import commands.BaseCommand;
 
 public class SetHeadingCommand extends TurtleCommand {
-
-	private BaseCommand myDegreesCommand;
 
 	public SetHeadingCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
-
-	@Override
-	protected void parseArguments(String userInput) {
-		myDegreesCommand = CommandFactory.createCommand(userInput, true);
-		setLeftoverCommands(myDegreesCommand.getLeftoverString());// TODO Auto-generated method stub
-	}
-
+	
 	@Override
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
 		double currentRotate = turtle.getOrientation();
-		double absoluteRotate = executeCommand(myDegreesCommand);
+		double absoluteRotate = executeCommand(getExpressionList()[0]);
 		turtle.setRotation(absoluteRotate);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		return (absoluteRotate - currentRotate);
+	}
+
+	@Override
+	protected int getArgumentCount() {
+		return 1;
 	}
 }

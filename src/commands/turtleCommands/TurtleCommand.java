@@ -1,5 +1,6 @@
 package commands.turtleCommands;
 
+import commandParser.CommandFactory;
 import commands.BaseCommand;
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
@@ -10,6 +11,8 @@ public abstract class TurtleCommand extends BaseCommand {
 	private SlogoView myView;
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;
+	private BaseCommand[] myArgumentList;
+
 
 	public TurtleCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
@@ -21,12 +24,8 @@ public abstract class TurtleCommand extends BaseCommand {
 		myView = view;
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
-		//	double result = execute();
-			if(getNextCommand() != null){
-			    return getNextCommand().execute(view, turtle, variableContainer);
-			}
-		//	return result;
-		return execute(view, turtle);
+		BaseCommand nextCommand = getNextCommand();
+		return nextCommand == null ? execute(view, turtle) : executeCommand(nextCommand);
 	}
 
 	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
@@ -34,4 +33,31 @@ public abstract class TurtleCommand extends BaseCommand {
 	protected double executeCommand(BaseCommand command) throws BackendException{
 		return command.execute(myView, myTurtle, myVariableContainer);
 	}
+
+	protected void parseArguments(String userInput) {
+		int argumentCount = getArgumentCount();
+		if (argumentCount < 0) {
+			// TODO: make separate exception
+		}
+		myArgumentList = new BaseCommand[argumentCount];
+		for (int i = 0; i < argumentCount; i++) {
+			String subInput;
+			if (i == 0) {
+				subInput = userInput;
+			}
+			else {
+				subInput = myArgumentList[i - 1].getLeftoverString();
+			}
+			BaseCommand argument = CommandFactory.createCommand(subInput, true);
+			myArgumentList[i] = argument;
+		}
+		setLeftoverCommands(myArgumentList[myArgumentList.length - 1].getLeftoverString());
+	}
+
+	protected BaseCommand[] getExpressionList() {
+		return myArgumentList;
+	}
+
+	protected abstract int getArgumentCount();
+
 }
