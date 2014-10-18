@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
@@ -12,29 +13,22 @@ import java.util.Stack;
 import javax.swing.JOptionPane;
 
 import turtle.Turtle;
-import communicator.BaseController;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -42,7 +36,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class SlogoView {
-
+	HashMap<String, GUIFunction> myButtonMap;
 	//list of all the objects on the GUI that the user can interact with
 	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
 	private Grid myGrid;
@@ -53,8 +47,10 @@ public class SlogoView {
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
 	private Scene myScene;
 	private SlogoViewModel myModel;
+	private ArrayList<Turtle> activatedTurltes=new ArrayList<Turtle>();
+	private ArrayList<Turtle> allTurltes=new ArrayList<Turtle>();
 	//flag for if pen is up or down, flag for if ref grid is visible
-	private boolean penIsDown=true, refGridOn;
+	private boolean refGridOn;
 	private TextField commandLine;
 	private Stack<Point> myPoints=new Stack<Point>();
 	//used to display Turtles most recent stats
@@ -72,7 +68,8 @@ public class SlogoView {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
 		myController=new MainController(this);
 		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getTurtle());
-		myModel=new SlogoViewModel(myController, this);
+		myModel=new SlogoViewModel(myController);
+		myButtonMap=new HashMap<String, GUIFunction>();
 	}	
 	/**
 	 * Makes a Button that is to be added to the GUI's Stage
@@ -143,13 +140,6 @@ public class SlogoView {
 	public void setTurtleVisible(boolean b){} 
 
 
-	/**
-	 * Displays the Turtle and the Line at it's position before the last command
-	 */
-	public void undo(){
-		Point lastMove=myPoints.pop();
-		myGrid.undo(myPoints.peek().x, myPoints.peek().y);
-	}
 	/**
 	 * Makes Buttons for the top 5 recent commands and displays them on the GUI
 	 */
@@ -326,37 +316,31 @@ public class SlogoView {
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 
-		ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, y, event->myModel.uploadTurtleImage(), 150, 55);
+		//ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, y, event->myModel.uploadTurtleImage(), 150, 55);
 
-		ButtonTemplate backgroundImage=new ButtonTemplate("Upload Background\n\t  Image", x+=160,y, event->
-		myGrid.uploadMyBackgroundImage(myStage), 150, 55);
+		//ButtonTemplate backgroundImage=new ButtonTemplate("Upload Background\n\t  Image", x+=160,y, event->
+		//myGrid.uploadMyBackgroundImage(myStage), 150, 55);
 
-		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=160, y, event->myGrid.clear());
+		//ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=160, y, event->myGrid.clear());
 
-		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
+		//ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
 
-		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event-> setPenDown(true));
+		//ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event-> setPenDown(true));
 
-		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event-> setPenDown(false));
+	//	ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event-> setPenDown(false));
 
-		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
+		//ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
 
-		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid, backgroundImage);
+		//myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid, backgroundImage);
 
 		return myButtonPanel;
 	}
 	public void home(){
 
 	}
-	public void setPenDown(boolean b){
-		penIsDown = b;
-
-	}
-
 	public void toggleRefGrid(){
 		this.refGridOn = !refGridOn;
 		myGrid.toggleRefGrid(refGridOn);
-
 	}
 
 	public void updateTurtleStats(int x, int y, int or){
@@ -391,16 +375,19 @@ public class SlogoView {
 	}
 
 	public void executeUserCommand(String command){
-		//		myController.receiveCommand(commandLine.getText());
-
+		myController.receiveCommand(commandLine.getText());
 		commandLine.setText(command);
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
 				0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-
 		updateCommandHistory();
+	}
+	
+	public void makeMap(){
+		myButtonMap.put("pen down", new SetPenDown(myGrid.getActivePens()));
+		myButtonMap.put("undo", new Undo(myGrid));
 	}
 
 }

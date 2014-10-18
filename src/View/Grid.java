@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Stack;
@@ -34,16 +35,14 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class Grid extends Pane {
-	private static final String REFERENCE_GRID_COLOR = "GREY";
 	private String backgroundColor = "WHITE";
 	public int myHeight;
 	public int myWidth;
 	private int translate=50;
-
 	private ImageView myImageView;
-	private Turtle myTurtle;
-	private Stack<Line> myLines=new Stack<Line>();
 	private HashSet<Line> myGridLines=new HashSet<Line>();
+	private ArrayList<Turtle> activeTurtles=new ArrayList<Turtle>();
+	private ArrayList<Turtle> allTurtles=new ArrayList<Turtle>();
 	
 	
 	public Grid(int height, int width, KeyFrame frame, Turtle turtle){//Turtle turtle){
@@ -58,12 +57,18 @@ public class Grid extends Pane {
 		getChildren().add(myImageView);
 		time.getKeyFrames().add(frame);
 		makeGridLines();
-		myTurtle=turtle;
-		myTurtle.setXPos(myWidth/2);
-		myTurtle.setYPos(myHeight/2);
-		moveTurtle(myWidth/2, myHeight/2);
-		getChildren().add(myTurtle);
 		setBackgroundColor(backgroundColor);
+		
+	}
+	public Collection<Turtle> getAllTurtles(){
+		return allTurtles;
+	}
+	public void addTurtle(Turtle t){
+		t.setXPos(myWidth/2);
+		t.setYPos(myWidth/2);
+		moveTurtle(t);
+		allTurtles.add(t);
+		getChildren().add(t);
 		
 	}
 
@@ -88,54 +93,13 @@ public class Grid extends Pane {
 	private void makeGridLines(){
 		for (int i=0; i<myHeight; i+=translate){
 			for (int j=0; j<myWidth; j+=translate){
-				drawLine(i, j);
+				drawGridLine(i, j);
 			}
 		}
 	}
 
-	public void uploadMyBackgroundImage(Stage mainStage){
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Select Turtle Image");
-		fileChooser.setInitialDirectory(new File("./"));
-		File file = fileChooser.showOpenDialog(mainStage);
-		if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
-			ImageView myImage=new ImageView();
-			BufferedImage buffer;
-			try {
-				buffer = ImageIO.read(file);
-				Image img=SwingFXUtils.toFXImage(buffer, null);
-				myImage.setImage(img);
-				myImage.setFitHeight(myHeight);
-				myImage.setFitWidth(myWidth);
-				myImage.setVisible(true);
-				this.getChildren().add(myImage);
-			} catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Please select another file");
-			}
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "Please select another file");
-		}
-
-		BufferedImage buffer;
-		try {
-			buffer = ImageIO.read(file);
-			Image img=SwingFXUtils.toFXImage(buffer, null);
-			myImageView.setImage(img);
-			myImageView.setFitHeight(myHeight);
-			myImageView.setFitWidth(myWidth);
-			myImageView.setVisible(true);
-			getChildren().removeAll(myLines);
-			getChildren().remove(myTurtle);
-			getChildren().addAll(myLines);
-			getChildren().add(myTurtle);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-
-	}
-	private void drawLine(int y, int x){
+	
+	private void drawGridLine(int y, int x){
 		Line verticalGridLine=new Line(x, 0, x, myHeight);
 		verticalGridLine.setStroke(Paint.valueOf("GREY"));
 		verticalGridLine.setStyle("-fx-fill: GREY");
@@ -146,51 +110,40 @@ public class Grid extends Pane {
 		myGridLines.add(horizontalGridLine);
 	}
 
-	private int translateX(int number){
-		return number*translate;
-	}
-	private int translateY(int number){
-		return myHeight-(number*translate);
-	}
-	public void drawLine(int startX, int startY, int endX, int endY, String myColor){
-		Line myLine=new Line(startX, startY, endX, endY);
-		myLine.setStroke(Paint.valueOf(myColor));
-		myLines.push(myLine);
-		getChildren().add(myLine);
-	}
 
 	public void clear(){
-		this.getChildren().removeAll(myLines);
+		this.getChildren().removeAll();
 	}
 
-	private void undoLine(){
-		this.getChildren().remove(myLines.pop());
-		this.getChildren().remove(myLines.pop());
+	
+	public void moveTurtle(Turtle t){
+		t.relocate(t.getXPos(), t.getYPos());
 	}
-
-	public void gridMoveTurtle(int x, int y){
-		myTurtle.setRotate(0);
-		myTurtle.move(translateX(x),translateY(y));
-	}
-	public void moveTurtle(double d, double e){
-		myTurtle.relocate(d, e);
-	}
-	public void undo(int x, int y){
-		moveTurtle(x,y);
-		undoLine();
-	}
+	
+	
+	
+	
 	/**
 	 * Takes in the coordinates (x,y) from the controller and pops the last coordinate from the stack to call move(int x, int y)
 	 * @param x		x location on the Grid
 	 * @param y		y location on the Grid
 	 */
 	public void update(Collection<Turtle> activatedTurtles){
+		activeTurtles.clear();
 		for (Turtle active: activatedTurtles){
-			moveTurtle(active.getXPos(), active.getYPos());
+			moveTurtle(active);
 			active.getPen().drawLine(active.getXPos(), active.getYPos());
-		}
-		
+			activeTurtles.add(active);
+		}	
 	}
-
+	public Collection<Turtle> getActiveTurtles(){
+		return activeTurtles;
+	}
+	public Collection<Pen> getActivePens(){
+		Collection<Pen> pens=new ArrayList<Pen>();
+		for (Turtle t: activeTurtles)
+			pens.add(t.getPen());
+		return pens;
+	}
 }
 

@@ -21,12 +21,10 @@ import communicator.BaseController;
 
 public class SlogoViewModel {
 	private BaseController myBaseController;
-	private SlogoView mySlogoView;
 	private Stage myStage;
 
-	public SlogoViewModel(BaseController myController, SlogoView myView){
+	public SlogoViewModel(BaseController myController){
 		myBaseController = myController;
-		mySlogoView = myView;
 	}
 
 
@@ -38,15 +36,7 @@ public class SlogoViewModel {
 	}
 
 
-	public void penDown(){
-		mySlogoView.setPenDown(true);
-	}
-
-	public void penUp(){
-		mySlogoView.setPenDown(false);
-	}
-
-
+	
 	public void helpPage(){
 		WebView browser = new WebView();
 		WebEngine webEngine = browser.getEngine();
