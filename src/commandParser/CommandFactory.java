@@ -1,9 +1,12 @@
 package commandParser;
 
 import java.util.Map;
+
+import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
-
+import commands.variableCommands.GetVariableCommand;
+import commands.variableCommands.SetVariableCommand;
 
 public class CommandFactory {
 
@@ -14,11 +17,29 @@ public class CommandFactory {
     // only once. This populates the myCommandToClassMap object.
 
     public static BaseCommand createCommand (String input, boolean isExpression) {
+    	String trimmedInput = input.trim();
+    	if(input == null || input.equals("")){
+    		return null;
+    	}
+    	if(input.length() > 0 && input.charAt(0) == ':'){
+    		try {
+				return new GetVariableCommand(trimmedInput, isExpression);
+			} catch (BackendException e) {
+				return null;
+				//TODO: 
+			}
+    	}
         String firstCommand = identifyFirstCommand(input);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         if(checkIfNumerical(firstCommand)){
             double integerValue = Double.parseDouble(firstCommand);
-            return new NumericalCommand(subInput, integerValue);
+            try{
+                return new NumericalCommand(subInput, integerValue);
+            }
+            catch (BackendException ex){
+            	return null;
+               //TODO:  
+            }
         }
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
         if (commandClass == null) {
@@ -29,10 +50,11 @@ public class CommandFactory {
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
         }
         catch (Exception ex) {
+        	ex.printStackTrace();
         }
         return command;
     }
-
+    
     private static boolean checkIfNumerical(String string){
         try{
             Double.parseDouble(string);

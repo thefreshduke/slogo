@@ -1,6 +1,7 @@
 package commands;
 
 import commandParser.CommandFactory;
+import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfCommand extends ControlCommand{
@@ -8,23 +9,23 @@ public class IfCommand extends ControlCommand{
     private BaseCommand myExpression;
     private BaseCommand myInternalCommand;
     
-    public IfCommand (String userInput, boolean isExpression) {
+    public IfCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }
 
     @Override
-    public double execute() throws BackendException {
+    public double execute(IVariableContainer variableContainer) throws BackendException {
         double returnValue = 0;
-        double expressionResult = executeCommand(myExpression);
+        double expressionResult = executeCommand(myExpression, variableContainer);
         if(expressionResult != 0){
-            executeCommand(myInternalCommand);
+            executeCommand(myInternalCommand, variableContainer);
         }
         else{
             returnValue = expressionResult;
         }
         if(getNextCommand() != null){
-            returnValue = executeCommand(getNextCommand());
+            returnValue = executeCommand(getNextCommand(), variableContainer);
         }
         return returnValue;
     }
