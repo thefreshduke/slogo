@@ -1,7 +1,9 @@
-package communicator;
+package model;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
+import communicator.IVariableContainer;
+import communicator.MapBasedVariableContainer;
 import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
@@ -11,7 +13,7 @@ public class SlogoModel {
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;
 
-	protected void initializeModel () {
+	public void initializeModel () {
 		initializeTurtle();
 		myVariableContainer = new MapBasedVariableContainer();
 	}

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import model.SlogoModel;
 import View.SlogoView;
 import backendExceptions.BackendException;
 import turtle.Position;
