@@ -23,7 +23,7 @@ public class CommandFactory {
     	}
     	if(input.length() > 0 && input.charAt(0) == ':'){
     		try {
-				return new GetVariableCommand(trimmedInput.substring(1), isExpression);
+				return new GetVariableCommand(trimmedInput, isExpression);
 			} catch (BackendException e) {
 				return null;
 				//TODO: 
