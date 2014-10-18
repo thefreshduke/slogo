@@ -1,12 +1,14 @@
 package commands;
 
 import java.util.Stack;
-
+import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	
+        protected static char COMMAND_INDICATOR = '[';
+        protected static char COMMAND_END_INDICATOR = ']';
 	private SlogoView myView;
 	private Turtle myTurtle;
 	
@@ -26,17 +28,17 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(SlogoView view, Turtle turtle) {
+	public final double execute(SlogoView view, Turtle turtle) throws BackendException {
 		myView = view;
 		myTurtle = turtle;
 		return execute();
 	}
 
-	protected double executeCommand(BaseCommand command){
+	protected double executeCommand(BaseCommand command) throws BackendException{
 		return command.execute(myView, myTurtle);
 	}
 	
-	public abstract double execute();
+	public abstract double execute() throws BackendException;
 	
 	protected int findLastIndexOfCharacter(String userInput, char character) {
 		for (int i = userInput.length()-1; i >= 0; i--) {
@@ -51,10 +53,10 @@ public abstract class ControlCommand extends ModelCommand {
         Stack<Character> checkStack = new Stack<>();
         for(int i=0; i < input.length(); i++){
             char character = input.charAt(i);
-            if(character == '['){
+            if(character == COMMAND_INDICATOR){
                 checkStack.push(character);
             }
-            else if(character == ']'){
+            else if(character == COMMAND_END_INDICATOR){
                 checkStack.pop();
             }
             if(checkStack.size() == 0){

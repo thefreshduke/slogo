@@ -1,12 +1,11 @@
 package commands;
 
 import java.util.List;
-
+import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class LogicCommand extends ModelCommand {
-	private List<String> myExpressionArguments; 
 	private SlogoView myView;
 	private Turtle myTurtle;
 	
@@ -15,23 +14,15 @@ public abstract class LogicCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(SlogoView view, Turtle turtle) {
+	public final double execute(SlogoView view, Turtle turtle) throws BackendException {
 		myView = view;
 		myTurtle = turtle;
 		return execute();
 	}
 	
-	public abstract double execute();
+	public abstract double execute() throws BackendException;
 
-	protected double executeCommand(BaseCommand command){
+	protected double executeCommand(BaseCommand command) throws BackendException{
 		return command.execute(myView, myTurtle);
-	}
-	
-	protected List<String> getExpressionArguments() {
-		return myExpressionArguments;
-	}
-
-	protected void setExpressionArguments(List<String> expressionArguments) {
-		myExpressionArguments = expressionArguments;
 	}
 }

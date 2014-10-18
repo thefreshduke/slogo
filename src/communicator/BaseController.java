@@ -40,7 +40,7 @@ public abstract class BaseController {
 	 * Sends the error back to View so that it can tell the user of the problem
 	 * @param ex exception that was thrown in back end
 	 */
-	protected void reportErrorToView(Exception ex){}
+	protected abstract void reportErrorToView(Exception ex);
 
 	/**
 	 * Hard sets the Turtle's position and orientation. It will clear any queued commands and coordinates.
@@ -67,9 +67,7 @@ public abstract class BaseController {
 	 * Gives the controller the language file resource selected by the user
 	 * @param file File of language resource to be used
 	 */
-	public void loadLanguage(File file){
-
-	}
+	public abstract void loadLanguage(File file);
 
 	public abstract Turtle getTurtle();
 

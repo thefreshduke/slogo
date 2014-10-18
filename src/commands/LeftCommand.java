@@ -1,47 +1,45 @@
 package commands;
 
 import backendExceptions.BackendException;
-import commandParser.CommandFactory;
 import turtle.Turtle;
 import View.SlogoView;
+import commandParser.CommandFactory;
 
-public class ForwardCommand extends TurtleCommand {
+public class LeftCommand extends TurtleCommand {
 
-	private BaseCommand myDistance;
+	private BaseCommand myDegreesCommand;
 	
-	public ForwardCommand(String userInput, boolean isExpression) {
+	public LeftCommand(String userInput, boolean isExpression) {
 		super(userInput, isExpression);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void updateTurtle() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	protected double calculateResult() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	protected void parseArguments(String userInput) {
-		BaseCommand command = CommandFactory.createCommand(userInput, true);
-		myDistance = command;
-		setLeftoverCommands(command.getLeftoverString());// TODO Auto-generated method stub
+		myDegreesCommand = CommandFactory.createCommand(userInput, true);
+		setLeftoverCommands(myDegreesCommand.getLeftoverString());// TODO Auto-generated method stub
 	}
 
 	@Override
 	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double movedDistance = myDistance.execute(view, turtle);
-		turtle.move(movedDistance);
+		double rotateLeft = myDegreesCommand.execute(view, turtle);
+		rotateLeft*=-1;
+		turtle.rotate(rotateLeft);
 		view.update(turtle.getXPos(), turtle.getYPos());
 		BaseCommand nextCommand = getNextCommand();
+		
 		if(nextCommand != null){
 		    return nextCommand.execute(view, turtle);
 		}
-		return movedDistance;
+		return rotateLeft;
 	}
 }

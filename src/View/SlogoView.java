@@ -174,6 +174,7 @@ public class SlogoView {
 	 * @param y		y location on the Grid
 	 */
 	public void update(double x, double y){
+		
 		if (myPoints.size()==0){
 			myPoints.push(new Point(myGrid.myWidth/2, myGrid.myHeight/2));
 		}

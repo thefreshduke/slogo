@@ -38,15 +38,17 @@ public class Turtle extends ImageView{
 		myPosition.moveVertical(yIncrement);
 	}
 
+	public void move(double xPos, double yPos) {
+		moveHorizontal(xPos);
+		moveVertical(yPos);
+	}
 
 	/**
-	 * Move a specified amount in the horizontal and vertical 
-	 * directions
-	 * @param xIncrement
-	 * @param yIncrement
+	 * Move amount specified at current heading
+	 * @param increment - straight-line distance to be moved
 	 */
-	public void move(double xIncrement,  double yIncrement) {
-		myPosition.move(xIncrement, yIncrement);
+	public void move(double increment) {
+		myPosition.move(increment);
 	}
 
 	/**

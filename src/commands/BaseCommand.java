@@ -1,5 +1,7 @@
 package commands;
 
+import backendExceptions.BackendException;
+import commandParser.CommandFactory;
 import View.SlogoView;
 import turtle.Turtle;
 
@@ -27,9 +29,10 @@ public abstract class BaseCommand {
 
 	/**
 	 * Method returns the computation of the turtle command
+	 * @throws BackendException TODO
 	 * 
 	 */
-	public abstract double execute(SlogoView view, Turtle turtle);
+	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
 
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;
@@ -49,7 +52,7 @@ public abstract class BaseCommand {
 		myInternalCommand = command;
 	}
 	
-	protected String getLeftoverString(){
+	public String getLeftoverString(){
 	    return myLeftoverString;
 	}
 	
@@ -58,7 +61,7 @@ public abstract class BaseCommand {
 	        myLeftoverString = string;
 	    }
 	    else if(string != null || string != ""){
-	        myNextCommand = TestFactory.createCommand(string, true);
+	        myNextCommand = CommandFactory.createCommand(string, false);
 	    }
 	}
 }

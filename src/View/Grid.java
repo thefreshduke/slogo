@@ -168,6 +168,7 @@ public class Grid extends Pane {
 	}
 
 	public void gridMoveTurtle(int x, int y){
+		myTurtle.setRotate(0);
 		myTurtle.move(translateX(x),translateY(y));
 	}
 	public void moveTurtle(int x, int y){
