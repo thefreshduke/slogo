@@ -18,7 +18,6 @@ public abstract class TurtleCommand extends BaseCommand {
 		super(userInput, isExpression);
 	}
 
-
 	@Override
 	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 		myGrid = grid;

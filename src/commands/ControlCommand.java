@@ -12,7 +12,7 @@ public abstract class ControlCommand extends ModelCommand {
 	
     protected static char COMMAND_INDICATOR = '[';
     protected static char COMMAND_END_INDICATOR = ']';
-	private SlogoView myView;
+	private Grid myGrid;
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;
 	
@@ -33,14 +33,14 @@ public abstract class ControlCommand extends ModelCommand {
 	
 	@Override
 	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = grid;
+		myGrid = grid;
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
 		return execute(null);
 	}
 
 	protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
-		return command.execute(myView, myTurtle, myVariableContainer);
+		return command.execute(myGrid, myTurtle, myVariableContainer);
 	}
 	
 	public abstract double execute(IVariableContainer variableContainer) throws BackendException;
