@@ -71,7 +71,7 @@ public abstract class BaseController {
 
 	public abstract Turtle getTurtle();
 
-	public abstract void setTurtleImage(Image image);
+	//public abstract void setTurtleImage(Image image);
 
 }
 

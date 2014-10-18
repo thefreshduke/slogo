@@ -22,7 +22,7 @@ import javafx.scene.shape.Rectangle;
 public class MainController extends BaseController {
 
     private SlogoView myView;
-    private Turtle myTurtle;
+    private SlogoModel myModel;
     private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
     private ConcurrentLinkedQueue<String> myInputsToParse;
 
@@ -41,7 +41,7 @@ public class MainController extends BaseController {
     public MainController (SlogoView view) {
         super(view);
         myView = view;
-
+        myModel = new SlogoModel();
         myCommandQueue = new ConcurrentLinkedQueue<>();
         myInputsToParse = new ConcurrentLinkedQueue<>();
         myCommandIsExecuting = new AtomicBoolean(false);
@@ -110,12 +110,7 @@ public class MainController extends BaseController {
 
     @Override
     protected void initializeModel () {
-        Image image = new Image("bowser.png");
-        myTurtle = new Turtle(new Position(0, 0), image);
-        myTurtle.setFitWidth(60);
-        myTurtle.setPreserveRatio(true);
-        ;
-        myTurtle.setSmooth(true);
+        myModel.initializeModel();
     }
 
     @Override
@@ -139,30 +134,18 @@ public class MainController extends BaseController {
 
     @Override
     public void hardSetTurtle (double x, double y, double orientationAngle) {
-        myTurtle.setXPos(x);
-        myTurtle.setYPos(y);
-        myTurtle.setRotation(orientationAngle);
+        myModel.hardSetTurtle(x, y, orientationAngle);
     }
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myTurtle, myVariableContainer);
+            command.execute(myView, myModel.getTurtle(), myVariableContainer);
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
         catch(BackendException ex){
             reportErrorToView(ex);
         }
-    }
-
-    @Override
-    public Turtle getTurtle () {
-        return myTurtle;
-    }
-
-    @Override
-    public void setTurtleImage (Image image) {
-        myTurtle.setImage(image);
     }
 
     @Override
@@ -182,4 +165,15 @@ public class MainController extends BaseController {
         }
         
     }
+
+	@Override
+	public Turtle getTurtle() {
+		return myModel.getTurtle();
+	}
+
+	/*@Override
+	public void setTurtleImage(Image image) {
+		// TODO Auto-generated method stub
+		
+	}*/
 }
