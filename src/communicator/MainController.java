@@ -34,8 +34,6 @@ public class MainController extends BaseController {
     private AnimationTimer myCommandParserTimer;
     private LanguageFileParser myTranslator;
     private CommandToClassTranslator myCommandToClassTranslator;
-
-    private IVariableContainer myVariableContainer;
     
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
     public MainController (SlogoView view) {
@@ -66,7 +64,6 @@ public class MainController extends BaseController {
         catch (BackendException e) {
             System.out.println("ff'");
         }
-        myVariableContainer = new MapBasedVariableContainer();
     }
 
     private void setTimers () {
@@ -83,7 +80,7 @@ public class MainController extends BaseController {
                     // catch(BackendException ex) {
                     // reportErrorToView(ex);
                     // }
-                    BaseCommand command = CommandFactory.createCommand(input, false);
+                    BaseCommand command = myModel.createInitialCommand(input);
                     myCommandQueue.add(command);
 
                 }
@@ -139,7 +136,7 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myModel.getTurtle(), myVariableContainer);
+            command.execute(myView, myModel.getTurtle(), myModel.getMyVariableContainer());
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }

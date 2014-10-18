@@ -1,14 +1,23 @@
 package communicator;
 
+import commandParser.CommandFactory;
+import commands.BaseCommand;
 import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
 
 public class SlogoModel {
+	private static final String INITIAL_TURTLE_SPRITE = "bowser.png";
 	private Turtle myTurtle;
+	private IVariableContainer myVariableContainer;
 
 	protected void initializeModel () {
-		Image image = new Image("bowser.png");
+		initializeTurtle();
+		myVariableContainer = new MapBasedVariableContainer();
+	}
+
+	private void initializeTurtle() {
+		Image image = new Image(INITIAL_TURTLE_SPRITE);
 		myTurtle = new Turtle(new Position(0, 0), image);
 		myTurtle.setFitWidth(60);
 		myTurtle.setPreserveRatio(true);
@@ -23,6 +32,14 @@ public class SlogoModel {
 
 	public Turtle getTurtle() {
 		return myTurtle;
-
+	}
+	
+	public IVariableContainer getMyVariableContainer() {
+		return myVariableContainer;
+	}
+	
+	public BaseCommand createInitialCommand(String input) {
+		return CommandFactory.createCommand(input, false);
+		
 	}
 }
