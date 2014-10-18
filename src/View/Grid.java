@@ -163,7 +163,6 @@ public class Grid extends Pane {
 	}
 
 	private void undoLine(){
-		System.out.println(myLines.size());
 		this.getChildren().remove(myLines.pop());
 		this.getChildren().remove(myLines.pop());
 	}

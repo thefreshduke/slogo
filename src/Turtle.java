@@ -1,5 +1,8 @@
 import java.util.List;
 
+import View.BorderStyle;
+import View.Pen;
+
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
  *    
@@ -10,6 +13,7 @@ public class Turtle {
 	// compile without errors. The move methods on the Turtle call the corresponding methods 
 	// on the Position object.
 	private Position myPosition;
+	private Pen myPen;
 
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
@@ -98,6 +102,17 @@ public class Turtle {
 	 */
 	public double getYPos() {
 		return myPosition.getYPos();
+	}
+	
+	
+	public void setPenColor(String color){
+		myPen.setColor(color);
+	}
+	public void setPenBorderStyle(BorderStyle style){
+		myPen.setBorderStyle(style);
+	}
+	public void setPenWidth(Number thickness){
+		myPen.changeThickness(thickness);
 	}
 
 }

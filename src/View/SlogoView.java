@@ -115,7 +115,6 @@ public class SlogoView {
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainLayout.setTop(addMenuBar());
-
 		mainLayout.setLeft(setTextArea());
 		mainLayout.setCenter(myGrid);
 		mainLayout.setBottom(addButtons());
