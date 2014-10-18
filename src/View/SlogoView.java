@@ -3,6 +3,7 @@ package View;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
@@ -122,27 +123,7 @@ public class SlogoView {
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainStage.setScene(myScene);
 	}
-
-	/**
-	 * Draws a line from its location to (x,y)
-	 * @param x			x location 
-	 * @param y			y location
-	 * 
-	 */
-	private void drawLine(int x, int y){
-
-		//		check if pen is down before drawing
-		//		also have access to private variable pen color to determine what color the line should be
-
-		if(penIsDown){
-			if (myPoints.size()==0){
-				myGrid.drawLine(myGrid.myWidth/2, myGrid.myHeight/2, x, y, penColor);
-			} else { 
-				myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
-			}
-
-		}
-	}
+	
 
 
 	/**
@@ -152,37 +133,7 @@ public class SlogoView {
 	private void showError(String message){
 		JOptionPane.showMessageDialog(null, message);
 	}
-
-
-
-
-	/**
-	 * Moves both the Turtle and the Pen
-	 * @param x			x location on a Grid
-	 * @param y			y location on a Grid
-	 * 
-	 */
-	public void move(int x, int y){
-		myGrid.moveTurtle(x, y);
-		drawLine(x, y);
-	}
-
-
-	/**
-	 * Takes in the coordinates (x,y) from the controller and pops the last coordinate from the stack to call move(int x, int y)
-	 * @param x		x location on the Grid
-	 * @param y		y location on the Grid
-	 */
-	public void update(double x, double y){
-		
-		if (myPoints.size()==0){
-			myPoints.push(new Point(myGrid.myWidth/2, myGrid.myHeight/2));
-		}
-		move((int)x, (int)y);
-		drawLine((int)x, (int)y);
-		myPoints.push(new Point((int)x, (int)y));
-	}
-
+	
 
 	/**
 	 * Changes the Turtle's visibility (called by controller)
@@ -263,13 +214,11 @@ public class SlogoView {
 
 
 	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
-
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
 	}
 
 	public void createMenuItemsUnderLanguages(MenuTemplate languages){
-
 		languages.addMenuItem("English", event -> myModel.loadLanguageResource("English"));
 		languages.addMenuItem("French", event -> myModel.loadLanguageResource("French"));
 		languages.addMenuItem("Portuguese", event -> myModel.loadLanguageResource("Portuguese"));

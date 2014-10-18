@@ -1,9 +1,13 @@
 package turtle;
 import java.io.File;
 import java.util.List;
+import java.util.Stack;
 
+import View.BorderStyle;
+import View.Pen;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Line;
 
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
@@ -11,7 +15,8 @@ import javafx.scene.image.ImageView;
  */
 public class Turtle extends ImageView{
 	private Position myPosition;
-
+	private Pen myPen;
+	private Stack<Position> myPastPositions;
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -19,13 +24,16 @@ public class Turtle extends ImageView{
 	public Turtle(Position position, Image image) {
 		super(image);
 		myPosition = position;
+		myPen=new Pen(position);
+		myPastPositions=new Stack<Position>();
+		myPastPositions.push(myPosition);
 	}
 	
 	/**
 	 * Moves horizontally
 	 * @param xIncrement - horizontal movement increment
 	 */
-	public void moveHorizontal(double xIncrement) {
+	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
 
 	}
@@ -34,13 +42,14 @@ public class Turtle extends ImageView{
 	 * Moves the vertically 
 	 * @param yIncrement - vertical movement increment
 	 */
-	public void moveVertical(double yIncrement) {
+	private void moveVertical(double yIncrement) {
 		myPosition.moveVertical(yIncrement);
 	}
 
 	public void move(double xPos, double yPos) {
 		moveHorizontal(xPos);
 		moveVertical(yPos);
+		myPastPositions.add(myPosition);
 	}
 
 	/**
@@ -49,6 +58,7 @@ public class Turtle extends ImageView{
 	 */
 	public void move(double increment) {
 		myPosition.move(increment);
+		myPastPositions.push(myPosition);
 	}
 
 	/**
@@ -88,16 +98,12 @@ public class Turtle extends ImageView{
 	public double getOrientation() {
 		return myPosition.getRotate();
 	}
-	
-	
 	/**
 	 * @return Current x-coordinate
 	 */
 	public double getXPos() {
-		return myPosition.getXPos();
-		
+		return myPosition.getXPos();	
 	}
-
 	/**
 	 * @return Current y-coordinate
 	 */
@@ -118,5 +124,31 @@ public class Turtle extends ImageView{
 		myPosition.setRotation(rotateVal);
 		
 	}
+	
+	/*
+	 * Pen stuff
+	 */
+	public void setPenColor(String color){
+		myPen.setColor(color);
+	}
+	public void setPenBorderStyle(BorderStyle style){
+		myPen.setBorderStyle(style);
+	}
+	public void setPenWidth(Number thickness){
+		myPen.changeThickness(thickness);
+	}
+	public Line penUndo(){
+		return myPen.undo();
+	}
+	public Pen getPen(){
+		return myPen;
+	}
+	
+	//could return null
+	public Position undo(){
+		myPastPositions.pop();
+		return myPastPositions.pop();
+	}
+	
 
 }

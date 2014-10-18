@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Stack;
 
@@ -171,12 +172,25 @@ public class Grid extends Pane {
 		myTurtle.setRotate(0);
 		myTurtle.move(translateX(x),translateY(y));
 	}
-	public void moveTurtle(int x, int y){
-		myTurtle.relocate(x, y);
+	public void moveTurtle(double d, double e){
+		myTurtle.relocate(d, e);
 	}
 	public void undo(int x, int y){
 		moveTurtle(x,y);
 		undoLine();
 	}
+	/**
+	 * Takes in the coordinates (x,y) from the controller and pops the last coordinate from the stack to call move(int x, int y)
+	 * @param x		x location on the Grid
+	 * @param y		y location on the Grid
+	 */
+	public void update(Collection<Turtle> activatedTurtles){
+		for (Turtle active: activatedTurtles){
+			moveTurtle(active.getXPos(), active.getYPos());
+			active.getPen().drawLine(active.getXPos(), active.getYPos());
+		}
+		
+	}
+
 }
 

@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.Stack;
 
 import View.BorderStyle;
 import View.Pen;
@@ -14,6 +15,7 @@ public class Turtle {
 	// on the Position object.
 	private Position myPosition;
 	private Pen myPen;
+	private Stack<Position> myPoints;
 
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
@@ -21,6 +23,8 @@ public class Turtle {
 	 */
 	public Turtle(Position position) {
 		myPosition = position;
+		myPoints=new Stack<Position>();
+		//myPoints.add(new Position (0, 0 ))
 
 	}
 	
