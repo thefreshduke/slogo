@@ -1,8 +1,5 @@
 package View;
 
-public abstract class GUIFunction {
-	public GUIFunction(){
-		
-	}
-	public abstract void doAction();
+public interface GUIFunction {
+	public void doAction();
 }

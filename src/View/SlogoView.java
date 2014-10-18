@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -20,6 +21,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
@@ -36,9 +38,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class SlogoView {
-	HashMap<String, GUIFunction> myButtonMap;
-	//list of all the objects on the GUI that the user can interact with
-	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
+	HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
 	private Grid myGrid;
 	private MainController myController;
 	//a Group for all the components of the GUI to be added to
@@ -47,17 +47,12 @@ public class SlogoView {
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
 	private Scene myScene;
 	private SlogoViewModel myModel;
-	private ArrayList<Turtle> activatedTurltes=new ArrayList<Turtle>();
-	private ArrayList<Turtle> allTurltes=new ArrayList<Turtle>();
-	//flag for if pen is up or down, flag for if ref grid is visible
-	private boolean refGridOn;
 	private TextField commandLine;
-	private Stack<Point> myPoints=new Stack<Point>();
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
+	String penColor;
 	//for displaying command history
 	private VBox commandHistoryBox;
-	private String penColor="BLACK";
 	private MenuTemplate userCommands;
 	ResourceBundle myResources;
 	private Stage myStage;
@@ -69,23 +64,8 @@ public class SlogoView {
 		myController=new MainController(this);
 		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getTurtle());
 		myModel=new SlogoViewModel(myController);
-		myButtonMap=new HashMap<String, GUIFunction>();
 	}	
-	/**
-	 * Makes a Button that is to be added to the GUI's Stage
-	 * Adds the Button to the userInteractions List
-	 * 
-	 * @param s				A String representing the label of the button
-	 * @param handler		An Event for the button to react on
-	 * @return				a Button for display on the GUI
-	 */
-	private UserObjects makeUserObject(String s, EventHandler<ActionEvent> handler){
-		return null;
-	}
-	/**
-	 * Clears everything in the mainSimulationPanel (can be called by the controller when the command clear is given)
-	 */
-	//public void clear()
+
 
 	/**
 	 * 
@@ -119,6 +99,7 @@ public class SlogoView {
 		root.getChildren().add(mainLayout);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainStage.setScene(myScene);
+		myGrid.addTurtle(myController.getTurtle());
 	}
 	
 
@@ -132,26 +113,7 @@ public class SlogoView {
 	}
 	
 
-	/**
-	 * Changes the Turtle's visibility (called by controller)
-	 * @param b		Representing a boolean that determines whether or not
-	 * 				the turtle should be visible
-	 */
-	public void setTurtleVisible(boolean b){} 
-
-
-	/**
-	 * Makes Buttons for the top 5 recent commands and displays them on the GUI
-	 */
-	private void displayAndMakeRecentCommands(){}
-
-
-	/**
-	 *Receives x and y location from the controller to move only the Turtle
-	 * @param x		x location on Grid
-	 * @param y		y location on Grid
-	 */
-	public void updateTurtle(int x, int y){}
+	
 
 
 
@@ -187,7 +149,6 @@ public class SlogoView {
 
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
-		//myMenu.setStyle("-fx-background-color:#000080");
 		myMenu.setStyle( "-fx-border-width: 5");
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
 		MenuTemplate fileMenu = new MenuTemplate("File");
@@ -244,14 +205,15 @@ public class SlogoView {
 		});
 		commandLine.relocate(5, 60);
 		commandLine.setPrefSize(190,100);
-		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),
-				0,0, event-> this.sendCommand());
-		enter.relocate(5, 180);
-
-		//		create make Command Button
-		ButtonTemplate makeCommand = new ButtonTemplate(myResources.getString("makeCommand"),
-				0,0, event-> makeUserCommand(commandLine.getText()), 110, 55);
-		makeCommand.relocate(85, 180);
+		String[] value=myResources.getString("enter").split(";");
+		Button enter = new Button (value[0]);
+		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
+		enter.setOnAction(event_->this.sendCommand());
+		value=myResources.getString("makeCommand").split(";");
+		Button makeCommand = new Button(value[0]);
+		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
+		makeCommand.setPrefSize(110, 55);
+		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
 
 
 
@@ -310,38 +272,17 @@ public class SlogoView {
 
 
 	private Pane addButtons(){
-		int x=100;
-		int y=10;
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-
-		//ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, y, event->myModel.uploadTurtleImage(), 150, 55);
-
-		//ButtonTemplate backgroundImage=new ButtonTemplate("Upload Background\n\t  Image", x+=160,y, event->
-		//myGrid.uploadMyBackgroundImage(myStage), 150, 55);
-
-		//ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=160, y, event->myGrid.clear());
-
-		//ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
-
-		//ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event-> setPenDown(true));
-
-	//	ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event-> setPenDown(false));
-
-		//ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
-
-		//myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid, backgroundImage);
+		myButtonPanel.getChildren().addAll(makeBottomButtons());
 
 		return myButtonPanel;
 	}
 	public void home(){
 
 	}
-	public void toggleRefGrid(){
-		this.refGridOn = !refGridOn;
-		myGrid.toggleRefGrid(refGridOn);
-	}
+	
 
 	public void updateTurtleStats(int x, int y, int or){
 		lastX.setText("X Position: " + x);
@@ -385,9 +326,25 @@ public class SlogoView {
 		updateCommandHistory();
 	}
 	
+	public ArrayList<ButtonTemplate> makeBottomButtons(){
+		makeMap();
+		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
+		for (String s: myButtonMap.keySet()){
+			String[] value=myResources.getString(s).split(";");
+			if (!(s.equals("makeCommand")||s.equals("enter")))
+					myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myButtonMap.get(s)));
+		}
+		return myButtons;
+	}
 	public void makeMap(){
-		myButtonMap.put("pen down", new SetPenDown(myGrid.getActivePens()));
+		myButtonMap.put("penDown", new SetPenDown(myGrid.getActivePens()));
 		myButtonMap.put("undo", new Undo(myGrid));
+		myButtonMap.put("backgroundImage", new SetBackgroundImage(myGrid, myStage));
+		myButtonMap.put("clear", new ClearFunction(myGrid));
+		myButtonMap.put("penUp", new SetPenUp(myGrid.getActivePens()));
+		myButtonMap.put("toggleReferenceGrid", new ToggleGridLines(myGrid, 50));
+		myButtonMap.put("uploadImage", new TurtleImageChange(myGrid.getActiveTurtles(), myStage));
+		
 	}
 	public Grid getGrid() {
 		return myGrid;
