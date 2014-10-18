@@ -1,15 +1,12 @@
 package commands;
 
-import java.util.List;
-
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 import View.Grid;
-import View.SlogoView;
 import turtle.Turtle;
 
 public abstract class LogicCommand extends ModelCommand {
-	private SlogoView myView;
+	private Grid myGrid;
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;
 	
@@ -19,7 +16,7 @@ public abstract class LogicCommand extends ModelCommand {
 	
 	@Override
 	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = grid;
+		myGrid = grid;
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
 //		double result = execute();
@@ -33,6 +30,6 @@ public abstract class LogicCommand extends ModelCommand {
 	public abstract double execute() throws BackendException;
 
 	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute(myView, myTurtle, myVariableContainer);
+		return command.execute(myGrid, myTurtle, myVariableContainer);
 	}
 }
