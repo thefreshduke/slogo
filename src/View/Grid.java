@@ -54,8 +54,8 @@ public class Grid extends Pane {
 		return allTurtles;
 	}
 	public void addTurtle(Turtle t){
-		t.setXPos(myWidth/2);
-		t.setYPos(myHeight/2);
+		t.move(myWidth/2,myHeight/2);
+		t.getPen().setInitialPosition(t.getXPos(), t.getYPos());
 		moveTurtle(t);
 		allTurtles.add(t);
 		activeTurtles.add(t);
@@ -82,10 +82,11 @@ public class Grid extends Pane {
 		activeTurtles.clear();
 		for (Turtle active: activatedTurtles){
 			moveTurtle(active);
-			active.getPen().drawLine(active.getXPos(), active.getYPos());
+			getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
 			activeTurtles.add(active);
 		}	
 	}
+	
 	public Collection<Turtle> getActiveTurtles(){
 		return activeTurtles;
 	}
@@ -97,8 +98,9 @@ public class Grid extends Pane {
 	}
 	private Collection<Pen> getPens(Collection<Turtle> myTurtles){
 		Collection<Pen> pens=new ArrayList<Pen>();
-		for (Turtle t: myTurtles)
+		for (Turtle t: myTurtles){
 			pens.add(t.getPen());
+		}
 		return pens;
 	}
 }

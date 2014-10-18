@@ -16,10 +16,10 @@ import javax.swing.JOptionPane;
 import turtle.Turtle;
 
 public class TurtleImageChange implements GUIFunction {
-	private Collection<Turtle> myTurtles;
+	private Grid myGrid;
 	private Stage myStage;
-	public TurtleImageChange(Collection<Turtle> myCurrentTurtles, Stage main){
-		myTurtles=myCurrentTurtles;
+	public TurtleImageChange(Grid grid, Stage main){
+		myGrid=grid;
 	}
 	@Override
 	public void doAction() {
@@ -33,7 +33,7 @@ public class TurtleImageChange implements GUIFunction {
 				try {
 					buffer = ImageIO.read(file);
 					Image img=SwingFXUtils.toFXImage(buffer, null);
-					for (Turtle t: myTurtles){
+					for (Turtle t: myGrid.getActiveTurtles()){
 						t.setImage(img);
 					}
 				} 

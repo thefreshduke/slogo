@@ -3,14 +3,15 @@ package View;
 import java.util.Collection;
 
 public class SetPenUp implements GUIFunction{
-	Collection<Pen> myPens;
-	public SetPenUp(Collection<Pen> myP){
-		myPens=myP;
+	Grid myGrid;
+	public SetPenUp(Grid grid){
+		myGrid=grid;
 	}
 
 	@Override
 	public void doAction() {
-		for (Pen p: myPens){
+	
+		for (Pen p: myGrid.getActivePens()){
 			p.setPenDown(false);
 		}
 		

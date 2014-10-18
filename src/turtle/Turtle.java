@@ -3,6 +3,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Stack;
 
+import javax.swing.JOptionPane;
+
 import View.BorderStyle;
 import View.Pen;
 import javafx.scene.image.Image;
@@ -22,11 +24,10 @@ public class Turtle extends ImageView{
 	 * @param position - Position object that stores location information about the Turtle
 	 */
 	public Turtle(Position position, Image image) {
-		super(image);
+		super(image);		
 		myPosition = position;
-		myPen=new Pen(position);
+		myPen=new Pen();
 		myPastPositions=new Stack<Position>();
-		myPastPositions.push(myPosition);
 	}
 	
 	/**
@@ -49,8 +50,7 @@ public class Turtle extends ImageView{
 	public void move(double xPos, double yPos) {
 		moveHorizontal(xPos);
 		moveVertical(yPos);
-		myPastPositions.add(myPosition);
-	}
+		myPastPositions.push(new Position(myPosition.getXPos(), myPosition.getYPos(), myPosition.getRotate()));	}
 
 	/**
 	 * Move amount specified at current heading
@@ -58,7 +58,7 @@ public class Turtle extends ImageView{
 	 */
 	public void move(double increment) {
 		myPosition.move(increment);
-		myPastPositions.push(myPosition);
+		myPastPositions.push(new Position(myPosition.getXPos(), myPosition.getYPos(), myPosition.getRotate()));
 	}
 
 	/**
@@ -146,8 +146,15 @@ public class Turtle extends ImageView{
 	
 	//could return null
 	public Position undo(){
-		myPastPositions.pop();
-		return myPastPositions.pop();
+		if (myPastPositions.size()<=1){
+			JOptionPane.showMessageDialog(null, "CANT UNDO");
+			return null;
+		}
+		else{
+			Position delete=myPastPositions.pop();
+			myPosition=myPastPositions.peek();
+			return delete;
+		}
 	}
 	
 

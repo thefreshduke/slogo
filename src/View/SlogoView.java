@@ -337,13 +337,14 @@ public class SlogoView {
 		return myButtons;
 	}
 	public void makeMap(){
-		myButtonMap.put("penDown", new SetPenDown(myGrid.getActivePens()));
+		myButtonMap.put("penDown", new SetPenDown(myGrid));
 		myButtonMap.put("undo", new Undo(myGrid));
 		myButtonMap.put("backgroundImage", new SetBackgroundImage(myGrid, myStage));
 		myButtonMap.put("clear", new ClearFunction(myGrid));
-		myButtonMap.put("penUp", new SetPenUp(myGrid.getActivePens()));
+		myButtonMap.put("penUp", new SetPenUp(myGrid));
 		myButtonMap.put("toggleReferenceGrid", new ToggleGridLines(myGrid, 50));
-		myButtonMap.put("uploadImage", new TurtleImageChange(myGrid.getActiveTurtles(), myStage));
+		myButtonMap.put("uploadImage", new TurtleImageChange(myGrid, myStage));
+		myButtonMap.put("addTurtle", new AddTurtle(myGrid));
 		
 	}
 	public Grid getGrid() {

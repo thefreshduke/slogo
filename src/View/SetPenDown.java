@@ -3,12 +3,12 @@ package View;
 import java.util.Collection;
 
 public class SetPenDown implements GUIFunction{
-	Collection<Pen> myPen;
-	public SetPenDown(Collection<Pen> myPens){
-		myPen=myPens;
+	Grid myGrid;
+	public SetPenDown(Grid grid){
+		myGrid=grid;
 	}
 	public void doAction(){
-		for (Pen myP: myPen){
+		for (Pen myP: myGrid.getActivePens()){
 			myP.setPenDown(true);
 		}
 	}

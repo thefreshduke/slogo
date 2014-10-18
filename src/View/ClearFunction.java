@@ -7,8 +7,7 @@ public class ClearFunction implements GUIFunction{
 	}
 	@Override
 	public void doAction() {
-		myGrid.getChildren().removeAll();
-		
+		myGrid.getChildren().clear();
 	}
 
 }
