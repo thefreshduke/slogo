@@ -1,24 +1,25 @@
 package commands;
 
+import communicator.IVariableContainer;
 import backendExceptions.BackendException;
-import View.SlogoView;
+import View.Grid;
 import turtle.Turtle;
 
 public final class NumericalCommand extends BaseCommand{
 
     private double myNumber;
     
-    public NumericalCommand(String userInput, double num){
+    public NumericalCommand(String userInput, double num) throws BackendException {
         this(userInput, true);
         myNumber = num;
     }
     
-    public NumericalCommand (String userInput, boolean isExpression) {
+    private NumericalCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
-    public double execute (SlogoView view, Turtle turtle) throws BackendException {
+    public double execute (Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
         return myNumber;
     }
 

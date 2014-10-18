@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
 import turtle.Position;
@@ -20,8 +22,7 @@ import javafx.scene.shape.Rectangle;
 
 
 public class MainController extends BaseController {
-
-    private SlogoView myView;
+	private SlogoView myView;
     private Turtle myTurtle;
     private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
     private ConcurrentLinkedQueue<String> myInputsToParse;
@@ -35,6 +36,8 @@ public class MainController extends BaseController {
     private LanguageFileParser myTranslator;
     private CommandToClassTranslator myCommandToClassTranslator;
 
+    private IVariableContainer myVariableContainer;
+    
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
     public MainController (SlogoView view) {
         super(view);
@@ -64,6 +67,7 @@ public class MainController extends BaseController {
         catch (BackendException e) {
             System.out.println("ff'");
         }
+        myVariableContainer = new MapBasedVariableContainer();
     }
 
     private void setTimers () {
@@ -143,7 +147,7 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myTurtle);
+            command.execute(myView.getGrid(), myTurtle, myVariableContainer);
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
@@ -164,7 +168,7 @@ public class MainController extends BaseController {
 
     @Override
     protected void reportErrorToView (Exception ex) {
-        //TODO: view takes error myView.
+        //TODO: view takes error myGrid.
         
     }
 

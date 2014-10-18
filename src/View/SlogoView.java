@@ -346,5 +346,8 @@ public class SlogoView {
 		myButtonMap.put("uploadImage", new TurtleImageChange(myGrid.getActiveTurtles(), myStage));
 		
 	}
+	public Grid getGrid() {
+		return myGrid;
+	}
 
 }
