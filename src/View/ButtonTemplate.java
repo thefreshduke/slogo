@@ -13,18 +13,18 @@ public class ButtonTemplate extends Button implements UserObjects{
 	 * @param s				Label for the Button	
 	 * @param handler		Event for the Button to react upon
 	 */
-	public ButtonTemplate(String s, int x, int y, EventHandler<ActionEvent> handler){
+	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction){
 		this.relocate(x, y);
 		this.setText(s);
-		this.addEvent(handler);
+		this.addEvent(event->myFunction.doAction());
 		setStyle();
 		this.setPrefSize(75, 55);
 	}
 	
-	public ButtonTemplate(String s, int x, int y, EventHandler<ActionEvent> handler, int width, int height){
+	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction, int width, int height){
 		this.relocate(x, y);
 		this.setText(s);
-		this.addEvent(handler);
+		this.addEvent(event->myFunction.doAction());
 		this.setPrefSize(width, height);
 		setStyle();
 	}

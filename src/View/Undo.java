@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import turtle.Turtle;
 
-public class Undo extends GUIFunction{
+public class Undo implements GUIFunction{
 	Grid myGrid;
 	public Undo(Grid myGrid){
 
@@ -13,7 +13,7 @@ public class Undo extends GUIFunction{
 	@Override
 	public void doAction() {
 		for (Turtle t: myGrid.getActiveTurtles()){
-			t.relocate(t.getXPos(), t.getYPos());
+			myGrid.moveTurtle(t);
 			this.undoLine(t);
 
 		}

@@ -2,7 +2,7 @@ package View;
 
 import java.util.Collection;
 
-public class SetPenDown extends GUIFunction{
+public class SetPenDown implements GUIFunction{
 	Collection<Pen> myPen;
 	public SetPenDown(Collection<Pen> myPens){
 		myPen=myPens;

@@ -26,103 +26,53 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.RowConstraints;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import javafx.util.Duration;
+
 
 public class Grid extends Pane {
 	private String backgroundColor = "WHITE";
 	public int myHeight;
 	public int myWidth;
-	private int translate=50;
 	private ImageView myImageView;
 	private HashSet<Line> myGridLines=new HashSet<Line>();
-	private ArrayList<Turtle> activeTurtles=new ArrayList<Turtle>();
-	private ArrayList<Turtle> allTurtles=new ArrayList<Turtle>();
-	
-	
+	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
+	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
+
+
 	public Grid(int height, int width, KeyFrame frame, Turtle turtle){//Turtle turtle){
 		this.setPrefSize(width,height);
-		myHeight=height/translate;
-		myHeight=myHeight*translate;
-		myWidth=width/translate;
-		myWidth=myWidth*translate;
+		myHeight=height;
+		myWidth=width;
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
-		myImageView=new ImageView();
-		getChildren().add(myImageView);
 		time.getKeyFrames().add(frame);
-		makeGridLines();
 		setBackgroundColor(backgroundColor);
-		
+
 	}
 	public Collection<Turtle> getAllTurtles(){
 		return allTurtles;
 	}
 	public void addTurtle(Turtle t){
 		t.setXPos(myWidth/2);
-		t.setYPos(myWidth/2);
+		t.setYPos(myHeight/2);
 		moveTurtle(t);
 		allTurtles.add(t);
+		activeTurtles.add(t);
 		getChildren().add(t);
-		
+
 	}
 
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		this.getChildren().remove(myImageView);
 		setStyle("-fx-background-color: "+backgroundColor);
-		
+
 	}
-
-
-	public void toggleRefGrid(boolean b){
-		if (b){
-			makeGridLines();
-		}
-		else{
-			this.getChildren().removeAll(myGridLines);
-			myGridLines.clear();
-		}
-	}
-
-	private void makeGridLines(){
-		for (int i=0; i<myHeight; i+=translate){
-			for (int j=0; j<myWidth; j+=translate){
-				drawGridLine(i, j);
-			}
-		}
-	}
-
-	
-	private void drawGridLine(int y, int x){
-		Line verticalGridLine=new Line(x, 0, x, myHeight);
-		verticalGridLine.setStroke(Paint.valueOf("GREY"));
-		verticalGridLine.setStyle("-fx-fill: GREY");
-		Line horizontalGridLine=new Line(0, y, myWidth, y);
-		horizontalGridLine.setStroke(Paint.valueOf("GREY"));
-		this.getChildren().addAll(verticalGridLine, horizontalGridLine);
-		myGridLines.add(verticalGridLine);
-		myGridLines.add(horizontalGridLine);
-	}
-
-
-	public void clear(){
-		this.getChildren().removeAll();
-	}
-
-	
 	public void moveTurtle(Turtle t){
 		t.relocate(t.getXPos(), t.getYPos());
+		t.rotate(t.getOrientation());
 	}
-	
-	
-	
-	
 	/**
 	 * Takes in the coordinates (x,y) from the controller and pops the last coordinate from the stack to call move(int x, int y)
 	 * @param x		x location on the Grid
@@ -139,9 +89,15 @@ public class Grid extends Pane {
 	public Collection<Turtle> getActiveTurtles(){
 		return activeTurtles;
 	}
+	public Collection<Pen> getAllPens(){
+		return getPens(allTurtles);
+	}
 	public Collection<Pen> getActivePens(){
+		return getPens(activeTurtles);
+	}
+	private Collection<Pen> getPens(Collection<Turtle> myTurtles){
 		Collection<Pen> pens=new ArrayList<Pen>();
-		for (Turtle t: activeTurtles)
+		for (Turtle t: myTurtles)
 			pens.add(t.getPen());
 		return pens;
 	}

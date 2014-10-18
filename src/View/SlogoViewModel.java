@@ -49,28 +49,7 @@ public class SlogoViewModel {
 	}
 
 
-	public void uploadTurtleImage(){
-		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Select Turtle Image");
-		fileChooser.setInitialDirectory(new File("./"));
-		File file = fileChooser.showOpenDialog(myStage);
-
-		if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
-			BufferedImage buffer;
-			try {
-				buffer = ImageIO.read(file);
-				Image img=SwingFXUtils.toFXImage(buffer, null);
-				//myTurtle.setImage(img);
-			} 
-			catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Please select another file");
-			}
-		}
-			else
-				JOptionPane.showMessageDialog(null, "Please select another file");
-	}
-
-
+	
 
 
 }
