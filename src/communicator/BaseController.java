@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 public abstract class BaseController {
 
 	public BaseController(SlogoView view){
+		
 	}
 
 	/**
@@ -74,5 +75,3 @@ public abstract class BaseController {
 	public abstract void setTurtleImage(Image image);
 
 }
-
-

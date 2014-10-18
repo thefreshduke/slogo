@@ -2,7 +2,7 @@ package commands;
 
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
-import View.SlogoView;
+import View.Grid;
 import turtle.Turtle;
 
 public final class NumericalCommand extends BaseCommand{
@@ -19,7 +19,7 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    public double execute (SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+    public double execute (Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
         return myNumber;
     }
 

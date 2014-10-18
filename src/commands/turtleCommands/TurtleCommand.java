@@ -4,11 +4,11 @@ import commandParser.CommandFactory;
 import commands.BaseCommand;
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
-import View.SlogoView;
+import View.Grid;
 import turtle.Turtle;
 
 public abstract class TurtleCommand extends BaseCommand {
-	private SlogoView myView;
+	private Grid myGrid;
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;
 	private BaseCommand[] myArgumentList;
@@ -20,18 +20,18 @@ public abstract class TurtleCommand extends BaseCommand {
 
 
 	@Override
-	public final double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = view;
+	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+		myGrid = grid;
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
 		BaseCommand nextCommand = getNextCommand();
-		return nextCommand == null ? execute(view, turtle) : executeCommand(nextCommand);
+		return nextCommand == null ? execute(grid, turtle) : executeCommand(nextCommand);
 	}
 
-	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
+	public abstract double execute(Grid grid, Turtle turtle) throws BackendException;
 
 	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute(myView, myTurtle, myVariableContainer);
+		return command.execute(myGrid, myTurtle, myVariableContainer);
 	}
 
 	protected void parseArguments(String userInput) {

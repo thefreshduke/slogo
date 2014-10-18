@@ -389,5 +389,8 @@ public class SlogoView {
 		myButtonMap.put("pen down", new SetPenDown(myGrid.getActivePens()));
 		myButtonMap.put("undo", new Undo(myGrid));
 	}
+	public Grid getGrid() {
+		return myGrid;
+	}
 
 }

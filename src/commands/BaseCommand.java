@@ -3,7 +3,7 @@ package commands;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import communicator.IVariableContainer;
-import View.SlogoView;
+import View.Grid;
 import turtle.Turtle;
 
 /**
@@ -36,7 +36,7 @@ public abstract class BaseCommand {
 	 * @throws BackendException TODO
 	 * 
 	 */
-	public abstract double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
+	public abstract double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
 
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;

@@ -1,7 +1,7 @@
 package commands.viewCommands;
 
 import turtle.Turtle;
-import View.SlogoView;
+import View.Grid;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
 import communicator.IVariableContainer;
@@ -19,7 +19,7 @@ public class HeadingCommand extends ViewCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 //		turtle.setRotate(turtle.getRotate() + ???); // turtle heading isn't updating when i do rotate commands?
 		System.out.println("Heading: " + turtle.getRotate());
 		return turtle.getRotate();

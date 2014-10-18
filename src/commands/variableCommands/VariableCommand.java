@@ -1,14 +1,14 @@
 package commands.variableCommands;
 
 import turtle.Turtle;
-import View.SlogoView;
+import View.Grid;
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import communicator.IVariableContainer;
 
 public abstract class VariableCommand extends BaseCommand{
 
-    private SlogoView myView;
+    private Grid myGrid;
     private Turtle myTurtle;
     private IVariableContainer myVariableContainer;
     
@@ -18,19 +18,19 @@ public abstract class VariableCommand extends BaseCommand{
     }
 
     @Override
-    public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException{
-        myView = view;
+    public double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException{
+        myGrid = grid;
         myTurtle = turtle;
         myVariableContainer = variableContainer;
         double result = execute(variableContainer);
         if(getNextCommand() != null){
-            return getNextCommand().execute(view, turtle, variableContainer);
+            return getNextCommand().execute(grid, turtle, variableContainer);
         }
         return result;
     }
     
     protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
-        return command.execute(myView, myTurtle, myVariableContainer);
+        return command.execute(myGrid, myTurtle, myVariableContainer);
     }
     
     protected IVariableContainer getVariableContainer(){

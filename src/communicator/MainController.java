@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
+import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
 import turtle.Position;
@@ -20,8 +22,7 @@ import javafx.scene.shape.Rectangle;
 
 
 public class MainController extends BaseController {
-
-    private SlogoView myView;
+	private SlogoView myView;
     private Turtle myTurtle;
     private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
     private ConcurrentLinkedQueue<String> myInputsToParse;
@@ -146,7 +147,7 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myTurtle, myVariableContainer);
+            command.execute(myView.getGrid(), myTurtle, myVariableContainer);
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
@@ -167,7 +168,7 @@ public class MainController extends BaseController {
 
     @Override
     protected void reportErrorToView (Exception ex) {
-        //TODO: view takes error myView.
+        //TODO: view takes error myGrid.
         
     }
 

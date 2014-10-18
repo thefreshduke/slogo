@@ -1,8 +1,10 @@
 package commands;
 
 import java.util.Stack;
+
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
+import View.Grid;
 import View.SlogoView;
 import turtle.Turtle;
 
@@ -30,8 +32,8 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = view;
+	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+		myView = grid;
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
 		return execute(null);

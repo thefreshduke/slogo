@@ -1,7 +1,7 @@
 package commands.viewCommands;
 
 import turtle.Turtle;
-import View.SlogoView;
+import View.Grid;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
 import communicator.IVariableContainer;
@@ -19,7 +19,7 @@ public class ShowingCommand extends ViewCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
 //		return turtleIsShowing ? 1 : 0; //return 1 if turtle showing, 0 if not
 		System.out.println("Is turtle showing?");
 		return 0;

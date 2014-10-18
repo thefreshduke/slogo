@@ -1,7 +1,11 @@
 package commands.turtleCommands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import backendExceptions.BackendException;
 import turtle.Turtle;
+import View.Grid;
 import View.SlogoView;
 
 public class ForwardCommand extends TurtleCommand {
@@ -10,10 +14,12 @@ public class ForwardCommand extends TurtleCommand {
 		super(userInput, isExpression);
 	}
 
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
+	public double execute(Grid grid, Turtle turtle) throws BackendException {
 		double movedDistance = executeCommand(getExpressionList()[0]);
 		turtle.move(movedDistance);
-		view.update(turtle.getXPos(), turtle.getYPos());
+		List<Turtle> turtleList = new ArrayList<Turtle>();
+		turtleList.add(turtle);
+		grid.update(turtleList);
 		return movedDistance;
 	}
 
