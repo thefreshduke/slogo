@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import communicator.IVariableContainer;
@@ -12,10 +14,11 @@ public class SlogoModel {
 	private static final String INITIAL_TURTLE_SPRITE = "bowser.png";
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;
-
+	private TurtleFactory myTurtleFactory;
 	public void initializeModel () {
 		initializeTurtle();
 		myVariableContainer = new MapBasedVariableContainer();
+		myTurtleFactory = new TurtleFactory();
 	}
 
 	private void initializeTurtle() {
@@ -32,16 +35,19 @@ public class SlogoModel {
 		myTurtle.setRotation(orientationAngle);
 	}
 
-	public Turtle getTurtle() {
-		return myTurtle;
+	public void addTurtle(Image image) {
+		myTurtleFactory.createTurtle(image);
 	}
-	
+	public List<Turtle> getActiveTurtles() {
+		return myTurtleFactory.getActiveTurtles();
+	}
+
 	public IVariableContainer getMyVariableContainer() {
 		return myVariableContainer;
 	}
-	
+
 	public BaseCommand createInitialCommand(String input) {
 		return CommandFactory.createCommand(input, false);
-		
+
 	}
 }

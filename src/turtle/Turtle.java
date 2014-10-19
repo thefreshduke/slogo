@@ -19,6 +19,7 @@ public class Turtle extends ImageView{
 	private Position myPosition;
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
+	private int myID;
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -155,6 +156,14 @@ public class Turtle extends ImageView{
 			myPosition=myPastPositions.peek();
 			return delete;
 		}
+	}
+
+	public void setID (int ID) {
+		myID = ID;
+	}
+	
+	public int getID() {
+		return myID;
 	}
 	
 
