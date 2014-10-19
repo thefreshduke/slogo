@@ -3,6 +3,7 @@ package communicator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -138,7 +139,7 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView, myModel.getTurtle(), myModel.getMyVariableContainer());
+            command.execute(myView, myModel.findTurtle(0), myModel.getMyVariableContainer());
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
@@ -164,12 +165,25 @@ public class MainController extends BaseController {
         }
         
     }
-
-	@Override
-	public Turtle getTurtle() {
-		return myModel.getTurtle();
+    
+    /**
+	 * Find turtle matching specified ID
+	 * @param ID of turtle 
+	 * @return turtle matching ID, else return null if no turtle match
+	 */
+    public Turtle findTurtle(int ID) {
+    	return myModel.findTurtle(ID);
+    }
+    
+	public List<Turtle> getActiveTurtles() {
+		return myModel.getActiveTurtles();
 	}
 
+	public Turtle getFirstTurtle() {
+		// TODO Auto-generated method stub
+		return  myModel.findTurtle(0);
+	}
+	
 	/*@Override
 	public void setTurtleImage(Image image) {
 		// TODO Auto-generated method stub

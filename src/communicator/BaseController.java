@@ -3,6 +3,7 @@ import turtle.Turtle;
 import View.SlogoView;
 
 import java.io.File;
+import java.util.List;
 
 import javafx.scene.image.Image;
 
@@ -68,8 +69,11 @@ public abstract class BaseController {
 	 * @param file File of language resource to be used
 	 */
 	public abstract void loadLanguage(File file);
+	
+	public abstract Turtle getFirstTurtle();
 
-	public abstract Turtle getTurtle();
+
+	public abstract List<Turtle> getActiveTurtles();
 
 	//public abstract void setTurtleImage(Image image);
 

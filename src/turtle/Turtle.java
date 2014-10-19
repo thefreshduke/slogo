@@ -1,7 +1,5 @@
 package turtle;
-import java.io.File;
 import java.util.List;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -11,13 +9,13 @@ import javafx.scene.image.ImageView;
  */
 public class Turtle extends ImageView{
 	private Position myPosition;
-
+	private int myID;
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
 	 */
 	public Turtle(Position position, Image image) {
-		super(image);
+		super(image);		
 		myPosition = position;
 	}
 	
@@ -25,7 +23,7 @@ public class Turtle extends ImageView{
 	 * Moves horizontally
 	 * @param xIncrement - horizontal movement increment
 	 */
-	public void moveHorizontal(double xIncrement) {
+	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
 
 	}
@@ -34,7 +32,7 @@ public class Turtle extends ImageView{
 	 * Moves the vertically 
 	 * @param yIncrement - vertical movement increment
 	 */
-	public void moveVertical(double yIncrement) {
+	private void moveVertical(double yIncrement) {
 		myPosition.moveVertical(yIncrement);
 	}
 
@@ -88,16 +86,12 @@ public class Turtle extends ImageView{
 	public double getOrientation() {
 		return myPosition.getRotate();
 	}
-	
-	
 	/**
 	 * @return Current x-coordinate
 	 */
 	public double getXPos() {
-		return myPosition.getXPos();
-		
+		return myPosition.getXPos();	
 	}
-
 	/**
 	 * @return Current y-coordinate
 	 */
@@ -119,4 +113,11 @@ public class Turtle extends ImageView{
 		
 	}
 
+	public void setID (int ID) {
+		myID = ID;
+	}
+	
+	public int getID() {
+		return myID;
+	}
 }

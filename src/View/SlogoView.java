@@ -70,7 +70,7 @@ public class SlogoView {
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
 		myController=new MainController(this);
-		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getTurtle());
+		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getFirstTurtle());
 		myModel=new SlogoViewModel(myController, this);
 	}	
 	/**
