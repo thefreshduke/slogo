@@ -1,10 +1,7 @@
 package turtle;
-import java.io.File;
 import java.util.List;
 import java.util.Stack;
-
 import javax.swing.JOptionPane;
-
 import View.BorderStyle;
 import View.Pen;
 import javafx.scene.image.Image;
@@ -165,6 +162,4 @@ public class Turtle extends ImageView{
 	public int getID() {
 		return myID;
 	}
-	
-
 }

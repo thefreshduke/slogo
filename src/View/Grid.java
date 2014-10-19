@@ -40,7 +40,7 @@ public class Grid extends Pane {
 	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
 
 
-	public Grid(int height, int width, KeyFrame frame, Turtle turtle){//Turtle turtle){
+	public Grid(int height, int width, KeyFrame frame){//Turtle turtle){
 		this.setPrefSize(width,height);
 		myHeight=height;
 		myWidth=width;
@@ -50,6 +50,8 @@ public class Grid extends Pane {
 		setBackgroundColor(backgroundColor);
 
 	}
+
+	
 	public Collection<Turtle> getAllTurtles(){
 		return allTurtles;
 	}
