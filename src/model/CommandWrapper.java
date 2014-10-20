@@ -17,6 +17,9 @@ public class CommandWrapper {
 		initializeVariableContainer();
 	}
 
+	public void setVariableContainer(IVariableContainer variableContainer) {
+		myVariableContainer = variableContainer;
+	}
 	public IVariableContainer getVariableContainer() {
 		return myVariableContainer;
 	}

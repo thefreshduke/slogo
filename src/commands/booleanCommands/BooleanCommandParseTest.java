@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.CommandWrapper;
+
 import org.junit.Test;
 
 import backendExceptions.BackendException;
@@ -19,7 +21,7 @@ public class BooleanCommandParseTest {
         String input = "LESSP 2 10"; //LESS? doesn't work for some reason... it has something to do with the question mark
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
@@ -33,7 +35,7 @@ public class BooleanCommandParseTest {
         String input = "GREATERP 2 1";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
@@ -48,7 +50,7 @@ public class BooleanCommandParseTest {
         String input = "EQUALP 3 3";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
@@ -62,7 +64,7 @@ public class BooleanCommandParseTest {
         String input = "NOTEQUALP 3 4";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
@@ -76,7 +78,7 @@ public class BooleanCommandParseTest {
         String input = "AND 3 4";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
@@ -90,7 +92,7 @@ public class BooleanCommandParseTest {
         String input = "OR 3 0";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
@@ -104,7 +106,7 @@ public class BooleanCommandParseTest {
         String input = "NOT 0";
         BaseCommand command = CommandFactory.createCommand(input, false);
         try{
-            Double result = command.execute(null, null, null);
+            Double result = command.execute(new CommandWrapper());
             assertEquals(result, new Double(1.0));
         }
         catch(BackendException ex) {
