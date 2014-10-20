@@ -68,28 +68,6 @@ public class Turtle extends ImageView{
 	}
 
 	/**
-	 * @return List of x-coordinate positions
-	 */
-	public List<Double> getXPosList() {
-		return myPosition.getXPosList();
-	}
-
-	/**
-	 * @return List of y-coordinate positions
-	 */
-	public List<Double> getYPosList() {
-		return myPosition.getYPosList();
-	}
-
-	/**
-	 * 
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myPosition.getRotateList();
-	}
-
-	/**
 	 * @return Current angle orientation
 	 */
 	
