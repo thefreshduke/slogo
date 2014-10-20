@@ -18,7 +18,7 @@ public abstract class VariableCommand extends BaseCommand{
 
     @Override
     public double execute(CommandWrapper wrapper) throws BackendException{
-    	
+    	myWrapper = wrapper;
         double result = execute(wrapper.getVariableContainer());
         if(getNextCommand() != null){
             return getNextCommand().execute(wrapper);
