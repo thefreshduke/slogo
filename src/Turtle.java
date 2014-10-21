@@ -1,10 +1,12 @@
 import java.util.List;
 
+import commands.information.ITurtleBehavior;
+
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
  *    
  */
-public class Turtle {
+public class Turtle implements ITurtleBehavior{
 	
 	// I know you mentioned no instance variables in the API, but without this this class won't 
 	// compile without errors. The move methods on the Turtle call the corresponding methods 
@@ -44,6 +46,7 @@ public class Turtle {
 	 * @param xIncrement
 	 * @param yIncrement
 	 */
+	@Override
 	public void move(double xIncrement,  double yIncrement) {
 		myPosition.move(xIncrement, yIncrement);
 	}
@@ -52,6 +55,7 @@ public class Turtle {
 	 * Rotates by increment specified
 	 * @param rotateIncrement - degrees of rotation
 	 */
+	@Override
 	public void rotate(double rotateIncrement) {
 		myPosition.rotate(rotateIncrement);
 	}
