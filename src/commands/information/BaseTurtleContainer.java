@@ -24,7 +24,7 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 	public abstract Collection<Turtle> getAllTurtles();
 	
 	public Collection<Integer> getActiveTurtlesById(){
-		//ArrayList<Turtle> activeTurtles = 
+		//ArrayList<Turtle> activeTurtles =s 
 		for(Turtle turtle : getAllTurtles()){
 			
 		}
