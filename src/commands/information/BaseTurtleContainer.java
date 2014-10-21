@@ -9,22 +9,22 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 	@Override
 	public void rotate(double rotateIncrement) {
 		// TODO Auto-generated method stub
-		for(Turtle turtle : getActiveTurtles()){
+		for(Turtle turtle : getActiveTurtlesByTurtle()){
 			turtle.rotate(rotateIncrement);
 		}
 	}
 
 	@Override
 	public void move(double xIncrement, double yIncrement) {
-		for(Turtle turtle : getActiveTurtles()){
+		for(Turtle turtle : getActiveTurtlesByTurtle()){
 			turtle.move(xIncrement, yIncrement);
 		}
 	}
 
 	public abstract Collection<Turtle> getAllTurtles();
 
-	public Collection<Turtle> getActiveTurtles(){
-		//ArrayList<Turtle> activeTurtles = 
+	public Collection<Integer> getActiveTurtlesById(){
+		//ArrayList<Turtle> activeTurtles =s 
 		for(Turtle turtle : getAllTurtles()){
 
 		}
@@ -33,5 +33,9 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 
 	public void setActiveTurtles(Collection<Integer> turtleIDs){
 
+	}
+
+	private Collection<Turtle> getActiveTurtlesByTurtle(){
+		return null;
 	}
 }
