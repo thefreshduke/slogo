@@ -1,9 +1,7 @@
 package commands.mathCommands;
 
 import backendExceptions.BackendException;
-import commandParser.CommandFactory;
 import commands.BaseCommand;
-import commands.LogicCommand;
 
 public abstract class ArithmeticCommand extends MathCommand {
     

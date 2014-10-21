@@ -1,6 +1,10 @@
 package commands;
 
+import java.util.Collection;
+import java.util.Set;
+
 import commandParser.CommandFactory;
+import commands.information.IInformationContainer;
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 

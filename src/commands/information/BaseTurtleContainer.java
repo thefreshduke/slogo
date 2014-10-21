@@ -8,7 +8,6 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 
 	@Override
 	public void rotate(double rotateIncrement) {
-		// TODO Auto-generated method stub
 		for(Turtle turtle : getActiveTurtlesByTurtle()){
 			turtle.rotate(rotateIncrement);
 		}

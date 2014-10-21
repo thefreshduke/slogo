@@ -7,7 +7,6 @@ public abstract class SingleExpressionMathCommand extends MathCommand{
 
     public SingleExpressionMathCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     protected BaseCommand getArgument(){
