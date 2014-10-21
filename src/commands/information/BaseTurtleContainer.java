@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import turtle.Turtle;
 
-public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer{
+public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer {
 
 	@Override
 	public void rotate(double rotateIncrement) {
@@ -22,16 +22,16 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 	}
 
 	public abstract Collection<Turtle> getAllTurtles();
-	
+
 	public Collection<Turtle> getActiveTurtles(){
 		//ArrayList<Turtle> activeTurtles = 
 		for(Turtle turtle : getAllTurtles()){
-			
+
 		}
 		return null;
 	}
-	
+
 	public void setActiveTurtles(Collection<Integer> turtleIDs){
-		
+
 	}
 }
