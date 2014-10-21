@@ -17,7 +17,13 @@ public class CommandFactory {
     // only once. This populates the myCommandToClassMap object.
 
     public static BaseCommand createCommand (String input, boolean isExpression) {
+        if(input == null){
+            return null;
+        }
     	String trimmedInput = input.trim();
+    	if(trimmedInput.equals("")){
+    	    return null;
+    	}
         String firstCommand = identifyFirstCommand(trimmedInput);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);

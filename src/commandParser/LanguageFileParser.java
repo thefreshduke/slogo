@@ -15,6 +15,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import backendExceptions.BackendException;
 import backendExceptions.SlogoFileNotFoundException;
 
@@ -85,32 +87,45 @@ public class LanguageFileParser {
     }
     
     public String translateUserInputIntoEnglish (String userInput) {
-        String translatedUserInput = "";
+        StringBuilder translatedUserInput = new StringBuilder();
         // TODO: Change to string builder
         String[] userInputWords = userInput.split(myCommandSeparator);
-        for (int i = 0; i < userInputWords.length; i++) {
-            String word = userInputWords[i].toLowerCase();
-            if (!myUserInputToEnglishTranslationMap.containsKey(word) ||
-                SPECIAL_CHARACTERS.contains(word) || isNumber(word)) {
-                translatedUserInput += word + myCommandSeparator;
-                continue;
+        for(String rawCommand : userInputWords){
+            String command = rawCommand.toLowerCase();
+            String translatedCommand = translateCommand(command);
+            if(translatedCommand == null || translatedCommand.equals("")){
+                //throw new BackendException(null, "Invalid command");
             }
-            String translatedInputWord = "";
-            if (myUserInputToEnglishTranslationMap.containsKey(word)) {
-                translatedInputWord = myUserInputToEnglishTranslationMap.get(word);
-                translatedUserInput += translatedInputWord + myCommandSeparator;
-            }
+            translatedUserInput.append(translatedCommand);
+            translatedUserInput.append(myCommandSeparator);
         }
-        return translatedUserInput.trim();
+        return translatedUserInput.toString().trim();
     }
-
-    private boolean isNumber (String input) {
-        try {
-            Double.parseDouble(input);
-            return true;
+    
+    private String translateCommand(String command){
+        String translatedCommand;
+        if(myUserInputToEnglishTranslationMap.containsKey(command)){
+            translatedCommand = myUserInputToEnglishTranslationMap.get(command);
         }
-        catch (NumberFormatException ex) {
-            return false;
+        else{
+            translatedCommand = translateByRegex(command);
         }
+        return translatedCommand;
+    }
+    
+    private String translateByRegex(String rawCommand){
+        Set<String> keySet = myUserInputToEnglishTranslationMap.keySet();
+        for(String key : keySet){
+            if(rawCommand.matches(key)){
+                String command = myUserInputToEnglishTranslationMap.get(key);
+                if(command.equals("Variable")){
+                    return command + " " + rawCommand.substring(1);
+                }
+                else{
+                    return command + " " + rawCommand;
+                }
+            }
+        }
+        return null;
     }
 }
