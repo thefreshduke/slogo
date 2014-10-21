@@ -1,7 +1,11 @@
 package commands;
 
+import java.util.Collection;
+import java.util.Set;
+
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
+import commands.information.IInformationContainer;
 import communicator.IVariableContainer;
 import View.SlogoView;
 import turtle.Turtle;
@@ -43,6 +47,10 @@ public abstract class BaseCommand {
 	 */
 	public abstract double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
 
+//	public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes();
+//	
+//	public abstract void setRequiredInformation(Collection<IInformationContainer> containers);
+	
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;
 	}

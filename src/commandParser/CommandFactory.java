@@ -1,10 +1,14 @@
 package commandParser;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
+import commands.information.BaseCommandInformationHub;
+import commands.information.IInformationContainer;
 import commands.variableCommands.GetVariableCommand;
 import commands.variableCommands.SetVariableCommand;
 
@@ -33,6 +37,10 @@ public class CommandFactory {
         BaseCommand command = null;
         try {
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
+//            Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
+//            BaseCommandInformationHub hub; 
+//            Collection<IInformationContainer> containers = hub.getContainers(containerTypes);
+//            command.setRequiredInfo(containers);
         }
         catch (Exception ex) {
         	ex.printStackTrace();
