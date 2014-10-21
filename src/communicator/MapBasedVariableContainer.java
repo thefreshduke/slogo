@@ -30,7 +30,7 @@ public class MapBasedVariableContainer implements IVariableContainer{
 
     @Override
     public boolean addVariable (String variable, double value) throws BackendException{
-        NumericalCommand number = new NumericalCommand("", value);
+        NumericalCommand number = new NumericalCommand(((Double)value).toString(), true);
         return addVariable(variable, number);
     }
 
@@ -40,7 +40,7 @@ public class MapBasedVariableContainer implements IVariableContainer{
             return myVariableToCommandMap.get(variable);
         }
         else{
-            return new NumericalCommand("", 0);
+            return new NumericalCommand(((Double)0.0).toString(), true);
         }
     }
 

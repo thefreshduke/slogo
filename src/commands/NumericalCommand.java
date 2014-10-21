@@ -9,13 +9,9 @@ public final class NumericalCommand extends BaseCommand{
 
     private double myNumber;
     
-    public NumericalCommand(String userInput, double num) throws BackendException {
-        this(userInput, true);
-        myNumber = num;
-    }
-    
-    private NumericalCommand (String userInput, boolean isExpression) throws BackendException {
+    public NumericalCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
+        myNumber = Double.parseDouble(userInput);
     }
 
     @Override
@@ -25,6 +21,8 @@ public final class NumericalCommand extends BaseCommand{
 
     @Override
     protected void parseArguments (String userInput) {
-        setLeftoverCommands(userInput);
+        String number = userInput.split("\\s+")[0];
+        String leftover = userInput.replaceFirst(number, "").trim();
+        setLeftoverCommands(leftover);
     }
 }
