@@ -30,6 +30,11 @@ public abstract class BaseCommand {
 	    parseArguments(userInput);
 	}
 
+//	public abstract Set<? extends IInformationContainer> getRequiredInformationType();
+//	
+//	public abstract void setRequiredInformation(Collection<IInformationContainer> informationContainers);
+
+	
 	/**
 	 * Method returns the computation of the turtle command
 	 * @param variableContainer TODO
@@ -43,18 +48,6 @@ public abstract class BaseCommand {
 	}
 
 	protected abstract void parseArguments(String userInput) throws BackendException;
-	
-	protected void setNextCommand(BaseCommand command){
-		myNextCommand = command;
-	}
-	
-	protected BaseCommand getInternalCommand(){
-		return myInternalCommand;
-	}
-	
-	protected void setInternalCommand(BaseCommand command){
-		myInternalCommand = command;
-	}
 	
 	public String getLeftoverString(){
 	    return myLeftoverString;
