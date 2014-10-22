@@ -6,6 +6,7 @@ import View.Grid;
 public abstract class BaseGridContainer implements IInformationContainer{
 
     public BaseGridContainer(Collection<Grid> initialGrids){
+    	
     }
     
     public abstract void addGrid(Grid grid, boolean isActive);

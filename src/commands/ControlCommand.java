@@ -8,8 +8,9 @@ import turtle.Turtle;
 
 public abstract class ControlCommand extends ModelCommand {
 	
-    protected static char COMMAND_INDICATOR = '[';
-    protected static char COMMAND_END_INDICATOR = ']';
+    protected static String COMMAND_INDICATOR = "liststart";
+    protected static String COMMAND_END_INDICATOR = "listend";
+    protected static String COMMAND_SEPARATOR = " ";
 	private SlogoView myView;
 	private Turtle myTurtle;
 	private IVariableContainer myVariableContainer;

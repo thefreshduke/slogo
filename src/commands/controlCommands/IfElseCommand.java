@@ -45,13 +45,13 @@ public class IfElseCommand extends ControlCommand {
         
         int firstClosingBracketIndex = findClosingBracketIndex(innerCommandsInput);
         String ifCommandInput = innerCommandsInput.substring(1, firstClosingBracketIndex).trim();
-        myIfCommand = CommandFactory.createCommand(ifCommandInput, true);
+        myIfCommand = CommandFactory.createCommand(ifCommandInput, false);
         
         int elseCommandStartIndex = firstClosingBracketIndex + 1;
         String elseCommandInputUntrimmed = innerCommandsInput.substring(elseCommandStartIndex).trim();
         int secondClosingBracketIndex = findClosingBracketIndex(elseCommandInputUntrimmed);
         String elseCommandInput = elseCommandInputUntrimmed.substring(1, secondClosingBracketIndex).trim();
-        myElseCommand = CommandFactory.createCommand(elseCommandInput, true);
+        myElseCommand = CommandFactory.createCommand(elseCommandInput, false);
         
         
         String leftOverString = innerCommandsInput.substring(elseCommandStartIndex + secondClosingBracketIndex + 2).trim();

@@ -45,7 +45,7 @@ public class IfCommand extends ControlCommand{
         }
         int closingBracketIndex = findClosingBracketIndex(leftOver);
         String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
-        myInternalCommand = CommandFactory.createCommand(innerCommand, true);
+        myInternalCommand = CommandFactory.createCommand(innerCommand, false);
         setLeftoverCommands(leftOver.substring(closingBracketIndex +1).trim());
     }
 }

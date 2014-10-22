@@ -24,7 +24,9 @@ public abstract class TurtleCommand extends BaseCommand {
 		myTurtle = turtle;
 		myVariableContainer = variableContainer;
 		BaseCommand nextCommand = getNextCommand();
-		return nextCommand == null ? execute(view, turtle) : executeCommand(nextCommand);
+		double result = execute(view, turtle);
+		result = nextCommand != null ? executeCommand(nextCommand) : result;
+		return result;
 	}
 
 	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
