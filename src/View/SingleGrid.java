@@ -37,14 +37,13 @@ public class SingleGrid extends Grid {
 	public int myHeight;
 	public int myWidth;
 	private ImageView myImageView;
-	private HashSet<Line> myGridLines=new HashSet<Line>();
 	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
 	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
 
 
 	public SingleGrid(int height, int width, KeyFrame frame){//Turtle turtle){
 		this.setPrefSize(width,height);
-		//this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
+		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
 		myHeight=height;
 		myWidth=width;
 		Timeline time=new Timeline();

@@ -1,7 +1,9 @@
-package View;
+package GUIFunctions;
 
 import java.util.Collection;
 
+import View.GUIFunction;
+import View.SingleGrid;
 import turtle.Turtle;
 
 public class Undo implements GUIFunction{

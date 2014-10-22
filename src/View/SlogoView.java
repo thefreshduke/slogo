@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -13,13 +14,22 @@ import java.util.Stack;
 
 import javax.swing.JOptionPane;
 
+import GUIFunctions.AddTurtle;
+import GUIFunctions.ClearFunction;
+import GUIFunctions.SetBackgroundImage;
+import GUIFunctions.SetPenDown;
+import GUIFunctions.SetPenUp;
+import GUIFunctions.Undo;
 import turtle.Turtle;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,7 +49,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class SlogoView {
-	HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
+	private HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
 	private SingleGrid myGrid;
 	private MainController myController;
 	private TabsOfGrids myGridTabs=new TabsOfGrids();
@@ -105,6 +115,8 @@ public class SlogoView {
 		myStage.setScene(myScene);
 		myGrid.addTurtle(myController.getFirstTurtle());
 		myGridTabs.addTab("GRID 1", myGrid);
+		setGridTabsFocused(myGridTabs);
+		setGridTabsFocused(commandLine);
 		//Timeline myTimeLine=new Timeline();
 		//myTimeLine.setCycleCount(Timeline.INDEFINITE);
 		//myTimeLine.getKeyFrames().add(this.build(40));
@@ -165,16 +177,19 @@ public class SlogoView {
 		MenuTemplate fileMenu = new MenuTemplate("File");
 		MenuTemplate languages = new MenuTemplate("Languages");
 		MenuTemplate help = new MenuTemplate("Help");
+		MenuTemplate personalize=new MenuTemplate("Personalize");
 		userCommands = new MenuTemplate("User Commands");
-		this.createMenuItemsUnderFile(fileMenu);
-		this.createMenuItemsUnderLanguages(languages);
+		//this.makeLanguageMenuItems(languages);
 		this.createMenuItemsUnderHelp(help);
-		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help);
-		
+		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help, personalize);
+		//this.createMenuItemsUnderPersonalize(personalize);
+	
 		return myMenu;
 	}
 
-
+	//public void createMenuItemsUnderPersonalize(MenutTemplate pMenu){
+	//	pMenu.addMenuItem("")
+	//}
 
 	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
 		fileMenu.addMenuItem("Export to XML", null);
@@ -190,16 +205,6 @@ public class SlogoView {
 	public void addGrid(){
 		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40));
 		myGridTabs.addTab("Grid 2", anotherGrid);
-	}
-
-	public void createMenuItemsUnderLanguages(MenuTemplate languages){
-		languages.addMenuItem("English", event -> myModel.loadLanguageResource("English"));
-		languages.addMenuItem("French", event -> myModel.loadLanguageResource("French"));
-		languages.addMenuItem("Portuguese", event -> myModel.loadLanguageResource("Portuguese"));
-		languages.addMenuItem("Italian", event -> myModel.loadLanguageResource("Italian"));
-		languages.addMenuItem("Chinese", event -> myModel.loadLanguageResource("Chinese"));
-		languages.addMenuItem("Russian", event -> myModel.loadLanguageResource("Russian"));
-
 	}
 
 	public void createMenuItemsUnderHelp(MenuTemplate help){	
@@ -264,29 +269,13 @@ public class SlogoView {
 		lastOrientation.relocate(5, 310);
 
 		//		temporary background color chooser
-		MenuBar mBar = new MenuBar();
-		MenuTemplate m = new MenuTemplate("Background Color");
-		m.addMenuItem("RED", event -> setBackgroundColor("RED"));
-		m.addMenuItem("BLUE", event -> setBackgroundColor("BLUE"));
-		m.addMenuItem("GREEN", event -> setBackgroundColor("GREEN"));
-		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
-		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
-		mBar.getMenus().add(m);
-		mBar.setPrefSize(150, 25);
+		ColorSelection colorSelection = new ColorSelection(this);
+		MenuBar mBar = colorSelection.getBackgroundColorMenuBar();
 		mBar.relocate(25, 350);
 
-
 		//		temporary pen color chooser
-		MenuBar pBar = new MenuBar();
-		MenuTemplate p = new MenuTemplate("Pen Color");
-		p.addMenuItem("RED", event -> setPenColor("RED"));
-		p.addMenuItem("BLUE", event -> setPenColor("BLUE"));
-		p.addMenuItem("GREEN", event -> setPenColor("GREEN"));
-		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
-		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
-		pBar.getMenus().add(p);
+		MenuBar pBar = colorSelection.getPenColorMenuBar();
 		pBar.relocate(25, 385);
-		pBar.setPrefSize(150, 25);
 		//		command History
 
 		commandHistoryBox = new VBox();
@@ -359,7 +348,7 @@ public class SlogoView {
 	}
 
 	public ArrayList<ButtonTemplate> makeBottomButtons(){
-		makeMap();
+		makeButtonMap();
 		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
 		for (String s: myButtonMap.keySet()){
 			String[] value=myResources.getString(s).split(";");
@@ -368,7 +357,7 @@ public class SlogoView {
 		}
 		return myButtons;
 	}
-	public void makeMap(){
+	public void makeButtonMap(){
 		myButtonMap.put("penDown", new SetPenDown(myGrid));
 		myButtonMap.put("undo", new Undo(myGrid));
 		myButtonMap.put("backgroundImage", new SetBackgroundImage(myGrid, myStage));
@@ -380,10 +369,37 @@ public class SlogoView {
 
 	}
 
+	
+	public ArrayList<MenuItemTemplate> makeLanguageMenuItems(){
+		ArrayList<MenuItemTemplate> items = new ArrayList<>();
+		String[] languages = new String[] {"English", "Chinese", "French" , "Italian", "Portuguese", "Russian" };
+		for(String s : languages){
+			items.add(new MenuItemTemplate(s,
+					event -> myController.loadLanguage(new File("/resources/languages" + s + ".properties"))));
+		}
+		return items;
+	}
+	
+	public void makeMenuItemMap(){
+	}
+	
+
 	public Grid getGrid() {
 		return myGrid;
 	}
-
+	public void setGridTabsFocused(Node o){
+		myGridTabs.focusedProperty().addListener(new ChangeListener <Boolean>(){
+			@Override
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {  
+				if (!newValue.booleanValue())
+					o.setDisable(true);
+				
+				else
+					o.setDisable(false);
+				
+		}});
+		
+	}
 	public void setUpKeyBoardHandler(Stage main){
 		EventHandler<KeyEvent> moveTurtle=new EventHandler<KeyEvent>(){
 			@Override
@@ -397,7 +413,7 @@ public class SlogoView {
 		};
 
 		//System.out.println(moveTurtle);
-		main.getScene().addEventHandler(KeyEvent.KEY_PRESSED, moveTurtle);
+		myGridTabs.addEventHandler(KeyEvent.KEY_PRESSED, moveTurtle);
 	}
 	
 	private void addCommandLine(){

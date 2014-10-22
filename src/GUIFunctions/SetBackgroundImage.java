@@ -1,4 +1,4 @@
-package View;
+package GUIFunctions;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import View.GUIFunction;
+import View.SingleGrid;
 import turtle.Turtle;
 
 public class SetBackgroundImage implements GUIFunction {
@@ -32,7 +34,7 @@ public class SetBackgroundImage implements GUIFunction {
 	//ugly but works need to change
 	public void doAction() {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Select Turtle Image");
+			fileChooser.setTitle("Select Background Image");
 			fileChooser.setInitialDirectory(new File("./"));
 			File file = fileChooser.showOpenDialog(myStage);
 			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){

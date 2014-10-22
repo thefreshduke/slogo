@@ -1,4 +1,7 @@
-package View;
+package GUIFunctions;
+
+import View.GUIFunction;
+import View.SingleGrid;
 
 public class ClearFunction implements GUIFunction{
 	private SingleGrid myGrid;

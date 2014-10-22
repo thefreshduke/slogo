@@ -1,5 +1,7 @@
-package View;
+package GUIFunctions;
 
+import View.GUIFunction;
+import View.SingleGrid;
 import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
