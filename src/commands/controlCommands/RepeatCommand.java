@@ -4,7 +4,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 
 public class RepeatCommand extends ControlCommand {
 
@@ -38,13 +38,9 @@ public class RepeatCommand extends ControlCommand {
 	protected void parseArguments(String userInput) {
 		myExpression = CommandFactory.createCommand(userInput, true);
 		String leftOver = new String(myExpression.getLeftoverString().trim());
-		if(leftOver.charAt(0) != COMMAND_INDICATOR){
-		    //throw 
-		}
-		int closingBracketIndex = findClosingBracketIndex(leftOver);
-		String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
-		myInternalCommand = CommandFactory.createCommand(innerCommand, false);
-		setLeftoverCommands(leftOver.substring(closingBracketIndex +1).trim());
+		String[] splitCommand = splitByInnerListCommand(leftOver);
+		String internalCommand = splitCommand[0];
+		myInternalCommand = CommandFactory.createCommand(internalCommand, false);
+		setLeftoverCommands(splitCommand[1]);
 	}
-
 }

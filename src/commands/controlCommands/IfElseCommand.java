@@ -5,7 +5,7 @@ import java.util.Stack;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfElseCommand extends ControlCommand {
@@ -38,23 +38,17 @@ public class IfElseCommand extends ControlCommand {
     protected void parseArguments (String userInput) {
         myExpression = CommandFactory.createCommand(userInput, true);
         String innerCommandsInput = myExpression.getLeftoverString().trim();
-        String[] splitInput = innerCommandsInput.split("\\s+");
-        if(splitInput.length <= 0 || !splitInput[0].equals("[")){
-            //throw new BackendException(null, "ff");
-        }
         
-        int firstClosingBracketIndex = findClosingBracketIndex(innerCommandsInput);
-        String ifCommandInput = innerCommandsInput.substring(1, firstClosingBracketIndex).trim();
+        String[] firstSplitCommand = splitByInnerListCommand(innerCommandsInput);
+        String ifCommandInput = firstSplitCommand[0];
+        
         myIfCommand = CommandFactory.createCommand(ifCommandInput, false);
         
-        int elseCommandStartIndex = firstClosingBracketIndex + 1;
-        String elseCommandInputUntrimmed = innerCommandsInput.substring(elseCommandStartIndex).trim();
-        int secondClosingBracketIndex = findClosingBracketIndex(elseCommandInputUntrimmed);
-        String elseCommandInput = elseCommandInputUntrimmed.substring(1, secondClosingBracketIndex).trim();
+        String[] secondSplitCommand = splitByInnerListCommand(firstSplitCommand[1]);
+        String elseCommandInput = secondSplitCommand[0];
         myElseCommand = CommandFactory.createCommand(elseCommandInput, false);
         
-        
-        String leftOverString = innerCommandsInput.substring(elseCommandStartIndex + secondClosingBracketIndex + 2).trim();
+        String leftOverString = secondSplitCommand[1];
         setLeftoverCommands(leftOverString);
     }
 }

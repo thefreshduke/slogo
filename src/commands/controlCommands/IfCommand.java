@@ -7,7 +7,7 @@ import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
 import commands.information.IInformationContainer;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfCommand extends ControlCommand{
@@ -40,12 +40,10 @@ public class IfCommand extends ControlCommand{
     protected void parseArguments (String userInput) {
         myExpression = CommandFactory.createCommand(userInput, true);
         String leftOver = new String(myExpression.getLeftoverString().trim());
-        if(leftOver.charAt(0) != COMMAND_INDICATOR){
-            //throw 
-        }
-        int closingBracketIndex = findClosingBracketIndex(leftOver);
-        String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
+        String[] splitCommand = splitByInnerListCommand(leftOver);
+        String innerCommand = splitCommand[0];
         myInternalCommand = CommandFactory.createCommand(innerCommand, false);
-        setLeftoverCommands(leftOver.substring(closingBracketIndex +1).trim());
+        String outerString = splitCommand[1];
+        setLeftoverCommands(outerString);
     }
 }
