@@ -6,7 +6,7 @@ import java.util.Set;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.information.IInformationContainer;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 import View.SlogoView;
 import turtle.Turtle;
 

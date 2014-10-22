@@ -1,7 +1,8 @@
 package commands;
 
 import java.util.Stack;
-import communicator.IVariableContainer;
+
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
@@ -54,19 +55,30 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
     protected int findClosingBracketIndex(String input){
-        Stack<Character> checkStack = new Stack<>();
+        Stack<String> checkStack = new Stack<>();
+        StringBuilder temporaryStringBuilder = new StringBuilder();
         for(int i=0; i < input.length(); i++){
-            char character = input.charAt(i);
-            if(character == COMMAND_INDICATOR){
-                checkStack.push(character);
-            }
-            else if(character == COMMAND_END_INDICATOR){
-                checkStack.pop();
-            }
-            if(checkStack.size() == 0){
-                return i;
+            Character character = input.charAt(i);
+            temporaryStringBuilder.append(character);
+            if(COMMAND_SEPARATOR.equals(character.toString()) || i == input.length()-1){
+            	String aggregatedWord = temporaryStringBuilder.toString().trim();
+            	if(aggregatedWord.equals(COMMAND_INDICATOR)){
+            		checkStack.push(aggregatedWord);
+            	}
+            	else if(aggregatedWord.equals(COMMAND_END_INDICATOR)){
+                    checkStack.pop();
+                }
+            	if(checkStack.size() == 0){
+                    return i;
+                }
+            	temporaryStringBuilder.setLength(0);
             }
         }
         return -1;
+    }
+    
+    protected boolean startsWithCommandStartIndicator(String input) {
+    	String splitInput = input.trim().split(COMMAND_SEPARATOR, 2)[0];
+    	return splitInput.equals(COMMAND_INDICATOR);
     }
 }

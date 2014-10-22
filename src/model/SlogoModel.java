@@ -4,8 +4,8 @@ import java.util.List;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
-import communicator.IVariableContainer;
-import communicator.MapBasedVariableContainer;
+import commands.information.IVariableContainer;
+import commands.information.MapBasedVariableContainer;
 import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;

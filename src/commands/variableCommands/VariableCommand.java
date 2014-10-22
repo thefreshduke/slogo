@@ -4,7 +4,7 @@ import turtle.Turtle;
 import View.SlogoView;
 import backendExceptions.BackendException;
 import commands.BaseCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 
 public abstract class VariableCommand extends BaseCommand{
 

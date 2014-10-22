@@ -5,7 +5,7 @@ import java.util.Stack;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfElseCommand extends ControlCommand {
@@ -38,8 +38,8 @@ public class IfElseCommand extends ControlCommand {
     protected void parseArguments (String userInput) {
         myExpression = CommandFactory.createCommand(userInput, true);
         String innerCommandsInput = myExpression.getLeftoverString().trim();
-        String[] splitInput = innerCommandsInput.split("\\s+");
-        if(splitInput.length <= 0 || !splitInput[0].equals("[")){
+        
+        if(!startsWithCommandStartIndicator(innerCommandsInput)){
             //throw new BackendException(null, "ff");
         }
         

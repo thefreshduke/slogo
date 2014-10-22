@@ -1,7 +1,8 @@
 package commands;
 
 import java.util.List;
-import communicator.IVariableContainer;
+
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;

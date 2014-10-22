@@ -20,8 +20,8 @@ import commands.expressionCommands.RemainderCommand;
 import commands.expressionCommands.SinCommand;
 import commands.expressionCommands.SumCommand;
 import commands.expressionCommands.TanCommand;
-import communicator.IVariableContainer;
-import communicator.MapBasedVariableContainer;
+import commands.information.IVariableContainer;
+import commands.information.MapBasedVariableContainer;
 import static org.junit.Assert.assertEquals;
 
 public class ViewCommandParseTest {

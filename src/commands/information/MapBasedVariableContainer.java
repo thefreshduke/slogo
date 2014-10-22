@@ -1,4 +1,4 @@
-package communicator;
+package commands.information;
 
 import java.util.HashMap;
 import java.util.Map;

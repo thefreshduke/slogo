@@ -4,7 +4,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 
 public class RepeatCommand extends ControlCommand {
 
@@ -38,7 +38,7 @@ public class RepeatCommand extends ControlCommand {
 	protected void parseArguments(String userInput) {
 		myExpression = CommandFactory.createCommand(userInput, true);
 		String leftOver = new String(myExpression.getLeftoverString().trim());
-		if(leftOver.charAt(0) != COMMAND_INDICATOR){
+		if(!startsWithCommandStartIndicator(leftOver)){
 		    //throw 
 		}
 		int closingBracketIndex = findClosingBracketIndex(leftOver);

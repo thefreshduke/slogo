@@ -4,7 +4,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 
 public class DoCommand extends ControlCommand {
 	private String myVariableName;
@@ -40,7 +40,7 @@ public class DoCommand extends ControlCommand {
 
 	@Override
 	protected void parseArguments (String userInput) {
-        if(userInput.charAt(0) != COMMAND_INDICATOR){
+        if(!startsWithCommandStartIndicator(userInput)){
             //throw 
         }
         int closingBracketIndex = findClosingBracketIndex(userInput);
