@@ -1,10 +1,10 @@
-package commands.mathCommands;
+package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
-public class TanCommand extends SingleExpressionCommand{
+public class CosCommand extends SingleExpressionCommand{
 
-    public TanCommand (String userInput, boolean isExpression) throws BackendException {
+    public CosCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }
@@ -12,6 +12,6 @@ public class TanCommand extends SingleExpressionCommand{
     @Override
     public double expressionExecute() throws BackendException {
         double angle = executeCommand(getArgument());
-        return Math.tan(Math.toRadians(angle));
+        return Math.cos(Math.toRadians(angle));
     }
 }

@@ -1,4 +1,4 @@
-package commands.mathCommands;
+package commands.expressionCommands;
 
 import commands.BaseCommand;
 import backendExceptions.BackendException;

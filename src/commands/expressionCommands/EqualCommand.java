@@ -1,6 +1,4 @@
-package commands.booleanCommands;
-
-import commands.mathCommands.DoubleExpressionCommand;
+package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 

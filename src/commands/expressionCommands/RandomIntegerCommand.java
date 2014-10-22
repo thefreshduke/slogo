@@ -1,4 +1,4 @@
-package commands.mathCommands;
+package commands.expressionCommands;
 
 import java.util.Random;
 import backendExceptions.BackendException;
