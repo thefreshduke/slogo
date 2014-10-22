@@ -30,6 +30,10 @@ public class GridSet extends BaseGridContainer{
         }
     }
 
+    public int getActiveGridID(){
+    	return -100;//myActiveGrid.getId();
+    }
+    
     @Override
     public void setGridAsActive (int gridID) {
         for(Grid grid : myGridList){
@@ -47,4 +51,6 @@ public class GridSet extends BaseGridContainer{
             }
         }
     }
+    
+    
 }

@@ -6,17 +6,15 @@ import View.Grid;
 public class SingleViewContainerInformationHub extends BaseCommandInformationHub {
 
     private GridSet myGridContainer;
-    private Map<Grid, BaseTurtleContainer> myGridToTurtlesMap;
+    private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
     
     public SingleViewContainerInformationHub(Grid grid){
         myGridContainer = new GridSet();
     }
     
-    
     @Override
     public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType) {
-        // TODO Auto-generated method stub
-        return null;
+        //Grid grid = myGridContainer.getActiveGridID();
     }
 
 }
