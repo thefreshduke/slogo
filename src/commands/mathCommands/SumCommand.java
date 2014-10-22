@@ -1,17 +1,16 @@
 package commands.mathCommands;
 
 import backendExceptions.BackendException;
-import commandParser.CommandFactory;
 
 
-public class SumCommand extends ArithmeticCommand{
+public class SumCommand extends DoubleExpressionCommand {
     
     public SumCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
-    public double mathExecute() throws BackendException {
+    public double expressionExecute() throws BackendException {
         double returnValue = executeCommand(getFirstExpression()) + executeCommand(getSecondExpression());
         return returnValue;
     }

@@ -2,7 +2,7 @@ package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
-public class ProductCommand extends ArithmeticCommand {
+public class ProductCommand extends DoubleExpressionCommand {
 
     public ProductCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -10,7 +10,7 @@ public class ProductCommand extends ArithmeticCommand {
     }
 
     @Override
-    public double mathExecute() throws BackendException {
+    public double expressionExecute() throws BackendException {
         double returnValue = executeCommand(getFirstExpression()) * executeCommand(getSecondExpression());
         return returnValue;
     }

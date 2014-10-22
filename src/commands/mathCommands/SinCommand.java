@@ -2,7 +2,7 @@ package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
-public class SinCommand extends SingleExpressionMathCommand{
+public class SinCommand extends SingleExpressionCommand{
 
     public SinCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -10,7 +10,7 @@ public class SinCommand extends SingleExpressionMathCommand{
     }
 
     @Override
-    public double mathExecute() throws BackendException {
+    public double expressionExecute() throws BackendException {
         double angle = executeCommand(getArgument());
         return Math.sin(Math.toRadians(angle));
     }

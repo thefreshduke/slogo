@@ -23,22 +23,22 @@ public abstract class BaseCommand {
 	private BaseCommand myInternalCommand;
 	private String myLeftoverString = "";
 	private boolean myExpressionFlag;
-    protected final String COMMAND_DELIMITER = "\\s+";
+	protected final String COMMAND_DELIMITER = "\\s+";
 	/**
 	 * 
 	 * @param userInput
 	 * @throws BackendException TODO
 	 */
 	public BaseCommand(String userInput, boolean isExpression) throws BackendException {
-	    myExpressionFlag = isExpression;
-	    parseArguments(userInput);
+		myExpressionFlag = isExpression;
+		parseArguments(userInput);
 	}
 
-//	public abstract Set<? extends IInformationContainer> getRequiredInformationType();
-//	
-//	public abstract void setRequiredInformation(Collection<IInformationContainer> informationContainers);
+	//	public abstract Set<? extends IInformationContainer> getRequiredInformationType();
+	//	
+	//	public abstract void setRequiredInformation(Collection<IInformationContainer> informationContainers);
 
-	
+
 	/**
 	 * Method returns the computation of the turtle command
 	 * @param variableContainer TODO
@@ -47,26 +47,26 @@ public abstract class BaseCommand {
 	 */
 	public abstract double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
 
-//	public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes();
-//	
-//	public abstract void setRequiredInformation(Collection<IInformationContainer> containers);
-	
+	//	public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes();
+	//	
+	//	public abstract void setRequiredInformation(Collection<IInformationContainer> containers);
+
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;
 	}
 
 	protected abstract void parseArguments(String userInput) throws BackendException;
-	
+
 	public String getLeftoverString(){
-	    return myLeftoverString;
+		return myLeftoverString;
 	}
-	
+
 	protected void setLeftoverCommands(String string){
-	    if(myExpressionFlag){
-	        myLeftoverString = string;
-	    }
-	    else if(string != null && string != ""){
-	        myNextCommand = CommandFactory.createCommand(string, false);
-	    }
+		if(myExpressionFlag){
+			myLeftoverString = string;
+		}
+		else if(string != null && string != ""){
+			myNextCommand = CommandFactory.createCommand(string, false);
+		}
 	}
 }

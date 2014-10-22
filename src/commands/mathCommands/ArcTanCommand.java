@@ -2,7 +2,7 @@ package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
-public class ArcTanCommand extends SingleExpressionMathCommand{
+public class ArcTanCommand extends SingleExpressionCommand{
 
     public ArcTanCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -10,7 +10,7 @@ public class ArcTanCommand extends SingleExpressionMathCommand{
     }
 
     @Override
-    public double mathExecute () throws BackendException {
+    public double expressionExecute () throws BackendException {
         double angle = executeCommand(getArgument());
         return Math.atan(Math.toRadians(angle));
     }

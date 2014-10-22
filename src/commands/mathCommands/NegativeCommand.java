@@ -2,7 +2,7 @@ package commands.mathCommands;
 
 import backendExceptions.BackendException;
 
-public class NegativeCommand extends SingleExpressionMathCommand{
+public class NegativeCommand extends SingleExpressionCommand{
 
     public NegativeCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -10,7 +10,7 @@ public class NegativeCommand extends SingleExpressionMathCommand{
     }
 
     @Override
-    public double mathExecute () throws BackendException {
+    public double expressionExecute () throws BackendException {
         return -executeCommand(getArgument());
     }
 
