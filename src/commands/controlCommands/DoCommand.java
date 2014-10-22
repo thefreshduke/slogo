@@ -27,8 +27,8 @@ public class DoCommand extends ControlCommand {
 		else{
 			int repetitionCount = (int)expressionResult;
 			
-			variableContainer.addVariable(myVariableName, repetitionCount);
-			for(int i = 1; i < repetitionCount; i++){
+			for(int i = 1; i <= repetitionCount; i++){
+				variableContainer.addVariable(myVariableName, repetitionCount);
 				returnValue = executeCommand(myInternalCommand, variableContainer);
 			}
 		}
@@ -52,7 +52,7 @@ public class DoCommand extends ControlCommand {
         }
         myVariableName = innerArguments[0];
         
-        myLimitCommand = CommandFactory.createCommand(innerArguments[1], true);
+        myLimitCommand = CommandFactory.createCommand(innerArguments[1].trim(), true);
         
         // Now matching the second set of braces to get command 
         int closingSecondBracketIndex = findClosingBracketIndex(userInput.substring(closingBracketIndex+1));
