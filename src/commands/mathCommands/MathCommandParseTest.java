@@ -11,7 +11,7 @@ import org.junit.Test;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
-import commands.IfElseCommand;
+import commands.controlCommands.IfElseCommand;
 import commands.turtleCommands.ForwardCommand;
 
 public class MathCommandParseTest {

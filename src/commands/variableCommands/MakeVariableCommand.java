@@ -6,12 +6,12 @@ import commands.NumericalCommand;
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 
-public class SetVariableCommand extends VariableCommand{
+public class MakeVariableCommand extends VariableCommand{
 
     private String myVariableName;
     private BaseCommand myExpression;
     
-    public SetVariableCommand (String userInput, boolean isExpression) throws BackendException {
+    public MakeVariableCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }

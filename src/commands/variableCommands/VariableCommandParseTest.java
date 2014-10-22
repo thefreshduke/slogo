@@ -84,7 +84,7 @@ public class VariableCommandParseTest {
         commandToClassMap.put("ATAN", ArcTanCommand.class);
         commandToClassMap.put("LOG", NaturalLogCommand.class);
         
-        commandToClassMap.put("MAKE", SetVariableCommand.class);
+        commandToClassMap.put("MAKE", MakeVariableCommand.class);
         CommandFactory.setCommandToClassRelation(commandToClassMap);
     }
 }

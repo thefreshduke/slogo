@@ -10,7 +10,7 @@ import commands.NumericalCommand;
 import commands.information.BaseCommandInformationHub;
 import commands.information.IInformationContainer;
 import commands.variableCommands.GetVariableCommand;
-import commands.variableCommands.SetVariableCommand;
+import commands.variableCommands.MakeVariableCommand;
 
 public class CommandFactory {
 
