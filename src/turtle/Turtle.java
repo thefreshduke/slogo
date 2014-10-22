@@ -1,10 +1,7 @@
 package turtle;
-import java.io.File;
 import java.util.List;
 import java.util.Stack;
-
 import javax.swing.JOptionPane;
-
 import View.BorderStyle;
 import View.Pen;
 import javafx.scene.image.Image;
@@ -19,6 +16,7 @@ public class Turtle extends ImageView{
 	private Position myPosition;
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
+	private int myID;
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -67,28 +65,6 @@ public class Turtle extends ImageView{
 	 */
 	public void rotate(double rotateIncrement) {
 		myPosition.rotate(rotateIncrement);
-	}
-
-	/**
-	 * @return List of x-coordinate positions
-	 */
-	public List<Double> getXPosList() {
-		return myPosition.getXPosList();
-	}
-
-	/**
-	 * @return List of y-coordinate positions
-	 */
-	public List<Double> getYPosList() {
-		return myPosition.getYPosList();
-	}
-
-	/**
-	 * 
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myPosition.getRotateList();
 	}
 
 	/**
@@ -156,6 +132,12 @@ public class Turtle extends ImageView{
 			return delete;
 		}
 	}
-	
 
+	public void setID (int ID) {
+		myID = ID;
+	}
+	
+	public int getID() {
+		return myID;
+	}
 }

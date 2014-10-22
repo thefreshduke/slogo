@@ -2,7 +2,9 @@ package commands;
 
 import java.util.Stack;
 
+import model.CommandWrapper;
 import communicator.IVariableContainer;
+import communicator.MapBasedVariableContainer;
 import backendExceptions.BackendException;
 import View.Grid;
 import View.SlogoView;
@@ -12,9 +14,7 @@ public abstract class ControlCommand extends ModelCommand {
 	
     protected static char COMMAND_INDICATOR = '[';
     protected static char COMMAND_END_INDICATOR = ']';
-	private SlogoView myView;
-	private Turtle myTurtle;
-	private IVariableContainer myVariableContainer;
+	private CommandWrapper myWrapper;
 	
 	public ControlCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
@@ -32,15 +32,13 @@ public abstract class ControlCommand extends ModelCommand {
 	}
 	
 	@Override
-	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = grid;
-		myTurtle = turtle;
-		myVariableContainer = variableContainer;
-		return execute(null);
+	public final double execute(CommandWrapper wrapper) throws BackendException {
+		myWrapper = wrapper;
+		return execute(new MapBasedVariableContainer());
 	}
 
 	protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
-		return command.execute(myView, myTurtle, myVariableContainer);
+		return command.execute(myWrapper);
 	}
 	
 	public abstract double execute(IVariableContainer variableContainer) throws BackendException;

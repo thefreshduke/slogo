@@ -1,5 +1,6 @@
 package commands.turtleCommands;
 
+import model.CommandWrapper;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import communicator.IVariableContainer;
@@ -8,9 +9,7 @@ import View.Grid;
 import turtle.Turtle;
 
 public abstract class TurtleCommand extends BaseCommand {
-	private Grid myGrid;
-	private Turtle myTurtle;
-	private IVariableContainer myVariableContainer;
+	private CommandWrapper myWrapper;
 	private BaseCommand[] myArgumentList;
 
 
@@ -18,20 +17,17 @@ public abstract class TurtleCommand extends BaseCommand {
 		super(userInput, isExpression);
 	}
 
-
 	@Override
-	public final double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myGrid = grid;
-		myTurtle = turtle;
-		myVariableContainer = variableContainer;
+	public final double execute(CommandWrapper wrapper) throws BackendException {
+		myWrapper = wrapper;
 		BaseCommand nextCommand = getNextCommand();
-		return nextCommand == null ? execute(grid, turtle) : executeCommand(nextCommand);
+		return nextCommand == null ? execute(wrapper.getGrid(), wrapper.getTurtle()) : executeCommand(nextCommand);
 	}
 
 	public abstract double execute(Grid grid, Turtle turtle) throws BackendException;
 
 	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute(myGrid, myTurtle, myVariableContainer);
+		return command.execute(myWrapper);
 	}
 
 	protected void parseArguments(String userInput) {

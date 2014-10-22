@@ -1,8 +1,10 @@
 package communicator;
 import turtle.Turtle;
+import View.Grid;
 import View.SlogoView;
 
 import java.io.File;
+import java.util.List;
 
 import javafx.scene.image.Image;
 
@@ -23,7 +25,7 @@ public abstract class BaseController {
 	 * @param initialTurtlePosition
 	 * @param initialOrientation
 	 */
-	protected abstract void initializeModel();
+	protected abstract void initializeModel(Grid grid);
 
 	/**
 	 * Pauses the turtle. Changes what coordinates are sent to front end.
@@ -69,9 +71,13 @@ public abstract class BaseController {
 	 * @param file File of language resource to be used
 	 */
 	public abstract void loadLanguage(File file);
+	
+	public abstract Turtle getFirstTurtle();
 
-	public abstract Turtle getTurtle();
 
-	public abstract void setTurtleImage(Image image);
+	public abstract List<Turtle> getActiveTurtles();
+		// 
+
+	//public abstract void setTurtleImage(Image image);
 
 }

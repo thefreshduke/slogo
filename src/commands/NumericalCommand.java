@@ -1,5 +1,6 @@
 package commands;
 
+import model.CommandWrapper;
 import communicator.IVariableContainer;
 import backendExceptions.BackendException;
 import View.Grid;
@@ -19,7 +20,7 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    public double execute (Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+    public double execute (CommandWrapper wrapper) throws BackendException {
         return myNumber;
     }
 

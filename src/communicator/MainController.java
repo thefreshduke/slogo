@@ -3,27 +3,24 @@ package communicator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import model.SlogoModel;
 import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
-import turtle.Position;
 import turtle.Turtle;
 import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
 import javafx.animation.AnimationTimer;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
-
 
 public class MainController extends BaseController {
-	private SlogoView myView;
-    private Turtle myTurtle;
+    private SlogoView myView;
+    private SlogoModel myModel;
     private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
     private ConcurrentLinkedQueue<String> myInputsToParse;
 
@@ -35,20 +32,17 @@ public class MainController extends BaseController {
     private AnimationTimer myCommandParserTimer;
     private LanguageFileParser myTranslator;
     private CommandToClassTranslator myCommandToClassTranslator;
-
-    private IVariableContainer myVariableContainer;
     
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
     public MainController (SlogoView view) {
         super(view);
-        myView = view;
-
+        myView = view;        
+        myModel = new SlogoModel();
         myCommandQueue = new ConcurrentLinkedQueue<>();
         myInputsToParse = new ConcurrentLinkedQueue<>();
         myCommandIsExecuting = new AtomicBoolean(false);
         myExecutedCommands = new ArrayList<>();
         setTimers();
-        initializeModel();
         myCommandParserTimer.start();
         myCommandExecutionTimer.start();
         myCommandToClassTranslator = new CommandToClassTranslator();
@@ -67,7 +61,6 @@ public class MainController extends BaseController {
         catch (BackendException e) {
             System.out.println("ff'");
         }
-        myVariableContainer = new MapBasedVariableContainer();
     }
 
     private void setTimers () {
@@ -84,7 +77,7 @@ public class MainController extends BaseController {
                     // catch(BackendException ex) {
                     // reportErrorToView(ex);
                     // }
-                    BaseCommand command = CommandFactory.createCommand(input, false);
+                    BaseCommand command = myModel.createInitialCommand(input);
                     myCommandQueue.add(command);
 
                 }
@@ -110,13 +103,8 @@ public class MainController extends BaseController {
     }
 
     @Override
-    protected void initializeModel () {
-        Image image = new Image("bowser.png");
-        myTurtle = new Turtle(new Position(0, 0), image);
-        myTurtle.setFitWidth(60);
-        myTurtle.setPreserveRatio(true);
-        ;
-        myTurtle.setSmooth(true);
+	public void initializeModel (Grid grid) {
+        myModel.initializeModel(grid);
     }
 
     @Override
@@ -140,30 +128,20 @@ public class MainController extends BaseController {
 
     @Override
     public void hardSetTurtle (double x, double y, double orientationAngle) {
-        myTurtle.setXPos(x);
-        myTurtle.setYPos(y);
-        myTurtle.setRotation(orientationAngle);
+        myModel.hardSetTurtle(x, y, orientationAngle);
     }
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView.getGrid(), myTurtle, myVariableContainer);
+
+            command.execute(myModel.getCommandWrapper());
+
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
         catch(BackendException ex){
             reportErrorToView(ex);
         }
-    }
-
-    @Override
-    public Turtle getTurtle () {
-        return myTurtle;
-    }
-
-    @Override
-    public void setTurtleImage (Image image) {
-        myTurtle.setImage(image);
     }
 
     @Override
@@ -183,4 +161,32 @@ public class MainController extends BaseController {
         }
         
     }
+    
+    /**
+	 * Find turtle matching specified ID
+	 * @param ID of turtle 
+	 * @return turtle matching ID, else return null if no turtle match
+	 */
+    public Turtle findTurtle(int ID) {
+    	return myModel.findTurtle(ID);
+    }
+    
+	public List<Turtle> getActiveTurtles() {
+		return myModel.getActiveTurtles();
+	}
+
+	public Turtle getFirstTurtle() {
+		// TODO Auto-generated method stub
+		return  myModel.findTurtle(0);
+	}
+	
+	/*@Override
+	public void setTurtleImage(Image image) {
+		// TODO Auto-generated method stub
+		
+	}*/
+	public void gridReady() {
+		initializeModel(myView.getGrid());
+	}
+	
 }

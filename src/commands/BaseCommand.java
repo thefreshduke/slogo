@@ -1,5 +1,6 @@
 package commands;
 
+import model.CommandWrapper;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import communicator.IVariableContainer;
@@ -36,7 +37,7 @@ public abstract class BaseCommand {
 	 * @throws BackendException TODO
 	 * 
 	 */
-	public abstract double execute(Grid grid, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
+	public abstract double execute(CommandWrapper wrapper) throws BackendException;
 
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;
