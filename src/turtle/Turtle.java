@@ -1,11 +1,16 @@
 package turtle;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+
 import javax.swing.JOptionPane;
+
 import View.BorderStyle;
 import View.Pen;
+import View.TurtleMovement;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Line;
 
 /**
@@ -17,6 +22,8 @@ public class Turtle extends ImageView{
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
 	private int myID;
+	private int velocity;
+	
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -26,6 +33,7 @@ public class Turtle extends ImageView{
 		myPosition = position;
 		myPen=new Pen();
 		myPastPositions=new Stack<Position>();
+		velocity=5;
 	}
 	
 	/**
@@ -140,4 +148,15 @@ public class Turtle extends ImageView{
 	public int getID() {
 		return myID;
 	}
+	public void move (KeyCode e){
+		Direction myDirection=new Direction(e);
+		Position myTempPosition=myDirection.move(myPosition, velocity);
+		if (myTempPosition!=null){
+			myPosition=myTempPosition;
+			myPastPositions.add(myPosition);
+		}
+			
+	}
+	
+	
 }

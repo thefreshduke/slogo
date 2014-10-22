@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 import turtle.Turtle;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -27,6 +27,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -39,8 +40,9 @@ import javafx.util.Duration;
 
 public class SlogoView {
 	HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
-	private Grid myGrid;
+	private SingleGrid myGrid;
 	private MainController myController;
+	private TabsOfGrids myGridTabs=new TabsOfGrids();
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
@@ -61,7 +63,7 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
-		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5));
+		myGrid=new SingleGrid(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5));
 		myController=new MainController(this);
 		myModel=new SlogoViewModel(myController);
 		myController.gridReady();
@@ -77,7 +79,7 @@ public class SlogoView {
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent evt){
-				//update(my);
+				setUpKeyBoardHandler(myStage);
 			}
 		};
 		return new KeyFrame(speed, loop);
@@ -94,15 +96,23 @@ public class SlogoView {
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainLayout.setTop(addMenuBar());
-		mainLayout.setLeft(setTextArea());
 		mainLayout.setCenter(myGrid);
+		mainLayout.setLeft(setTextArea());
 		mainLayout.setBottom(addButtons());
 		root.getChildren().add(mainLayout);
+		root.getChildren().add(myGridTabs);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
-		mainStage.setScene(myScene);
+		myStage.setScene(myScene);
 		myGrid.addTurtle(myController.getFirstTurtle());
+		myGridTabs.addTab("GRID 1", myGrid);
+		//Timeline myTimeLine=new Timeline();
+		//myTimeLine.setCycleCount(Timeline.INDEFINITE);
+		//myTimeLine.getKeyFrames().add(this.build(40));
+		//myTimeLine.play();
+		this.setUpKeyBoardHandler(mainStage);
+
 	}
-	
+
 
 
 	/**
@@ -112,9 +122,9 @@ public class SlogoView {
 	private void showError(String message){
 		JOptionPane.showMessageDialog(null, message);
 	}
-	
 
-	
+
+
 
 
 
@@ -124,14 +134,14 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(){
-
+		if (commandLine.getText()!=null){
 		myController.receiveCommand(commandLine.getText());
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-
 		updateCommandHistory();
+		}
 	}
 
 	//	ugly workaround, need to find elegant solution to get rid of repeated code
@@ -160,6 +170,7 @@ public class SlogoView {
 		this.createMenuItemsUnderLanguages(languages);
 		this.createMenuItemsUnderHelp(help);
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help);
+		
 		return myMenu;
 	}
 
@@ -168,6 +179,17 @@ public class SlogoView {
 	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
+		fileMenu.addMenuItem("Add Turtle", event-> addTurtle());
+		fileMenu.addMenuItem("Add Grid", event->addGrid());
+	}
+	public void addTurtle(){
+		//tell
+		//getNewTurtle
+		
+	}
+	public void addGrid(){
+		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40));
+		myGridTabs.addTab("Grid 2", anotherGrid);
 	}
 
 	public void createMenuItemsUnderLanguages(MenuTemplate languages){
@@ -190,26 +212,35 @@ public class SlogoView {
 		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
-
 		//		create command line
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
 		label.setStyle("-fx-font-size: 25");
 		label.setPrefSize(200, 50);
 		label.relocate(10, 5);
+		Button enable=new Button("Enable");
+		enable.relocate(15, 5);
 		commandLine = new TextField();
-		commandLine.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+		EventHandler enterEvent=new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				if(event.getCode().equals(KeyCode.ENTER)) sendCommand();
+				if(event.getCode().equals(KeyCode.ENTER)) 
+					sendCommand();		
 			}
-		});
-		commandLine.relocate(5, 60);
-		commandLine.setPrefSize(190,100);
+		};
+		enable.setOnAction(event->commandLine.setDisable(false));
+		enable.setPrefSize(20,20);
+		myGrid.addEventHandler(MouseEvent.MOUSE_CLICKED, event->removeCommandLine());
+		commandLine.addEventHandler(KeyEvent.KEY_PRESSED,enterEvent);
 		String[] value=myResources.getString("enter").split(";");
 		Button enter = new Button (value[0]);
 		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
-		enter.setOnAction(event_->this.sendCommand());
+		System.out.println(commandLine.getText());
+		enter.setOnAction(event->this.sendCommand());
+		commandLine.relocate(5, 60);
+		commandLine.setPrefSize(190,100);
+		
+		
 		value=myResources.getString("makeCommand").split(";");
 		Button makeCommand = new Button(value[0]);
 		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
@@ -266,7 +297,7 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		commandHistoryBox.relocate(0, 450);
-		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand, lastX, lastY, lastOrientation,
+		myTextArea.getChildren().addAll(label, commandLine, enter, enable,makeCommand, lastX, lastY, lastOrientation,
 				mBar, pBar, history, commandHistoryBox);
 		return myTextArea;
 	}
@@ -283,7 +314,7 @@ public class SlogoView {
 	public void home(){
 
 	}
-	
+
 
 	public void updateTurtleStats(int x, int y, int or){
 		lastX.setText("X Position: " + x);
@@ -326,14 +357,14 @@ public class SlogoView {
 		commandLine.clear();
 		updateCommandHistory();
 	}
-	
+
 	public ArrayList<ButtonTemplate> makeBottomButtons(){
 		makeMap();
 		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
 		for (String s: myButtonMap.keySet()){
 			String[] value=myResources.getString(s).split(";");
 			if (!(s.equals("makeCommand")||s.equals("enter")))
-					myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myButtonMap.get(s)));
+				myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myButtonMap.get(s)));
 		}
 		return myButtons;
 	}
@@ -346,11 +377,35 @@ public class SlogoView {
 		myButtonMap.put("toggleReferenceGrid", new ToggleGridLines(myGrid, 50));
 		myButtonMap.put("uploadImage", new TurtleImageChange(myGrid, myStage));
 		myButtonMap.put("addTurtle", new AddTurtle(myGrid));
-		
+
 	}
-	
+
 	public Grid getGrid() {
 		return myGrid;
 	}
 
+	public void setUpKeyBoardHandler(Stage main){
+		EventHandler<KeyEvent> moveTurtle=new EventHandler<KeyEvent>(){
+			@Override
+			public void handle(KeyEvent e) {
+				for (Turtle t: myGrid.getActiveTurtles()){
+					t.move(e.getCode());
+				}
+				myGrid.keyUpdate();;
+				
+			}
+		};
+
+		//System.out.println(moveTurtle);
+		main.getScene().addEventHandler(KeyEvent.KEY_PRESSED, moveTurtle);
+	}
+	
+	private void addCommandLine(){
+		commandLine.setEditable(true);
+
+	}
+	private void removeCommandLine(){
+		commandLine.setEditable(true);
+		commandLine.setDisable(true);
+	}
 }

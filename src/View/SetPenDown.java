@@ -3,8 +3,8 @@ package View;
 import java.util.Collection;
 
 public class SetPenDown implements GUIFunction{
-	Grid myGrid;
-	public SetPenDown(Grid grid){
+	private SingleGrid myGrid;
+	public SetPenDown(SingleGrid grid){
 		myGrid=grid;
 	}
 	public void doAction(){

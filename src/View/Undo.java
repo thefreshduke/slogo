@@ -5,8 +5,8 @@ import java.util.Collection;
 import turtle.Turtle;
 
 public class Undo implements GUIFunction{
-	Grid myGrid;
-	public Undo(Grid grid){
+	private SingleGrid myGrid;
+	public Undo(SingleGrid grid){
 		myGrid=grid;
 	}
 

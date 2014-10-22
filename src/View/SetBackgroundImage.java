@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
 import turtle.Turtle;
 
 public class SetBackgroundImage implements GUIFunction {
-	private Grid myGrid;
+	private SingleGrid myGrid;
 	private Stage myStage;
 	private ImageView myImageView;
-	public SetBackgroundImage(Grid grid, Stage mainStage){
+	public SetBackgroundImage(SingleGrid grid, Stage mainStage){
 		myGrid=grid;
 		myStage=mainStage;
 		myImageView=new ImageView();

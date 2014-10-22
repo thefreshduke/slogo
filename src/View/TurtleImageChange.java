@@ -16,9 +16,9 @@ import javax.swing.JOptionPane;
 import turtle.Turtle;
 
 public class TurtleImageChange implements GUIFunction {
-	private Grid myGrid;
+	private SingleGrid myGrid;
 	private Stage myStage;
-	public TurtleImageChange(Grid grid, Stage main){
+	public TurtleImageChange(SingleGrid grid, Stage main){
 		myGrid=grid;
 	}
 	@Override

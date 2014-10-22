@@ -10,8 +10,8 @@ public class ToggleGridLines implements GUIFunction{
 	boolean showGridLines;
 	int translate;
 	private Collection<Line> myGridLines;
-	Grid myGrid;
-	public ToggleGridLines(Grid grid, int gridSize){
+	private SingleGrid myGrid;
+	public ToggleGridLines(SingleGrid grid, int gridSize){
 		showGridLines=true;
 		myGrid=grid;
 		translate=gridSize;

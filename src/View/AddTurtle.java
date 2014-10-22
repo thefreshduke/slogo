@@ -5,8 +5,8 @@ import turtle.Position;
 import turtle.Turtle;
 
 public class AddTurtle implements GUIFunction{
-	Grid myGrid;
-	public AddTurtle(Grid grid){
+	SingleGrid myGrid;
+	public AddTurtle(SingleGrid grid){
 		myGrid=grid;
 	}
 	@Override
