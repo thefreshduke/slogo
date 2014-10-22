@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
+import commands.controlCommands.IfElseCommand;
 import commands.mathCommands.RandomIntegerCommand;
 import commands.mathCommands.SumCommand;
 import commands.turtleCommands.ForwardCommand;
