@@ -27,7 +27,7 @@ public abstract class ControlCommand extends ModelCommand {
         myView = view;
         myTurtle = turtle;
         myVariableContainer = variableContainer;
-        return execute(null);
+        return execute(variableContainer);
     }
 
     protected double executeCommand (BaseCommand command, IVariableContainer variableContainer)

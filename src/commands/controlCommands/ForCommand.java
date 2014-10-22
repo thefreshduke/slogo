@@ -3,7 +3,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 
 public class ForCommand extends ControlCommand {
 	private String myVariableName;
@@ -37,27 +37,33 @@ public class ForCommand extends ControlCommand {
 
 	@Override
 	protected void parseArguments (String userInput) {
-		if(userInput.charAt(0) != COMMAND_INDICATOR){
-			//throw 
-		}
-		int closingBracketIndex = findClosingBracketIndex(userInput);
-		String innerInput = userInput.substring(1 , closingBracketIndex).trim();
 
-		String [] innerArguments =  innerInput.split(COMMAND_SEPARATOR, 2);
-		if (innerArguments.length < 2) {
-			//TODO throw exception
-		}
-		myVariableName = innerArguments[0];
+		String [] splitInput = splitByInnerListCommand(userInput);
+		String innerInput = splitInput[0];
 
-		myStartCommand = CommandFactory.createCommand(innerArguments[1].trim(), true);
-		myEndCommand = CommandFactory.createCommand(myStartCommand.getLeftoverString(), true);
-		myIncrementCommand = CommandFactory.createCommand(myEndCommand.getLeftoverString(), true);
+		String [] variableNameContents = innerInput.split(VARIABLE_INDICATOR);
+		if (variableNameContents.length < 2 ) {
+			// TODO throw exception invalid # of arguments
+		}
+
+		myVariableName =  variableNameContents[1].trim().split(COMMAND_SEPARATOR)[0];
 		
 
-		// Now matching the second set of braces to get internal commands 
-		int closingSecondBracketIndex = findClosingBracketIndex(userInput.substring(closingBracketIndex+1));
-		myInternalCommand = CommandFactory.createCommand(userInput.substring(closingBracketIndex+1, closingSecondBracketIndex), false); 
+		if (myVariableName.equals("")) {
+			// TODO throw exception no variable name provided
+		}
+		
+		
 
-		setLeftoverCommands(userInput.substring(closingSecondBracketIndex +1).trim());
+		myStartCommand = CommandFactory.createCommand(variableNameContents[1].trim().split(COMMAND_SEPARATOR, 2)[1].trim(), true);
+		myEndCommand = CommandFactory.createCommand(myStartCommand.getLeftoverString(), true);
+		myIncrementCommand = CommandFactory.createCommand(myEndCommand.getLeftoverString(), true);
+
+
+		// Now matching the second set of braces to get internal commands 
+		String [] splitSecondInput = splitByInnerListCommand(splitInput[1]);
+		myInternalCommand = CommandFactory.createCommand(splitSecondInput[0], false); 
+
+		setLeftoverCommands(splitSecondInput[1]);
 	}
 }

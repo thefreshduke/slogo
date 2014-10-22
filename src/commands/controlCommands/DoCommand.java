@@ -43,11 +43,16 @@ public class DoCommand extends ControlCommand {
     protected void parseArguments (String userInput) {
         String[] splitInput = splitByInnerListCommand(userInput);
 
-        if (splitInput.length < 2) {
-            // TODO throw exception
-        }
         
-        myVariableName =  splitInput[0].split(VARIABLE_INDICATOR)[1].trim().split(COMMAND_SEPARATOR)[0];
+        String [] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR);
+        if (variableNameContents.length < 2 ) {
+        	// TODO throw exception invalid # of arguments
+    	}
+        myVariableName =  variableNameContents[1].trim().split(COMMAND_SEPARATOR)[0];
+        
+        if (myVariableName.equals("")) {
+        	// TODO throw exception no variable name provided
+        }
         String  variableExpression = splitInput[0].split(VARIABLE_INDICATOR)[1].trim();
         String variableLimit = variableExpression.replace(myVariableName, "").trim();
         myLimitCommand = CommandFactory.createCommand(variableLimit, true);
