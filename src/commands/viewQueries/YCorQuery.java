@@ -1,4 +1,4 @@
-package commands.viewCommands;
+package commands.viewQueries;
 
 import turtle.Turtle;
 import View.SlogoView;
@@ -6,9 +6,9 @@ import backendExceptions.BackendException;
 import commands.ViewCommand;
 import communicator.IVariableContainer;
 
-public class YCorCommand extends ViewCommand {
+public class YCorQuery extends ViewCommand {
 
-	public YCorCommand(String command, boolean isExpression) throws BackendException {
+	public YCorQuery(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
 

@@ -11,7 +11,7 @@ public abstract class DoubleExpressionBooleanCommand extends BooleanCommand {
     }
 
 	@Override
-	protected int getArgumentCount() {
+	protected final int getArgumentCount() {
 		return 2;
 	}
 	

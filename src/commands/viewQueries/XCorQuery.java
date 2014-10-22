@@ -1,4 +1,4 @@
-package commands.viewCommands;
+package commands.viewQueries;
 
 import turtle.Turtle;
 import View.SlogoView;
@@ -6,9 +6,9 @@ import backendExceptions.BackendException;
 import commands.ViewCommand;
 import communicator.IVariableContainer;
 
-public class HeadingCommand extends ViewCommand {
+public class XCorQuery extends ViewCommand {
 
-	public HeadingCommand(String command, boolean isExpression) throws BackendException {
+	public XCorQuery(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
 
@@ -20,9 +20,8 @@ public class HeadingCommand extends ViewCommand {
 
 	@Override
 	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-//		turtle.setRotate(turtle.getRotate() + ???); // turtle heading isn't updating when i do rotate commands?
-		System.out.println("Heading: " + turtle.getRotate());
-		return turtle.getRotate();
+		System.out.println("XCOR: " + turtle.getXPos()); //doesn't work for some reason???
+		return turtle.getXPos();
 	}
 
 	@Override
