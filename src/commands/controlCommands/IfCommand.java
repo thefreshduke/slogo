@@ -40,12 +40,10 @@ public class IfCommand extends ControlCommand{
     protected void parseArguments (String userInput) {
         myExpression = CommandFactory.createCommand(userInput, true);
         String leftOver = new String(myExpression.getLeftoverString().trim());
-        if(!startsWithCommandStartIndicator(leftOver)){
-            //throw 
-        }
-        int closingBracketIndex = findClosingBracketIndex(leftOver);
-        String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
+        String[] splitCommand = splitByInnerListCommand(leftOver);
+        String innerCommand = splitCommand[0];
         myInternalCommand = CommandFactory.createCommand(innerCommand, false);
-        setLeftoverCommands(leftOver.substring(closingBracketIndex +1).trim());
+        String outerString = splitCommand[1];
+        setLeftoverCommands(outerString);
     }
 }

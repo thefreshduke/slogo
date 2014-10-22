@@ -38,13 +38,9 @@ public class RepeatCommand extends ControlCommand {
 	protected void parseArguments(String userInput) {
 		myExpression = CommandFactory.createCommand(userInput, true);
 		String leftOver = new String(myExpression.getLeftoverString().trim());
-		if(!startsWithCommandStartIndicator(leftOver)){
-		    //throw 
-		}
-		int closingBracketIndex = findClosingBracketIndex(leftOver);
-		String innerCommand = leftOver.substring(1 , closingBracketIndex).trim();
-		myInternalCommand = CommandFactory.createCommand(innerCommand, false);
-		setLeftoverCommands(leftOver.substring(closingBracketIndex +1).trim());
+		String[] splitCommand = splitByInnerListCommand(leftOver);
+		String internalCommand = splitCommand[0];
+		myInternalCommand = CommandFactory.createCommand(internalCommand, false);
+		setLeftoverCommands(splitCommand[1]);
 	}
-
 }

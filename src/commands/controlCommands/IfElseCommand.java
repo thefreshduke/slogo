@@ -39,22 +39,16 @@ public class IfElseCommand extends ControlCommand {
         myExpression = CommandFactory.createCommand(userInput, true);
         String innerCommandsInput = myExpression.getLeftoverString().trim();
         
-        if(!startsWithCommandStartIndicator(innerCommandsInput)){
-            //throw new BackendException(null, "ff");
-        }
+        String[] firstSplitCommand = splitByInnerListCommand(innerCommandsInput);
+        String ifCommandInput = firstSplitCommand[0];
         
-        int firstClosingBracketIndex = findClosingBracketIndex(innerCommandsInput);
-        String ifCommandInput = innerCommandsInput.substring(1, firstClosingBracketIndex).trim();
         myIfCommand = CommandFactory.createCommand(ifCommandInput, false);
         
-        int elseCommandStartIndex = firstClosingBracketIndex + 1;
-        String elseCommandInputUntrimmed = innerCommandsInput.substring(elseCommandStartIndex).trim();
-        int secondClosingBracketIndex = findClosingBracketIndex(elseCommandInputUntrimmed);
-        String elseCommandInput = elseCommandInputUntrimmed.substring(1, secondClosingBracketIndex).trim();
+        String[] secondSplitCommand = splitByInnerListCommand(firstSplitCommand[1]);
+        String elseCommandInput = secondSplitCommand[0];
         myElseCommand = CommandFactory.createCommand(elseCommandInput, false);
         
-        
-        String leftOverString = innerCommandsInput.substring(elseCommandStartIndex + secondClosingBracketIndex + 2).trim();
+        String leftOverString = secondSplitCommand[1];
         setLeftoverCommands(leftOverString);
     }
 }
