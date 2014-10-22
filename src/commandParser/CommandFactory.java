@@ -21,7 +21,7 @@ public class CommandFactory {
     // only once. This populates the myCommandToClassMap object.
 
     public static BaseCommand createCommand (String input, boolean isExpression) {
-        if(input == null){
+        if(input == null || input.equals("")){
             return null;
         }
     	String trimmedInput = input.trim();

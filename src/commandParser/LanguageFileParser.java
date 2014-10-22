@@ -91,10 +91,10 @@ public class LanguageFileParser {
         // TODO: Change to string builder
         String[] userInputWords = userInput.split(myCommandSeparator);
         for(String rawCommand : userInputWords){
-            String command = rawCommand.toLowerCase();
+            String command = rawCommand.toLowerCase().trim();
             String translatedCommand = translateCommand(command);
             if(translatedCommand == null || translatedCommand.equals("")){
-                //throw new BackendException(null, "Invalid command");
+                translatedCommand = rawCommand;
             }
             translatedUserInput.append(translatedCommand);
             translatedUserInput.append(myCommandSeparator);
@@ -116,14 +116,20 @@ public class LanguageFileParser {
     private String translateByRegex(String rawCommand){
         Set<String> keySet = myUserInputToEnglishTranslationMap.keySet();
         for(String key : keySet){
-            if(rawCommand.matches(key)){
-                String command = myUserInputToEnglishTranslationMap.get(key);
-                if(command.equals("Variable")){
-                    return command + " " + rawCommand.substring(1);
+        	try{
+        		if(rawCommand.matches(key)){
+                    String command = myUserInputToEnglishTranslationMap.get(key).toLowerCase();
+                    if(command.equals("Variable".toLowerCase())){
+                        return command + " " + rawCommand.substring(1);
+                    }
+                    else{
+                        return command + " " + rawCommand;
+                    }
                 }
-                else{
-                    return command + " " + rawCommand;
-                }
+        	}
+            
+            catch(Exception ex){
+            	continue;
             }
         }
         return null;
