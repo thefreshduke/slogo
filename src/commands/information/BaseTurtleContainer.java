@@ -3,18 +3,6 @@ package commands.information;
 import java.util.Collection;
 import turtle.Turtle;
 
-<<<<<<< HEAD
-=======
-public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer {
-
-	@Override
-	public void rotate(double rotateIncrement) {
-		for(Turtle turtle : getActiveTurtlesByTurtle()){
-			turtle.rotate(rotateIncrement);
-		}
-	}
->>>>>>> be58f2e271b7550b37de0f269a8e2687334c179e
-
 public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer {
 
     @Override
