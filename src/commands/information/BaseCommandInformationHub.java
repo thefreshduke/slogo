@@ -16,6 +16,8 @@ public abstract class BaseCommandInformationHub {
 			IInformationContainer informationContainer = getContainer(containerType);
 			if(informationContainer == null) {
 				return null;
+			} else {
+				containerList.add(informationContainer);
 			}
 		}
 		return containerList;
