@@ -15,4 +15,5 @@ public abstract class BaseGridContainer implements IInformationContainer{
     
     public abstract void removeGrid(int gridID); 
     
+    public abstract Collection<Grid> getActiveGrids();
 }

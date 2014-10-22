@@ -10,10 +10,10 @@ public class Slogo extends Application{
 		SlogoView myView=new SlogoView();
 		myView.initialize(arg0);
 		arg0.show();
-		
+
 	}
 	public static void main(String[] args){
 		launch(args);
 	}
-	
+
 }

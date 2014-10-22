@@ -2,7 +2,9 @@ package commands.information;
 
 import java.awt.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
+
 import View.Grid;
 
 public class GridSet extends BaseGridContainer{
@@ -29,10 +31,6 @@ public class GridSet extends BaseGridContainer{
             myActiveGrid = grid;
         }
     }
-
-    public int getActiveGridID(){
-    	return -100;//myActiveGrid.getId();
-    }
     
     @Override
     public void setGridAsActive (int gridID) {
@@ -51,6 +49,9 @@ public class GridSet extends BaseGridContainer{
             }
         }
     }
-    
-    
+
+	@Override
+	public Collection<Grid> getActiveGrids() {
+		return new ArrayList<Grid>(Arrays.asList(myActiveGrid));
+	}
 }

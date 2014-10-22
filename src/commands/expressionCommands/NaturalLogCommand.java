@@ -1,8 +1,8 @@
-package commands.mathCommands;
+package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
-public class NaturalLogCommand extends SingleExpressionMathCommand {
+public class NaturalLogCommand extends SingleExpressionCommand {
 
     public NaturalLogCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -10,7 +10,7 @@ public class NaturalLogCommand extends SingleExpressionMathCommand {
     }
 
     @Override
-    public double mathExecute () throws BackendException {
+    public double expressionExecute () throws BackendException {
         double result = executeCommand(getArgument());
         return Math.log(result);
     }

@@ -1,26 +1,26 @@
-package commands.mathCommands;
+package commands.expressionCommands;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.LogicCommand;
 import backendExceptions.BackendException;
 
-public abstract class MathCommand extends LogicCommand {
+public abstract class ExpressionCommand extends LogicCommand {
 
 	private BaseCommand[] myArgumentList;
 
-	public MathCommand(String userInput, boolean isExpression) throws BackendException {
+	public ExpressionCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 
 	@Override
 	public final double execute() throws BackendException{
-		double result = mathExecute();
+		double result = expressionExecute();
 		BaseCommand nextCommand = getNextCommand();
 		return nextCommand == null ? result : executeCommand(nextCommand);
 	}
 
-	public abstract double mathExecute() throws BackendException;
+	public abstract double expressionExecute() throws BackendException;
 
 	@Override
 	protected void parseArguments(String userInput) {

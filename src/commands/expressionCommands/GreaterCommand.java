@@ -1,15 +1,15 @@
-package commands.booleanCommands;
+package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
-public class GreaterCommand extends DoubleExpressionBooleanCommand {
+public class GreaterCommand extends DoubleExpressionCommand {
 	
 	public GreaterCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
 
 	@Override
-    public double booleanExecute() throws BackendException {
+    public double expressionExecute() throws BackendException {
         double returnValue = executeCommand(getFirstExpression()) > executeCommand(getSecondExpression()) ? 1 : 0;
         System.out.println("returnValue: " + returnValue);
 //        boolean statement ? true result : false result;
