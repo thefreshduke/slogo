@@ -1,10 +1,7 @@
 package turtle;
-import java.io.File;
 import java.util.List;
 import java.util.Stack;
-
 import javax.swing.JOptionPane;
-
 import View.BorderStyle;
 import View.Pen;
 import javafx.scene.image.Image;
@@ -68,28 +65,6 @@ public class Turtle extends ImageView{
 	 */
 	public void rotate(double rotateIncrement) {
 		myPosition.rotate(rotateIncrement);
-	}
-
-	/**
-	 * @return List of x-coordinate positions
-	 */
-	public List<Double> getXPosList() {
-		return myPosition.getXPosList();
-	}
-
-	/**
-	 * @return List of y-coordinate positions
-	 */
-	public List<Double> getYPosList() {
-		return myPosition.getYPosList();
-	}
-
-	/**
-	 * 
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myPosition.getRotateList();
 	}
 
 	/**
@@ -165,6 +140,4 @@ public class Turtle extends ImageView{
 	public int getID() {
 		return myID;
 	}
-	
-
 }

@@ -61,9 +61,10 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
+		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5));
 		myController=new MainController(this);
-		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getTurtle());
 		myModel=new SlogoViewModel(myController);
+		myController.gridReady();
 	}	
 
 
@@ -99,7 +100,7 @@ public class SlogoView {
 		root.getChildren().add(mainLayout);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainStage.setScene(myScene);
-		myGrid.addTurtle(myController.getTurtle());
+		myGrid.addTurtle(myController.getFirstTurtle());
 	}
 	
 
@@ -347,6 +348,7 @@ public class SlogoView {
 		myButtonMap.put("addTurtle", new AddTurtle(myGrid));
 		
 	}
+	
 	public Grid getGrid() {
 		return myGrid;
 	}

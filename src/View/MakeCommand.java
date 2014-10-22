@@ -8,4 +8,10 @@ public class MakeCommand implements GUIFunction{
 	public MakeCommand(TextField myText, MenuTemplate myMenu){
 		
 	}
+
+	@Override
+	public void doAction() {
+		// TODO Auto-generated method stub
+		
+	}
 }

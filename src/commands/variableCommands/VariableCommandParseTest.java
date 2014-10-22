@@ -3,6 +3,8 @@ package commands.variableCommands;
 import java.util.HashMap;
 import java.util.Map;
 
+import model.CommandWrapper;
+
 import org.junit.Test;
 
 import commandParser.CommandFactory;
@@ -58,8 +60,10 @@ public class VariableCommandParseTest {
         String commandString = ":" + variable1;
         BaseCommand command = CommandFactory.createCommand(commandString, true);
         try{
-        	container.addVariable(variable1, value);
-        	Double result = command.execute(null,  null, container);
+        	container.addVariable(":"+ variable1, value);
+        	CommandWrapper wrapper = new CommandWrapper();
+        	wrapper.setVariableContainer(container);
+        	Double result = command.execute(wrapper);
         	assertEquals(result, new Double(70));
         }
         catch (Exception ex){

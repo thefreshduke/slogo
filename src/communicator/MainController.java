@@ -3,9 +3,12 @@ package communicator;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import model.SlogoModel;
+import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
 import turtle.Turtle;
@@ -33,14 +36,13 @@ public class MainController extends BaseController {
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
     public MainController (SlogoView view) {
         super(view);
-        myView = view;
+        myView = view;        
         myModel = new SlogoModel();
         myCommandQueue = new ConcurrentLinkedQueue<>();
         myInputsToParse = new ConcurrentLinkedQueue<>();
         myCommandIsExecuting = new AtomicBoolean(false);
         myExecutedCommands = new ArrayList<>();
         setTimers();
-        initializeModel();
         myCommandParserTimer.start();
         myCommandExecutionTimer.start();
         myCommandToClassTranslator = new CommandToClassTranslator();
@@ -101,8 +103,8 @@ public class MainController extends BaseController {
     }
 
     @Override
-    protected void initializeModel () {
-        myModel.initializeModel();
+	public void initializeModel (Grid grid) {
+        myModel.initializeModel(grid);
     }
 
     @Override
@@ -131,7 +133,9 @@ public class MainController extends BaseController {
 
     private void executeCommand (BaseCommand command) {
         try{
-            command.execute(myView.getGrid(), myModel.getTurtle(), myModel.getMyVariableContainer());
+
+            command.execute(myModel.getCommandWrapper());
+
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
@@ -157,15 +161,32 @@ public class MainController extends BaseController {
         }
         
     }
-
-	@Override
-	public Turtle getTurtle() {
-		return myModel.getTurtle();
+    
+    /**
+	 * Find turtle matching specified ID
+	 * @param ID of turtle 
+	 * @return turtle matching ID, else return null if no turtle match
+	 */
+    public Turtle findTurtle(int ID) {
+    	return myModel.findTurtle(ID);
+    }
+    
+	public List<Turtle> getActiveTurtles() {
+		return myModel.getActiveTurtles();
 	}
 
+	public Turtle getFirstTurtle() {
+		// TODO Auto-generated method stub
+		return  myModel.findTurtle(0);
+	}
+	
 	/*@Override
 	public void setTurtleImage(Image image) {
 		// TODO Auto-generated method stub
 		
 	}*/
+	public void gridReady() {
+		initializeModel(myView.getGrid());
+	}
+	
 }

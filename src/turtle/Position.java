@@ -11,20 +11,7 @@ public class Position {
 	private double myYPos;
 	private double myRotate;
 
-	/**
-	 * List that holds the set of all x-coordinates positions
-	 */
-	private List<Double> myXPosList;
-	/**
-	 * List that holds the set of y-coordinates positions
-	 */
-	private List<Double> myYPosList;
-
-	/**
-	 * List that holds the set of angle orientation positions
-	 */
-	private List<Double> myRotateList;
-
+	
 	/**
 	 * No argument constructor
 	 */
@@ -36,13 +23,8 @@ public class Position {
 	 * @param yPos - initial y-coordinate
 	 */
 	public Position(double xPos, double yPos) {
-		myXPosList = new ArrayList<Double>();
-		myYPosList = new ArrayList<Double>();
-		myRotateList = new ArrayList<Double>();
 		myXPos = xPos;
-		myXPosList.add(myXPos);
 		myYPos = yPos;
-		myYPosList.add(myYPos);
 	}
 
 	/**
@@ -54,7 +36,6 @@ public class Position {
 	public Position(double xPos, double yPos, double rotatePos) {
 		this(xPos, yPos);
 		myRotate = rotatePos;
-		myRotateList.add(myRotate);
 	}
 
 	/**
@@ -63,8 +44,6 @@ public class Position {
 	 */
 	public void moveHorizontal(double xIncrement) {
 		myXPos+= xIncrement;
-		myXPosList.add(myXPos);
-
 	}
 
 	/**
@@ -73,7 +52,6 @@ public class Position {
 	 */
 	public void moveVertical(double yIncrement) {
 		myYPos+= yIncrement;
-		myYPosList.add(myYPos);
 	}
 
 	/**
@@ -92,29 +70,6 @@ public class Position {
 	 */
 	public void rotate(double rotateIncrement) {
 		myRotate+=rotateIncrement;
-		myRotateList.add(rotateIncrement);
-	}
-
-	/**
-	 * @return List of x-coordinates
-	 */
-	public List<Double> getXPosList() {
-		return myXPosList;
-	}
-
-	/**
-	 * @return List of y-coordinates
-	 */
-	public List<Double> getYPosList() {
-		return myYPosList;
-	}
-
-	/**
-	 * 
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myRotateList;
 	}
 
 	/**
