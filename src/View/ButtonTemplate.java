@@ -7,7 +7,7 @@ import javafx.scene.paint.Paint;
 
 
 public class ButtonTemplate extends Button implements UserObjects{
-
+	int textSize;
 	/**
 	 * Constructor
 	 * @param s				Label for the Button	
@@ -17,7 +17,8 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.relocate(x, y);
 		this.setText(s);
 		this.addEvent(event->myFunction.doAction());
-		setStyle();
+		setStyle(textSize);
+		textSize=15;
 		this.setPrefSize(75, 55);
 	}
 	
@@ -26,7 +27,7 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.setText(s);
 		this.addEvent(event->myFunction.doAction());
 		this.setPrefSize(width, height);
-		setStyle();
+		setStyle(textSize);
 	}
 
 	@Override
@@ -34,9 +35,12 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.setOnAction(handler);
 		
 	}
-	public void setStyle(){
+	public void setStyle(int text){
 		setTextFill(Paint.valueOf("WHITE"));
-		setStyle("-fx-background-color: BLACK; -fx-border-color: WHITE");
+		setStyle("-fx-background-color: BLACK; -fx-border-color: WHITE; -fx-font-size:"+text);
+	}
+	public void actionOnMouseHover(){
+		setStyle(textSize+15);
 	}
 
 

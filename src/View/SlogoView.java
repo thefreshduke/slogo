@@ -347,6 +347,7 @@ public class SlogoView {
 		myButtonMap.put("addTurtle", new AddTurtle(myGrid));
 		
 	}
+	
 	public Grid getGrid() {
 		return myGrid;
 	}
