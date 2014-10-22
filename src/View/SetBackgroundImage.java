@@ -32,7 +32,7 @@ public class SetBackgroundImage implements GUIFunction {
 	//ugly but works need to change
 	public void doAction() {
 			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Select Turtle Image");
+			fileChooser.setTitle("Select Background Image");
 			fileChooser.setInitialDirectory(new File("./"));
 			File file = fileChooser.showOpenDialog(myStage);
 			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){

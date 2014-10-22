@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Point;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -39,6 +40,8 @@ import javafx.util.Duration;
 
 public class SlogoView {
 	HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
+	HashMap<String, GUIFunction> myMenuItemMap=new HashMap<String, GUIFunction>();
+
 	private Grid myGrid;
 	private MainController myController;
 	//a Group for all the components of the GUI to be added to
@@ -233,29 +236,13 @@ public class SlogoView {
 		lastOrientation.relocate(5, 310);
 
 		//		temporary background color chooser
-		MenuBar mBar = new MenuBar();
-		MenuTemplate m = new MenuTemplate("Background Color");
-		m.addMenuItem("RED", event -> setBackgroundColor("RED"));
-		m.addMenuItem("BLUE", event -> setBackgroundColor("BLUE"));
-		m.addMenuItem("GREEN", event -> setBackgroundColor("GREEN"));
-		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
-		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
-		mBar.getMenus().add(m);
-		mBar.setPrefSize(150, 25);
+		ColorSelection colorSelection = new ColorSelection(this);
+		MenuBar mBar = colorSelection.getBackgroundColorMenuBar();
 		mBar.relocate(25, 350);
 
-
 		//		temporary pen color chooser
-		MenuBar pBar = new MenuBar();
-		MenuTemplate p = new MenuTemplate("Pen Color");
-		p.addMenuItem("RED", event -> setPenColor("RED"));
-		p.addMenuItem("BLUE", event -> setPenColor("BLUE"));
-		p.addMenuItem("GREEN", event -> setPenColor("GREEN"));
-		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
-		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
-		pBar.getMenus().add(p);
+		MenuBar pBar = colorSelection.getPenColorMenuBar();
 		pBar.relocate(25, 385);
-		pBar.setPrefSize(150, 25);
 		//		command History
 
 		commandHistoryBox = new VBox();
@@ -328,7 +315,7 @@ public class SlogoView {
 	}
 	
 	public ArrayList<ButtonTemplate> makeBottomButtons(){
-		makeMap();
+		makeButtonMap();
 		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
 		for (String s: myButtonMap.keySet()){
 			String[] value=myResources.getString(s).split(";");
@@ -337,7 +324,7 @@ public class SlogoView {
 		}
 		return myButtons;
 	}
-	public void makeMap(){
+	public void makeButtonMap(){
 		myButtonMap.put("penDown", new SetPenDown(myGrid));
 		myButtonMap.put("undo", new Undo(myGrid));
 		myButtonMap.put("backgroundImage", new SetBackgroundImage(myGrid, myStage));
@@ -347,6 +334,19 @@ public class SlogoView {
 		myButtonMap.put("uploadImage", new TurtleImageChange(myGrid, myStage));
 		myButtonMap.put("addTurtle", new AddTurtle(myGrid));
 		
+	}
+	
+	public ArrayList<MenuItemTemplate> makeMenuItems(){
+		ArrayList<MenuItemTemplate> items = new ArrayList<>();
+		String[] languages = new String[] {"English", "Chinese", "French" , "Italian", "Portuguese", "Russian" };
+		for(String s : languages){
+			items.add(new MenuItemTemplate(s,
+					event -> myController.loadLanguage(new File("/resources/languages" + s + ".properties"))));
+		}
+		return items;
+	}
+	
+	public void makeMenuItemMap(){
 	}
 	
 	public Grid getGrid() {
