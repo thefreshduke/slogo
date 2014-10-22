@@ -1,7 +1,16 @@
 package commands.turtleCommands;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.information.BaseVariableContainer;
+import commands.information.IInformationContainer;
 import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
@@ -13,7 +22,9 @@ public abstract class TurtleCommand extends BaseCommand {
 	private IVariableContainer myVariableContainer;
 	private BaseCommand[] myArgumentList;
 
-
+	private BaseGridContainer myGridContainer;
+	private BaseTurtleContainer myTurtleContainer;
+	
 	public TurtleCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
@@ -29,6 +40,41 @@ public abstract class TurtleCommand extends BaseCommand {
 		return result;
 	}
 
+    @Override
+	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
+		Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
+		typeSet.add(BaseVariableContainer.class);
+		typeSet.add(BaseGridContainer.class);
+		return typeSet;
+	}
+	
+    @Override
+    public void setRequiredInformation(Collection<IInformationContainer> containers){
+    	if(containers.size() != 2){
+    		//throw
+    	}
+    	ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
+    	for(IInformationContainer container : containers) {
+    		if(BaseGridContainer.class.isAssignableFrom(container.getClass())){
+    			myGridContainer = (BaseGridContainer)container;
+    		}
+    		else if(BaseTurtleContainer.class.isAssignableFrom(container.getClass())){
+    			myTurtleContainer = (BaseTurtleContainer)container;
+    		}
+    	}
+    	if(myGridContainer == null || myTurtleContainer == null){
+    		//throw exception
+    	}
+    }
+    
+    protected BaseTurtleContainer getTurtleContainer(){
+    	return myTurtleContainer;
+    }
+    
+    protected BaseGridContainer getGridContainer(){
+    	return myGridContainer;
+    }
+    
 	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
 
 	protected double executeCommand(BaseCommand command) throws BackendException{

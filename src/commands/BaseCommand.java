@@ -34,10 +34,6 @@ public abstract class BaseCommand {
 		parseArguments(userInput);
 	}
 
-	//	public abstract Set<? extends IInformationContainer> getRequiredInformationType();
-	//	
-	//	public abstract void setRequiredInformation(Collection<IInformationContainer> informationContainers);
-
 
 	/**
 	 * Method returns the computation of the turtle command
@@ -47,9 +43,9 @@ public abstract class BaseCommand {
 	 */
 	public abstract double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
 
-	//	public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes();
-	//	
-	//	public abstract void setRequiredInformation(Collection<IInformationContainer> containers);
+	public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes();
+		
+	public abstract void setRequiredInformation(Collection<IInformationContainer> containers);
 
 	protected BaseCommand getNextCommand(){
 		return myNextCommand;

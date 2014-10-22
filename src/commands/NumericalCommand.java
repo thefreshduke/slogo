@@ -1,5 +1,9 @@
 package commands;
 
+import java.util.Collection;
+import java.util.Set;
+
+import commands.information.IInformationContainer;
 import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
@@ -25,4 +29,13 @@ public final class NumericalCommand extends BaseCommand{
         String leftover = userInput.replaceFirst(number, "").trim();
         setLeftoverCommands(leftover);
     }
+
+	@Override
+	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes() {
+		return null;
+	}
+
+	@Override
+	public void setRequiredInformation(
+			Collection<IInformationContainer> containers) {}
 }

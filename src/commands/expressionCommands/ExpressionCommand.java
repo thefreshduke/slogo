@@ -1,8 +1,12 @@
 package commands.expressionCommands;
 
+import java.util.Collection;
+import java.util.Set;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.LogicCommand;
+import commands.information.IInformationContainer;
 import backendExceptions.BackendException;
 
 public abstract class ExpressionCommand extends LogicCommand {
@@ -22,6 +26,14 @@ public abstract class ExpressionCommand extends LogicCommand {
 
 	public abstract double expressionExecute() throws BackendException;
 
+	@Override
+	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
+		return null;
+	}
+	
+	@Override
+	public void setRequiredInformation(Collection<IInformationContainer> containers){}
+	
 	@Override
 	protected void parseArguments(String userInput) {
 		int argumentCount = getArgumentCount();

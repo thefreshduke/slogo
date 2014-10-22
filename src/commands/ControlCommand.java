@@ -1,6 +1,14 @@
 package commands;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
+
+import commands.information.BaseTurtleContainer;
+import commands.information.BaseVariableContainer;
+import commands.information.IInformationContainer;
 import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
@@ -16,7 +24,7 @@ public abstract class ControlCommand extends ModelCommand {
     private SlogoView myView;
     private Turtle myTurtle;
     private IVariableContainer myVariableContainer;
-
+    
     public ControlCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
@@ -35,6 +43,31 @@ public abstract class ControlCommand extends ModelCommand {
         return command.execute(myView, myTurtle, myVariableContainer);
     }
 
+    @Override
+	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
+		Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
+		typeSet.add(BaseVariableContainer.class);
+		return typeSet;
+	}
+	
+	public void setRequiredInformation(Collection<IInformationContainer> containers){
+		if(containers.size() != 1){
+			//throw throw new BAckendException
+		}
+		ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
+		IInformationContainer container = containerList.get(0);
+		boolean extendsVariableContainer = IVariableContainer.class.isAssignableFrom(container.getClass());
+		if(!extendsVariableContainer) {
+			//throw exception
+		}
+		IVariableContainer variableContainer = (IVariableContainer)container;
+		myVariableContainer = variableContainer;
+	}
+	
+	protected IVariableContainer getVariableContainer(){
+		return myVariableContainer;
+	}
+	
     public abstract double execute (IVariableContainer variableContainer) throws BackendException;
 
     protected String[] splitByInnerListCommand (String input) {
