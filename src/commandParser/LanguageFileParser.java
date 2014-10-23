@@ -102,7 +102,7 @@ public class LanguageFileParser {
         return translatedUserInput.toString().trim();
     }
     
-    private String translateCommand(String command){
+    public String translateCommand(String command){
         String translatedCommand;
         if(myUserInputToEnglishTranslationMap.containsKey(command)){
             translatedCommand = myUserInputToEnglishTranslationMap.get(command);
