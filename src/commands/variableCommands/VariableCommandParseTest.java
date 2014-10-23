@@ -55,12 +55,11 @@ public class VariableCommandParseTest {
 	@Test
 	public void testThatVariableIsGet() throws BackendException {
 		IVariableContainer container = new MapBasedVariableContainer();
-		String variable1 = "variable1";
+		String variable1 = "varx";
 		String valueString = "SUM 10 60";
 		valueString = processInput(valueString);
 		BaseCommand value = CommandFactory.createCommand(valueString, true);
-		String commandString = ":" + variable1;
-		BaseCommand command = CommandFactory.createCommand(commandString, true);
+		BaseCommand command = CommandFactory.createCommand(processInput(":" + variable1), true);
 		try{
 			container.addVariable(variable1, value);
 			Double result = command.execute(null,  null, container);
