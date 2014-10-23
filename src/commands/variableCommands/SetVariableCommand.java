@@ -26,7 +26,6 @@ public class SetVariableCommand extends VariableCommand{
 
     @Override
     protected void parseArguments (String userInput) throws BackendException{
-    	userInput = userInput.replace("variable", "");
     	
         String[] inputList = userInput.trim().split(COMMAND_DELIMITER, 2);
         if(inputList.length < 2){

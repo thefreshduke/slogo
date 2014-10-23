@@ -9,12 +9,12 @@ import View.Grid;
 
 public class SingleViewContainerInformationHub extends BaseCommandInformationHub {
 
-    private GridSet myGridContainer;
+    private SingleActiveGridContainer myGridContainer;
     private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
     //private  myVariableContainer;
     
     public SingleViewContainerInformationHub(Grid grid){
-        myGridContainer = new GridSet();
+        myGridContainer = new SingleActiveGridContainer();
     }
     
     @Override

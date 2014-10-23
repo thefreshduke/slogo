@@ -7,16 +7,16 @@ import java.util.Collection;
 
 import View.Grid;
 
-public class GridSet extends BaseGridContainer{
+public class SingleActiveGridContainer extends BaseGridContainer{
 
     private ArrayList<Grid> myGridList;
     private Grid myActiveGrid;
     
-    public GridSet(){
+    public SingleActiveGridContainer(){
         this(new ArrayList<Grid>());
     }
     
-    public GridSet (Collection<Grid> initialGrids) {
+    public SingleActiveGridContainer (Collection<Grid> initialGrids) {
         super(initialGrids);
         myGridList = new ArrayList<>(initialGrids);
         if(myGridList.size() > 0){
