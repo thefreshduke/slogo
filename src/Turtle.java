@@ -107,8 +107,6 @@ public class Turtle {
 	public double getYPos() {
 		return myPosition.getYPos();
 	}
-	
-	
 	public void setPenColor(String color){
 		myPen.setColor(color);
 	}
@@ -118,5 +116,7 @@ public class Turtle {
 	public void setPenWidth(Number thickness){
 		myPen.changeThickness(thickness);
 	}
-
+	public void setVisible(boolean b){
+		setVisible(b);
+	}
 }

@@ -3,8 +3,8 @@ package View;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
-
 
 public class ButtonTemplate extends Button implements UserObjects{
 	int textSize;
@@ -17,6 +17,8 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.relocate(x, y);
 		this.setText(s);
 		this.addEvent(event->myFunction.doAction());
+		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
+		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
 		setStyle(textSize);
 		textSize=15;
 		this.setPrefSize(75, 55);
@@ -40,7 +42,10 @@ public class ButtonTemplate extends Button implements UserObjects{
 		setStyle("-fx-background-color: BLACK; -fx-border-color: WHITE; -fx-font-size:"+text);
 	}
 	public void actionOnMouseHover(){
-		setStyle(textSize+15);
+		setStyle(textSize+2);
+	}
+	public void actionOnMouseExit(){
+		setStyle(textSize-2);
 	}
 
 

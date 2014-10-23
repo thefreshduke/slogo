@@ -1,4 +1,4 @@
-package View;
+package GUIFunctions;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import View.GUIFunction;
+import View.SingleGrid;
 import turtle.Turtle;
 
 public class TurtleImageChange implements GUIFunction {
