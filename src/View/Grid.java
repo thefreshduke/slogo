@@ -12,19 +12,23 @@ import GUIFunctions.GUIFunction;
 import javafx.scene.layout.Pane;
 
 public abstract class Grid extends Pane {
-	protected int ID;
+	protected int myID;
 	protected HashMap<String, Class> myMap=new HashMap<String, Class>();
 	public final static String DEFAULT_RESOURCE_SOURCE="/resources/GUIFunctionsMap";
 	
 	//need factory with static int
-	public void Grid(){
-		//ID=(int) (Math.random()*);
+	public void Grid(int ID){
+		myID=ID;
 		makeMap();
 		
 	}
 	public int getID(){
-		return ID;
+		return myID;
 	}
+	public void setMap(HashMap setMyMap){
+		myMap=setMyMap;
+	}
+	public abstract void addTurtle(Turtle t);
 	public void makeMap(){
 		ResourceBundle myBundle=ResourceBundle.getBundle(DEFAULT_RESOURCE_SOURCE);
 		Enumeration myKeys=myBundle.getKeys();

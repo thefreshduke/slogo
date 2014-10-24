@@ -7,7 +7,7 @@ import View.SingleGrid;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
-public class ToggleGridLines extends GridFunction{
+public class ToggleGridLines extends PersonalizeMenu{
 	boolean showGridLines;
 	int translate;
 	private Collection<Line> myGridLines;

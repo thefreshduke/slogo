@@ -2,7 +2,7 @@ package GUIFunctions;
 
 import View.SingleGrid;
 
-public class ClearFunction extends GridFunction{
+public class ClearFunction extends BottomFunctions{
 	public ClearFunction(SingleGrid myG){
 		myGrid=myG;
 	}

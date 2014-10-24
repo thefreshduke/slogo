@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 import View.SingleGrid;
 import turtle.Turtle;
 
-public class TurtleImageChange extends GridFunction {
+public class TurtleImageChange extends PersonalizeMenu{
 	private Stage myStage;
 	public TurtleImageChange(SingleGrid grid, Stage main){
 		myGrid=grid;

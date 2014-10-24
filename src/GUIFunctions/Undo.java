@@ -5,7 +5,7 @@ import java.util.Collection;
 import View.SingleGrid;
 import turtle.Turtle;
 
-public class Undo extends GridFunction{
+public class Undo extends BottomFunctions{
 	public Undo(SingleGrid grid){
 		myGrid=grid;
 	}

@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
 
-public class AddTurtle extends GridFunction{
+public class AddTurtle extends PersonalizeMenu{
 	private static int ID;
 	private Turtle myTurtle;
 	private SlogoView myView;
@@ -21,7 +21,9 @@ public class AddTurtle extends GridFunction{
 	public void doAction() {
 		Image image = new Image("bowser.png");
 		ID++;
-		//Turtle myTurtle = new Turtle(new Position(0, 0), image, ID);
+		Turtle myTurtle = new Turtle(new Position(0, 0), image);
+		myTurtle.setID(ID);
+		System.out.println(ID);
 		myTurtle.setFitWidth(60);
 		myTurtle.setPreserveRatio(true);
 		myTurtle.setSmooth(true);

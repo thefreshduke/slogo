@@ -2,23 +2,24 @@ package turtle;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 import commands.information.ITurtleBehavior;
-
-
 
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
 
+import com.sun.glass.events.MouseEvent;
+
 import GUIFunctions.BorderStyle;
 import View.Pen;
 import View.TurtleMovement;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.shape.Line;
+import javafx.scene.paint.Color;
+import java.awt.color.*;
 
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
@@ -28,11 +29,8 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
 	private int myID;
-
-
-
 	private int velocity;
-	
+	private boolean active=false;
 
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
@@ -44,6 +42,8 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		myPen=new Pen();
 		myPastPositions=new Stack<Position>();
 		velocity=5;
+		setActive();
+		this.setOnMouseClicked(event->setActive());
 	}
 
 	/**
@@ -53,7 +53,30 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
 	}
-
+	private void setActive(){
+		active=!active;
+		if (active){
+			glow();
+		}
+		else{
+			dimmer();
+		}
+	}
+	private void glow(){
+		DropShadow myShadow=new DropShadow();
+		myShadow.setColor(Color.YELLOW);
+		myShadow.setRadius(this.getFitWidth()+10);
+		this.setEffect(myShadow);
+	}
+	private void dimmer(){
+		setEffect(null);
+	}
+	public boolean isActive(){
+		return active;
+	}
+	
+	
+	
 	/**
 	 * Moves the vertically 
 	 * @param yIncrement - vertical movement increment
@@ -163,8 +186,8 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 			myPosition=myTempPosition;
 			myPastPositions.add(myPosition);
 		}
-			
 	}
+	
 	
 	
 }

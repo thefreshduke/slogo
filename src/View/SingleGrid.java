@@ -20,14 +20,17 @@ public class SingleGrid extends Grid {
 	public int myHeight;
 	public int myWidth;
 	private ImageView myImageView;
-	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
 	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
+	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
 	private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
 
-
-	public SingleGrid(int height, int width, KeyFrame frame, HashMap myMap){
+	public SingleGrid(){
+		
+	}
+	public SingleGrid(int height, int width, KeyFrame frame, HashMap myMap, int ID){
 		this.setPrefSize(width,height);
 		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
+		myID=ID;
 		myHeight=height;
 		myWidth=width;
 		Timeline time=new Timeline();
@@ -71,19 +74,24 @@ public class SingleGrid extends Grid {
 		}	
 	}
 	public void keyUpdate(){
-		for (Turtle active: activeTurtles){
+		for (Turtle active: getActiveTurtles()){
 			moveTurtle(active);
 			getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
 		}	
 	}
 	public Collection<Turtle> getActiveTurtles(){
+		for (Turtle a: allTurtles){
+			if (a.isActive()){
+				activeTurtles.add(a);
+			}
+		}
 		return activeTurtles;
 	}
 	public Collection<Pen> getAllPens(){
-		return getPens(allTurtles);
+		return getPens(activeTurtles);
 	}
 	public Collection<Pen> getActivePens(){
-		return getPens(activeTurtles);
+		return getPens(getActiveTurtles());
 	}
 	private Collection<Pen> getPens(Collection<Turtle> myTurtles){
 		Collection<Pen> pens=new ArrayList<Pen>();

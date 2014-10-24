@@ -29,10 +29,7 @@ public abstract class ScrollingBar extends Group implements UserObjects{
 	}
 
 	private void makeScrollingBar(int min, int max, int value){
-		myBar=new Slider();
-		myBar.setMin(min);
-		myBar.setMax(max);
-		myBar.setValue(value);
+		myBar=new Slider(1, 20, 10);
 		myBar.relocate(myX, myY);
 		myBar.setPrefSize(myHeight, myWidth);
 		this.getChildren().add(myBar);

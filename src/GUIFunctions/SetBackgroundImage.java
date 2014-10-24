@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 import View.SingleGrid;
 import turtle.Turtle;
 
-public class SetBackgroundImage extends GridFunction {
+public class SetBackgroundImage extends PersonalizeMenu {
 	private Stage myStage;
 	private ImageView myImageView;
 	public SetBackgroundImage(SingleGrid grid, Stage mainStage){
@@ -36,7 +36,6 @@ public class SetBackgroundImage extends GridFunction {
 			fileChooser.setInitialDirectory(new File("./"));
 			File file = fileChooser.showOpenDialog(myStage);
 			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
-			
 			BufferedImage buffer;
 			try {
 				buffer = ImageIO.read(file);

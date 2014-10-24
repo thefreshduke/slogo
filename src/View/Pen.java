@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Color;
 import java.awt.List;
 import java.util.Stack;
 
@@ -13,29 +14,30 @@ import javafx.scene.shape.Line;
 
 //why do you not use arraylist
 public class Pen extends Line{
-	Stack<Line>myLines;
-	String myColor;
-	BorderStyle myStyle;
-	int thickness;
-	boolean penDown;
-	double startX;
-	double startY;
+	private Stack<Line>myLines;
+	private String myColor;
+	private BorderStyle myStyle;
+	private int myThickness;
+	private boolean penDown;
+	private double startX;
+	private double startY;
 
 	public Pen(){
 		myLines=new Stack<Line>();
 		myColor="BLACK";
 		myStyle=new SolidBorderStyle();
 		penDown=true;
-		thickness=100;
+		myThickness=1;
 
 	}
+	public String getPenColor(){
+		return myColor;
+	}
 
-	public void changeThickness(Number a){
-		this.setStyle("-fx-border-width: "+a);
+	public void changeThickness(Number howThick){
+		myThickness=howThick.intValue();
 	}
-	public void changeLineStyle(Object[] myDashArray){
-		this.getStrokeDashArray().addAll((Double[])myDashArray);
-	}
+
 	public void setInitialPosition(Double x, Double y){
 		startX=x;
 		startY=y;
@@ -65,7 +67,11 @@ public class Pen extends Line{
 			else{
 				Line myLine=new Line(myLines.peek().getEndX(), myLines.peek().getEndY(), xPos, yPos);
 				myLine.setStroke(Paint.valueOf(myColor));
-				myLine.getStrokeDashArray().addAll(myStyle.getStyle());
+				myLine.setStrokeWidth(myThickness);
+				System.out.println(myStyle.getStyle(myThickness)[1]);
+				myLine.getStrokeDashArray().clear();
+				myLine.getStrokeDashArray().addAll(myStyle.getStyle(myThickness));
+				
 				myLines.push(myLine);
 				return myLines.peek();
 			}

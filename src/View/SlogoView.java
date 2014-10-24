@@ -3,6 +3,7 @@ package View;
 import java.awt.Dimension;
 import java.awt.List;
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -10,11 +11,16 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
+
 import javax.swing.JOptionPane;
+
 import GUIFunctions.AddTurtle;
+import GUIFunctions.BottomFunctions;
 import GUIFunctions.ClearFunction;
 import GUIFunctions.GUIFunction;
+import GUIFunctions.PenStyle;
 import GUIFunctions.PenThickness;
+import GUIFunctions.PersonalizeMenu;
 import GUIFunctions.SetBackgroundImage;
 import GUIFunctions.SetPenDown;
 import GUIFunctions.SetPenUp;
@@ -49,7 +55,9 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 public class SlogoView {
-	private SingleGrid myGrid;
+	private GridFactory myGridFactory;
+	private Collection<SingleGrid> myGrids;
+	private SingleGrid activeGrid;
 	private MainController myController;
 	private TabsOfGrids myGridTabs=new TabsOfGrids();
 	//a Group for all the components of the GUI to be added to
@@ -61,6 +69,7 @@ public class SlogoView {
 	private TextField commandLine;
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
+	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	String penColor;
 	//for displaying command history
 	private VBox commandHistoryBox;
@@ -70,9 +79,10 @@ public class SlogoView {
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
-	public SlogoView(){
+	public SlogoView() throws ClassNotFoundException{
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
-		myGrid=new SingleGrid(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5), makeUserObjectMap());
+		myGridFactory=new GridFactory(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5), null);
+		myGrids=new ArrayList<SingleGrid>();
 		myController=new MainController(this);
 		myModel=new SlogoViewModel(myController);
 	}	
@@ -85,7 +95,7 @@ public class SlogoView {
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent evt){
-			
+
 			}
 		};
 		return new KeyFrame(speed, loop);
@@ -93,21 +103,31 @@ public class SlogoView {
 	/**
 	 * Creates a layout of the GUI and adds the objects to the Stage
 	 * @param mainStage   the Stage for the GUI to operate on 
+	 * @throws SecurityException 
+	 * @throws NoSuchMethodException 
+	 * @throws InvocationTargetException 
+	 * @throws IllegalArgumentException 
+	 * @throws IllegalAccessException 
+	 * @throws InstantiationException 
+	 * @throws ClassNotFoundException 
 	 */
-	public void initialize(Stage mainStage){
+	public void initialize(Stage mainStage) {
+		addGrid();
+		makeListOfFunctions();
+		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainLayout.setTop(addMenuBar());
-		mainLayout.setCenter(myGrid);
+		mainLayout.setCenter(activeGrid);
 		mainLayout.setLeft(setTextArea());
 		mainLayout.setBottom(addButtons());
 		root.getChildren().add(mainLayout);
 		root.getChildren().add(myGridTabs);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		myStage.setScene(myScene);
-		myGrid.addTurtle(myController.getFirstTurtle());
-		myGridTabs.addTab("GRID 1", myGrid);
+		activeGrid.addTurtle(myController.getFirstTurtle());
+
 	}
 	/**
 	 * Displays the error message "message" on the screen
@@ -123,12 +143,12 @@ public class SlogoView {
 	 */
 	private void sendCommand(){
 		if (commandLine.getText()!=null){
-		myController.receiveCommand(commandLine.getText());
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
-		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
-		myCommands.add(mostRecent);
-		commandLine.clear();
-		updateCommandHistory();
+			myController.receiveCommand(commandLine.getText());
+			ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
+			mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
+			myCommands.add(mostRecent);
+			commandLine.clear();
+			updateCommandHistory();
 		}
 	}
 
@@ -139,13 +159,9 @@ public class SlogoView {
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-
 		updateCommandHistory();
 
 	}
-
-
-
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
 		myMenu.setStyle( "-fx-border-width: 5");
@@ -154,53 +170,92 @@ public class SlogoView {
 		MenuTemplate languages = new MenuTemplate("Languages");
 		MenuTemplate personalize=new MenuTemplate("Personalize");
 		MenuTemplate help = new MenuTemplate("Help");
+		MenuTemplate pen=new MenuTemplate("Pen");
 		userCommands = new MenuTemplate("User Commands");
-		//this.makeLanguageMenuItems(languages);
+		MenuTemplate add=new MenuTemplate("Add");
+		makeAddMenu(add);
+		this.makeLanguageMenuItems();
+		this.makeMenu(PersonalizeMenu.class, personalize);
+		this.makeMenu(PenMenu.class, pen);
 		this.createMenuItemsUnderHelp(help);
-		this.createMenuItems(personalize,"", makePersonalizeMap());
-		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help, personalize);
+		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
+	private void makeAddMenu(MenuTemplate myAdd){
+		myAdd.addMenuItem("Add Grid", event->addGrid());
+	}
 
-	public void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
+	private HashMap<String, GUIFunction> makePenMap(){
+		HashMap<String, GUIFunction> myMap=new HashMap<String, GUIFunction>();
+
+		return myMap;
+
+	}
+	private void makeMenuItems(HashMap<String, GUIFunction> myMap, MenuTemplate myMenu){
+		for (String name: myMap.keySet()){
+			myMenu.addMenuItem(name, event->myMap.get(name).doAction());
+		}
+	}
+	private void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
 		/*
 		ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
 		for (String s: myMap.keySet()){
 			pMenu.addMenuItem(personalizeItems.getString(s), event->myMap.get(s).doAction());
 		}
-		*/
-		
+		 */
+
 	}
-	
-	
+
+
 	public HashMap<String, GUIFunction> makePersonalizeMap(){
 		HashMap<String, GUIFunction> myMap=new HashMap<String, GUIFunction>();
-		myMap.put("uploadBackgroundImage", new SetBackgroundImage(myGrid, myStage));
-		myMap.put("toggleReferenceGrid", new ToggleGridLines(myGrid, 50));
-		myMap.put("uploadTurtleImage", new TurtleImageChange(myGrid, myStage));
-		myMap.put("addTurtle", new AddTurtle(myGrid, this));
-	//	myMap.put("addGrid", addGrid());
+
 		return myMap;
 	}
 	/*	
 	public void addTurtle(){
 		myController.addTurtle(myButtonsMap.)
 	}
-	*/
-	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
+	 */
+	public void createMenuItemsUnderFile(MenuTemplate fileMenu) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
 		fileMenu.addMenuItem("Add Turtle", event-> addTurtle());
 		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
 	public void addTurtle(){
-	//	myController.addTurtle()
-		
+		//	myController.addTurtle()
+
 	}
-	public void addGrid(){
-		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40), this.makeUserObjectMap());
-		myGridTabs.addTab("Grid 2", anotherGrid);
-		//myController.addGrid(anotherGrid, true);
+	public Grid addGrid() {
+		Grid myGrid;
+		try {
+			myGrid = myGridFactory.makeGrid("SingleGrid");
+			myGrids.add((SingleGrid)myGrid);
+			activeGrid=(SingleGrid)myGrid;
+			myGridTabs.addTab("GRID", activeGrid);
+			myController.addGrid((SingleGrid)myGrid, true);
+			return myGrid;
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public void createMenuItemsUnderHelp(MenuTemplate help){	
@@ -219,8 +274,6 @@ public class SlogoView {
 		label.setStyle("-fx-font-size: 25");
 		label.setPrefSize(200, 50);
 		label.relocate(10, 5);
-		
-		
 		commandLine = new TextField();
 		EventHandler enterEvent=new EventHandler<KeyEvent>() {
 			@Override
@@ -229,7 +282,6 @@ public class SlogoView {
 					sendCommand();		
 			}
 		};
-	
 		commandLine.addEventHandler(KeyEvent.KEY_PRESSED,enterEvent);
 		String[] value=myResources.getString("enter").split(";");
 		Button enter = new Button (value[0]);
@@ -237,16 +289,11 @@ public class SlogoView {
 		enter.setOnAction(event->this.sendCommand());
 		commandLine.relocate(5, 60);
 		commandLine.setPrefSize(190,100);
-		
-		
 		value=myResources.getString("makeCommand").split(";");
 		Button makeCommand = new Button(value[0]);
 		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
 		makeCommand.setPrefSize(110, 55);
 		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
-
-
-
 		//		create Turtle display stats
 		lastX = new Text("X Position: " + 0);
 		lastY = new Text("Y Position: " + 0);
@@ -260,7 +307,6 @@ public class SlogoView {
 		lastX.relocate(5, 250);
 		lastY.relocate(5, 280);
 		lastOrientation.relocate(5, 310);
-
 		//		temporary background color chooser
 		ColorSelection colorSelection = new ColorSelection(this);
 		MenuBar mBar = colorSelection.getBackgroundColorMenuBar();
@@ -289,16 +335,10 @@ public class SlogoView {
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-		myButtonPanel.getChildren().addAll(this.makeBottomButtons(this.makeBottomButtonMap()));
-		Group myPenBar=new PenScrollingBar("Pen Thickness",200,20, new PenThickness(myGrid));
-	    myButtonPanel.getChildren().addAll(myPenBar.getChildren());
-		//myButtonPanel.getChildren().addAll(this.makeScrollingBars());
+		myButtonPanel.getChildren().addAll(this.makeButtons(BottomFunctions.class));;
+		myButtonPanel.getChildren().addAll(this.makeSlidingBars());
 		return myButtonPanel;
 	}
-	public void home(){
-
-	}
-
 
 	public void updateTurtleStats(int x, int y, int or){
 		lastX.setText("X Position: " + x);
@@ -318,7 +358,7 @@ public class SlogoView {
 	}
 
 	public void setBackgroundColor(String color){
-		myGrid.setBackgroundColor(color);
+		activeGrid.setBackgroundColor(color);
 	}
 
 	public void setPenColor(String color){
@@ -342,30 +382,30 @@ public class SlogoView {
 		updateCommandHistory();
 	}
 
-	private ArrayList<ButtonTemplate> makeBottomButtons(HashMap<String, GUIFunction> myMap){
+	private ArrayList<ButtonTemplate> makeButtons(Class myClass){
 		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
-		for (String s: myMap.keySet()){
-			String[] value=myResources.getString(s).split(";");
-				myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myMap.get(s)));
+		for (String s: myUserFunctions.keySet()){
+			if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
+				String[] value=myResources.getString(s).split(";");
+				myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myUserFunctions.get(s)));
+			}
 		}
 		return myButtons;
 	}
-	private HashMap<String, GUIFunction> makeBottomButtonMap(){
-		HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
-		myButtonMap.put("penDown", new SetPenDown(myGrid));
-		myButtonMap.put("undo", new Undo(myGrid));
-		myButtonMap.put("clear", new ClearFunction(myGrid));
-		myButtonMap.put("penUp", new SetPenUp(myGrid));
-		return myButtonMap;
-
+	private void makeMenu(Class myClass, MenuTemplate myMenu){
+		for (String s: myUserFunctions.keySet()){
+			if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
+				myMenu.addMenuItem(s, event->myUserFunctions.get(s).doAction());
+			}
+		}
 	}
-	private ArrayList makeScrollingBars(){
-		ArrayList<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
-		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 0, 0, new PenThickness(myGrid));
-		
+	private Collection<ScrollingBar> makeSlidingBars(){
+		Collection<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
+		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 200, 20, new PenThickness(activeGrid));
+		myListOfBars.add(myPenBar);
 		return myListOfBars;
 	}
-	
+
 	public ArrayList<MenuItemTemplate> makeLanguageMenuItems(){
 		ArrayList<MenuItemTemplate> items = new ArrayList<>();
 		String[] languages = new String[] {"English", "Chinese", "French" , "Italian", "Portuguese", "Russian" };
@@ -375,20 +415,36 @@ public class SlogoView {
 		}
 		return items;
 	}
-	
+
 	public void makeMenuItemMap(){
 	}
-	
+
 	public Grid getGrid() {
-		return myGrid;
+		return activeGrid;
 	}
-	private HashMap makeUserObjectMap(){
+	/*
+	private HashMap<String, GUIFunction> makeUserObjectMap(){
 		HashMap<String, GUIFunction> myUserObjectMap=new HashMap<String, GUIFunction>();
-		myUserObjectMap.put("penDown", new SetPenDown(myGrid));
-		myUserObjectMap.put("undo", new Undo(myGrid));
-		myUserObjectMap.put("clear", new ClearFunction(myGrid));
-		myUserObjectMap.put("penUp", new SetPenUp(myGrid));
+		myUserObjectMap.put("penDown", new SetPenDown(activeGrid));
+		myUserObjectMap.put("undo", new Undo(activeGrid));
+		myUserObjectMap.put("clear", new ClearFunction(activeGrid));
+		myUserObjectMap.put("penUp", new SetPenUp(activeGrid));
 		return myUserObjectMap;
 	}
-	
+	 */
+
+	private void makeListOfFunctions(){
+		myUserFunctions.put("penDown", new SetPenDown(activeGrid));
+		myUserFunctions.put("undo", new Undo(activeGrid));
+		myUserFunctions.put("clear", new ClearFunction(activeGrid));
+		myUserFunctions.put("penUp", new SetPenUp(activeGrid));
+		myUserFunctions.put("uploadBackgroundImage", new SetBackgroundImage(activeGrid, myStage));
+		myUserFunctions.put("toggleReferenceGrid", new ToggleGridLines(activeGrid, 50));
+		myUserFunctions.put("uploadTurtleImage", new TurtleImageChange(activeGrid, myStage));
+		myUserFunctions.put("addTurtle", new AddTurtle(activeGrid, this));
+		myUserFunctions.put("Dotted", new PenStyle(activeGrid,"Dotted"));
+		myUserFunctions.put("Solid", new PenStyle(activeGrid, "Solid"));
+		myUserFunctions.put("Dashed", new PenStyle(activeGrid, "Dashed"));
+	}
+
 }
