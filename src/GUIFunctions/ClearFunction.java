@@ -1,10 +1,11 @@
 package GUIFunctions;
 
+import View.GridTracker;
 import View.SingleGrid;
 
 public class ClearFunction extends BottomFunctions{
-	public ClearFunction(SingleGrid myG){
-		myGrid=myG;
+	public ClearFunction(GridTracker grid){
+		myGrid=grid.getActiveGrid();
 	}
 	@Override
 	public void doAction() {

@@ -2,6 +2,7 @@ package GUIFunctions;
 
 import java.util.HashMap;
 
+import View.GridTracker;
 import View.Pen;
 import View.PenMenu;
 import View.SingleGrid;
@@ -10,8 +11,8 @@ public class PenStyle extends PenMenu{
 	private HashMap<String, BorderStyle> myStyleMap;
 	private String myStyle;
 
-	public PenStyle(SingleGrid grid, String whichStyle) {
-		myGrid=grid;
+	public PenStyle(GridTracker grid, String whichStyle) {
+		myGrid=grid.getActiveGrid();
 		myStyleMap=new HashMap<String,BorderStyle>();
 		myStyle=whichStyle;
 		makeMap();

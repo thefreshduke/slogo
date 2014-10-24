@@ -16,14 +16,15 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import View.GridTracker;
 import View.SingleGrid;
 import turtle.Turtle;
 
 public class SetBackgroundImage extends PersonalizeMenu {
 	private Stage myStage;
 	private ImageView myImageView;
-	public SetBackgroundImage(SingleGrid grid, Stage mainStage){
-		myGrid=grid;
+	public SetBackgroundImage(GridTracker grid, Stage mainStage){
+		myGrid=grid.getActiveGrid();
 		myStage=mainStage;
 		myImageView=new ImageView();
 		myGrid.getChildren().add(myImageView);

@@ -2,12 +2,13 @@ package GUIFunctions;
 
 import java.util.Collection;
 
+import View.GridTracker;
 import View.SingleGrid;
 import turtle.Turtle;
 
 public class Undo extends BottomFunctions{
-	public Undo(SingleGrid grid){
-		myGrid=grid;
+	public Undo(GridTracker grid){
+		myGrid=grid.getActiveGrid();
 	}
 
 	@Override

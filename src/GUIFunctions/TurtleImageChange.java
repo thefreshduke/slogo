@@ -13,13 +13,14 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import View.GridTracker;
 import View.SingleGrid;
 import turtle.Turtle;
 
 public class TurtleImageChange extends PersonalizeMenu{
 	private Stage myStage;
-	public TurtleImageChange(SingleGrid grid, Stage main){
-		myGrid=grid;
+	public TurtleImageChange(GridTracker grid, Stage main){
+		myGrid=grid.getActiveGrid();
 	}
 	@Override
 	public void doAction() {

@@ -1,16 +1,6 @@
 package GUIFunctions;
 
-import java.lang.reflect.InvocationTargetException;
-
-import View.Grid;
-import View.SingleGrid;
-
-public class AddGrid extends GridFunction{
-	GUIFactory
-	public AddGrid(){
-	}
-
-	}
+public abstract class Add implements GUIFunction{
 
 	@Override
 	public void doAction() {
@@ -23,4 +13,6 @@ public class AddGrid extends GridFunction{
 		// TODO Auto-generated method stub
 		
 	}
+	public abstract Object addAction();
+
 }

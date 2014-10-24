@@ -2,12 +2,13 @@ package GUIFunctions;
 
 import java.util.Collection;
 
+import View.GridTracker;
 import View.Pen;
 import View.SingleGrid;
 
 public class SetPenUp extends BottomFunctions{
-	public SetPenUp(SingleGrid grid){
-		myGrid=grid;
+	public SetPenUp(GridTracker grid){
+		myGrid=grid.getActiveGrid();
 	}
 
 	@Override

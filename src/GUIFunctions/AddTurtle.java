@@ -6,33 +6,33 @@ import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
 
-public class AddTurtle extends PersonalizeMenu{
+public class AddTurtle extends Add{
 	private static int ID;
 	private Turtle myTurtle;
-	private SlogoView myView;
-	public AddTurtle(SingleGrid grid, SlogoView view){
-		myGrid=grid;
+	public AddTurtle(){
 		myTurtle=null;
-		myView=view;
 		ID=0;
 		
 	}
 	@Override
 	public void doAction() {
-		Image image = new Image("bowser.png");
-		ID++;
-		Turtle myTurtle = new Turtle(new Position(0, 0), image);
-		myTurtle.setID(ID);
-		System.out.println(ID);
-		myTurtle.setFitWidth(60);
-		myTurtle.setPreserveRatio(true);
-		myTurtle.setSmooth(true);
-		myGrid.addTurtle(myTurtle);
+		
 	}
 	@Override
 	public void doAction(Number newVal) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public Object addAction() {
+		Image image = new Image("bowser.png");
+		ID++;
+		Turtle myTurtle = new Turtle(new Position(0, 0), image);
+		myTurtle.setID(ID);
+		myTurtle.setFitWidth(60);
+		myTurtle.setPreserveRatio(true);
+		myTurtle.setSmooth(true);
+		return myTurtle;
 	}
 }
 
