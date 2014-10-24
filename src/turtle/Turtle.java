@@ -1,12 +1,12 @@
 package turtle;
 import java.util.ArrayList;
 import java.util.List;
-<<<<<<< HEAD
+
 
 
 import commands.information.ITurtleBehavior;
 
-=======
+
 
 import java.util.Stack;
 
@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import GUIFunctions.BorderStyle;
 import View.Pen;
 import View.TurtleMovement;
->>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -29,12 +28,12 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
 	private int myID;
-<<<<<<< HEAD
 
-=======
+
+
 	private int velocity;
 	
->>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
+
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -87,37 +86,11 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		myPosition.rotate(rotateIncrement);
 	}
 
-	/**
-<<<<<<< HEAD
-	 * @return List of x-coordinate positions
-	 */
-	public List<Double> getXPosList() {
-		return myPosition.getXPosList();
-	}
 
-	/**
-	 * @return List of y-coordinate positions
-	 */
-	public List<Double> getYPosList() {
-		return myPosition.getYPosList();
-	}
 
-	/**
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myPosition.getRotateList();
-	}
-
-	/**
-=======
->>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
-	 * @return Current angle orientation
-	 */
 	public double getOrientation() {
 		return myPosition.getRotate();
 	}
-
 	/**
 	 * @return Current x-coordinate
 	 */

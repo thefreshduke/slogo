@@ -1,10 +1,10 @@
 package View;
 
-import java.awt.event.KeyEvent;
 
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import turtle.Turtle;
 
 public abstract class TurtleMovement {
@@ -14,8 +14,8 @@ public abstract class TurtleMovement {
 		EventHandler<KeyEvent> move=new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent e) {
-				t.move(e.getKeyCode());
+				t.move(e.getCode());
 			}
-		}
+		};
 	}
 }

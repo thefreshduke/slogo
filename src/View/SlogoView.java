@@ -20,6 +20,7 @@ import GUIFunctions.PenThickness;
 import GUIFunctions.SetBackgroundImage;
 import GUIFunctions.SetPenDown;
 import GUIFunctions.SetPenUp;
+import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
 import turtle.Turtle;
@@ -77,7 +78,6 @@ public class SlogoView {
 		myGrid=new SingleGrid(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5));
 		myController=new MainController(this);
 		myModel=new SlogoViewModel(myController);
-		myController.gridReady();
 	}	
 
 

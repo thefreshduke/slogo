@@ -14,7 +14,6 @@ public class Undo extends GridFunction{
 	public void doAction() {
 		for (Turtle t: myGrid.getActiveTurtles()){
 			t.undo();
-			System.out.println(t.getXPos()+""+t.getYPos());
 			myGrid.moveTurtle(t);
 			this.undoLine(t);
 

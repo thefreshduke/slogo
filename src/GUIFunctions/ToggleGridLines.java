@@ -1,13 +1,13 @@
-package View;
+package GUIFunctions;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import GUIFunctions.GUIFunction;
+import View.SingleGrid;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
-public class ToggleGridLines implements GUIFunction{
+public class ToggleGridLines extends GridFunction{
 	boolean showGridLines;
 	int translate;
 	private Collection<Line> myGridLines;
@@ -53,6 +53,12 @@ public class ToggleGridLines implements GUIFunction{
 		myGrid.getChildren().addAll(verticalGridLine, horizontalGridLine);
 		myGridLines.add(verticalGridLine);
 		myGridLines.add(horizontalGridLine);
+	}
+
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
+		
 	}
 }
 
