@@ -34,10 +34,6 @@ public class SlogoModel {
 		return myTurtleFactory.getActiveTurtles();
 	}
 
-	public BaseVariableContainer getMyVariableContainer() {
-		return myVariableContainer;
-	}
-
 	public BaseCommand createInitialCommand(String input) {
 		return CommandFactory.createCommand(input, false);
 	}
