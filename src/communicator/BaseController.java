@@ -1,5 +1,6 @@
 package communicator;
 import turtle.Turtle;
+import View.Grid;
 import View.SlogoView;
 
 import java.io.File;
@@ -72,6 +73,9 @@ public abstract class BaseController {
 	
 	public abstract Turtle getFirstTurtle();
 
+	public abstract void addTurtle(Turtle turtle, int ID, boolean isActive);
+	
+	public abstract void addGrid(Grid grid, boolean isActive);
 
 	public abstract List<Turtle> getActiveTurtles();
 

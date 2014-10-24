@@ -8,6 +8,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import model.SlogoModel;
+import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
 import turtle.Position;
@@ -16,6 +17,7 @@ import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
+import commands.information.BaseCommandInformationHub;
 import javafx.animation.AnimationTimer;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -37,6 +39,7 @@ public class MainController extends BaseController {
     private AnimationTimer myCommandParserTimer;
     private LanguageFileParser myTranslator;
     private CommandToClassTranslator myCommandToClassTranslator;
+    private BaseCommandInformationHub myCommandInformationHub;
     
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
     public MainController (SlogoView view) {
@@ -182,6 +185,18 @@ public class MainController extends BaseController {
 	public Turtle getFirstTurtle() {
 		// TODO Auto-generated method stub
 		return  myModel.findTurtle(0);
+	}
+
+	@Override
+	public void addTurtle(Turtle turtle, int ID, boolean isActive) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void addGrid(Grid grid, boolean isActive) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/*@Override
