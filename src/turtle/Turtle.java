@@ -21,6 +21,11 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		super(image);		
 		myPosition = position;
 	}
+	
+	public Turtle(Position position, Image image, int ID) {
+		this(position, image);
+		myID = ID;
+	}
 
 	/**
 	 * Moves horizontally
@@ -62,27 +67,6 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	}
 
 	/**
-	 * @return List of x-coordinate positions
-	 */
-	public List<Double> getXPosList() {
-		return myPosition.getXPosList();
-	}
-
-	/**
-	 * @return List of y-coordinate positions
-	 */
-	public List<Double> getYPosList() {
-		return myPosition.getYPosList();
-	}
-
-	/**
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myPosition.getRotateList();
-	}
-
-	/**
 	 * @return Current angle orientation
 	 */
 	public double getOrientation() {
@@ -121,5 +105,10 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 
 	public int getID() {
 		return myID;
+	}
+	
+	@Override
+	public int hashCode() {
+		return 0;
 	}
 }

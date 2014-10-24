@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Position object that stores and manipulates basic location (x-, y- coordinates) and rotation
- * orientation (degrees).  Can be extended to incorporate a z-coordinate for a 3D rendering.
+ * orientation (degrees).
  */
 public class Position {
 	private double myXPos;
@@ -12,37 +12,13 @@ public class Position {
 	private double myRotate;
 
 	/**
-	 * List that holds the set of all x-coordinates positions
-	 */
-	private List<Double> myXPosList;
-	/**
-	 * List that holds the set of y-coordinates positions
-	 */
-	private List<Double> myYPosList;
-
-	/**
-	 * List that holds the set of angle orientation positions
-	 */
-	private List<Double> myRotateList;
-
-	/**
-	 * No argument constructor
-	 */
-	public Position() {};
-	
-	/**
 	 * Constructor that sets the initial x-, and y- coordinates
 	 * @param xPos -  initial x-coordinate
 	 * @param yPos - initial y-coordinate
 	 */
 	public Position(double xPos, double yPos) {
-		myXPosList = new ArrayList<Double>();
-		myYPosList = new ArrayList<Double>();
-		myRotateList = new ArrayList<Double>();
 		myXPos = xPos;
-		myXPosList.add(myXPos);
 		myYPos = yPos;
-		myYPosList.add(myYPos);
 	}
 
 	/**
@@ -54,7 +30,6 @@ public class Position {
 	public Position(double xPos, double yPos, double rotatePos) {
 		this(xPos, yPos);
 		myRotate = rotatePos;
-		myRotateList.add(myRotate);
 	}
 
 	/**
@@ -63,8 +38,6 @@ public class Position {
 	 */
 	public void moveHorizontal(double xIncrement) {
 		myXPos+= xIncrement;
-		myXPosList.add(myXPos);
-
 	}
 
 	/**
@@ -73,7 +46,6 @@ public class Position {
 	 */
 	public void moveVertical(double yIncrement) {
 		myYPos+= yIncrement;
-		myYPosList.add(myYPos);
 	}
 
 	/**
@@ -92,30 +64,8 @@ public class Position {
 	 */
 	public void rotate(double rotateIncrement) {
 		myRotate+=rotateIncrement;
-		myRotateList.add(rotateIncrement);
 	}
 
-	/**
-	 * @return List of x-coordinates
-	 */
-	public List<Double> getXPosList() {
-		return myXPosList;
-	}
-
-	/**
-	 * @return List of y-coordinates
-	 */
-	public List<Double> getYPosList() {
-		return myYPosList;
-	}
-
-	/**
-	 * 
-	 * @return List of angle orientations
-	 */
-	public List<Double> getRotateList() {
-		return myRotateList;
-	}
 
 	/**
 	 * @return Current rotation angle
@@ -137,28 +87,28 @@ public class Position {
 	public double getYPos() {
 		return myYPos;
 	}
-	
+
 	//ZZZ Change/implement!!!
 	@Override
 	public boolean equals(Object o) {
 		return false;
 	}
-	
+
 	/*@Override 
 	public int hashCode() {
 		return 0;
-		
+
 	}*/
-	
+
 	public void setXPos(double xPos) {
 		myXPos = xPos;
-		
+
 	}
-	
+
 	public void setYPos(double yPos) {
 		myYPos = yPos;
 	}
-	
+
 	public void setRotation (double rotateVal) {
 		myRotate = rotateVal;		
 	}
