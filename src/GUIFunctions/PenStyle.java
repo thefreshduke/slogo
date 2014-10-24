@@ -3,9 +3,10 @@ package GUIFunctions;
 import java.util.HashMap;
 
 import View.Pen;
+import View.PenMenu;
 import View.SingleGrid;
 
-public class PenStyle extends GridFunction{
+public class PenStyle extends PenMenu{
 	private HashMap<String, BorderStyle> myStyleMap;
 	private String myStyle;
 
@@ -18,7 +19,7 @@ public class PenStyle extends GridFunction{
 	}
 	public void doAction(){
 		for (Pen p: myGrid.getActivePens()){
-			p.changeLineStyle(myStyleMap.get(myStyle).getStyle());
+			p.setBorderStyle(myStyleMap.get(myStyle));
 		}
 	}
 

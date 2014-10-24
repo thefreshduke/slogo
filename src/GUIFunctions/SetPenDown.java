@@ -5,7 +5,7 @@ import java.util.Collection;
 import View.Pen;
 import View.SingleGrid;
 
-public class SetPenDown extends GridFunction{
+public class SetPenDown extends BottomFunctions{
 	public SetPenDown(SingleGrid grid){
 		myGrid=grid;
 	}
