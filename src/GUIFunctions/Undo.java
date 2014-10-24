@@ -2,12 +2,10 @@ package GUIFunctions;
 
 import java.util.Collection;
 
-import View.GUIFunction;
 import View.SingleGrid;
 import turtle.Turtle;
 
-public class Undo implements GUIFunction{
-	private SingleGrid myGrid;
+public class Undo extends GridFunction{
 	public Undo(SingleGrid grid){
 		myGrid=grid;
 	}

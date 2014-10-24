@@ -1,15 +1,13 @@
 package GUIFunctions;
 
-import View.GUIFunction;
 import View.SingleGrid;
 import View.SlogoView;
 import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
 
-public class AddTurtle implements GUIFunction{
+public class AddTurtle extends GridFunction{
 	private static int ID;
-	private SingleGrid myGrid;
 	private Turtle myTurtle;
 	private SlogoView myView;
 	public AddTurtle(SingleGrid grid, SlogoView view){

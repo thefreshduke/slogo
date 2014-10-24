@@ -1,4 +1,4 @@
-package View;
+package GUIFunctions;
 
 public interface GUIFunction {
 	public void doAction();

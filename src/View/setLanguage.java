@@ -2,6 +2,7 @@ package View;
 
 import java.io.File;
 
+import GUIFunctions.GUIFunction;
 import communicator.MainController;
 
 public class setLanguage implements GUIFunction {

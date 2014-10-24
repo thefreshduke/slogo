@@ -16,12 +16,10 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import View.GUIFunction;
 import View.SingleGrid;
 import turtle.Turtle;
 
-public class SetBackgroundImage implements GUIFunction {
-	private SingleGrid myGrid;
+public class SetBackgroundImage extends GridFunction {
 	private Stage myStage;
 	private ImageView myImageView;
 	public SetBackgroundImage(SingleGrid grid, Stage mainStage){

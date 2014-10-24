@@ -1,5 +1,6 @@
 package View;
 
+import GUIFunctions.GUIFunction;
 import GUIFunctions.PenThickness;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

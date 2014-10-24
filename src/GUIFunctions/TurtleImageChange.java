@@ -13,12 +13,10 @@ import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-import View.GUIFunction;
 import View.SingleGrid;
 import turtle.Turtle;
 
-public class TurtleImageChange implements GUIFunction {
-	private SingleGrid myGrid;
+public class TurtleImageChange extends GridFunction {
 	private Stage myStage;
 	public TurtleImageChange(SingleGrid grid, Stage main){
 		myGrid=grid;

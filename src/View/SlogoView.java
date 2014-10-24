@@ -15,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import GUIFunctions.AddTurtle;
 import GUIFunctions.ClearFunction;
+import GUIFunctions.GUIFunction;
 import GUIFunctions.PenThickness;
 import GUIFunctions.SetBackgroundImage;
 import GUIFunctions.SetPenDown;
@@ -198,8 +199,11 @@ public class SlogoView {
 	//	myMap.put("addGrid", addGrid());
 		return myMap;
 	}
-		
-
+	/*	
+	public void addTurtle(){
+		myController.addTurtle(myButtonsMap.)
+	}
+	*/
 	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);

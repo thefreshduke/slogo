@@ -1,11 +1,9 @@
 package GUIFunctions;
 
-import View.GUIFunction;
 import View.Pen;
 import View.SingleGrid;
 
-public class PenThickness implements GUIFunction{
-	private SingleGrid myGrid;
+public class PenThickness extends GridFunction{
 	private Number myThickness=1;
 	public PenThickness(SingleGrid grid){
 		myGrid=grid;

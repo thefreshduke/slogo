@@ -1,11 +1,9 @@
 package GUIFunctions;
 
-import View.GUIFunction;
 import View.Pen;
 import View.SingleGrid;
 
-public class PenStyle implements GUIFunction{
-	SingleGrid myGrid;
+public class PenStyle extends GridFunction{
 	public PenStyle(SingleGrid grid){
 		myGrid=grid;
 	}

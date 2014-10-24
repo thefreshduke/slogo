@@ -2,6 +2,8 @@ package View;
 
 import java.awt.TextField;
 
+import GUIFunctions.GUIFunction;
+
 public class MakeCommand implements GUIFunction{
 	private TextField myTextField;
 	

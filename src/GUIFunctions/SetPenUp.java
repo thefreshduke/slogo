@@ -2,12 +2,10 @@ package GUIFunctions;
 
 import java.util.Collection;
 
-import View.GUIFunction;
 import View.Pen;
 import View.SingleGrid;
 
-public class SetPenUp implements GUIFunction{
-	SingleGrid myGrid;
+public class SetPenUp extends GridFunction{
 	public SetPenUp(SingleGrid grid){
 		myGrid=grid;
 	}

@@ -3,6 +3,7 @@ package View;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import GUIFunctions.GUIFunction;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 

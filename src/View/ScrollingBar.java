@@ -1,6 +1,7 @@
 package View;
 
 
+import GUIFunctions.GUIFunction;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 
