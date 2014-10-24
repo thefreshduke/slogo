@@ -20,4 +20,10 @@ public class SetPenUp implements GUIFunction{
 		}
 		
 	}
+
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
+		
+	}
 }

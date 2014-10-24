@@ -12,5 +12,10 @@ public class ClearFunction implements GUIFunction{
 	public void doAction() {
 		myGrid.getChildren().clear();
 	}
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

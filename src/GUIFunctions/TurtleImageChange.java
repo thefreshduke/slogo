@@ -45,5 +45,10 @@ public class TurtleImageChange implements GUIFunction {
 			}
 				else
 					JOptionPane.showMessageDialog(null, "Please select another file");
+	}
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
+		
 	}	
 }

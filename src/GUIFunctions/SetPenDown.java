@@ -16,5 +16,10 @@ public class SetPenDown implements GUIFunction{
 			myP.setPenDown(true);
 		}
 	}
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

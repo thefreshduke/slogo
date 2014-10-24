@@ -13,8 +13,14 @@ public class PenStyle implements GUIFunction{
 	@Override
 	public void doAction() {
 		for (Pen activePen: myGrid.getActivePens()){
-			activePen.changeThickness(activePen);
+			//activePen.changeThickness(myThickness);
 		}
+		
+	}
+
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
 		
 	}
 	

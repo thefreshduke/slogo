@@ -50,11 +50,7 @@ public class SingleGrid extends Grid {
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
 		setBackgroundColor(backgroundColor);
-
-
 	}
-
-	
 	public Collection<Turtle> getAllTurtles(){
 		return allTurtles;
 	}
@@ -65,19 +61,17 @@ public class SingleGrid extends Grid {
 		allTurtles.add(t);
 		activeTurtles.add(t);
 		getChildren().add(t);
-
 	}
-
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		this.getChildren().remove(myImageView);
 		setStyle("-fx-background-color: "+backgroundColor);
-
 	}
 	public void moveTurtle(Turtle t){
 		t.relocate(t.getXPos(), t.getYPos());
 		t.rotate(t.getOrientation());
 	}
+	
 	/**
 	 * Takes in the coordinates (x,y) from the controller and pops the last coordinate from the stack to call move(int x, int y)
 	 * @param x		x location on the Grid
@@ -97,7 +91,6 @@ public class SingleGrid extends Grid {
 			getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
 		}	
 	}
-	
 	public Collection<Turtle> getActiveTurtles(){
 		return activeTurtles;
 	}

@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.Dimension;
+import java.awt.List;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,6 +15,7 @@ import javax.swing.JOptionPane;
 
 import GUIFunctions.AddTurtle;
 import GUIFunctions.ClearFunction;
+import GUIFunctions.PenThickness;
 import GUIFunctions.SetBackgroundImage;
 import GUIFunctions.SetPenDown;
 import GUIFunctions.SetPenUp;
@@ -32,6 +34,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -167,8 +170,8 @@ public class SlogoView {
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
 		MenuTemplate fileMenu = new MenuTemplate("File");
 		MenuTemplate languages = new MenuTemplate("Languages");
-		MenuTemplate help = new MenuTemplate("Help");
 		MenuTemplate personalize=new MenuTemplate("Personalize");
+		MenuTemplate help = new MenuTemplate("Help");
 		userCommands = new MenuTemplate("User Commands");
 		//this.makeLanguageMenuItems(languages);
 		this.createMenuItemsUnderHelp(help);
@@ -178,19 +181,21 @@ public class SlogoView {
 	}
 
 	public void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
-		ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
+	/*	ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
 		for (String s: myMap.keySet()){
 			pMenu.addMenuItem(personalizeItems.getString(s), event->myMap.get(s).doAction());
 		}
+		*/
 	}
+	
 	
 	public HashMap<String, GUIFunction> makePersonalizeMap(){
 		HashMap<String, GUIFunction> myMap=new HashMap<String, GUIFunction>();
 		myMap.put("uploadBackgroundImage", new SetBackgroundImage(myGrid, myStage));
 		myMap.put("toggleReferenceGrid", new ToggleGridLines(myGrid, 50));
 		myMap.put("uploadTurtleImage", new TurtleImageChange(myGrid, myStage));
-		myMap.put("addTurtle", new AddTurtle(myGrid));
-		//myMap.put("addGrid", new addGrid());
+		myMap.put("addTurtle", new AddTurtle(myGrid, this));
+	//	myMap.put("addGrid", addGrid());
 		return myMap;
 	}
 		
@@ -202,13 +207,13 @@ public class SlogoView {
 		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
 	public void addTurtle(){
-		//tell
-		//getNewTurtle
+	//	myController.addTurtle()
 		
 	}
 	public void addGrid(){
 		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40));
 		myGridTabs.addTab("Grid 2", anotherGrid);
+		//myController.addGrid(anotherGrid, true);
 	}
 
 	public void createMenuItemsUnderHelp(MenuTemplate help){	
@@ -297,7 +302,8 @@ public class SlogoView {
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-		myButtonPanel.getChildren().addAll(makeBottomButtons(this.makeBottomButtonMap()));
+		myButtonPanel.getChildren().addAll(this.makeBottomButtons(this.makeBottomButtonMap()));
+		myButtonPanel.getChildren().addAll(this.makeScrollingBars());
 
 		return myButtonPanel;
 	}
@@ -365,6 +371,11 @@ public class SlogoView {
 		return myButtonMap;
 
 	}
+	private ArrayList makeScrollingBars(){
+		ArrayList<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
+		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 100, 100, new PenThickness(myGrid));
+		return myListOfBars;
+	}
 	
 	
 
@@ -382,7 +393,6 @@ public class SlogoView {
 	public void makeMenuItemMap(){
 	}
 	
-
 	public Grid getGrid() {
 		return myGrid;
 	}

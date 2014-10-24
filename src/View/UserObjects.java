@@ -11,5 +11,5 @@ public interface UserObjects {
 	 * @param handler		ActionEvent for the object to react to
 	 */
 	void addEvent(EventHandler<ActionEvent> handler);
-
+	
 }

@@ -29,4 +29,10 @@ public class Undo implements GUIFunction{
 		//this.getChildren().remove();
 	}
 
+	@Override
+	public void doAction(Number newVal) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

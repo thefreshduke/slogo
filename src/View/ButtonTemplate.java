@@ -31,11 +31,9 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.setPrefSize(width, height);
 		setStyle(textSize);
 	}
-
 	@Override
 	public void addEvent(EventHandler<ActionEvent> handler) {
 		this.setOnAction(handler);
-		
 	}
 	public void setStyle(int text){
 		setTextFill(Paint.valueOf("WHITE"));
