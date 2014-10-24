@@ -62,7 +62,7 @@ public class VariableCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(processInput(":" + variable1), true);
 		try{
 			container.addVariable(variable1, value);
-			Double result = command.execute(null,  null, container);
+			Double result = command.execute();
 			assertEquals(result, new Double(70));
 		}
 		catch (Exception ex){

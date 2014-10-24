@@ -30,15 +30,14 @@ public abstract class TurtleCommand extends BaseCommand {
 	}
 
 	@Override
-	public final double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = view;
-		myTurtle = turtle;
-		myVariableContainer = variableContainer;
+	public final double execute() throws BackendException {
 		BaseCommand nextCommand = getNextCommand();
-		double result = execute(view, turtle);
-		result = nextCommand != null ? executeCommand(nextCommand) : result;
+		double result = onExecute();
+		result = nextCommand != null ? nextCommand.execute() : result;
 		return result;
 	}
+	
+	protected abstract double onExecute() throws BackendException;
 
     @Override
 	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
@@ -74,12 +73,6 @@ public abstract class TurtleCommand extends BaseCommand {
     protected BaseGridContainer getGridContainer(){
     	return myGridContainer;
     }
-    
-	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
-
-	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute(myView, myTurtle, myVariableContainer);
-	}
 
 	protected void parseArguments(String userInput) {
 		int argumentCount = getArgumentCount();

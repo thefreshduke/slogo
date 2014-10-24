@@ -2,14 +2,12 @@ package commands.turtleCommands;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javafx.scene.image.Image;
-
 import org.junit.Test;
-
 import turtle.Position;
 import turtle.Turtle;
 import View.SlogoView;
+import org.junit.Test;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
@@ -25,7 +23,7 @@ public class TurtleCommandsTest {
 		String input = "FD constant 50";
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try{
-			Double result = command.execute(new SlogoView(), new Turtle(new Position(0, 0), new Image("bowser.png")), null);
+			Double result = command.execute();
 			assertEquals(result, new Double(50));
 		}
 		catch(BackendException ex){

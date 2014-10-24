@@ -1,10 +1,8 @@
 package commands.viewQueries;
 
 import turtle.Turtle;
-import View.SlogoView;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
-import commands.information.IVariableContainer;
 
 public class ShowingQuery extends ViewCommand {
 
@@ -19,7 +17,7 @@ public class ShowingQuery extends ViewCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute() throws BackendException {
 //		return turtleIsShowing ? 1 : 0; //return 1 if turtle showing, 0 if not
 		System.out.println("Is turtle showing?");
 		return 0;

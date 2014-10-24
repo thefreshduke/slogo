@@ -18,9 +18,10 @@ public class DoCommand extends ControlCommand {
     }
 
     @Override
-    public double execute (IVariableContainer variableContainer) throws BackendException {
+    public double execute () throws BackendException {
+    	IVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
-        double expressionResult = executeCommand(myLimitCommand, variableContainer);
+        double expressionResult = myLimitCommand.execute();
 
         if (expressionResult < 1) {
             returnValue = 0;
@@ -30,11 +31,11 @@ public class DoCommand extends ControlCommand {
             
             for (int i = 1; i <= repetitionCount; i++) {
                 variableContainer.addVariable(myVariableName, i);
-                returnValue = executeCommand(myInternalCommand, variableContainer);
+                returnValue = myInternalCommand.execute();
             }
         }
         if (getNextCommand() != null) {
-            returnValue = executeCommand(getNextCommand(), variableContainer);
+            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

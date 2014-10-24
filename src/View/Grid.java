@@ -1,11 +1,13 @@
 package View;
 
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import turtle.Turtle;
 import GUIFunctions.GUIFunction;
 import javafx.scene.layout.Pane;
 
@@ -43,6 +45,7 @@ public abstract class Grid extends Pane {
 	public abstract void updateGUI(String myFunction);
 	public abstract void updateGUI(String myFunction, Number myNumber);
 	public abstract void sendErrorMessage(String s);
+	public abstract void update(Collection<Turtle> activatedTurtles);
 		
 		
 }

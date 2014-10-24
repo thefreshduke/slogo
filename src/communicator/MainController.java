@@ -27,7 +27,6 @@ import javafx.animation.AnimationTimer;
 
 
 public class MainController extends BaseController {
-
 	private SlogoView myView;
 	private SlogoModel myModel;
 	private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
@@ -168,10 +167,9 @@ public class MainController extends BaseController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
 	}
 
-	/**
+    /**
 	 * Find turtle matching specified ID
 	 * @param ID of turtle 
 	 * @return turtle matching ID, else return null if no turtle match

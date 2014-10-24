@@ -16,6 +16,7 @@ public class Pen extends Line{
 	Stack<Line>myLines;
 	String myColor;
 	BorderStyle myStyle;
+	int thickness;
 	boolean penDown;
 	double startX;
 	double startY;
@@ -25,11 +26,12 @@ public class Pen extends Line{
 		myColor="BLACK";
 		myStyle=new SolidBorderStyle();
 		penDown=true;
+		thickness=100;
 
 	}
 
 	public void changeThickness(Number a){
-		this.setStyle("-fx-border-width: a");
+		this.setStyle("-fx-border-width: "+a);
 	}
 	public void changeLineStyle(Object[] myDashArray){
 		this.getStrokeDashArray().addAll((Double[])myDashArray);
