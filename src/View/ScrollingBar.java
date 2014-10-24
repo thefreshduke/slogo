@@ -33,6 +33,7 @@ public abstract class ScrollingBar extends ScrollBar implements UserObjects{
 		myLabel.setPrefSize(myHeight/2, myWidth/2);
 	}
 	
+	
 	 
 	
 	

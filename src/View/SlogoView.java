@@ -72,7 +72,7 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public SlogoView(){
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
-		myGrid=new SingleGrid(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5));
+		myGrid=new SingleGrid(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5), makeUserObjectMap());
 		myController=new MainController(this);
 		myModel=new SlogoViewModel(myController);
 	}	
@@ -163,11 +163,11 @@ public class SlogoView {
 	}
 
 	public void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
-	/*	ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
+		ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
 		for (String s: myMap.keySet()){
 			pMenu.addMenuItem(personalizeItems.getString(s), event->myMap.get(s).doAction());
 		}
-		*/
+		
 	}
 	
 	
@@ -377,6 +377,14 @@ public class SlogoView {
 	
 	public Grid getGrid() {
 		return myGrid;
+	}
+	private HashMap makeUserObjectMap(){
+		HashMap<String, GUIFunction> myUserObjectMap=new HashMap<String, GUIFunction>();
+		myUserObjectMap.put("penDown", new SetPenDown(myGrid));
+		myUserObjectMap.put("undo", new Undo(myGrid));
+		myUserObjectMap.put("clear", new ClearFunction(myGrid));
+		myUserObjectMap.put("penUp", new SetPenUp(myGrid));
+		return myUserObjectMap;
 	}
 	
 }

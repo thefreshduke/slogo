@@ -8,31 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Stack;
-
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-
 import GUIFunctions.GUIFunction;
 import turtle.Turtle;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Line;
-
 
 public class SingleGrid extends Grid {
 	private String backgroundColor = "WHITE";
@@ -44,7 +25,7 @@ public class SingleGrid extends Grid {
 	private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
 
 
-	public SingleGrid(int height, int width, KeyFrame frame){
+	public SingleGrid(int height, int width, KeyFrame frame, HashMap myMap){
 		this.setPrefSize(width,height);
 		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
 		myHeight=height;
@@ -53,6 +34,7 @@ public class SingleGrid extends Grid {
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
 		setBackgroundColor(backgroundColor);
+		myGridFunctions=myMap;
 	}
 	public Collection<Turtle> getAllTurtles(){
 		return allTurtles;
