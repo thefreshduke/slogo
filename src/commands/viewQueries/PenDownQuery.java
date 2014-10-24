@@ -3,30 +3,23 @@ package commands.viewQueries;
 import turtle.Turtle;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
+import commands.ViewQuery;
+import commands.information.BaseGridContainer;
 
-public class PenDownQuery extends ViewCommand {
+public class PenDownQuery extends ViewQuery {
+	private static final String IS_PEN_DOWN = "";
 
-	public PenDownQuery(String command, boolean isExpression) throws BackendException {
+	public PenDownQuery(String command, boolean isExpression)
+			throws BackendException {
 		super(command, isExpression);
 	}
 
 	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public double execute() throws BackendException {
-//		return penIsDown ? 1 : 0; //return 1 if pen is down, 0 if not --- check SlogoView.java in View package
-		// make pen part of the turtle object for easy access? or change penIsDown boolean in SlogoView to public?
-		System.out.println("Is pen down?");
+	protected double onExecute() throws BackendException {
+		BaseGridContainer grid = getGridContainer();
+		grid.updateDisplayOptions(IS_PEN_DOWN);
+		//TODO get value from gridContainer and output
 		return 0;
 	}
 
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
 }

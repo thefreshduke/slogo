@@ -1,5 +1,8 @@
 package commands.turtleCommands;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
@@ -11,22 +14,19 @@ public class TowardsCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double currentXPos = turtle.getXPos();
-		double currentYPos = turtle.getYPos();
-		double newXPos = executeCommand(getExpressionList()[0]);
-		double newYPos = executeCommand(getExpressionList()[1]);
-		double angleRadians = Math.atan(((currentYPos-newYPos)/ (currentXPos - newXPos)));
-		double angleDegrees = Math.toDegrees(angleRadians);
-		System.out.println(angleDegrees);
-
-		//TODO: Figure out if angle computations work out correctly
-		turtle.setRotation(angleDegrees);
-		return angleDegrees;
+	protected int getArgumentCount() {
+		return 2;
 	}
 
 	@Override
-	protected int getArgumentCount() {
-		return 2;
+	protected double onExecute() throws BackendException {
+		BaseGridContainer grid = getGridContainer();
+		BaseTurtleContainer turtle = getTurtleContainer();
+		double newXPos = getExpressionList()[0].execute();
+		double newYPos = getExpressionList()[1].execute();
+		double degreesTurned = turtle.towardsPosition(newXPos, newYPos);
+		grid.update(turtle.getActiveTurtles());
+		
+		return degreesTurned;
 	}
 }

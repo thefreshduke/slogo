@@ -6,10 +6,6 @@ import turtle.Turtle;
 import View.Grid;
 
 public abstract class BaseGridContainer implements IInformationContainer{
-
-    public BaseGridContainer(Collection<Grid> initialGrids){
-    	
-    }
     
     public abstract void updateDisplayOptions(String guiCommand);
     
@@ -23,5 +19,5 @@ public abstract class BaseGridContainer implements IInformationContainer{
     
     public abstract Collection<Grid> getActiveGrids();
 
-	public abstract void update(Collection<Turtle> collection);
+    public abstract void update(Collection<Turtle> collection);
 }

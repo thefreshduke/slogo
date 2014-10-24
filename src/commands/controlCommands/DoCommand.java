@@ -4,7 +4,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 
 
 public class DoCommand extends ControlCommand {
@@ -18,8 +18,8 @@ public class DoCommand extends ControlCommand {
     }
 
     @Override
-    public double execute () throws BackendException {
-    	IVariableContainer variableContainer = getVariableContainer();
+    protected double onExecute () throws BackendException {
+    	BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         double expressionResult = myLimitCommand.execute();
 
@@ -33,9 +33,6 @@ public class DoCommand extends ControlCommand {
                 variableContainer.addVariable(myVariableName, i);
                 returnValue = myInternalCommand.execute();
             }
-        }
-        if (getNextCommand() != null) {
-            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

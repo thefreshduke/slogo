@@ -9,7 +9,7 @@ import java.util.Stack;
 import commands.information.BaseTurtleContainer;
 import commands.information.BaseVariableContainer;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
@@ -23,7 +23,7 @@ public abstract class ControlCommand extends ModelCommand {
     protected static String VARIABLE_INDICATOR = "variable";
     private SlogoView myView;
     private Turtle myTurtle;
-    private IVariableContainer myVariableContainer;
+    private BaseVariableContainer myVariableContainer;
     
     public ControlCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -42,15 +42,15 @@ public abstract class ControlCommand extends ModelCommand {
 		}
 		ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
 		IInformationContainer container = containerList.get(0);
-		boolean extendsVariableContainer = IVariableContainer.class.isAssignableFrom(container.getClass());
+		boolean extendsVariableContainer = BaseVariableContainer.class.isAssignableFrom(container.getClass());
 		if(!extendsVariableContainer) {
 			//throw exception
 		}
-		IVariableContainer variableContainer = (IVariableContainer)container;
+		BaseVariableContainer variableContainer = (BaseVariableContainer)container;
 		myVariableContainer = variableContainer;
 	}
 	
-	protected IVariableContainer getVariableContainer(){
+	protected BaseVariableContainer getVariableContainer(){
 		return myVariableContainer;
 	}
 

@@ -2,30 +2,23 @@ package commands.viewQueries;
 
 import turtle.Turtle;
 import backendExceptions.BackendException;
+import commands.TurtleQuery;
 import commands.ViewCommand;
+import commands.ViewQuery;
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.turtleCommands.TurtleCommand;
 
-public class HeadingQuery extends ViewCommand {
+public class HeadingQuery extends TurtleQuery {
 
 	public HeadingQuery(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
-
-	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public double execute() throws BackendException {
-//		turtle.setRotate(turtle.getRotate() + ???); // turtle heading isn't updating when i do rotate commands?
-		System.out.println("Heading: " + turtle.getRotate());
-		return turtle.getRotate();
-	}
-
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
 	
+	@Override
+	protected double onExecute() throws BackendException {
+		BaseTurtleContainer turtle = getTurtleContainer();
+		double currentHeading = turtle.getOrientation();
+		return currentHeading;
+	}
 }

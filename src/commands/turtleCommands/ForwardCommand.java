@@ -13,7 +13,7 @@ public class ForwardCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double onExecute() throws BackendException {
+    protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		BaseGridContainer grid = getGridContainer();
 		double movedDistance = getExpressionList()[0].execute();

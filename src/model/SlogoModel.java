@@ -4,7 +4,7 @@ import java.util.List;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import commands.information.MapBasedVariableContainer;
 import javafx.scene.image.Image;
 import turtle.Position;
@@ -13,7 +13,7 @@ import turtle.Turtle;
 public class SlogoModel {
 	private static final String INITIAL_TURTLE_SPRITE = "bowser.png";
 	private Turtle myTurtle;
-	private IVariableContainer myVariableContainer;
+	private BaseVariableContainer myVariableContainer;
 	private TurtleFactory myTurtleFactory;
 	public void initializeModel () {
 		myVariableContainer = new MapBasedVariableContainer();
@@ -32,10 +32,6 @@ public class SlogoModel {
 	}
 	public List<Turtle> getActiveTurtles() {
 		return myTurtleFactory.getActiveTurtles();
-	}
-
-	public IVariableContainer getMyVariableContainer() {
-		return myVariableContainer;
 	}
 
 	public BaseCommand createInitialCommand(String input) {

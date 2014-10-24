@@ -7,7 +7,7 @@ import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfCommand extends ControlCommand{
@@ -21,8 +21,8 @@ public class IfCommand extends ControlCommand{
     }
 
     @Override
-    public double execute() throws BackendException {
-    	IVariableContainer variableContainer = getVariableContainer();
+    protected double onExecute() throws BackendException {
+    	BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         double expressionResult = myExpression.execute();
         if(expressionResult != 0){
@@ -30,9 +30,6 @@ public class IfCommand extends ControlCommand{
         }
         else{
             returnValue = expressionResult;
-        }
-        if(getNextCommand() != null){
-            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

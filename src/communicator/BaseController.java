@@ -8,7 +8,7 @@ import java.util.List;
 
 import backendExceptions.BackendException;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import javafx.scene.image.Image;
 
 public abstract class BaseController {

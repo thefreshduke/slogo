@@ -20,7 +20,7 @@ import commands.expressionCommands.RemainderCommand;
 import commands.expressionCommands.SinCommand;
 import commands.expressionCommands.SumCommand;
 import commands.expressionCommands.TanCommand;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import commands.information.MapBasedVariableContainer;
 import static org.junit.Assert.assertEquals;
 
@@ -51,7 +51,7 @@ public class ViewCommandParseTest {
     @Test
     public void testThatVariableIsGet() {
     	setFactory();
-    	IVariableContainer container = new MapBasedVariableContainer();
+    	BaseVariableContainer container = new MapBasedVariableContainer();
         String variable1 = "variable1";
         String valueString = "SUM 10 60";
         BaseCommand value = CommandFactory.createCommand(valueString, true);

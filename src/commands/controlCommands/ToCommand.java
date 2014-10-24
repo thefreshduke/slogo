@@ -7,7 +7,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import commands.variableCommands.CreatedCommand;
 
 
@@ -23,8 +23,8 @@ public class ToCommand extends ControlCommand {
     }
 
     @Override
-    public double execute () throws BackendException {
-    	IVariableContainer variableContainer = getVariableContainer();
+    protected double onExecute () throws BackendException {
+    	BaseVariableContainer variableContainer = getVariableContainer();
         variableContainer.addNewCommand(myCommandName, myInternalCommand, myVariables);
         return 0;
     }

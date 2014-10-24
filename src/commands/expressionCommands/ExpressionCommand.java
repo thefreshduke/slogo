@@ -18,10 +18,9 @@ public abstract class ExpressionCommand extends LogicCommand {
 	}
 
 	@Override
-	public final double execute() throws BackendException{
-		double result = expressionExecute();
-		BaseCommand nextCommand = getNextCommand();
-		return nextCommand == null ? result : executeCommand(nextCommand);
+	protected
+	final double onExecute() throws BackendException{
+	    return expressionExecute();
 	}
 
 	public abstract double expressionExecute() throws BackendException;

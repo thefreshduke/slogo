@@ -17,7 +17,7 @@ public class ShowingQuery extends ViewCommand {
 	}
 
 	@Override
-	public double execute() throws BackendException {
+    protected double onExecute() throws BackendException {
 //		return turtleIsShowing ? 1 : 0; //return 1 if turtle showing, 0 if not
 		System.out.println("Is turtle showing?");
 		return 0;
