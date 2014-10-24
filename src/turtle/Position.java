@@ -4,13 +4,19 @@ import java.util.List;
 
 /**
  * Position object that stores and manipulates basic location (x-, y- coordinates) and rotation
- * orientation (degrees).
+ * orientation (degrees).  Can be extended to incorporate a z-coordinate for a 3D rendering.
  */
 public class Position {
 	private double myXPos;
 	private double myYPos;
 	private double myRotate;
 
+	
+	/**
+	 * No argument constructor
+	 */
+	public Position() {};
+	
 	/**
 	 * Constructor that sets the initial x-, and y- coordinates
 	 * @param xPos -  initial x-coordinate
@@ -66,7 +72,6 @@ public class Position {
 		myRotate+=rotateIncrement;
 	}
 
-
 	/**
 	 * @return Current rotation angle
 	 */
@@ -87,28 +92,28 @@ public class Position {
 	public double getYPos() {
 		return myYPos;
 	}
-
+	
 	//ZZZ Change/implement!!!
 	@Override
 	public boolean equals(Object o) {
 		return false;
 	}
-
+	
 	/*@Override 
 	public int hashCode() {
 		return 0;
-
+		
 	}*/
-
+	
 	public void setXPos(double xPos) {
 		myXPos = xPos;
-
+		
 	}
-
+	
 	public void setYPos(double yPos) {
 		myYPos = yPos;
 	}
-
+	
 	public void setRotation (double rotateVal) {
 		myRotate = rotateVal;		
 	}

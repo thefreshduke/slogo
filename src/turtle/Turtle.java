@@ -1,18 +1,40 @@
 package turtle;
+import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+
 
 import commands.information.ITurtleBehavior;
 
+=======
+
+import java.util.Stack;
+
+import javax.swing.JOptionPane;
+
+import GUIFunctions.BorderStyle;
+import View.Pen;
+import View.TurtleMovement;
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.shape.Line;
 
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
  */
 public class Turtle extends ImageView implements ITurtleBehavior {
 	private Position myPosition;
+	private Pen myPen;
+	private Stack<Position> myPastPositions;
 	private int myID;
+<<<<<<< HEAD
 
+=======
+	private int velocity;
+	
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -20,11 +42,9 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public Turtle(Position position, Image image) {
 		super(image);		
 		myPosition = position;
-	}
-	
-	public Turtle(Position position, Image image, int ID) {
-		this(position, image);
-		myID = ID;
+		myPen=new Pen();
+		myPastPositions=new Stack<Position>();
+		velocity=5;
 	}
 
 	/**
@@ -47,7 +67,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public void move(double xPos, double yPos) {
 		moveHorizontal(xPos);
 		moveVertical(yPos);
-	}
+		myPastPositions.push(new Position(myPosition.getXPos(), myPosition.getYPos(), myPosition.getRotate()));	}
 
 	/**
 	 * Move amount specified at current heading
@@ -55,6 +75,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	 */
 	public void move(double increment) {
 		myPosition.move(increment);
+		myPastPositions.push(new Position(myPosition.getXPos(), myPosition.getYPos(), myPosition.getRotate()));
 	}
 
 	/**
@@ -67,6 +88,30 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	}
 
 	/**
+<<<<<<< HEAD
+	 * @return List of x-coordinate positions
+	 */
+	public List<Double> getXPosList() {
+		return myPosition.getXPosList();
+	}
+
+	/**
+	 * @return List of y-coordinate positions
+	 */
+	public List<Double> getYPosList() {
+		return myPosition.getYPosList();
+	}
+
+	/**
+	 * @return List of angle orientations
+	 */
+	public List<Double> getRotateList() {
+		return myPosition.getRotateList();
+	}
+
+	/**
+=======
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 	 * @return Current angle orientation
 	 */
 	public double getOrientation() {
@@ -98,6 +143,38 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public void setRotation (double rotateVal) {
 		myPosition.setRotation(rotateVal);
 	}
+	
+	/*
+	 * Pen stuff
+	 */
+	public void setPenColor(String color){
+		myPen.setColor(color);
+	}
+	public void setPenBorderStyle(BorderStyle style){
+		myPen.setBorderStyle(style);
+	}
+	public void setPenWidth(Number thickness){
+		myPen.changeThickness(thickness);
+	}
+	public Line penUndo(){
+		return myPen.undo();
+	}
+	public Pen getPen(){
+		return myPen;
+	}
+	
+	//could return null
+	public Position undo(){
+		if (myPastPositions.size()<=1){
+			JOptionPane.showMessageDialog(null, "CANT UNDO");
+			return null;
+		}
+		else{
+			Position delete=myPastPositions.pop();
+			myPosition=myPastPositions.peek();
+			return delete;
+		}
+	}
 
 	public void setID (int ID) {
 		myID = ID;
@@ -106,9 +183,15 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public int getID() {
 		return myID;
 	}
-	
-	@Override
-	public int hashCode() {
-		return 0;
+	public void move (KeyCode e){
+		Direction myDirection=new Direction(e);
+		Position myTempPosition=myDirection.move(myPosition, velocity);
+		if (myTempPosition!=null){
+			myPosition=myTempPosition;
+			myPastPositions.add(myPosition);
+		}
+			
 	}
+	
+	
 }
