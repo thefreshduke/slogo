@@ -10,9 +10,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
-
 import javax.swing.JOptionPane;
-
 import GUIFunctions.AddTurtle;
 import GUIFunctions.ClearFunction;
 import GUIFunctions.GUIFunction;
@@ -50,7 +48,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
 public class SlogoView {
 	private SingleGrid myGrid;
 	private MainController myController;
@@ -79,8 +76,6 @@ public class SlogoView {
 		myController=new MainController(this);
 		myModel=new SlogoViewModel(myController);
 	}	
-
-
 	/**
 	 * 
 	 * @return A KeyFrame for the TimeLine of the program
@@ -95,13 +90,10 @@ public class SlogoView {
 		};
 		return new KeyFrame(speed, loop);
 	}
-
 	/**
 	 * Creates a layout of the GUI and adds the objects to the Stage
 	 * @param mainStage   the Stage for the GUI to operate on 
 	 */
-
-
 	public void initialize(Stage mainStage){
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -116,12 +108,7 @@ public class SlogoView {
 		myStage.setScene(myScene);
 		myGrid.addTurtle(myController.getFirstTurtle());
 		myGridTabs.addTab("GRID 1", myGrid);
-		
-
 	}
-
-
-
 	/**
 	 * Displays the error message "message" on the screen
 	 * 
@@ -129,12 +116,6 @@ public class SlogoView {
 	private void showError(String message){
 		JOptionPane.showMessageDialog(null, message);
 	}
-
-
-
-
-
-
 	/**
 	 *Passes the commands from the textbox on the GUI to the controller for parsing.  
 	 * @param s		String representing the command to send that was inputed by the user
@@ -380,9 +361,6 @@ public class SlogoView {
 		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 100, 100, new PenThickness(myGrid));
 		return myListOfBars;
 	}
-	
-	
-
 	
 	public ArrayList<MenuItemTemplate> makeLanguageMenuItems(){
 		ArrayList<MenuItemTemplate> items = new ArrayList<>();

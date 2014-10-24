@@ -6,14 +6,16 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Stack;
 
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
+import GUIFunctions.GUIFunction;
 import turtle.Turtle;
-import communicator.BaseController;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.embed.swing.SwingFXUtils;
@@ -39,9 +41,10 @@ public class SingleGrid extends Grid {
 	private ImageView myImageView;
 	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
 	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
+	private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
 
 
-	public SingleGrid(int height, int width, KeyFrame frame){//Turtle turtle){
+	public SingleGrid(int height, int width, KeyFrame frame){
 		this.setPrefSize(width,height);
 		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
 		myHeight=height;
@@ -107,7 +110,15 @@ public class SingleGrid extends Grid {
 		}
 		return pens;
 	}
-	
+	public void updateGUI(String myFunction){
+		myGridFunctions.get(myFunction).doAction();
+	}
+	public void updateGUI(String myFunction, Number myNumber){
+		myGridFunctions.get(myFunction).doAction(myNumber);
+	}
+	public void sendErrorMessage(String s){
+		JOptionPane.showMessageDialog(null, s);
+	}
 		
 		
 	

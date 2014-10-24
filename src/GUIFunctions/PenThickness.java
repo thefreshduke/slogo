@@ -14,7 +14,7 @@ public class PenThickness extends GridFunction{
 		}
 	}
 	public void setMyThickness(Number thickness){
-		myThickness=thickness;
+		myThickness=thickness.intValue();
 	}
 	@Override
 	public void doAction(Number newVal) {
