@@ -6,9 +6,6 @@ import java.util.Set;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
-import View.SlogoView;
-import turtle.Turtle;
 
 /**
  * 
@@ -37,11 +34,10 @@ public abstract class BaseCommand {
 
 	/**
 	 * Method returns the computation of the turtle command
-	 * @param variableContainer TODO
 	 * @throws BackendException TODO
 	 * 
 	 */
-	public abstract double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException;
+	public abstract double execute() throws BackendException;
 
 	public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes();
 		

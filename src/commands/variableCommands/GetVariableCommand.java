@@ -15,10 +15,10 @@ public class GetVariableCommand extends VariableCommand {
 	}
 
 	@Override
-	protected double execute(IVariableContainer variableContainer)
-			throws BackendException {
+	protected double onExecute() throws BackendException {
+		IVariableContainer variableContainer = getVariableContainer();
 		BaseCommand command = variableContainer.getValue(myVariable);
-		return executeCommand(command, variableContainer);
+		return command.execute();
 	}
 
 	@Override

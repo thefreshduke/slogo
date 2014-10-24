@@ -5,7 +5,6 @@ import java.util.Stack;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class IfElseCommand extends ControlCommand {
@@ -20,16 +19,16 @@ public class IfElseCommand extends ControlCommand {
     }
 
     @Override
-    public double execute(IVariableContainer variableContainer) throws BackendException {
+    public double execute() throws BackendException {
         double returnValue;
-        if(executeCommand(myExpression, variableContainer) != 0){
-            returnValue = executeCommand(myIfCommand, variableContainer);
+        if(myExpression.execute() != 0){
+            returnValue = myIfCommand.execute();
         }
         else{
-            returnValue = executeCommand(myElseCommand, variableContainer);
+            returnValue = myElseCommand.execute();
         }
         if(getNextCommand() != null){
-            returnValue = executeCommand(getNextCommand(), variableContainer);
+            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

@@ -1,5 +1,7 @@
 package commands.turtleCommands;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
@@ -10,10 +12,13 @@ public class ForwardCommand extends TurtleCommand {
 		super(userInput, isExpression);
 	}
 
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double movedDistance = executeCommand(getExpressionList()[0]);
-		turtle.move(movedDistance);
-		view.update(turtle.getXPos(), turtle.getYPos());
+	@Override
+	public double onExecute() throws BackendException {
+		BaseTurtleContainer turtle = getTurtleContainer();
+		BaseGridContainer grid = getGridContainer();
+		double movedDistance = getExpressionList()[0].execute();
+		turtle.moveTowardsHeading(movedDistance);
+		grid.update(turtle.getActiveTurtles());
 		return movedDistance;
 	}
 

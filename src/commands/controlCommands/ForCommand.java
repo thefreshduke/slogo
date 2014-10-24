@@ -17,20 +17,20 @@ public class ForCommand extends ControlCommand {
 	}
 
 	@Override
-	public double execute(IVariableContainer variableContainer) throws BackendException {
+	public double execute() throws BackendException {
+		IVariableContainer variableContainer = getVariableContainer();
 		double returnValue = 0;
-		int startValue = (int) executeCommand(myStartCommand, variableContainer);
-		int stopValue = (int) executeCommand(myEndCommand, variableContainer);
-		int incrementValue = (int) executeCommand(myIncrementCommand, variableContainer);
-
+		int startValue = (int) myStartCommand.execute();
+		int stopValue = (int) myEndCommand.execute();
+		int incrementValue = (int) myIncrementCommand.execute();
 
 		for(int i = startValue; i < stopValue; i+=incrementValue){
 			variableContainer.addVariable(myVariableName, i);
-			returnValue = executeCommand(myInternalCommand, variableContainer);
+			returnValue = myInternalCommand.execute();
 		}
 
 		if(getNextCommand() != null){
-			returnValue = executeCommand(getNextCommand(), variableContainer);
+			returnValue = getNextCommand().execute();
 		}
 		return returnValue;
 	}

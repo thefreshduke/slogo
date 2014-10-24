@@ -25,16 +25,15 @@ public abstract class VariableCommand extends BaseCommand{
     }
 
     @Override
-    public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException{
-        myView = view;
-        myTurtle = turtle;
-        myVariableContainer = variableContainer;
-        double result = execute(variableContainer);
+    public double execute() throws BackendException{
+        double result = onExecute();
         if(getNextCommand() != null){
-            return getNextCommand().execute(view, turtle, variableContainer);
+            return getNextCommand().execute();
         }
         return result;
     }
+    
+    protected abstract double onExecute() throws BackendException;
     
     @Override
 	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
@@ -56,14 +55,8 @@ public abstract class VariableCommand extends BaseCommand{
 		IVariableContainer variableContainer = (IVariableContainer)container;
 		myVariableContainer = variableContainer;
 	}
-	
-    protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
-        return command.execute(myView, myTurtle, myVariableContainer);
-    }
     
     protected IVariableContainer getVariableContainer(){
         return myVariableContainer;
     }
-    
-    protected abstract double execute(IVariableContainer variableContainer) throws BackendException;
 }

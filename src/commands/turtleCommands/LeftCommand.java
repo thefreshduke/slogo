@@ -1,5 +1,7 @@
 package commands.turtleCommands;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
 import turtle.Turtle;
 import View.SlogoView;
@@ -10,10 +12,13 @@ public class LeftCommand extends TurtleCommand {
 		super(userInput, isExpression);
 	}
 
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double rotateLeft = executeCommand(getExpressionList()[0]);
+	@Override
+	public double onExecute() throws BackendException {
+		BaseTurtleContainer turtle = getTurtleContainer();
+		BaseGridContainer grid = getGridContainer();
+		double rotateLeft = getExpressionList()[0].execute();
 		turtle.rotate(rotateLeft*-1);
-		view.update(turtle.getXPos(), turtle.getYPos());
+		grid.update(turtle.getActiveTurtles());;
 		return rotateLeft;
 	}
 

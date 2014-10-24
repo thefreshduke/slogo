@@ -7,9 +7,11 @@ import org.junit.Test;
 import turtle.Position;
 import turtle.Turtle;
 import View.SlogoView;
+import org.junit.Test;
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
+import commands.NumericalCommand;
 import static org.junit.Assert.assertEquals;
 
 // DOESN'T WORK AFTER REDESIGN
@@ -18,10 +20,10 @@ public class TurtleCommandsTest {
 	@Test 
 	public void testForward(){
 		setFactory();
-		String input = "FD 50";
+		String input = "FD constant 50";
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try{
-			Double result = command.execute(new SlogoView(), new Turtle(new Position(0, 0), new Image("bowser.png")), null);
+			Double result = command.execute();
 			assertEquals(result, new Double(50));
 		}
 		catch(BackendException ex){
@@ -35,6 +37,7 @@ public class TurtleCommandsTest {
 		commandToClassMap.put("RIGHT", RightCommand.class);
 		commandToClassMap.put("FD", ForwardCommand.class);
 		commandToClassMap.put("BK", BackCommand.class);
+		commandToClassMap.put("constant", NumericalCommand.class);
 
 		CommandFactory.setCommandToClassRelation(commandToClassMap);
 	}

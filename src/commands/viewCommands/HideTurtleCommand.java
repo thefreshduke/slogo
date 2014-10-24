@@ -1,10 +1,8 @@
 package commands.viewCommands;
 
 import turtle.Turtle;
-import View.SlogoView;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
-import commands.information.IVariableContainer;
 
 public class HideTurtleCommand extends ViewCommand {
 
@@ -19,7 +17,7 @@ public class HideTurtleCommand extends ViewCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute() throws BackendException {
 		System.out.println("Hide Turtle");
 		return 0;
 	}

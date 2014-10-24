@@ -24,7 +24,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(19.0));
 		}
 		catch(BackendException ex) {
@@ -38,7 +38,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(6.8 - (7 + 8)));
 		}
 		catch(BackendException ex) {
@@ -54,7 +54,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(first * second));
 		}
 		catch(BackendException ex) {
@@ -69,7 +69,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(first/second));
 		}
 		catch(BackendException ex) {
@@ -84,7 +84,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(first % second));
 		}
 		catch(BackendException ex) {
@@ -102,7 +102,7 @@ public class ExpressionCommandParseTest {
 			BaseCommand command = CommandFactory.createCommand(input, false);
 			double result = 100;
 			try {
-				result = command.execute(null, null, null);
+				result = command.execute();
 			}
 			catch (BackendException e) {
 			}
@@ -119,7 +119,7 @@ public class ExpressionCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		Double result = null;
 		try {
-			result = command.execute(null, null, null);
+			result = command.execute();
 		}
 		catch (BackendException ex) {
 
@@ -135,7 +135,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(Math.pow(first, second)));
 		}
 		catch(BackendException ex) {
@@ -151,7 +151,7 @@ public class ExpressionCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		Double result = null;
 		try {
-			result = command.execute(null, null, null);
+			result = command.execute();
 		}
 		catch (BackendException ex) {
 
@@ -167,7 +167,7 @@ public class ExpressionCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		Double result = null;
 		try {
-			result = command.execute(null, null, null);
+			result = command.execute();
 		}
 		catch (BackendException ex) {
 
@@ -183,7 +183,7 @@ public class ExpressionCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		Double result = null;
 		try {
-			result = command.execute(null, null, null);
+			result = command.execute();
 		}
 		catch (BackendException ex) {
 
@@ -199,7 +199,7 @@ public class ExpressionCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		Double result = null;
 		try {
-			result = command.execute(null, null, null);
+			result = command.execute();
 		}
 		catch (BackendException ex) {
 
@@ -215,7 +215,7 @@ public class ExpressionCommandParseTest {
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		Double result = null;
 		try {
-			result = command.execute(null, null, null);
+			result = command.execute();
 		}
 		catch (BackendException ex) {
 
@@ -229,7 +229,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(1.0));
 		}
 		catch(BackendException ex) {
@@ -243,7 +243,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(1.0));
 		}
 		catch(BackendException ex) {
@@ -257,7 +257,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(1.0));
 		}
 		catch(BackendException ex) {
@@ -271,7 +271,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(1.0));
 		}
 		catch(BackendException ex) {
@@ -285,7 +285,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(1.0));
 		}
 		catch(BackendException ex) {
@@ -299,7 +299,7 @@ public class ExpressionCommandParseTest {
 		input = processInput(input);
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(1.0));
 		}
 		catch(BackendException ex) {
@@ -314,7 +314,7 @@ public class ExpressionCommandParseTest {
 
 		BaseCommand command = CommandFactory.createCommand(input, false);
 		try {
-			Double result = command.execute(null, null, null);
+			Double result = command.execute();
 			assertEquals(result, new Double(10.0));
 		}
 		catch(BackendException ex) {

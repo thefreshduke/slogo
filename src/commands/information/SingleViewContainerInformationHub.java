@@ -26,7 +26,7 @@ public class SingleViewContainerInformationHub extends BaseCommandInformationHub
             	throw new BackendException(null, "There can only be one active grid");
             }
             Grid activeGrid = grids.get(0);
-            Integer activeGridID = -1000;//activeGrid.getID();
+            Integer activeGridID = activeGrid.getID();
             return myGridToTurtlesMap.get(activeGridID);
     	}
     	if(BaseGridContainer.class.isAssignableFrom(containerType)){

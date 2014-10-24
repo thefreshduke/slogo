@@ -1,10 +1,8 @@
 package commands.viewCommands;
 
 import turtle.Turtle;
-import View.SlogoView;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
-import commands.information.IVariableContainer;
 
 public class HomeCommand extends ViewCommand {
 
@@ -19,7 +17,7 @@ public class HomeCommand extends ViewCommand {
 	}
 
 	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+	public double execute() throws BackendException {
 		double initialXPos = turtle.getXPos();
 		double initialYPos = turtle.getYPos();
 		turtle.setXPos(0); //need width/2 from front end

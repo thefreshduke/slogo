@@ -6,6 +6,9 @@ import View.SlogoView;
 import java.io.File;
 import java.util.List;
 
+import backendExceptions.BackendException;
+import commands.information.IInformationContainer;
+import commands.information.IVariableContainer;
 import javafx.scene.image.Image;
 
 public abstract class BaseController {
@@ -78,6 +81,10 @@ public abstract class BaseController {
 	public abstract void addGrid(Grid grid, boolean isActive);
 
 	public abstract List<Turtle> getActiveTurtles();
+	
+	public abstract IInformationContainer loadPreferences(IInformationContainer container, File file) throws BackendException;
+	
+	public abstract void savePreferences(IInformationContainer container, String filename) throws BackendException;
 
 	//public abstract void setTurtleImage(Image image);
 
