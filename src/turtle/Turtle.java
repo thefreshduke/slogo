@@ -165,6 +165,25 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		}
 			
 	}
+
+	@Override
+	public double setHeading(double absHeading) {
+		double rotationDegrees = Math.abs(myPosition.getRotate() - absHeading);
+		myPosition.setRotation(rotationDegrees);
+		return rotationDegrees;
+	}
+
+	@Override
+	public double towards(double x, double y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double setXY(double x, double y) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 	
 }
