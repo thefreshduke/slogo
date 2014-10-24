@@ -40,4 +40,9 @@ public abstract class Grid extends Pane {
 		}
 		
 	}
+	public abstract void updateGUI(String myFunction);
+	public abstract void updateGUI(String myFunction, Number myNumber);
+	public abstract void sendErrorMessage(String s);
+		
+		
 }

@@ -163,10 +163,12 @@ public class SlogoView {
 	}
 
 	public void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
+		/*
 		ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
 		for (String s: myMap.keySet()){
 			pMenu.addMenuItem(personalizeItems.getString(s), event->myMap.get(s).doAction());
 		}
+		*/
 		
 	}
 	
@@ -196,7 +198,7 @@ public class SlogoView {
 		
 	}
 	public void addGrid(){
-		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40));
+		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40), this.makeUserObjectMap());
 		myGridTabs.addTab("Grid 2", anotherGrid);
 		//myController.addGrid(anotherGrid, true);
 	}
@@ -288,8 +290,9 @@ public class SlogoView {
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myButtonPanel.getChildren().addAll(this.makeBottomButtons(this.makeBottomButtonMap()));
-		myButtonPanel.getChildren().addAll(this.makeScrollingBars());
-
+		Group myPenBar=new PenScrollingBar("Pen Thickness",200,20, new PenThickness(myGrid));
+	    myButtonPanel.getChildren().addAll(myPenBar.getChildren());
+		//myButtonPanel.getChildren().addAll(this.makeScrollingBars());
 		return myButtonPanel;
 	}
 	public void home(){
@@ -358,7 +361,8 @@ public class SlogoView {
 	}
 	private ArrayList makeScrollingBars(){
 		ArrayList<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
-		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 100, 100, new PenThickness(myGrid));
+		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 0, 0, new PenThickness(myGrid));
+		
 		return myListOfBars;
 	}
 	
