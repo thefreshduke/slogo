@@ -1,10 +1,14 @@
 package commandParser;
 
+import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
+import commands.information.BaseCommandInformationHub;
+import commands.information.IInformationContainer;
 import commands.variableCommands.GetVariableCommand;
 import commands.variableCommands.SetVariableCommand;
 
@@ -17,30 +21,15 @@ public class CommandFactory {
     // only once. This populates the myCommandToClassMap object.
 
     public static BaseCommand createCommand (String input, boolean isExpression) {
-    	String trimmedInput = input.trim();
-    	if(input == null || input.equals("")){
-    		return null;
-    	}
-    	if(input.length() > 0 && input.charAt(0) == ':'){
-    		try {
-				return new GetVariableCommand(trimmedInput, isExpression);
-			} catch (BackendException e) {
-				return null;
-				//TODO: 
-			}
-    	}
-        String firstCommand = identifyFirstCommand(input);
-        String subInput = input.replaceFirst(firstCommand, "").trim();
-        if(checkIfNumerical(firstCommand)){
-            double integerValue = Double.parseDouble(firstCommand);
-            try{
-                return new NumericalCommand(subInput, integerValue);
-            }
-            catch (BackendException ex){
-            	return null;
-               //TODO:  
-            }
+        if(input == null || input.equals("")){
+            return null;
         }
+    	String trimmedInput = input.trim();
+    	if(trimmedInput.equals("")){
+    	    return null;
+    	}
+        String firstCommand = identifyFirstCommand(trimmedInput);
+        String subInput = input.replaceFirst(firstCommand, "").trim();
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
         if (commandClass == null) {
             // TODO: throw something
@@ -48,6 +37,10 @@ public class CommandFactory {
         BaseCommand command = null;
         try {
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
+//            Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
+//            BaseCommandInformationHub hub; 
+//            Collection<IInformationContainer> containers = hub.getContainers(containerTypes);
+//            command.setRequiredInfo(containers);
         }
         catch (Exception ex) {
         	ex.printStackTrace();

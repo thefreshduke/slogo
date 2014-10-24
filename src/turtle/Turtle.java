@@ -1,6 +1,11 @@
 package turtle;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
+
+import commands.information.ITurtleBehavior;
+
+=======
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
@@ -8,6 +13,7 @@ import javax.swing.JOptionPane;
 import View.BorderStyle;
 import View.Pen;
 import View.TurtleMovement;
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -15,15 +21,18 @@ import javafx.scene.shape.Line;
 
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
- *    
  */
-public class Turtle extends ImageView{
+public class Turtle extends ImageView implements ITurtleBehavior {
 	private Position myPosition;
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
 	private int myID;
+<<<<<<< HEAD
+
+=======
 	private int velocity;
 	
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -35,14 +44,13 @@ public class Turtle extends ImageView{
 		myPastPositions=new Stack<Position>();
 		velocity=5;
 	}
-	
+
 	/**
 	 * Moves horizontally
 	 * @param xIncrement - horizontal movement increment
 	 */
 	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
-
 	}
 
 	/**
@@ -53,6 +61,7 @@ public class Turtle extends ImageView{
 		myPosition.moveVertical(yIncrement);
 	}
 
+	@Override
 	public void move(double xPos, double yPos) {
 		moveHorizontal(xPos);
 		moveVertical(yPos);
@@ -71,42 +80,66 @@ public class Turtle extends ImageView{
 	 * Rotates by increment specified
 	 * @param rotateIncrement - degrees of rotation
 	 */
+	@Override
 	public void rotate(double rotateIncrement) {
 		myPosition.rotate(rotateIncrement);
 	}
 
 	/**
+<<<<<<< HEAD
+	 * @return List of x-coordinate positions
+	 */
+	public List<Double> getXPosList() {
+		return myPosition.getXPosList();
+	}
+
+	/**
+	 * @return List of y-coordinate positions
+	 */
+	public List<Double> getYPosList() {
+		return myPosition.getYPosList();
+	}
+
+	/**
+	 * @return List of angle orientations
+	 */
+	public List<Double> getRotateList() {
+		return myPosition.getRotateList();
+	}
+
+	/**
+=======
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 	 * @return Current angle orientation
 	 */
-	
 	public double getOrientation() {
 		return myPosition.getRotate();
 	}
+
 	/**
 	 * @return Current x-coordinate
 	 */
 	public double getXPos() {
 		return myPosition.getXPos();	
 	}
+
 	/**
 	 * @return Current y-coordinate
 	 */
 	public double getYPos() {
 		return myPosition.getYPos();
 	}
-	
+
 	public void setXPos(double xPos) {
 		myPosition.setXPos(xPos);
-		
 	}
-	
+
 	public void setYPos(double yPos) {
 		myPosition.setYPos(yPos);
 	}
-	
+
 	public void setRotation (double rotateVal) {
 		myPosition.setRotation(rotateVal);
-		
 	}
 	
 	/*
@@ -144,7 +177,7 @@ public class Turtle extends ImageView{
 	public void setID (int ID) {
 		myID = ID;
 	}
-	
+
 	public int getID() {
 		return myID;
 	}

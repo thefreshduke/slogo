@@ -9,8 +9,9 @@ import org.junit.Test;
 
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
-import commands.mathCommands.RandomIntegerCommand;
-import commands.mathCommands.SumCommand;
+import commands.controlCommands.IfElseCommand;
+import commands.expressionCommands.RandomIntegerCommand;
+import commands.expressionCommands.SumCommand;
 import commands.turtleCommands.ForwardCommand;
 
 public class SimpleTest {
