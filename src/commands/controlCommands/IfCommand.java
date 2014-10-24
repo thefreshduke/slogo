@@ -21,7 +21,7 @@ public class IfCommand extends ControlCommand{
     }
 
     @Override
-    public double execute() throws BackendException {
+    protected double onExecute() throws BackendException {
     	BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         double expressionResult = myExpression.execute();
@@ -30,9 +30,6 @@ public class IfCommand extends ControlCommand{
         }
         else{
             returnValue = expressionResult;
-        }
-        if(getNextCommand() != null){
-            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

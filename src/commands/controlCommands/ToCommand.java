@@ -23,7 +23,7 @@ public class ToCommand extends ControlCommand {
     }
 
     @Override
-    public double execute () throws BackendException {
+    protected double onExecute () throws BackendException {
     	BaseVariableContainer variableContainer = getVariableContainer();
         variableContainer.addNewCommand(myCommandName, myInternalCommand, myVariables);
         return 0;

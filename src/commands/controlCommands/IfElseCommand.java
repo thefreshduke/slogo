@@ -19,16 +19,13 @@ public class IfElseCommand extends ControlCommand {
     }
 
     @Override
-    public double execute() throws BackendException {
+    protected double onExecute() throws BackendException {
         double returnValue;
         if(myExpression.execute() != 0){
             returnValue = myIfCommand.execute();
         }
         else{
             returnValue = myElseCommand.execute();
-        }
-        if(getNextCommand() != null){
-            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

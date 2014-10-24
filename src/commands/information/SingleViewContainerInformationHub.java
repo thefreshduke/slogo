@@ -20,7 +20,8 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
         myGridContainer = new SingleActiveGridContainer(grid);
         myGridContainer.addGrid(grid, true);
         myGridToTurtlesMap = new HashMap<>();
-        
+        BaseTurtleContainer turtleContainer = new TurtleList(turtle);
+        myGridToTurtlesMap.put(grid.getID(), turtleContainer);
         myVariableContainer = new MapBasedVariableContainer();
     }
     
@@ -41,7 +42,7 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
     	if(BaseVariableContainer.class.isAssignableFrom(containerType)){
     	    return myVariableContainer;
     	}
-        return null;		
+        return null;
     }
 
     @Override
@@ -57,5 +58,4 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
         }
         return containerList;
     }
-
 }

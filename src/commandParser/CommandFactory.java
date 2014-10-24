@@ -16,6 +16,7 @@ public class CommandFactory {
 
     private static Map<String, Class> myCommandToClassMap;
     private static String myCommandSeparator = "\\s+";
+    private static ICommandInformationHub myInformationHub;
 
     // TODO: Need to figure out how to call the parseLanguageFile method in LanguageFileParser class
     // only once. This populates the myCommandToClassMap object.
@@ -37,10 +38,11 @@ public class CommandFactory {
         BaseCommand command = null;
         try {
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
-//            Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
-//            BaseCommandInformationHub hub; 
-//            Collection<IInformationContainer> containers = hub.getContainers(containerTypes);
-//            command.setRequiredInfo(containers);
+            Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
+            if(containerTypes != null){
+                Collection<IInformationContainer> containers = myInformationHub.getContainers(containerTypes);
+                command.setRequiredInformation(containers);
+            }
         }
         catch (Exception ex) {
         	ex.printStackTrace();
@@ -56,6 +58,10 @@ public class CommandFactory {
         catch(NumberFormatException ex){
             return false;
         }
+    }
+    
+    public static void setInformationHub(ICommandInformationHub informationHub){
+        myInformationHub = informationHub;
     }
     
     public static void setCommandToClassRelation (Map<String, Class> commandToClassMap) {

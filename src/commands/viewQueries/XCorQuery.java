@@ -17,7 +17,7 @@ public class XCorQuery extends ViewCommand {
 	}
 
 	@Override
-	public double execute() throws BackendException {
+    protected double onExecute() throws BackendException {
 		System.out.println("XCOR: " + turtle.getXPos()); //doesn't work for some reason???
 		return turtle.getXPos();
 	}

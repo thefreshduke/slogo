@@ -18,7 +18,7 @@ public class DoCommand extends ControlCommand {
     }
 
     @Override
-    public double execute () throws BackendException {
+    protected double onExecute () throws BackendException {
     	BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         double expressionResult = myLimitCommand.execute();
@@ -33,9 +33,6 @@ public class DoCommand extends ControlCommand {
                 variableContainer.addVariable(myVariableName, i);
                 returnValue = myInternalCommand.execute();
             }
-        }
-        if (getNextCommand() != null) {
-            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }

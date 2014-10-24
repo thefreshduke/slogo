@@ -13,7 +13,7 @@ public class LeftCommand extends TurtleCommand {
 	}
 
 	@Override
-	public double onExecute() throws BackendException {
+    protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		BaseGridContainer grid = getGridContainer();
 		double rotateLeft = getExpressionList()[0].execute();

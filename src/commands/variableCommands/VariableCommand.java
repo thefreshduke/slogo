@@ -23,17 +23,6 @@ public abstract class VariableCommand extends BaseCommand{
         super(userInput, isExpression);
         // TODO Auto-generated constructor stub
     }
-
-    @Override
-    public double execute() throws BackendException{
-        double result = onExecute();
-        if(getNextCommand() != null){
-            return getNextCommand().execute();
-        }
-        return result;
-    }
-    
-    protected abstract double onExecute() throws BackendException;
     
     @Override
 	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){

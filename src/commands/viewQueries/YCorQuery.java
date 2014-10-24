@@ -17,7 +17,7 @@ public class YCorQuery extends ViewCommand {
 	}
 
 	@Override
-	public double execute() throws BackendException {
+    protected double onExecute() throws BackendException {
 		System.out.println("YCOR: " + turtle.getYPos()); //doesn't work for some reason???
 		return turtle.getYPos();
 	}

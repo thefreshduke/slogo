@@ -16,9 +16,9 @@ public abstract class LogicCommand extends ModelCommand {
 		super(userInput, isExpression);
 	}
 	
-	public abstract double execute() throws BackendException;
+	protected abstract double onExecute() throws BackendException;
 
 	protected double executeCommand(BaseCommand command) throws BackendException{
-		return command.execute();
+		return command.onExecute();
 	}
 }

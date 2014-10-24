@@ -56,8 +56,13 @@ public class TurtleList extends BaseTurtleContainer{
 
     @Override
     public void setActiveTurtles (Collection<Integer> turtleIDs) {
-        // TODO Auto-generated method stub
-        
+        myActiveTurtleList.clear();
+        HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
+        for(Turtle turtle : myTurtleList){
+            if(turtleIDSet.contains(turtle.getID())){
+                myActiveTurtleList.add(turtle);
+            }
+        }
     }
 
     @Override

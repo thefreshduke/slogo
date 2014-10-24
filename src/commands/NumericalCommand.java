@@ -15,7 +15,7 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    public double execute () throws BackendException {
+    protected double onExecute () throws BackendException {
         return myNumber;
     }
 
