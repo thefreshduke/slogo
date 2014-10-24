@@ -7,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.Slider;
+import javafx.scene.paint.Paint;
 
 public abstract class ScrollingBar extends Group implements UserObjects{
 	protected int myX;
@@ -17,11 +18,12 @@ public abstract class ScrollingBar extends Group implements UserObjects{
 	protected Slider myBar;
 	
 	
-	public ScrollingBar(String myLabel, int x, int y, int height, int width, int min, int max, int value, GUIFunction myFunction){
+	public ScrollingBar(String myLabel, int x, int y, int height, int width, int min, int max, int value, GUIFunction function){
 		myX=x;
 		myY=y;
 		myHeight=height;
 		myWidth=width;
+		myFunction=function;
 		makeScrollingBar(min, max, value);
 		makeLabel(myLabel);
 	}
@@ -37,9 +39,11 @@ public abstract class ScrollingBar extends Group implements UserObjects{
 	}
 	private void makeLabel(String s){
 		Label myLabel=new Label(s);
-		myLabel.relocate(myX+myWidth/2, myY+myHeight+10);
-		myLabel.setPrefSize(100, 100);
-		this.getChildren().add(myLabel);
+		myLabel.relocate(myX+15, myY+myWidth);
+		myLabel.setPrefSize(myHeight, myWidth);
+		getChildren().add(myLabel);
+		myLabel.setTextFill(Paint.valueOf("WHITE"));
+		
 	}
 	
 	

@@ -9,30 +9,32 @@ import javafx.event.EventHandler;
 import javafx.scene.control.ScrollBar;
 
 public class PenScrollingBar extends ScrollingBar{
-	
+
 	public PenScrollingBar(String myLabel, int x, int y, int height, int width,
 			int min, int max, int value, GUIFunction myFunction) {
 		super(myLabel, x, y, height, width, min, max, value, myFunction);
 		// TODO Auto-generated constructor stub
 	}
-	public PenScrollingBar(String myLabel, int x, int y, PenThickness myFunction){
-		super(myLabel, x, y, 100, 20, 1, 20, 10, myFunction);
-		
+	public PenScrollingBar(String myLabel, int x, int y, GUIFunction myFunction){
+		super(myLabel, x, y, 100, 20, 1, 50, 25, myFunction);
+		addEvent();
 	}
 
 	@Override
 	public void addEvent(EventHandler<ActionEvent> handler) {
+	}
+	public void addEvent() {
 		myBar.valueProperty().addListener(new ChangeListener<Number>(){
-
 			@Override
 			public void changed(ObservableValue<? extends Number> ov,Number oldVal, Number newVal) {
 				myFunction.doAction(newVal);
 				
+
 			}
-			
+
 		});	
 	}
 
-	
+
 
 }
