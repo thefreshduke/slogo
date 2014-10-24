@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Properties;
 
 import javax.imageio.IIOException;
@@ -17,9 +18,7 @@ public class ColorSelection {
 	private ArrayList<String> myColors = new ArrayList<>();
 
 
-	public ColorSelection(SlogoView v){
-		myView = v;
-
+	public ColorSelection(String s){
 		try {
 			Properties prop = new Properties();
 			InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/Colors.Properties");
@@ -34,18 +33,16 @@ public class ColorSelection {
 		}
 
 	}
-
-	public MenuBar getBackgroundColorMenuBar(){
-		MenuBar mBar = new MenuBar();
-		MenuTemplate m = new MenuTemplate("Background Color");
-		for(String s : myColors){
-			m.addMenuItem(s, event -> myView.setBackgroundColor(s));
-		}
-		mBar.getMenus().add(m);
-		mBar.setPrefSize(150, 25);
-
-		return mBar;
+	public Collection<String> getAvailableColors(){
+		return myColors;
 	}
+	public void addColor(){
+		//myColors.add(e)
+	}
+	public void removeColor(){
+		
+	}
+	
 
 	public MenuBar getPenColorMenuBar(){
 		MenuBar mBar = new MenuBar();

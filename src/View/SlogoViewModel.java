@@ -29,25 +29,6 @@ public class SlogoViewModel {
 
 
 
-	public void loadLanguageResource(String language){
-		String filePath = "/resources/languages/" + language + ".Properties"; 
-		File file = new File(filePath);
-		myBaseController.loadLanguage(file);
-	}
-
-
-	
-	public void helpPage(){
-		WebView browser = new WebView();
-		WebEngine webEngine = browser.getEngine();
-		//		webEngine.load("./resources/helpInfo/commands.PHP");
-		webEngine.load("http://www.cs.duke.edu/courses/compsci308/current/assign/03_slogo/commands.php");
-		Stage helpStage = new Stage();
-		Scene scene = new Scene(browser, 700, 480);
-		helpStage.setScene(scene);
-		helpStage.show();
-	}
-
 
 	
 

@@ -1,14 +1,16 @@
 package GUIFunctions;
 
+import View.GridTracker;
 import View.Pen;
 import View.SingleGrid;
 
 public class PenThickness extends GridFunction{
 	private Number myThickness=1;
-	public PenThickness(SingleGrid grid){
-		myGrid=grid;
+	public PenThickness(GridTracker grid){
+		myGrid=grid.getActiveGrid();
 	}
 	public void doAction(){
+		
 		for (Pen myP: myGrid.getActivePens()){
 			myP.changeThickness(myThickness);
 		}

@@ -3,6 +3,7 @@ package GUIFunctions;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import View.GridTracker;
 import View.SingleGrid;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
@@ -12,9 +13,9 @@ public class ToggleGridLines extends PersonalizeMenu{
 	int translate;
 	private Collection<Line> myGridLines;
 	private SingleGrid myGrid;
-	public ToggleGridLines(SingleGrid grid, int gridSize){
+	public ToggleGridLines(GridTracker grid, int gridSize){
 		showGridLines=true;
-		myGrid=grid;
+		myGrid=grid.getActiveGrid();
 		translate=gridSize;
 		myGridLines=new ArrayList<Line>();
 	}
