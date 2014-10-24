@@ -1,9 +1,21 @@
 package commands.turtleCommands;
 
+<<<<<<< HEAD
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+=======
 import model.CommandWrapper;
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 import commandParser.CommandFactory;
 import commands.BaseCommand;
-import communicator.IVariableContainer;
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.information.BaseVariableContainer;
+import commands.information.IInformationContainer;
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 import View.Grid;
 import turtle.Turtle;
@@ -12,7 +24,9 @@ public abstract class TurtleCommand extends BaseCommand {
 	private CommandWrapper myWrapper;
 	private BaseCommand[] myArgumentList;
 
-
+	private BaseGridContainer myGridContainer;
+	private BaseTurtleContainer myTurtleContainer;
+	
 	public TurtleCommand(String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
 	}
@@ -21,10 +35,54 @@ public abstract class TurtleCommand extends BaseCommand {
 	public final double execute(CommandWrapper wrapper) throws BackendException {
 		myWrapper = wrapper;
 		BaseCommand nextCommand = getNextCommand();
+<<<<<<< HEAD
+		double result = execute(view, turtle);
+		result = nextCommand != null ? executeCommand(nextCommand) : result;
+		return result;
+	}
+
+    @Override
+	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
+		Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
+		typeSet.add(BaseVariableContainer.class);
+		typeSet.add(BaseGridContainer.class);
+		return typeSet;
+	}
+	
+    @Override
+    public void setRequiredInformation(Collection<IInformationContainer> containers){
+    	if(containers.size() != 2){
+    		//throw
+    	}
+    	ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
+    	for(IInformationContainer container : containers) {
+    		if(BaseGridContainer.class.isAssignableFrom(container.getClass())){
+    			myGridContainer = (BaseGridContainer)container;
+    		}
+    		else if(BaseTurtleContainer.class.isAssignableFrom(container.getClass())){
+    			myTurtleContainer = (BaseTurtleContainer)container;
+    		}
+    	}
+    	if(myGridContainer == null || myTurtleContainer == null){
+    		//throw exception
+    	}
+    }
+    
+    protected BaseTurtleContainer getTurtleContainer(){
+    	return myTurtleContainer;
+    }
+    
+    protected BaseGridContainer getGridContainer(){
+    	return myGridContainer;
+    }
+    
+	public abstract double execute(SlogoView view, Turtle turtle) throws BackendException;
+=======
 		return nextCommand == null ? execute(wrapper.getGrid(), wrapper.getTurtle()) : executeCommand(nextCommand);
 	}
 
 	public abstract double execute(Grid grid, Turtle turtle) throws BackendException;
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 
 	protected double executeCommand(BaseCommand command) throws BackendException{
 		return command.execute(myWrapper);

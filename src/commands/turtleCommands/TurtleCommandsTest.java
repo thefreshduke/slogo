@@ -10,6 +10,7 @@ import commandParser.CommandFactory;
 import commands.BaseCommand;
 import static org.junit.Assert.assertEquals;
 
+// DOESN'T WORK AFTER REDESIGN
 public class TurtleCommandsTest {
 
 	@Test 

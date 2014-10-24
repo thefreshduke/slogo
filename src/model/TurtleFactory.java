@@ -14,12 +14,14 @@ public class TurtleFactory {
 		turtle.setFitWidth(60);
 		turtle.setPreserveRatio(true);
 		turtle.setSmooth(true);
-		if (myActiveTurtles.size() == 0) 
+		if (myActiveTurtles.size() == 0) {
 			turtle.setID(0);
-		else 
+		}
+		else {
 			turtle.setID(myActiveTurtles.size()-1);
+		}
 
-			myActiveTurtles.add(turtle);	
+		myActiveTurtles.add(turtle);	
 	}
 
 	public List<Turtle> getActiveTurtles() {
@@ -28,8 +30,9 @@ public class TurtleFactory {
 
 	public Turtle findTurtle(int ID) {
 		for (int i = 0; i < myActiveTurtles.size(); i++) {
-			if (i == ID) 
+			if (i == ID) {
 				return myActiveTurtles.get(i);
+			}
 		}
 		return null;
 	}	

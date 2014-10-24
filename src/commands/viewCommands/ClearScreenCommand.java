@@ -4,7 +4,7 @@ import turtle.Turtle;
 import View.Grid;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 
 public class ClearScreenCommand extends ViewCommand {
 

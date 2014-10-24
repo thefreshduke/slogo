@@ -5,7 +5,12 @@ import java.util.List;
 import View.Grid;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
+<<<<<<< HEAD
+import commands.information.IVariableContainer;
+import commands.information.MapBasedVariableContainer;
+=======
 import communicator.IVariableContainer;
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 import javafx.scene.image.Image;
 import turtle.Turtle;
 
@@ -42,10 +47,13 @@ public class SlogoModel {
 	public BaseCommand createInitialCommand(String input) {
 		return CommandFactory.createCommand(input, false);
 	}
+<<<<<<< HEAD
+=======
 	
 	public IVariableContainer getVariableContainer() {
 		return myCommandWrapper.getVariableContainer();
 	}
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
 
 	public Turtle findTurtle(int ID) {
 		return myTurtleFactory.findTurtle(ID);

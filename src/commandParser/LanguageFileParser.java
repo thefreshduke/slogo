@@ -91,10 +91,17 @@ public class LanguageFileParser {
         // TODO: Change to string builder
         String[] userInputWords = userInput.split(myCommandSeparator);
         for(String rawCommand : userInputWords){
+<<<<<<< HEAD
+            String command = rawCommand.toLowerCase().trim();
+            String translatedCommand = translateCommand(command);
+            if(translatedCommand == null || translatedCommand.equals("")){
+                translatedCommand = rawCommand;
+=======
             String command = rawCommand.toLowerCase();
             String translatedCommand = translateCommand(command);
             if(translatedCommand == null || translatedCommand.equals("")){
                 //throw new BackendException(null, "Invalid command");
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
             }
             translatedUserInput.append(translatedCommand);
             translatedUserInput.append(myCommandSeparator);
@@ -102,13 +109,45 @@ public class LanguageFileParser {
         return translatedUserInput.toString().trim();
     }
     
+<<<<<<< HEAD
+    public String translateCommand(String command){
+=======
     private String translateCommand(String command){
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3
         String translatedCommand;
         if(myUserInputToEnglishTranslationMap.containsKey(command)){
             translatedCommand = myUserInputToEnglishTranslationMap.get(command);
         }
         else{
             translatedCommand = translateByRegex(command);
+<<<<<<< HEAD
+        }
+        return translatedCommand;
+    }
+    
+    private String translateByRegex(String rawCommand){
+        Set<String> keySet = myUserInputToEnglishTranslationMap.keySet();
+        for(String key : keySet){
+        	try{
+        		if(rawCommand.matches(key)){
+                    String command = myUserInputToEnglishTranslationMap.get(key).toLowerCase();
+                    if(command.equals("Variable".toLowerCase())){
+                        return command + " " + rawCommand.substring(1);
+                    }
+                    else{
+                        return command + " " + rawCommand;
+                    }
+                }
+        	}
+            
+            catch(Exception ex){
+            	continue;
+            }
+        }
+        return null;
+    }
+}
+=======
         }
         return translatedCommand;
     }
@@ -130,3 +169,4 @@ public class LanguageFileParser {
     }
 }
 
+>>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3

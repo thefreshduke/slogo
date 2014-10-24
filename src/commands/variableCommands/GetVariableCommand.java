@@ -1,7 +1,7 @@
 package commands.variableCommands;
 
 import commands.BaseCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class GetVariableCommand extends VariableCommand {

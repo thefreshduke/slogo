@@ -3,7 +3,7 @@ package commands.variableCommands;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.NumericalCommand;
-import communicator.IVariableContainer;
+import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
 
 public class SetVariableCommand extends VariableCommand{
