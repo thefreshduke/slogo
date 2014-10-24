@@ -4,10 +4,7 @@ import java.util.Collection;
 import java.util.Set;
 
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
 import backendExceptions.BackendException;
-import View.SlogoView;
-import turtle.Turtle;
 
 public final class NumericalCommand extends BaseCommand{
 
@@ -18,7 +15,7 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    public double execute (SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+    public double execute () throws BackendException {
         return myNumber;
     }
 

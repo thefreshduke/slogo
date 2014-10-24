@@ -30,20 +30,6 @@ public abstract class ControlCommand extends ModelCommand {
     }
 
     @Override
-    public final double execute (SlogoView view, Turtle turtle, IVariableContainer variableContainer)
-                                                                                                     throws BackendException {
-        myView = view;
-        myTurtle = turtle;
-        myVariableContainer = variableContainer;
-        return execute(variableContainer);
-    }
-
-    protected double executeCommand (BaseCommand command, IVariableContainer variableContainer)
-                                                                                               throws BackendException {
-        return command.execute(myView, myTurtle, myVariableContainer);
-    }
-
-    @Override
 	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
 		Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
 		typeSet.add(BaseVariableContainer.class);
@@ -67,8 +53,6 @@ public abstract class ControlCommand extends ModelCommand {
 	protected IVariableContainer getVariableContainer(){
 		return myVariableContainer;
 	}
-	
-    public abstract double execute (IVariableContainer variableContainer) throws BackendException;
 
     protected String[] splitByInnerListCommand (String input) {
         String treatedInput = input.trim() + COMMAND_SEPARATOR;

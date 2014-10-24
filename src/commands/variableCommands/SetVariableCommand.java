@@ -17,8 +17,8 @@ public class SetVariableCommand extends VariableCommand{
     }
 
     @Override
-    protected double execute (IVariableContainer variableContainer) throws BackendException {
-        double expressionResult = executeCommand(myExpression, variableContainer);
+    protected double onExecute () throws BackendException {
+        double expressionResult = myExpression.execute();
         IVariableContainer container = getVariableContainer();
         container.addVariable(myVariableName, expressionResult);
         return expressionResult;

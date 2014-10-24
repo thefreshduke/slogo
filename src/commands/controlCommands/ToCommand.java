@@ -2,6 +2,7 @@ package commands.controlCommands;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
@@ -22,7 +23,8 @@ public class ToCommand extends ControlCommand {
     }
 
     @Override
-    public double execute (IVariableContainer variableContainer) throws BackendException {
+    public double execute () throws BackendException {
+    	IVariableContainer variableContainer = getVariableContainer();
         variableContainer.addNewCommand(myCommandName, myInternalCommand, myVariables);
         return 0;
     }

@@ -4,7 +4,6 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import commands.information.IVariableContainer;
 
 public class RepeatCommand extends ControlCommand {
 
@@ -16,20 +15,20 @@ public class RepeatCommand extends ControlCommand {
 	}
 
 	@Override
-	public double execute(IVariableContainer variableContainer) throws BackendException {
+	public double execute() throws BackendException {
 		double returnValue = 0;
-		double expressionResult = executeCommand(myExpression, variableContainer);
+		double expressionResult = myExpression.execute();
 		if(expressionResult < 1){
 			returnValue = 0;
 		}
 		else{
 			int repetitionCount = (int)expressionResult;
 			for(int i = 0; i < repetitionCount; i++){
-				returnValue = executeCommand(myInternalCommand, variableContainer);
+				returnValue = myInternalCommand.execute();
 			}
 		}
 		if(getNextCommand() != null){
-			returnValue = executeCommand(getNextCommand(), variableContainer);
+			returnValue = getNextCommand().execute();
 		}
 		return returnValue;
 	}

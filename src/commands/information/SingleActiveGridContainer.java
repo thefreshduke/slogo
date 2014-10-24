@@ -4,6 +4,8 @@ import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+
+import turtle.Turtle;
 import View.Grid;
 
 
@@ -35,7 +37,7 @@ public class SingleActiveGridContainer extends BaseGridContainer {
     @Override
     public void setGridAsActive (int gridID) {
         for (Grid grid : myGridList) {
-            if (/* grid.getID() */-1000 == gridID) {
+            if (grid.getID() == gridID) {
                 myActiveGrid = grid;
             }
         }
@@ -44,7 +46,8 @@ public class SingleActiveGridContainer extends BaseGridContainer {
     @Override
     public void removeGrid (int gridID) {
         for (int i = 0; i < myGridList.size(); i++) {
-            if (/* grid.getID() */-1000 == gridID) {
+        	Grid grid = myGridList.get(i);
+            if (grid.getID() == gridID) {
                 myGridList.remove(i);
             }
         }
@@ -54,4 +57,20 @@ public class SingleActiveGridContainer extends BaseGridContainer {
     public Collection<Grid> getActiveGrids () {
         return new ArrayList<Grid>(Arrays.asList(myActiveGrid));
     }
+
+	@Override
+	public void updateDisplayOptions(String guiCommand) {
+		myActiveGrid.updateGUI(guiCommand);
+		
+	}
+
+	@Override
+	public void updateDisplayOptions(String guiCommand, double parameter) {
+		myActiveGrid.updateGUI(guiCommand, parameter);
+	}
+
+	@Override
+	public void update(Collection<Turtle> turtles) {
+		myActiveGrid.update(turtles);
+	}
 }

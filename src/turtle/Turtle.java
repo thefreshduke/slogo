@@ -72,7 +72,8 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	 * Move amount specified at current heading
 	 * @param increment - straight-line distance to be moved
 	 */
-	public void move(double increment) {
+	@Override
+	public void moveTowardsHeading(double increment) {
 		myPosition.move(increment);
 		myPastPositions.push(new Position(myPosition.getXPos(), myPosition.getYPos(), myPosition.getRotate()));
 	}
@@ -85,8 +86,6 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public void rotate(double rotateIncrement) {
 		myPosition.rotate(rotateIncrement);
 	}
-
-
 
 	public double getOrientation() {
 		return myPosition.getRotate();

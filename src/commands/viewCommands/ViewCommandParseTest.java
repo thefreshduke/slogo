@@ -59,7 +59,7 @@ public class ViewCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(commandString, true);
         try{
         	container.addVariable(variable1, value);
-        	Double result = command.execute(null,  null, container);
+        	Double result = command.execute();
         	assertEquals(result, new Double(70));
         }
         catch (Exception ex){

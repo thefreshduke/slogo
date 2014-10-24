@@ -21,17 +21,18 @@ public class IfCommand extends ControlCommand{
     }
 
     @Override
-    public double execute(IVariableContainer variableContainer) throws BackendException {
+    public double execute() throws BackendException {
+    	IVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
-        double expressionResult = executeCommand(myExpression, variableContainer);
+        double expressionResult = myExpression.execute();
         if(expressionResult != 0){
-            executeCommand(myInternalCommand, variableContainer);
+            myInternalCommand.execute();
         }
         else{
             returnValue = expressionResult;
         }
         if(getNextCommand() != null){
-            returnValue = executeCommand(getNextCommand(), variableContainer);
+            returnValue = getNextCommand().execute();
         }
         return returnValue;
     }
