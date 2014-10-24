@@ -35,10 +35,10 @@ public class CommandFactory {
         String firstCommand = identifyFirstCommand(trimmedInput);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
-        if (commandClass == null) {
-            BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub.getContainer(BaseVariableContainer.class);
-            variableContainer.getCreatedCommand(firstCommand, subInput);
-        }
+//        if (commandClass == null) {
+//            BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub.getContainer(BaseVariableContainer.class);
+//            variableContainer.getCreatedCommand(firstCommand, subInput);
+//        }
         BaseCommand command = null;
         try {
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
