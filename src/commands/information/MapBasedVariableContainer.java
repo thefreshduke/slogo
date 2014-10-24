@@ -6,7 +6,7 @@ import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
 
-public class MapBasedVariableContainer implements IVariableContainer, IInformationContainer{
+public class MapBasedVariableContainer extends BaseVariableContainer{
     
     private Map<String, BaseCommand> myVariableToCommandMap;
     private Map<String, BaseCommand> myCreatedCommandMap;

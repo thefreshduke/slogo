@@ -3,7 +3,7 @@ package commands.variableCommands;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.NumericalCommand;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import backendExceptions.BackendException;
 
 public class SetVariableCommand extends VariableCommand{
@@ -19,7 +19,7 @@ public class SetVariableCommand extends VariableCommand{
     @Override
     protected double onExecute () throws BackendException {
         double expressionResult = myExpression.execute();
-        IVariableContainer container = getVariableContainer();
+        BaseVariableContainer container = getVariableContainer();
         container.addVariable(myVariableName, expressionResult);
         return expressionResult;
     }

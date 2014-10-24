@@ -7,7 +7,7 @@ import java.util.Set;
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
-import commands.information.BaseCommandInformationHub;
+import commands.information.ICommandInformationHub;
 import commands.information.IInformationContainer;
 import commands.variableCommands.GetVariableCommand;
 import commands.variableCommands.SetVariableCommand;

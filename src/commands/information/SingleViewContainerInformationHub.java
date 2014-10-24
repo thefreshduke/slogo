@@ -1,29 +1,35 @@
 package commands.information;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import turtle.Turtle;
 import View.Grid;
 import backendExceptions.BackendException;
 
-public class SingleViewContainerInformationHub extends BaseCommandInformationHub {
+public class SingleViewContainerInformationHub implements ICommandInformationHub {
 
+    private static final String INVALID_CONTAINER_TYPE_ERROR = "Invalid container type";
     private SingleActiveGridContainer myGridContainer;
     private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
     private MapBasedVariableContainer myVariableContainer;
     
-    public SingleViewContainerInformationHub(Grid grid){
-        myGridContainer = new SingleActiveGridContainer();
+    public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
+        myGridContainer = new SingleActiveGridContainer(grid);
+        myGridContainer.addGrid(grid, true);
         myGridToTurtlesMap = new HashMap<>();
+        
         myVariableContainer = new MapBasedVariableContainer();
     }
     
     @Override
-    public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType) throws BackendException {
+    public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType) {
     	if(BaseTurtleContainer.class.isAssignableFrom(containerType)){
     	    ArrayList<Grid> grids = (ArrayList<Grid>)myGridContainer.getActiveGrids();
             if(grids.size() != 1){
-            	throw new BackendException(null, "There can only be one active grid");
+            	return null;
             }
             Grid activeGrid = grids.get(0);
             Integer activeGridID = activeGrid.getID();
@@ -32,10 +38,24 @@ public class SingleViewContainerInformationHub extends BaseCommandInformationHub
     	if(BaseGridContainer.class.isAssignableFrom(containerType)){
     	    return myGridContainer;
     	}
-    	if(IVariableContainer.class.isAssignableFrom(containerType)){
+    	if(BaseVariableContainer.class.isAssignableFrom(containerType)){
     	    return myVariableContainer;
     	}
         return null;		
+    }
+
+    @Override
+    public Collection<IInformationContainer> getContainers (Set<Class<? extends IInformationContainer>> containerTypes)
+                                                                                                                       throws BackendException {
+        ArrayList<IInformationContainer> containerList = new ArrayList<>();
+        for(Class<? extends IInformationContainer> containerType : containerTypes){
+            IInformationContainer container = getContainer(containerType);
+            if(container == null){
+                throw new BackendException(null, INVALID_CONTAINER_TYPE_ERROR);
+            }
+            containerList.add(container);
+        }
+        return containerList;
     }
 
 }

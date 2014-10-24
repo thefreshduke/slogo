@@ -11,7 +11,7 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.BaseVariableContainer;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import backendExceptions.BackendException;
 import View.SlogoView;
 import turtle.Turtle;
@@ -19,7 +19,7 @@ import turtle.Turtle;
 public abstract class TurtleCommand extends BaseCommand {
 	private SlogoView myView;
 	private Turtle myTurtle;
-	private IVariableContainer myVariableContainer;
+	private BaseVariableContainer myVariableContainer;
 	private BaseCommand[] myArgumentList;
 
 	private BaseGridContainer myGridContainer;

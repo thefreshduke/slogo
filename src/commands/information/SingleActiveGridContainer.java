@@ -1,29 +1,22 @@
 package commands.information;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-
+import java.util.List;
 import turtle.Turtle;
 import View.Grid;
 
 
 public class SingleActiveGridContainer extends BaseGridContainer {
 
-    private ArrayList<Grid> myGridList;
+    //Needs to be list because we are removing by indexes.
+    private List<Grid> myGridList;
     private Grid myActiveGrid;
 
-    public SingleActiveGridContainer () {
-        this(new ArrayList<Grid>());
-    }
-
-    public SingleActiveGridContainer (Collection<Grid> initialGrids) {
-        super(initialGrids);
-        myGridList = new ArrayList<>(initialGrids);
-        if (myGridList.size() > 0) {
-            myActiveGrid = myGridList.get(0);
-        }
+    public SingleActiveGridContainer (Grid grid) {
+        myGridList = new ArrayList<Grid>();
+        myActiveGrid = grid;
     }
 
     @Override
@@ -46,7 +39,7 @@ public class SingleActiveGridContainer extends BaseGridContainer {
     @Override
     public void removeGrid (int gridID) {
         for (int i = 0; i < myGridList.size(); i++) {
-        	Grid grid = myGridList.get(i);
+            Grid grid = myGridList.get(i);
             if (grid.getID() == gridID) {
                 myGridList.remove(i);
             }
@@ -58,19 +51,18 @@ public class SingleActiveGridContainer extends BaseGridContainer {
         return new ArrayList<Grid>(Arrays.asList(myActiveGrid));
     }
 
-	@Override
-	public void updateDisplayOptions(String guiCommand) {
-		myActiveGrid.updateGUI(guiCommand);
-		
-	}
+    @Override
+    public void updateDisplayOptions (String guiCommand) {
+        myActiveGrid.updateGUI(guiCommand);
+    }
 
-	@Override
-	public void updateDisplayOptions(String guiCommand, double parameter) {
-		myActiveGrid.updateGUI(guiCommand, parameter);
-	}
+    @Override
+    public void updateDisplayOptions (String guiCommand, double parameter) {
+        myActiveGrid.updateGUI(guiCommand, parameter);
+    }
 
-	@Override
-	public void update(Collection<Turtle> turtles) {
-		myActiveGrid.update(turtles);
-	}
+    @Override
+    public void update (Collection<Turtle> turtles) {
+        myActiveGrid.update(turtles);
+    }
 }

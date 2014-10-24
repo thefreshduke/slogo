@@ -1,7 +1,7 @@
 package commands.variableCommands;
 
 import commands.BaseCommand;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import backendExceptions.BackendException;
 
 public class GetVariableCommand extends VariableCommand {
@@ -16,7 +16,7 @@ public class GetVariableCommand extends VariableCommand {
 
 	@Override
 	protected double onExecute() throws BackendException {
-		IVariableContainer variableContainer = getVariableContainer();
+		BaseVariableContainer variableContainer = getVariableContainer();
 		BaseCommand command = variableContainer.getValue(myVariable);
 		return command.execute();
 	}

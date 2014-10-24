@@ -8,7 +8,7 @@ import java.util.Set;
 import commands.information.BaseGridContainer;
 import commands.information.BaseVariableContainer;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 import backendExceptions.BackendException;
 import turtle.Turtle;
 

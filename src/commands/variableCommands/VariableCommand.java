@@ -11,13 +11,13 @@ import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.information.BaseVariableContainer;
 import commands.information.IInformationContainer;
-import commands.information.IVariableContainer;
+import commands.information.BaseVariableContainer;
 
 public abstract class VariableCommand extends BaseCommand{
 
     private SlogoView myView;
     private Turtle myTurtle;
-    private IVariableContainer myVariableContainer;
+    private BaseVariableContainer myVariableContainer;
     
     public VariableCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -48,15 +48,15 @@ public abstract class VariableCommand extends BaseCommand{
 		}
 		ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
 		IInformationContainer container = containerList.get(0);
-		boolean extendsVariableContainer = IVariableContainer.class.isAssignableFrom(container.getClass());
+		boolean extendsVariableContainer = BaseVariableContainer.class.isAssignableFrom(container.getClass());
 		if(!extendsVariableContainer) {
 			//throw exception
 		}
-		IVariableContainer variableContainer = (IVariableContainer)container;
+		BaseVariableContainer variableContainer = (BaseVariableContainer)container;
 		myVariableContainer = variableContainer;
 	}
     
-    protected IVariableContainer getVariableContainer(){
+    protected BaseVariableContainer getVariableContainer(){
         return myVariableContainer;
     }
 }
