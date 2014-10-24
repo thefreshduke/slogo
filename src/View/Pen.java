@@ -5,6 +5,8 @@ import java.util.Stack;
 
 import javax.swing.JOptionPane;
 
+import GUIFunctions.BorderStyle;
+import GUIFunctions.SolidBorderStyle;
 import turtle.Position;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
@@ -29,8 +31,8 @@ public class Pen extends Line{
 	public void changeThickness(Number a){
 		this.setStyle("-fx-border-width: a");
 	}
-	public void changeLineStyle(){
-		this.setStyle("fx-border-");
+	public void changeLineStyle(Object[] myDashArray){
+		this.getStrokeDashArray().addAll((Double[])myDashArray);
 	}
 	public void setInitialPosition(Double x, Double y){
 		startX=x;
