@@ -1,8 +1,6 @@
 package commands.viewCommands;
 
-import turtle.Turtle;
 import backendExceptions.BackendException;
-import commands.ViewCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.turtleCommands.TurtleCommand;
