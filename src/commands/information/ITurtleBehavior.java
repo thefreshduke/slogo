@@ -13,9 +13,9 @@ public interface ITurtleBehavior {
 
 	public double setHeading(double absHeading);
 
-	public double towards(double x, double y);
+	public double towardsPosition(double newXPos, double newYPos);
 
-	public double setXY(double x, double y);
+	public double setPosition(double newXPos, double newYPos);
 
 	public void moveTowardsHeading(double increment);
 

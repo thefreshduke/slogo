@@ -4,7 +4,11 @@ import java.util.List;
 
 
 
+
+
 import commands.information.ITurtleBehavior;
+
+
 
 
 
@@ -155,14 +159,14 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public int getID() {
 		return myID;
 	}
+	
 	public void move (KeyCode e){
 		Direction myDirection=new Direction(e);
 		Position myTempPosition=myDirection.move(myPosition, velocity);
 		if (myTempPosition!=null){
 			myPosition=myTempPosition;
 			myPastPositions.add(myPosition);
-		}
-			
+		}		
 	}
 
 	@Override
@@ -173,16 +177,23 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	}
 
 	@Override
-	public double towards(double x, double y) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double towardsPosition(double newXPos, double newYPos) {
+		double angleRadians = Math.atan(((getXYCoordinates()[1]-newYPos)/ (getXYCoordinates()[0] - newXPos)));
+		double angleDegrees = Math.toDegrees(angleRadians);
+		setRotation(angleDegrees);
+		return angleDegrees;
+	}
+	
+	private double [] getXYCoordinates() {
+		double [] coordinates = new double[2];
+		coordinates[0] = getXPos();
+		coordinates[1] = getYPos();
+		return coordinates;
 	}
 
 	@Override
-	public double setXY(double x, double y) {
-		// TODO Auto-generated method stub
-		return 0;
+	public double setPosition(double newXPos, double newYPos) {
+		double distance = Math.sqrt(Math.pow(getXYCoordinates()[0]- newXPos, 2) + Math.pow(getXYCoordinates()[1] - newYPos, 2));
+		return distance;
 	}
-	
-	
 }
