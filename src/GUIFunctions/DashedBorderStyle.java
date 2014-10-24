@@ -1,4 +1,5 @@
-package View;
+package GUIFunctions;
+
 
 public class DashedBorderStyle extends BorderStyle {
 	public DashedBorderStyle(){

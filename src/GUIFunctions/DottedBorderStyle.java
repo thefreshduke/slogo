@@ -1,4 +1,5 @@
-package View;
+package GUIFunctions;
+
 
 public class DottedBorderStyle extends BorderStyle {
 	public DottedBorderStyle(){

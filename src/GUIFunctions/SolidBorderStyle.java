@@ -1,4 +1,5 @@
-package View;
+package GUIFunctions;
+
 
 public class SolidBorderStyle extends BorderStyle {
 	public SolidBorderStyle(){

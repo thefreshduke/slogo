@@ -1,19 +1,25 @@
 package GUIFunctions;
 
+import java.util.HashMap;
+
 import View.Pen;
 import View.SingleGrid;
 
 public class PenStyle extends GridFunction{
-	public PenStyle(SingleGrid grid){
-		myGrid=grid;
-	}
+	private HashMap<String, BorderStyle> myStyleMap;
+	private String myStyle;
 
-	@Override
-	public void doAction() {
-		for (Pen activePen: myGrid.getActivePens()){
-			//activePen.changeThickness(myThickness);
-		}
+	public PenStyle(SingleGrid grid, String whichStyle) {
+		myGrid=grid;
+		myStyleMap=new HashMap<String,BorderStyle>();
+		myStyle=whichStyle;
+		makeMap();
 		
+	}
+	public void doAction(){
+		for (Pen p: myGrid.getActivePens()){
+			p.changeLineStyle(myStyleMap.get(myStyle).getStyle());
+		}
 	}
 
 	@Override
@@ -21,6 +27,9 @@ public class PenStyle extends GridFunction{
 		// TODO Auto-generated method stub
 		
 	}
-	
-		
+	public void makeMap(){
+		myStyleMap.put("Dotted", new DottedBorderStyle());
+		myStyleMap.put("Solid", new SolidBorderStyle());
+		myStyleMap.put("Dashed", new DashedBorderStyle());
+	}
 }

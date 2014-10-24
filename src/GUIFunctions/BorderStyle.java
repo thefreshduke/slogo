@@ -1,4 +1,4 @@
-package View;
+package GUIFunctions;
 
 public abstract class BorderStyle {
 	public BorderStyle(){

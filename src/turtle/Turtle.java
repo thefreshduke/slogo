@@ -3,14 +3,16 @@ import java.util.ArrayList;
 import java.util.List;
 <<<<<<< HEAD
 
+
 import commands.information.ITurtleBehavior;
 
 =======
+
 import java.util.Stack;
 
 import javax.swing.JOptionPane;
 
-import View.BorderStyle;
+import GUIFunctions.BorderStyle;
 import View.Pen;
 import View.TurtleMovement;
 >>>>>>> b68372fa2d93ef21b91af967c286ca714bf2bcf3

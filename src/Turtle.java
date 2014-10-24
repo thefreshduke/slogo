@@ -1,9 +1,8 @@
 import java.util.List;
 import java.util.Stack;
 
-import View.BorderStyle;
+import GUIFunctions.BorderStyle;
 import View.Pen;
-
 import commands.information.ITurtleBehavior;
 
 /**
