@@ -1,39 +1,49 @@
 package View;
 
 import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.List;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.ResourceBundle;
-import java.util.Stack;
 
 import javax.swing.JOptionPane;
 
+import GUIFunctions.AddTurtle;
+import GUIFunctions.ClearFunction;
+import GUIFunctions.GUIFunction;
+import GUIFunctions.PenThickness;
+import GUIFunctions.SetBackgroundImage;
+import GUIFunctions.SetPenDown;
+import GUIFunctions.SetPenUp;
+import GUIFunctions.TurtleImageChange;
+import GUIFunctions.Undo;
 import turtle.Turtle;
-import communicator.BaseController;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -41,53 +51,35 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class SlogoView {
-
-	//list of all the objects on the GUI that the user can interact with
-	private ArrayList<UserObjects> userInteractions=new ArrayList<UserObjects>();
-	private Grid myGrid;
+	private SingleGrid myGrid;
 	private MainController myController;
+	private TabsOfGrids myGridTabs=new TabsOfGrids();
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
 	private Scene myScene;
 	private SlogoViewModel myModel;
-	//flag for if pen is up or down, flag for if ref grid is visible
-	private boolean penIsDown=true, refGridOn;
 	private TextField commandLine;
-	private Stack<Point> myPoints=new Stack<Point>();
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
+	String penColor;
 	//for displaying command history
 	private VBox commandHistoryBox;
-	private String penColor="BLACK";
 	private MenuTemplate userCommands;
-	ResourceBundle myResources;
+	private ResourceBundle myResources;
 	private Stage myStage;
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
-	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/Buttons";
+	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public SlogoView(){
-		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE);
+		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
+		myGrid=new SingleGrid(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5));
 		myController=new MainController(this);
-		myGrid=new Grid(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), myController.getFirstTurtle());
-		myModel=new SlogoViewModel(myController, this);
+		myModel=new SlogoViewModel(myController);
+		myController.gridReady();
 	}	
-	/**
-	 * Makes a Button that is to be added to the GUI's Stage
-	 * Adds the Button to the userInteractions List
-	 * 
-	 * @param s				A String representing the label of the button
-	 * @param handler		An Event for the button to react on
-	 * @return				a Button for display on the GUI
-	 */
-	private UserObjects makeUserObject(String s, EventHandler<ActionEvent> handler){
-		return null;
-	}
-	/**
-	 * Clears everything in the mainSimulationPanel (can be called by the controller when the command clear is given)
-	 */
-	//public void clear()
+
 
 	/**
 	 * 
@@ -98,7 +90,7 @@ public class SlogoView {
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent evt){
-				//update(my);
+			
 			}
 		};
 		return new KeyFrame(speed, loop);
@@ -115,35 +107,19 @@ public class SlogoView {
 		BorderPane mainLayout=new BorderPane();
 		mainLayout.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		mainLayout.setTop(addMenuBar());
-
-		mainLayout.setLeft(setTextArea());
 		mainLayout.setCenter(myGrid);
+		mainLayout.setLeft(setTextArea());
 		mainLayout.setBottom(addButtons());
 		root.getChildren().add(mainLayout);
+		root.getChildren().add(myGridTabs);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
-		mainStage.setScene(myScene);
+		myStage.setScene(myScene);
+		myGrid.addTurtle(myController.getFirstTurtle());
+		myGridTabs.addTab("GRID 1", myGrid);
+		
+
 	}
 
-	/**
-	 * Draws a line from its location to (x,y)
-	 * @param x			x location 
-	 * @param y			y location
-	 * 
-	 */
-	private void drawLine(int x, int y){
-
-		//		check if pen is down before drawing
-		//		also have access to private variable pen color to determine what color the line should be
-
-		if(penIsDown){
-			if (myPoints.size()==0){
-				myGrid.drawLine(myGrid.myWidth/2, myGrid.myHeight/2, x, y, penColor);
-			} else { 
-				myGrid.drawLine(myPoints.peek().x, myPoints.peek().y, x, y, penColor);
-			}
-
-		}
-	}
 
 
 	/**
@@ -157,62 +133,6 @@ public class SlogoView {
 
 
 
-	/**
-	 * Moves both the Turtle and the Pen
-	 * @param x			x location on a Grid
-	 * @param y			y location on a Grid
-	 * 
-	 */
-	public void move(int x, int y){
-		myGrid.moveTurtle(x, y);
-		drawLine(x, y);
-	}
-
-
-	/**
-	 * Takes in the coordinates (x,y) from the controller and pops the last coordinate from the stack to call move(int x, int y)
-	 * @param x		x location on the Grid
-	 * @param y		y location on the Grid
-	 */
-	public void update(double x, double y){
-		
-		if (myPoints.size()==0){
-			myPoints.push(new Point(myGrid.myWidth/2, myGrid.myHeight/2));
-		}
-		move((int)x, (int)y);
-		drawLine((int)x, (int)y);
-		myPoints.push(new Point((int)x, (int)y));
-	}
-
-
-	/**
-	 * Changes the Turtle's visibility (called by controller)
-	 * @param b		Representing a boolean that determines whether or not
-	 * 				the turtle should be visible
-	 */
-	public void setTurtleVisible(boolean b){} 
-
-
-	/**
-	 * Displays the Turtle and the Line at it's position before the last command
-	 */
-	public void undo(){
-		Point lastMove=myPoints.pop();
-		myGrid.undo(myPoints.peek().x, myPoints.peek().y);
-	}
-	/**
-	 * Makes Buttons for the top 5 recent commands and displays them on the GUI
-	 */
-	private void displayAndMakeRecentCommands(){}
-
-
-	/**
-	 *Receives x and y location from the controller to move only the Turtle
-	 * @param x		x location on Grid
-	 * @param y		y location on Grid
-	 */
-	public void updateTurtle(int x, int y){}
-
 
 
 	/**
@@ -221,14 +141,14 @@ public class SlogoView {
 	 *  
 	 */
 	private void sendCommand(){
-
+		if (commandLine.getText()!=null){
 		myController.receiveCommand(commandLine.getText());
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-
 		updateCommandHistory();
+		}
 	}
 
 	//	ugly workaround, need to find elegant solution to get rid of repeated code
@@ -247,37 +167,57 @@ public class SlogoView {
 
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
-		//myMenu.setStyle("-fx-background-color:#000080");
 		myMenu.setStyle( "-fx-border-width: 5");
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
 		MenuTemplate fileMenu = new MenuTemplate("File");
 		MenuTemplate languages = new MenuTemplate("Languages");
+		MenuTemplate personalize=new MenuTemplate("Personalize");
 		MenuTemplate help = new MenuTemplate("Help");
 		userCommands = new MenuTemplate("User Commands");
-		this.createMenuItemsUnderFile(fileMenu);
-		this.createMenuItemsUnderLanguages(languages);
+		//this.makeLanguageMenuItems(languages);
 		this.createMenuItemsUnderHelp(help);
-		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help);
+		this.createMenuItems(personalize,"", makePersonalizeMap());
+		myMenu.getMenus().addAll(fileMenu, languages, userCommands, help, personalize);
 		return myMenu;
 	}
 
-
-
+	public void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
+	/*	ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
+		for (String s: myMap.keySet()){
+			pMenu.addMenuItem(personalizeItems.getString(s), event->myMap.get(s).doAction());
+		}
+		*/
+	}
+	
+	
+	public HashMap<String, GUIFunction> makePersonalizeMap(){
+		HashMap<String, GUIFunction> myMap=new HashMap<String, GUIFunction>();
+		myMap.put("uploadBackgroundImage", new SetBackgroundImage(myGrid, myStage));
+		myMap.put("toggleReferenceGrid", new ToggleGridLines(myGrid, 50));
+		myMap.put("uploadTurtleImage", new TurtleImageChange(myGrid, myStage));
+		myMap.put("addTurtle", new AddTurtle(myGrid, this));
+	//	myMap.put("addGrid", addGrid());
+		return myMap;
+	}
+	/*	
+	public void addTurtle(){
+		myController.addTurtle(myButtonsMap.)
+	}
+	*/
 	public void createMenuItemsUnderFile(MenuTemplate fileMenu){
-
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
+		fileMenu.addMenuItem("Add Turtle", event-> addTurtle());
+		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
-
-	public void createMenuItemsUnderLanguages(MenuTemplate languages){
-
-		languages.addMenuItem("English", event -> myModel.loadLanguageResource("English"));
-		languages.addMenuItem("French", event -> myModel.loadLanguageResource("French"));
-		languages.addMenuItem("Portuguese", event -> myModel.loadLanguageResource("Portuguese"));
-		languages.addMenuItem("Italian", event -> myModel.loadLanguageResource("Italian"));
-		languages.addMenuItem("Chinese", event -> myModel.loadLanguageResource("Chinese"));
-		languages.addMenuItem("Russian", event -> myModel.loadLanguageResource("Russian"));
-
+	public void addTurtle(){
+	//	myController.addTurtle()
+		
+	}
+	public void addGrid(){
+		SingleGrid anotherGrid=new SingleGrid(myGrid.myHeight, myGrid.myWidth, this.build(40));
+		myGridTabs.addTab("Grid 2", anotherGrid);
+		//myController.addGrid(anotherGrid, true);
 	}
 
 	public void createMenuItemsUnderHelp(MenuTemplate help){	
@@ -290,30 +230,37 @@ public class SlogoView {
 		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
-
 		//		create command line
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
 		label.setStyle("-fx-font-size: 25");
 		label.setPrefSize(200, 50);
 		label.relocate(10, 5);
+		
+		
 		commandLine = new TextField();
-		commandLine.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+		EventHandler enterEvent=new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
-				if(event.getCode().equals(KeyCode.ENTER)) sendCommand();
+				if(event.getCode().equals(KeyCode.ENTER)) 
+					sendCommand();		
 			}
-		});
+		};
+	
+		commandLine.addEventHandler(KeyEvent.KEY_PRESSED,enterEvent);
+		String[] value=myResources.getString("enter").split(";");
+		Button enter = new Button (value[0]);
+		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
+		enter.setOnAction(event->this.sendCommand());
 		commandLine.relocate(5, 60);
 		commandLine.setPrefSize(190,100);
-		ButtonTemplate enter = new ButtonTemplate(myResources.getString("enter"),
-				0,0, event-> this.sendCommand());
-		enter.relocate(5, 180);
-
-		//		create make Command Button
-		ButtonTemplate makeCommand = new ButtonTemplate(myResources.getString("makeCommand"),
-				0,0, event-> makeUserCommand(commandLine.getText()), 110, 55);
-		makeCommand.relocate(85, 180);
+		
+		
+		value=myResources.getString("makeCommand").split(";");
+		Button makeCommand = new Button(value[0]);
+		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
+		makeCommand.setPrefSize(110, 55);
+		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
 
 
 
@@ -332,29 +279,13 @@ public class SlogoView {
 		lastOrientation.relocate(5, 310);
 
 		//		temporary background color chooser
-		MenuBar mBar = new MenuBar();
-		MenuTemplate m = new MenuTemplate("Background Color");
-		m.addMenuItem("RED", event -> setBackgroundColor("RED"));
-		m.addMenuItem("BLUE", event -> setBackgroundColor("BLUE"));
-		m.addMenuItem("GREEN", event -> setBackgroundColor("GREEN"));
-		m.addMenuItem("WHITE", event -> setBackgroundColor("WHITE"));
-		m.addMenuItem("BLACK", event -> setBackgroundColor("BLACK"));
-		mBar.getMenus().add(m);
-		mBar.setPrefSize(150, 25);
+		ColorSelection colorSelection = new ColorSelection(this);
+		MenuBar mBar = colorSelection.getBackgroundColorMenuBar();
 		mBar.relocate(25, 350);
 
-
 		//		temporary pen color chooser
-		MenuBar pBar = new MenuBar();
-		MenuTemplate p = new MenuTemplate("Pen Color");
-		p.addMenuItem("RED", event -> setPenColor("RED"));
-		p.addMenuItem("BLUE", event -> setPenColor("BLUE"));
-		p.addMenuItem("GREEN", event -> setPenColor("GREEN"));
-		p.addMenuItem("WHITE", event -> setPenColor("WHITE"));
-		p.addMenuItem("BLACK", event -> setPenColor("BLACK"));
-		pBar.getMenus().add(p);
+		MenuBar pBar = colorSelection.getPenColorMenuBar();
 		pBar.relocate(25, 385);
-		pBar.setPrefSize(150, 25);
 		//		command History
 
 		commandHistoryBox = new VBox();
@@ -372,44 +303,18 @@ public class SlogoView {
 
 
 	private Pane addButtons(){
-		int x=100;
-		int y=10;
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-
-		ButtonTemplate uploadImage=new ButtonTemplate(myResources.getString("uploadImage"), x, y, event->myModel.uploadTurtleImage(), 150, 55);
-
-		ButtonTemplate backgroundImage=new ButtonTemplate("Upload Background\n\t  Image", x+=160,y, event->
-		myGrid.uploadMyBackgroundImage(myStage), 150, 55);
-
-		ButtonTemplate clear=new ButtonTemplate(myResources.getString("clear"),x+=160, y, event->myGrid.clear());
-
-		ButtonTemplate undo=new ButtonTemplate(myResources.getString("undo"),x+=85, y, event->this.undo());
-
-		ButtonTemplate penDown=new ButtonTemplate(myResources.getString("penDown"),x+=85, y, event-> setPenDown(true));
-
-		ButtonTemplate penUp=new ButtonTemplate(myResources.getString("penUp"),x+=85, y, event-> setPenDown(false));
-
-		ButtonTemplate refGrid=new ButtonTemplate(myResources.getString("toggleReferenceGrid"),x+=85, y, event->toggleRefGrid(), 150, 55);
-
-		myButtonPanel.getChildren().addAll(uploadImage, clear, undo, penDown, penUp, refGrid, backgroundImage);
+		myButtonPanel.getChildren().addAll(this.makeBottomButtons(this.makeBottomButtonMap()));
+		myButtonPanel.getChildren().addAll(this.makeScrollingBars());
 
 		return myButtonPanel;
 	}
 	public void home(){
 
 	}
-	public void setPenDown(boolean b){
-		penIsDown = b;
 
-	}
-
-	public void toggleRefGrid(){
-		this.refGridOn = !refGridOn;
-		myGrid.toggleRefGrid(refGridOn);
-
-	}
 
 	public void updateTurtleStats(int x, int y, int or){
 		lastX.setText("X Position: " + x);
@@ -443,16 +348,57 @@ public class SlogoView {
 	}
 
 	public void executeUserCommand(String command){
-		//		myController.receiveCommand(commandLine.getText());
-
+		myController.receiveCommand(commandLine.getText());
 		commandLine.setText(command);
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
 				0, 0, null, 180, 35);
 		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
 		myCommands.add(mostRecent);
 		commandLine.clear();
-
 		updateCommandHistory();
 	}
 
+	private ArrayList<ButtonTemplate> makeBottomButtons(HashMap<String, GUIFunction> myMap){
+		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
+		for (String s: myMap.keySet()){
+			String[] value=myResources.getString(s).split(";");
+				myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myMap.get(s)));
+		}
+		return myButtons;
+	}
+	private HashMap<String, GUIFunction> makeBottomButtonMap(){
+		HashMap<String, GUIFunction> myButtonMap=new HashMap<String, GUIFunction>();
+		myButtonMap.put("penDown", new SetPenDown(myGrid));
+		myButtonMap.put("undo", new Undo(myGrid));
+		myButtonMap.put("clear", new ClearFunction(myGrid));
+		myButtonMap.put("penUp", new SetPenUp(myGrid));
+		return myButtonMap;
+
+	}
+	private ArrayList makeScrollingBars(){
+		ArrayList<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
+		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 100, 100, new PenThickness(myGrid));
+		return myListOfBars;
+	}
+	
+	
+
+	
+	public ArrayList<MenuItemTemplate> makeLanguageMenuItems(){
+		ArrayList<MenuItemTemplate> items = new ArrayList<>();
+		String[] languages = new String[] {"English", "Chinese", "French" , "Italian", "Portuguese", "Russian" };
+		for(String s : languages){
+			items.add(new MenuItemTemplate(s,
+					event -> myController.loadLanguage(new File("/resources/languages" + s + ".properties"))));
+		}
+		return items;
+	}
+	
+	public void makeMenuItemMap(){
+	}
+	
+	public Grid getGrid() {
+		return myGrid;
+	}
+	
 }
