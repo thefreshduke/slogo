@@ -61,7 +61,7 @@ public class TurtleList extends BaseTurtleContainer{
     }
 
     @Override
-    protected Collection<Turtle> getActiveTurtles () {
+    public Collection<Turtle> getActiveTurtles () {
         return new ArrayList<>(myActiveTurtleList);
     }
 

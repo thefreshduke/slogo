@@ -26,6 +26,7 @@ import javafx.animation.AnimationTimer;
 
 
 public class MainController extends BaseController {
+
     private SlogoView myView;
     private SlogoModel myModel;
     private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;

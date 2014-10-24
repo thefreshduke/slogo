@@ -3,28 +3,26 @@ package commands.viewCommands;
 import turtle.Turtle;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
+import commands.information.BaseGridContainer;
+import commands.turtleCommands.TurtleCommand;
 
 public class PenUpCommand extends ViewCommand {
+
+	private static final String PEN_UP = "penUp";
 
 	public PenUpCommand(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
 
 	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public double execute() throws BackendException {
-		System.out.println("Pen Up: 0");
+	protected double onExecute() throws BackendException {
+		BaseGridContainer grid = getGridContainer();
+		grid.updateDisplayOptions(PEN_UP);
 		return 0;
 	}
 
 	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
+	protected int getArgumentCount() {
+		return 0;
 	}
-	
 }

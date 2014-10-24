@@ -3,34 +3,29 @@ package commands.viewCommands;
 import turtle.Turtle;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.turtleCommands.TurtleCommand;
 
-public class HomeCommand extends ViewCommand {
+public class HomeCommand extends TurtleCommand {
+
+	private static final String CLEAR_GUI = "clearGUI";
 
 	public HomeCommand(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
 
 	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
+	protected double onExecute() throws BackendException {
+		BaseGridContainer grid = getGridContainer();
+		grid.updateDisplayOptions(CLEAR_GUI);
+		BaseTurtleContainer turtle = getTurtleContainer();
+		double distanceTraveled = turtle.setPosition(0, 0);
+		return distanceTraveled;
 	}
 
 	@Override
-	public double execute() throws BackendException {
-		double initialXPos = turtle.getXPos();
-		double initialYPos = turtle.getYPos();
-		turtle.setXPos(0); //need width/2 from front end
-		turtle.setYPos(0); //need height/2 from front end
-		view.update(turtle.getXPos(), turtle.getYPos());
-		System.out.println("Home: " + Math.sqrt(Math.pow(turtle.getXPos() - initialXPos, 2) + Math.pow(turtle.getYPos() - initialYPos, 2)));
-		return Math.sqrt(Math.pow(turtle.getXPos() - initialXPos, 2) + Math.pow(turtle.getYPos() - initialYPos, 2));
-		//trail to home or no trail?
+	protected int getArgumentCount() {
+		return 0;
 	}
-
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
 }
