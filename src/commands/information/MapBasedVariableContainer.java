@@ -9,10 +9,13 @@ import commands.NumericalCommand;
 public class MapBasedVariableContainer extends BaseVariableContainer{
     
     private Map<String, BaseCommand> myVariableToCommandMap;
-    private Map<String, BaseCommand> myCreatedCommandMap;
+    private Map<String, String> myCreatedCommandMap;
+    private Map<String, String[]> myCreatedCommanVariableMap;
     
     public MapBasedVariableContainer () {
         myVariableToCommandMap = new HashMap<>();
+        myCreatedCommandMap = new HashMap<>();
+        myCreatedCommanVariableMap = new HashMap<>();
     }
     
     @Override
@@ -57,7 +60,7 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
 
     @Override
     public void addNewCommand (String commandName, String innerCommands, String[] temporaryVariables) {
-        // TODO Auto-generated method stub
+        myCreatedCommandMap.put(commandName, innerCommands);
         
     }
 

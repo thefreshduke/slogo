@@ -1,12 +1,14 @@
 package commandParser;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Map;
 import java.util.Set;
-
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
+import commands.information.BaseVariableContainer;
 import commands.information.ICommandInformationHub;
 import commands.information.IInformationContainer;
 import commands.variableCommands.GetVariableCommand;
@@ -17,7 +19,8 @@ public class CommandFactory {
     private static Map<String, Class> myCommandToClassMap;
     private static String myCommandSeparator = "\\s+";
     private static ICommandInformationHub myInformationHub;
-
+    private static Class[] x =  { BaseVariableContainer.class };
+    
     // TODO: Need to figure out how to call the parseLanguageFile method in LanguageFileParser class
     // only once. This populates the myCommandToClassMap object.
 
@@ -33,7 +36,8 @@ public class CommandFactory {
         String subInput = input.replaceFirst(firstCommand, "").trim();
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
         if (commandClass == null) {
-            // TODO: throw something
+            BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub.getContainer(BaseVariableContainer.class);
+            variableContainer.getCreatedCommand(firstCommand, subInput);
         }
         BaseCommand command = null;
         try {
