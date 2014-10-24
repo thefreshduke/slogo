@@ -16,4 +16,8 @@ public interface IVariableContainer {
     public BaseCommand getValue(String variable) throws BackendException;
     
     public BaseCommand popOffVariable(String variable);
+    
+    public void addNewCommand(String commandName, String innerCommands, String[] temporaryVariables);
+    
+    public BaseCommand getCreatedCommand(String commandName, String input);
 }

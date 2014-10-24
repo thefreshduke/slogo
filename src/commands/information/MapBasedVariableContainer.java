@@ -6,9 +6,10 @@ import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.NumericalCommand;
 
-public class MapBasedVariableContainer implements IVariableContainer{
+public class MapBasedVariableContainer implements IVariableContainer, IInformationContainer{
     
     private Map<String, BaseCommand> myVariableToCommandMap;
+    private Map<String, BaseCommand> myCreatedCommandMap;
     
     public MapBasedVariableContainer () {
         myVariableToCommandMap = new HashMap<>();
@@ -51,6 +52,18 @@ public class MapBasedVariableContainer implements IVariableContainer{
             myVariableToCommandMap.remove(variable);
             return value;
         }
+        return null;
+    }
+
+    @Override
+    public void addNewCommand (String commandName, String innerCommands, String[] temporaryVariables) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public BaseCommand getCreatedCommand (String commandName, String input) {
+        // TODO Auto-generated method stub
         return null;
     }
 }
