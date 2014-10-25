@@ -65,7 +65,7 @@ public class SingleGrid extends Grid {
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		this.getChildren().remove(myImageView);
-		setStyle("-fx-background-color: "+backgroundColor);
+		setStyle("-fx-background-color: #"+backgroundColor);
 	}
 	public void moveTurtle(Turtle t){
 		t.relocate(t.getXPos(), t.getYPos());
@@ -131,11 +131,6 @@ public class SingleGrid extends Grid {
 		moveTurtle(myTurtle);
 		return myTurtle;
 	}	
-	public void setPalette(Double myRed, Double myGreen, Double myBlue){
-		backgroundColor =myRed+""+myGreen+""+myBlue;
-		this.getChildren().remove(myImageView);
-		setStyle("-fx-background-color: #backgroundColor");
-	}
 	
 
 	

@@ -107,6 +107,7 @@ public class SlogoView {
 	 * 
 	 * @return A KeyFrame for the TimeLine of the program
 	 */
+
 	private KeyFrame build(int fps){
 		Duration speed=Duration.millis(1000/fps);
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
@@ -131,7 +132,6 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		addTurtle();
-		//
 		makeListOfFunctions();
 		colorSelection = new ColorSelection(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
@@ -243,7 +243,7 @@ public class SlogoView {
 		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
 	private void addTurtle(){
-		//myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
+		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
 		
 
 	}
@@ -255,6 +255,7 @@ public class SlogoView {
 			myGrids.setActiveGrid((SingleGrid)myNewGrid);
 			myGridTabs.addTab("GRID", (SingleGrid)myNewGrid);
 			myController.addGrid((SingleGrid)myNewGrid, true);
+			
 			return myNewGrid;
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
@@ -446,6 +447,7 @@ public class SlogoView {
 		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids));
 		myUserFunctions.put("penColor", new PenColor(myGrids));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
+		myUserFunctions.put("setPalette", new SetPallete(colorSelection));
 	}
 
 }

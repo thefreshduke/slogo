@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 
 import javax.imageio.IIOException;
@@ -35,7 +36,7 @@ public class ColorSelection extends Pane{
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
 		
-		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids)));
+		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids, this)));
 		myLabels.add(new ColorLabel(100, 0, 80, 20, "Pen Color", new PenColor(myGrids)));
 		
 		this.relocate(0,250);
@@ -58,7 +59,7 @@ public class ColorSelection extends Pane{
 		this.getChildren().add(colorBox);
 		
 	}
-	public Collection<String> getAvailableColors(){
+	public List<String> getAvailableColors(){
 		return myColors;
 	}
 	
