@@ -63,7 +63,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
 	}
-	private void setActive(){
+	public void setActive(){
 		active=!active;
 		if (active){
 			glow();
