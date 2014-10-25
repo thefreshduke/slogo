@@ -7,7 +7,7 @@ import commands.information.BaseGridContainer;
 public class SetPenSizeCommand extends ViewCommand {
 
 	//TODO : Add GUI function to change to given index
-	private static final String SET_PEN_SIZE = "";
+	private static final String SET_PEN_SIZE = "penThickness";
 
 	public SetPenSizeCommand(String command, boolean isExpression)
 			throws BackendException {

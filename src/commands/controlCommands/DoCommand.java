@@ -22,6 +22,13 @@ public class DoCommand extends ControlCommand {
     	BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         double expressionResult = myLimitCommand.execute();
+        
+        boolean varExistPreviously = false;
+		BaseCommand oldCommand = null;
+		if(variableContainer.containsVariable(myVariableName)){
+			oldCommand = variableContainer.getValue(myVariableName);
+			varExistPreviously = true;
+		}
 
         if (expressionResult < 1) {
             returnValue = 0;
@@ -34,6 +41,12 @@ public class DoCommand extends ControlCommand {
                 returnValue = myInternalCommand.execute();
             }
         }
+        
+        if (varExistPreviously) {
+			variableContainer.addVariable(myVariableName, oldCommand);
+		} else {
+			variableContainer.popOffVariable(myVariableName);
+		}
         return returnValue;
     }
 
