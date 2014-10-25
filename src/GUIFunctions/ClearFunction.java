@@ -10,6 +10,8 @@ public class ClearFunction extends BottomFunctions{
 	@Override
 	public void doAction() {
 		allGrids.getActiveGrid().getChildren().clear();
+		allGrids.getActiveGrid().getActiveTurtles().clear();
+		allGrids.getActiveGrid().getAllTurtles().clear();
 	}
 	@Override
 	public void doAction(Number newVal) {

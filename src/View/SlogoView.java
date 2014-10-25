@@ -42,6 +42,7 @@ import GUIFunctions.VariableTable;
 import turtle.Turtle;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -92,9 +93,13 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public SlogoView() throws ClassNotFoundException{
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
-		myGridFactory=new GridFactory(DEFAULT_SIZE.height-150, DEFAULT_SIZE.width-200, this.build(5), null);
+		myGridFactory=new GridFactory(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), null);
 		myGrids=new GridTracker();
 		myController=new MainController(this);
+		Timeline myTime=new Timeline();
+		myTime.setCycleCount(Timeline.INDEFINITE);
+		myTime.getKeyFrames().add(this.build(40));
+		myTime.play();
 		
 	}	
 	/**
@@ -106,7 +111,7 @@ public class SlogoView {
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent evt){
-
+				myGrids.setActiveGrid(myGridTabs.getActiveGrid());
 			}
 		};
 		return new KeyFrame(speed, loop);
@@ -139,7 +144,6 @@ public class SlogoView {
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		myStage.setScene(myScene);
 		myGrids.getActiveGrid().addTurtle(myController.getFirstTurtle());
-
 	}
 	/**
 	 * Displays the error message "message" on the screen
@@ -197,7 +201,7 @@ public class SlogoView {
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
 		Add newAddFunction=(Add) myUserFunctions.get("addTurtle");
-		myAdd.addMenuItem("Add Turtle", event->addTurtle(newAddFunction.addAction()));
+		myAdd.addMenuItem("Add Turtle", event->myGrids.getActiveGrid().addTurtle());
 	}
 
 	private HashMap<String, GUIFunction> makePenMap(){
@@ -233,10 +237,9 @@ public class SlogoView {
 		fileMenu.addMenuItem("Import to XML", null);
 		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
-	private void addTurtle(Object turtleToAdd){
-		Turtle toAdd=(Turtle) turtleToAdd;
-		myController.addTurtle(toAdd, myGrids.getActiveGrid().getID(), true);
-		myGrids.getActiveGrid().addTurtle(toAdd);
+	private void addTurtle(){
+		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
+		
 
 	}
 	public Grid addGrid() {
@@ -406,7 +409,6 @@ public class SlogoView {
 			ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
 			for (String s: myUserFunctions.keySet()){
 				if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
-					System.out.println(prop.getProperty(s));
 					String[] value=prop.getProperty(s).split(";");
 					myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myUserFunctions.get(s)));
 				}
@@ -441,7 +443,7 @@ public class SlogoView {
 		myUserFunctions.put("uploadBackgroundImage", new SetBackgroundImage(myGrids, myStage));
 		myUserFunctions.put("toggleReferenceGrid", new ToggleGridLines(myGrids, 50));
 		myUserFunctions.put("uploadTurtleImage", new TurtleImageChange(myGrids, myStage));
-		myUserFunctions.put("addTurtle", new AddTurtle());
+		myUserFunctions.put("addTurtle", new AddTurtle(myGrids));
 		myUserFunctions.put("dottedPenStyle", new PenStyle(myGrids,"Dotted"));
 		myUserFunctions.put("solidPenStyle", new PenStyle(myGrids, "Solid"));
 		myUserFunctions.put("dashedPenStyle", new PenStyle(myGrids, "Dashed"));

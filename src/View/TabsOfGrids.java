@@ -5,18 +5,27 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.SelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class TabsOfGrids extends TabPane{
 	private EventHandler myEvent;
+
 	public TabsOfGrids(){
 		setPrefSize(800, 100);
-		relocate(200, 30);
-		
-		
+		relocate(200, 25);
+	}
+	public SingleGrid getActiveGrid(){
+		for (Tab myTab: this.getTabs()){
+			if (myTab.isSelected()){
+				return (SingleGrid)myTab.getContent();
+			}
+		}
+		return null;
 	}
 	public void addTab(String gridTitle, SingleGrid grid){
 		Tab myNewTab=new Tab();
@@ -24,34 +33,54 @@ public class TabsOfGrids extends TabPane{
 		myNewTab.setText(gridTitle);
 		myNewTab.setContent(grid);
 		getTabs().add(myNewTab);
-		setUpKeyBoardHandler(grid);
+		setUpKeyBoardHandler(myNewTab);
+		this.setGridTabsFocused(myNewTab);
+		disableTabPanes(myNewTab);
+		
 	}
+	public void disableTabPanes(Tab myTab){
+		myTab.getTabPane().addEventHandler(KeyEvent.KEY_PRESSED,new EventHandler<KeyEvent>(){
+
+			@Override
+			public void handle(KeyEvent arg0) {
+				arg0.consume();
+				
+			}
+			
+		});
 	
-	public void setUpKeyBoardHandler(SingleGrid grid){
+	}
+	public void setUpKeyBoardHandler(Tab myTab){
+		SingleGrid myGrid=(SingleGrid) myTab.getContent();
+		
 		myEvent=new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent e) {
-				for (Turtle t: grid.getActiveTurtles()){
+				for (Turtle t: myGrid.getActiveTurtles()){
 					t.move(e.getCode());
 				}
-				grid.keyUpdate();
+				myGrid.keyUpdate();
 				
 			}
+			
 		};
 		addEventHandler(KeyEvent.KEY_PRESSED, myEvent);
 	}
+
 	
-	public void setGridTabsFocused(Node o){
-		o.focusedProperty().addListener(new ChangeListener <Boolean>(){
+	public void setGridTabsFocused(Tab myTab){
+		SingleGrid myGrid=(SingleGrid) myTab.getContent();
+		myGrid.focusedProperty().addListener(new ChangeListener <Boolean>(){
 			@Override
-			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {  
-				if (!newValue.booleanValue()){
-					o.addEventHandler(KeyEvent.KEY_PRESSED, myEvent);
+			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+				if (newValue.booleanValue()){
+					myGrid.addEventHandler(KeyEvent.KEY_PRESSED, myEvent);
 				}
 				else{
-					o.removeEventHandler(KeyEvent.KEY_PRESSED, myEvent);
+					myGrid.removeEventHandler(KeyEvent.KEY_PRESSED, myEvent);
 				}
 		}});
 		
 	}
+	
 }

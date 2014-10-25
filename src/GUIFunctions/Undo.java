@@ -19,6 +19,7 @@ public class Undo extends BottomFunctions{
 			this.undoLine(t);
 
 		}
+		allGrids.getActiveGrid().update(allGrids.getActiveGrid().getActiveTurtles());
 	}
 
 

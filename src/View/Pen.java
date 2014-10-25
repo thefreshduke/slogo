@@ -11,6 +11,7 @@ import GUIFunctions.SolidBorderStyle;
 import turtle.Position;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeType;
 
 //why do you not use arraylist
 public class Pen extends Line{
@@ -68,10 +69,8 @@ public class Pen extends Line{
 				Line myLine=new Line(myLines.peek().getEndX(), myLines.peek().getEndY(), xPos, yPos);
 				myLine.setStroke(Paint.valueOf(myColor));
 				myLine.setStrokeWidth(myThickness);
-				System.out.println(myStyle.getStyle(myThickness)[1]);
 				myLine.getStrokeDashArray().clear();
 				myLine.getStrokeDashArray().addAll(myStyle.getStyle(myThickness));
-				
 				myLines.push(myLine);
 				return myLines.peek();
 			}
@@ -82,6 +81,9 @@ public class Pen extends Line{
 	}
 	public void setPenDown(boolean down){
 		penDown=down;
+	}
+	public boolean getPenDown(){
+		return penDown;
 	}
 
 

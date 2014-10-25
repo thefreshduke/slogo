@@ -132,8 +132,6 @@ public class VariableTable extends TableView{
 			try {
 				myClass = (Class<? extends Column>) Class.forName(myValues[1]);
 			} catch (ClassNotFoundException e) {
-					System.out.println(IDColumn.class.getName()+"  "+((myValues[1])).length());
-				System.out.println("HUH"+myValues[1]);
 				return false;
 			}		
 			Column myNewColumn;
