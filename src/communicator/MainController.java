@@ -178,75 +178,79 @@ public class MainController extends BaseController {
 	 *            of turtle
 	 * @return turtle matching ID, else return null if no turtle match
 	 */
-	 public Turtle findTurtle(int ID) {
-		 return myModel.findTurtle(ID);
-	 }
+	public Turtle findTurtle(int ID) {
+		return myModel.findTurtle(ID);
+	}
 
-	 public List<Turtle> getActiveTurtles() {
-		 return myModel.getActiveTurtles();
-	 }
+	public List<Turtle> getActiveTurtles() {
+		return myModel.getActiveTurtles();
+	}
 
-	 public Turtle getFirstTurtle() {
-		 // TODO Auto-generated method stub
-		 return myModel.findTurtle(0);
-	 }
+	public Turtle getFirstTurtle() {
+		// TODO Auto-generated method stub
+		return myModel.findTurtle(0);
+	}
 
-	 @Override
-	 public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
-		 BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
-				 .getContainer(BaseTurtleContainer.class);
-		 turtleContainer.addTurtle(turtle, isActive);
-	 }
+	@Override
+	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
+		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
+				.getContainer(BaseTurtleContainer.class);
+		turtleContainer.addTurtle(turtle, isActive);
+	}
 
-	 @Override
-	 public void addGrid(Grid grid, boolean isActive) {
-		 BaseGridContainer gridContainer = getGridContainer();
-		 gridContainer.addGrid(grid, isActive);
-	 }
+	@Override
+	public void addGrid(Grid grid, boolean isActive) {
+		BaseGridContainer gridContainer = getGridContainer();
+		gridContainer.addGrid(grid, isActive);
+	}
 
 
-	 @Override
-	 public void setGridAsActive(int gridID) {
-		 BaseGridContainer gridContainer = getGridContainer();
-		 gridContainer.setGridAsActive(gridID);
-	 }
+	@Override
+	public void setGridAsActive(int gridID) {
+		BaseGridContainer gridContainer = getGridContainer();
+		gridContainer.setGridAsActive(gridID);
+	}
 
-	 private BaseGridContainer getGridContainer(){
-		 BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
-				 .getContainer(BaseGridContainer.class);
-		 return gridContainer;
-	 }
+	private BaseGridContainer getGridContainer(){
+		BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
+				.getContainer(BaseGridContainer.class);
+		return gridContainer;
+	}
 
-	 @Override
-	 public IInformationContainer loadPreferences(
-			 IInformationContainer container, File file) throws BackendException {
-		 FileInputStream fis = null;
-		 ObjectInputStream in = null;
-		 BaseVariableContainer returnContainer = null;
-		 try {
-			 fis = new FileInputStream(file);
-			 in = new ObjectInputStream(fis);
-			 returnContainer = (BaseVariableContainer) in.readObject();
-			 in.close();
-		 } catch (Exception ex) {
-			 reportErrorToView(new BackendException(ex, "Error reading from file"));
-		 }
+	@Override
+	public IInformationContainer loadPreferences(File file) throws BackendException {
+		FileInputStream fis = null;
+		ObjectInputStream in = null;
+		BaseVariableContainer returnContainer = null;
+		try {
+			fis = new FileInputStream(file);
+			in = new ObjectInputStream(fis);
+			returnContainer = (BaseVariableContainer) in.readObject();
+			in.close();
+		} catch (Exception ex) {
+			reportErrorToView(new BackendException(ex, "Error reading from file"));
+		}
 
-		 return (IInformationContainer) returnContainer;
-	 }
+		return (IInformationContainer) returnContainer;
+	}
 
-	 @Override
-	 public void savePreferences(IInformationContainer container, String filename)
-			 throws BackendException {
-		 FileOutputStream fos = null;
-		 ObjectOutputStream out = null;
-		 try {
-			 fos = new FileOutputStream(filename);
-			 out = new ObjectOutputStream(fos);
-			 out.writeObject((BaseVariableContainer) container);
-			 out.close();
-		 } catch (Exception ex) {
-			 reportErrorToView(new BackendException(ex, "Error writing to file"));
-		 }
-	 }
+	@Override
+	public void savePreferences(IInformationContainer container, String filename)
+			throws BackendException {
+		FileOutputStream fos = null;
+		ObjectOutputStream out = null;
+		try {
+			fos = new FileOutputStream(filename);
+			out = new ObjectOutputStream(fos);
+			out.writeObject((BaseVariableContainer) container);
+			out.close();
+		} catch (Exception ex) {
+			reportErrorToView(new BackendException(ex, "Error writing to file"));
+		}
+	}
+	
+	public void savePreferences(String filename) throws BackendException {
+		savePreferences((IInformationContainer) myCommandInformationHub.getContainer(BaseVariableContainer.class), filename);
+
+	}
 }
