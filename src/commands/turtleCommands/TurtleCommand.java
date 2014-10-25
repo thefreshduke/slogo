@@ -17,11 +17,7 @@ import turtle.Turtle;
 
 
 public abstract class TurtleCommand extends BaseCommand {
-    private SlogoView myView;
-    private Turtle myTurtle;
-    private BaseVariableContainer myVariableContainer;
     private BaseCommand[] myArgumentList;
-
     private BaseGridContainer myGridContainer;
     private BaseTurtleContainer myTurtleContainer;
 
@@ -42,7 +38,7 @@ public abstract class TurtleCommand extends BaseCommand {
         if (containers.size() != 2) {
             // throw
         }
-        ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
+        //ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         for (IInformationContainer container : containers) {
             if (BaseGridContainer.class.isAssignableFrom(container.getClass())) {
                 myGridContainer = (BaseGridContainer) container;
