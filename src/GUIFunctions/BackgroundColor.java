@@ -10,24 +10,24 @@ import View.SingleGrid;
 
 
 public class BackgroundColor extends ColorFunction{
-    ColorSelection myColors;
-    public BackgroundColor(GridTracker grid, ColorSelection colors){
-        myGrids=grid;
-        myColors=myColors;
+	ColorSelection myColors;
+	public BackgroundColor(GridTracker grid, ColorSelection colors){
+		myGrids=grid;
+		myColors=myColors;
+		
+	}
+	
+	public void doAction(List<? extends Number> newVal) {
+		myGrids.getActiveGrid().setBackgroundColor(myColors.getAvailableColors().get((int)newVal.get(0)));
+		
+	}
+	public void doAction(String myColor){
+		myGrids.getActiveGrid().setBackgroundColor(myColor);
+	}
 
-    }
-
-    public void doAction(List<? extends Number> newVal) {
-        myGrids.getActiveGrid().setBackgroundColor(myColors.getAvailableColors().get((int)newVal.get(0)));
-
-    }
-    public void doAction(String myColor){
-        myGrids.getActiveGrid().setBackgroundColor(myColor);
-    }
-
-    @Override
-    public void doAction() {
-        // TODO Auto-generated method stub
-
-    }
+	@Override
+	public void doAction() {
+		// TODO Auto-generated method stub
+		
+	}
 }

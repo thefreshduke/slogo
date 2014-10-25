@@ -1,5 +1,5 @@
 package GUIFunctions;
 
 public abstract class Language {
-    public abstract String getLanguageName ();
+	public abstract String getLanguageName();
 }

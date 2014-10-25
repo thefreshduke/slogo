@@ -1,11 +1,12 @@
 package turtle;
 
-public class Up extends MoveDirection {
+public class Up extends MoveDirection{
 
-    @Override
-    public Position move (Position p, int speed) {
-        p.setYPos(p.getYPos() - speed);
-        return p;
-    }
+	@Override
+	public Position move(Position p, int speed) {
+		p.setYPos(p.getYPos()-speed);
+		return p;
+	}
 
 }
+

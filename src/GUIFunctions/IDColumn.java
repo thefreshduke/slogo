@@ -3,27 +3,29 @@ package GUIFunctions;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import turtle.Turtle;
 
-public class IDColumn extends Column<Integer> {
 
-    public IDColumn (String s) {
-        super(s);
-    }
+public class IDColumn extends Column<Integer>{
 
-    @Override
-    public ReadOnlyObjectWrapper<Integer> doFunction (CellDataFeatures<Turtle, Integer> myData) {
-        return new ReadOnlyObjectWrapper<Integer>(myData.getValue().getID());
-    }
+	public IDColumn(String s) {
+		super(s);
+	}
 
-    @Override
-    public void doEditingFunction (
-            javafx.scene.control.TableColumn.CellEditEvent<Turtle, Integer> myData, Turtle myTurtle) {
-        // TODO Auto-generated method stub
+	@Override
+	public ReadOnlyObjectWrapper<Integer> doFunction(CellDataFeatures<Turtle, Integer> myData) {
+		return new ReadOnlyObjectWrapper<Integer>(myData.getValue().getID());
+	}
 
-    }
+	@Override
+	public void doEditingFunction(
+			javafx.scene.control.TableColumn.CellEditEvent<Turtle, Integer> myData,
+			Turtle myTurtle) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    protected EditingCell<Turtle, Integer> makeEditingCell () {
-        // TODO Auto-generated method stub
-        return null;
-    }
+	@Override
+	protected EditingCell<Turtle, Integer> makeEditingCell() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

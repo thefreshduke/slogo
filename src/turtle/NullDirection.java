@@ -1,13 +1,13 @@
 package turtle;
 
+
 public class NullDirection extends MoveDirection {
+	public NullDirection(){
 
-    public NullDirection () {
+	}
 
-    }
-
-    @Override
-    public Position move (Position p, int speed) {
-        return null;
-    }
+	@Override
+	public Position move(Position p, int speed) {
+		return null;
+	}
 }
