@@ -60,7 +60,7 @@ public abstract class TurtleCommand extends BaseCommand {
         return myGridContainer;
     }
 
-    protected void parseArguments (String userInput) {
+    protected void parseArguments (String userInput) throws BackendException {
         int argumentCount = getArgumentCount();
         if (argumentCount < 0) {
             // TODO: make separate exception

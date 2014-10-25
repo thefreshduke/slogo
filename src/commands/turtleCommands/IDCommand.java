@@ -1,5 +1,7 @@
 package commands.turtleCommands;
 
+import java.util.List;
+
 import turtle.Turtle;
 import backendExceptions.BackendException;
 import commands.TurtleQuery;
@@ -15,7 +17,7 @@ public class IDCommand extends TurtleQuery{
 	@Override
 	protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
-		Turtle lastActiveTurtle = turtle.getActiveTurtles().get(turtle.getActiveTurtles().size()-1);
+		Turtle lastActiveTurtle = ((List<Turtle>) turtle.getActiveTurtles()).get(turtle.getActiveTurtles().size()-1);
 		return lastActiveTurtle.getID();
 	}
 
