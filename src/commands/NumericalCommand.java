@@ -3,13 +3,18 @@ package commands;
 import java.util.Collection;
 import java.util.Set;
 
-import commands.information.IInformationContainer;
 import backendExceptions.BackendException;
 
-public final class NumericalCommand extends BaseCommand{
+import commands.information.IInformationContainer;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
+public final class NumericalCommand extends BaseCommand {
 
     private double myNumber;
-    
+
     public NumericalCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
@@ -20,19 +25,19 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    protected void parseArguments (String userInput) throws BackendException{
+    protected void parseArguments (String userInput) throws BackendException {
         String number = userInput.split("\\s+")[0];
         myNumber = Double.parseDouble(number);
         String leftover = userInput.replaceFirst(number, "").trim();
         setLeftoverCommands(leftover);
     }
 
-	@Override
-	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes() {
-		return null;
-	}
+    @Override
+    public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
+        return null;
+    }
 
-	@Override
-	public void setRequiredInformation(
-			Collection<IInformationContainer> containers) {}
+    @Override
+    public void setRequiredInformation (Collection<IInformationContainer> containers) {
+    }
 }

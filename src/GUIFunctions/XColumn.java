@@ -1,31 +1,32 @@
 package GUIFunctions;
 
-import turtle.Turtle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import turtle.Turtle;
 
-public class XColumn extends Column<Double>{
+public class XColumn extends Column<Double> {
 
-	public XColumn(String s) {
-		super(s);
-		setEditable(true);
-		this.setCellFactory(makeCellFactory());
-	}
-	
-	@Override
-	public ReadOnlyObjectWrapper<Double> doFunction(CellDataFeatures<Turtle, Double> myData) {
-		return new ReadOnlyObjectWrapper<Double> (myData.getValue().getXPos());
-	}
+    public XColumn (String s) {
+        super(s);
+        setEditable(true);
+        this.setCellFactory(makeCellFactory());
+    }
 
-	@Override
-	protected EditingCell<Turtle, Double> makeEditingCell() {
-		return new EditingTurtleDoubleCell();
-	}
+    @Override
+    public ReadOnlyObjectWrapper<Double> doFunction (CellDataFeatures<Turtle, Double> myData) {
+        return new ReadOnlyObjectWrapper<Double>(myData.getValue().getXPos());
+    }
 
-	@Override
-	public void doEditingFunction(CellEditEvent<Turtle, Double> myData, Turtle myTurtle) {
-		Turtle newPositionTurtle=myData.getTableView().getItems().get(myData.getTablePosition().getRow());
-		newPositionTurtle.setXPos(myData.getNewValue());
-		
-	}
+    @Override
+    protected EditingCell<Turtle, Double> makeEditingCell () {
+        return new EditingTurtleDoubleCell();
+    }
+
+    @Override
+    public void doEditingFunction (CellEditEvent<Turtle, Double> myData, Turtle myTurtle) {
+        Turtle newPositionTurtle = myData.getTableView().getItems()
+                .get(myData.getTablePosition().getRow());
+        newPositionTurtle.setXPos(myData.getNewValue());
+
+    }
 
 }

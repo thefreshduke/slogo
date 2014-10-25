@@ -1,8 +1,8 @@
 package View;
 
 public class GUIFunctionMap {
-	
-	public GUIFunctionMap(){
+
+    public GUIFunctionMap(){
 		set background
 		pen color
 		pen size

@@ -6,27 +6,30 @@ import java.util.List;
 import java.util.Set;
 
 import backendExceptions.BackendException;
+
 import commands.ControlCommand;
 import commands.information.BaseVariableContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ToCommand extends ControlCommand {
 
     private static final String VARIABLE_INDICATOR = "variable";
     private static final String INVALID_ERROR_MESSAGE = "Invalid variable list for To command";
-    private static final String REPEATED_VARIABLE_ERROR_MESSAGE =
-            "Repeated variable name for To command";
+    private static final String REPEATED_VARIABLE_ERROR_MESSAGE = "Repeated variable name for To command";
     private static final int EVEN_NUMBER_CHECKER = 2;
     private static final String INSUFFICIENT_COMMANDS_ENTERED = "Insufficient commands entered";
 
     private String myCommandName;
     private String myInternalCommand;
     private String[] myVariables;
-    
+
     private List<String> myVariableList;
     private Set<String> myTempRepeatChecker;
 
-    public ToCommand (String userInput, boolean isExpression)
-            throws BackendException {
+    public ToCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
@@ -57,9 +60,8 @@ public class ToCommand extends ControlCommand {
             myTempRepeatChecker = new HashSet<>();
             myVariableList = new ArrayList<>();
             addWordsToVariablesCollection(unfilteredVariableList);
-            myVariables =  myVariableList.toArray(new String[myVariableList.size()]);
-        }
-        else {
+            myVariables = myVariableList.toArray(new String[myVariableList.size()]);
+        } else {
             myVariables = new String[0];
         }
         String[] secondSplitString = splitByInnerListCommand(splitString[1]);
@@ -73,8 +75,7 @@ public class ToCommand extends ControlCommand {
             String word = unfilteredVariableList[i].trim();
             if (isEven(i) && !word.equals(VARIABLE_INDICATOR)) {
                 throw new BackendException(null, INVALID_ERROR_MESSAGE);
-            }
-            else if (!isEven(i)) {
+            } else if (!isEven(i)) {
                 if (myTempRepeatChecker.contains(word)) {
                     throw new BackendException(null, REPEATED_VARIABLE_ERROR_MESSAGE);
                 }

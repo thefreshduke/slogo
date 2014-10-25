@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class NaturalLogCommand extends OneExpressionCommand {
 
     public NaturalLogCommand (String userInput, boolean isExpression) throws BackendException {
@@ -13,5 +17,4 @@ public class NaturalLogCommand extends OneExpressionCommand {
         double result = Math.log(executeCommand(getArgument()));
         return result;
     }
-
 }

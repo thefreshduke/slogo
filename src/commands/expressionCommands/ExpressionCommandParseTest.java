@@ -8,17 +8,22 @@ import java.io.File;
 import org.junit.Test;
 
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ExpressionCommandParseTest {
 
     private static final double sumTestAnswer = 26.0;
 
     @Test
-    public void testSumParses () throws BackendException {
+    public void testSumParses () throws BackendException, ClassNotFoundException {
         String input = "SUM 6 SUM 7 8 SUM 10 12 SUM 12 14";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -31,8 +36,8 @@ public class ExpressionCommandParseTest {
         }
     }
 
-    @Test 
-    public void testDifference () throws BackendException {
+    @Test
+    public void testDifference () throws BackendException, ClassNotFoundException {
         double firstNum = 6.8;
         double secondNum = 7;
         double thirdNum = 8;
@@ -50,7 +55,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testProduct () throws BackendException {
+    public void testProduct () throws BackendException, ClassNotFoundException {
         double first = 6.8;
         double second = 15;
         String input = "PRODUCT " + first + " " + second;
@@ -65,7 +70,7 @@ public class ExpressionCommandParseTest {
         }
     }
 
-    public void testQuotient () throws BackendException {
+    public void testQuotient () throws BackendException, ClassNotFoundException {
         double first = 6.8;
         double second = 5.3;
         String input = "QUOTIENT " + first + " " + second;
@@ -80,8 +85,8 @@ public class ExpressionCommandParseTest {
         }
     }
 
-    public void testRemainder () throws BackendException {
-        double first = 6.8; 
+    public void testRemainder () throws BackendException, ClassNotFoundException {
+        double first = 6.8;
         double second = 2.3;
         String input = "REMAINDER " + first + " " + second;
         input = processInput(input);
@@ -96,7 +101,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testRandom () throws BackendException {
+    public void testRandom () throws BackendException, ClassNotFoundException {
         int count = 50;
         while (count > 0) {
             double max = Math.random() * count;
@@ -116,7 +121,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testMinus () throws BackendException {
+    public void testMinus () throws BackendException, ClassNotFoundException {
         double param = 264;
         String input = "MINUS " + param;
         input = processInput(input);
@@ -132,8 +137,8 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testPower () throws BackendException {
-        double first = 6.8; 
+    public void testPower () throws BackendException, ClassNotFoundException {
+        double first = 6.8;
         double second = 2.3;
         String input = "POW " + first + " " + second;
         input = processInput(input);
@@ -148,7 +153,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testSin () throws BackendException {
+    public void testSin () throws BackendException, ClassNotFoundException {
         double angle = 264;
         String input = "SIN " + angle;
         input = processInput(input);
@@ -164,7 +169,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testCos () throws BackendException {
+    public void testCos () throws BackendException, ClassNotFoundException {
         double angle = 264;
         String input = "COS " + angle;
         input = processInput(input);
@@ -180,7 +185,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testTan () throws BackendException {
+    public void testTan () throws BackendException, ClassNotFoundException {
         double angle = 264;
         String input = "TAN " + angle;
         input = processInput(input);
@@ -196,7 +201,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testATan () throws BackendException {
+    public void testATan () throws BackendException, ClassNotFoundException {
         double angle = 264;
         String input = "ATAN " + angle;
         input = processInput(input);
@@ -212,7 +217,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void naturalLogTest () throws BackendException {
+    public void naturalLogTest () throws BackendException, ClassNotFoundException {
         double param = 264;
         String input = "LOG " + param;
         input = processInput(input);
@@ -228,7 +233,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testLess () throws BackendException {
+    public void testLess () throws BackendException, ClassNotFoundException {
         String input = "LESS? 2 10";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -242,7 +247,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testGreater () throws BackendException {
+    public void testGreater () throws BackendException, ClassNotFoundException {
         String input = "GREATERP 2 1";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -256,7 +261,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testEqual () throws BackendException {
+    public void testEqual () throws BackendException, ClassNotFoundException {
         String input = "EQUAL? 3 3";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -270,7 +275,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testNotEqual () throws BackendException {
+    public void testNotEqual () throws BackendException, ClassNotFoundException {
         String input = "NOTEQUALP 3 4";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -284,7 +289,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testAnd () throws BackendException {
+    public void testAnd () throws BackendException, ClassNotFoundException {
         String input = "AND 3 4";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -298,7 +303,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testOr () throws BackendException {
+    public void testOr () throws BackendException, ClassNotFoundException {
         String input = "OR 3 0";
         input = processInput(input);
         BaseCommand command = CommandFactory.createCommand(input, false);
@@ -312,7 +317,7 @@ public class ExpressionCommandParseTest {
     }
 
     @Test
-    public void testNot () throws BackendException {
+    public void testNot () throws BackendException, ClassNotFoundException {
         String input = "NOT 5";
         input = processInput(input);
 
@@ -326,14 +331,14 @@ public class ExpressionCommandParseTest {
         }
     }
 
-    private String processInput (String input) throws BackendException {		
-        LanguageFileParser myTranslator = new LanguageFileParser(
-                new File("src/resources/languages/English.properties"));
+    private String processInput (String input) throws BackendException, ClassNotFoundException {
+        LanguageFileParser myTranslator = new LanguageFileParser(new File(
+                "src/resources/languages/English.properties"));
         CommandToClassTranslator commandToClassTranslator = new CommandToClassTranslator();
         try {
-            CommandFactory.setCommandToClassRelation(
-                    commandToClassTranslator.translateCommandToClass(
-                            new File("src/resources/languages/EnglishToClassName.properties")));
+            CommandFactory.setCommandToClassRelation(commandToClassTranslator
+                    .translateCommandToClass(new File(
+                            "src/resources/languages/EnglishToClassName.properties")));
         }
         catch (BackendException ex) {
 

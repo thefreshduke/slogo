@@ -31,224 +31,219 @@ import commands.information.SingleViewContainerInformationHub;
 
 public class MainController extends BaseController {
 
-	private SlogoView myView;
-	private SlogoModel myModel;
-	private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
-	private ConcurrentLinkedQueue<String> myInputsToParse;
+    private SlogoView myView;
+    private SlogoModel myModel;
+    private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
+    private ConcurrentLinkedQueue<String> myInputsToParse;
 
-	private AtomicBoolean myCommandIsExecuting;
+    private AtomicBoolean myCommandIsExecuting;
 
-	private Collection<BaseCommand> myExecutedCommands;
+    private Collection<BaseCommand> myExecutedCommands;
 
-	private AnimationTimer myCommandExecutionTimer;
-	private AnimationTimer myCommandParserTimer;
-	private LanguageFileParser myTranslator;
-	private CommandToClassTranslator myCommandToClassTranslator;
-	private ICommandInformationHub myCommandInformationHub;
+    private AnimationTimer myCommandExecutionTimer;
+    private AnimationTimer myCommandParserTimer;
+    private LanguageFileParser myTranslator;
+    private CommandToClassTranslator myCommandToClassTranslator;
+    private ICommandInformationHub myCommandInformationHub;
 
-	private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
+    private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
 
-	public MainController(SlogoView view) {
-		super(view);
-		myView = view;
-		myModel = new SlogoModel();
-		myCommandQueue = new ConcurrentLinkedQueue<>();
-		myInputsToParse = new ConcurrentLinkedQueue<>();
-		myCommandIsExecuting = new AtomicBoolean(false);
-		myExecutedCommands = new ArrayList<>();
-		setTimers();
-		initializeModel();
-		myCommandParserTimer.start();
-		myCommandExecutionTimer.start();
-		myCommandToClassTranslator = new CommandToClassTranslator();
-		try {
-			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
-					.translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
-		} catch (BackendException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
-			myTranslator = new LanguageFileParser(new File(
-					"src/resources/languages/English.properties"));
-		} catch (BackendException e) {
-			System.out.println("ff'");
-		}
-	}
+    public MainController (SlogoView view) {
+        super(view);
+        myView = view;
+        myModel = new SlogoModel();
+        myCommandQueue = new ConcurrentLinkedQueue<>();
+        myInputsToParse = new ConcurrentLinkedQueue<>();
+        myCommandIsExecuting = new AtomicBoolean(false);
+        myExecutedCommands = new ArrayList<>();
+        setTimers();
+        initializeModel();
+        myCommandParserTimer.start();
+        myCommandExecutionTimer.start();
+        myCommandToClassTranslator = new CommandToClassTranslator();
+        try {
+            CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
+                    .translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
+        } catch (BackendException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        try {
+            myTranslator = new LanguageFileParser(new File(
+                    "src/resources/languages/English.properties"));
+        } catch (BackendException e) {
+            System.out.println("ff'");
+        }
+    }
 
-	private void setTimers() {
-		myCommandParserTimer = new AnimationTimer() {
+    private void setTimers () {
+        myCommandParserTimer = new AnimationTimer() {
 
-			@Override
-			public void handle(long now) {
-				if (!myInputsToParse.isEmpty()) {
-					String input = myInputsToParse.poll();
-					 try{
-						 BaseCommand command = CommandFactory.createCommand(input, false);
-						 myCommandQueue.add(command);
-					 }
-					 catch(BackendException ex) {
-						 reportErrorToView(ex);
-					 }
-					//BaseCommand command = myModel.createInitialCommand(input);
-					//myCommandQueue.add(command);
+            @Override
+            public void handle (long now) {
+                if (!myInputsToParse.isEmpty()) {
+                    String input = myInputsToParse.poll();
+                    try {
+                        BaseCommand command = CommandFactory.createCommand(input, false);
+                        myCommandQueue.add(command);
+                    } catch (BackendException ex) {
+                        reportErrorToView(ex);
+                    }
+                    // BaseCommand command =
+                    // myModel.createInitialCommand(input);
+                    // myCommandQueue.add(command);
 
-				}
-			}
-		};
-		myCommandExecutionTimer = new AnimationTimer() {
+                }
+            }
+        };
+        myCommandExecutionTimer = new AnimationTimer() {
 
-			@Override
-			public void handle(long now) {
-				if (!myCommandQueue.isEmpty()
-						&& !myCommandIsExecuting.getAndSet(true)) {
-					BaseCommand command = myCommandQueue.poll();
-					executeCommand(command);
+            @Override
+            public void handle (long now) {
+                if (!myCommandQueue.isEmpty() && !myCommandIsExecuting.getAndSet(true)) {
+                    BaseCommand command = myCommandQueue.poll();
+                    executeCommand(command);
 
-				}
-			}
-		};
-	}
+                }
+            }
+        };
+    }
 
-	@Override
-	public void receiveCommand(String enteredText) {
-		String translatedText = myTranslator
-				.translateUserInputIntoEnglish(enteredText);
-		myInputsToParse.add(translatedText);
-	}
+    @Override
+    public void receiveCommand (String enteredText) {
+        String translatedText = myTranslator.translateUserInputIntoEnglish(enteredText);
+        myInputsToParse.add(translatedText);
+    }
 
-	@Override
-	protected void initializeModel() {
-		myModel.initializeModel();
-	}
+    @Override
+    protected void initializeModel () {
+        myModel.initializeModel();
+    }
 
-	@Override
-	public void start() {
-		myCommandParserTimer.start();
-		myCommandExecutionTimer.start();
-	}
+    @Override
+    public void start () {
+        myCommandParserTimer.start();
+        myCommandExecutionTimer.start();
+    }
 
-	@Override
-	public void pause(int x, int y) {
-		myCommandExecutionTimer.stop();
-	}
+    @Override
+    public void pause (int x, int y) {
+        myCommandExecutionTimer.stop();
+    }
 
-	@Override
-	public void stop() {
-		myCommandExecutionTimer.stop();
-		myCommandParserTimer.stop();
-		myInputsToParse.clear();
-		myCommandQueue.clear();
-	}
+    @Override
+    public void stop () {
+        myCommandExecutionTimer.stop();
+        myCommandParserTimer.stop();
+        myInputsToParse.clear();
+        myCommandQueue.clear();
+    }
 
-	private void executeCommand(BaseCommand command) {
-		try {
-			command.execute();
-		} catch (BackendException ex) {
-			reportErrorToView(ex);
-		}
-		finally{
-			myExecutedCommands.add(command);
-			myCommandIsExecuting.set(false);
-		}
-	}
+    private void executeCommand (BaseCommand command) {
+        try {
+            command.execute();
+        } catch (BackendException ex) {
+            reportErrorToView(ex);
+        } finally {
+            myExecutedCommands.add(command);
+            myCommandIsExecuting.set(false);
+        }
+    }
 
-	@Override
-	protected void reportErrorToView(Exception ex) {
-		
-	}
+    @Override
+    protected void reportErrorToView (Exception ex) {
 
-	@Override
-	public void loadLanguage(File file) {
-		try {
-			myTranslator.extractFromLanguageFile(file);
-		} catch (BackendException e) {
-			reportErrorToView(e);
-		}
-	}
+    }
 
-	/**
-	 * Find turtle matching specified ID
-	 * 
-	 * @param ID
-	 *            of turtle
-	 * @return turtle matching ID, else return null if no turtle match
-	 */
-	public Turtle findTurtle(int ID) {
-		return myModel.findTurtle(ID);
-	}
+    @Override
+    public void loadLanguage (File file) {
+        try {
+            myTranslator.extractFromLanguageFile(file);
+        } catch (BackendException e) {
+            reportErrorToView(e);
+        }
+    }
 
-	public List<Turtle> getActiveTurtles() {
-		return myModel.getActiveTurtles();
-	}
+    /**
+     * Find turtle matching specified ID
+     * 
+     * @param ID
+     *            of turtle
+     * @return turtle matching ID, else return null if no turtle match
+     */
+    public Turtle findTurtle (int ID) {
+        return myModel.findTurtle(ID);
+    }
 
-	public Turtle getFirstTurtle() {
-		// TODO Auto-generated method stub
-		return myModel.findTurtle(0);
-	}
+    public List<Turtle> getActiveTurtles () {
+        return myModel.getActiveTurtles();
+    }
 
-	public void setInitial(Grid grid, Turtle turtle) {
-		myCommandInformationHub = new SingleViewContainerInformationHub(grid,
-				turtle);
-		CommandFactory.setInformationHub(myCommandInformationHub);
-	}
+    public Turtle getFirstTurtle () {
+        // TODO Auto-generated method stub
+        return myModel.findTurtle(0);
+    }
 
-	@Override
-	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
-		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
-				.getContainer(BaseTurtleContainer.class);
-		turtleContainer.addTurtle(turtle, isActive);
-	}
+    public void setInitial (Grid grid, Turtle turtle) {
+        myCommandInformationHub = new SingleViewContainerInformationHub(grid, turtle);
+        CommandFactory.setInformationHub(myCommandInformationHub);
+    }
 
-	@Override
-	public void addGrid(Grid grid, boolean isActive) {
-		BaseGridContainer gridContainer = getGridContainer();
-		gridContainer.addGrid(grid, isActive);
-	}
+    @Override
+    public void addTurtle (Turtle turtle, int gridID, boolean isActive) {
+        BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
+                .getContainer(BaseTurtleContainer.class);
+        turtleContainer.addTurtle(turtle, isActive);
+    }
 
+    @Override
+    public void addGrid (Grid grid, boolean isActive) {
+        BaseGridContainer gridContainer = getGridContainer();
+        gridContainer.addGrid(grid, isActive);
+    }
 
-	@Override
-	public void setGridAsActive(int gridID) {
-		BaseGridContainer gridContainer = getGridContainer();
-		gridContainer.setGridAsActive(gridID);
-	}
-	
-	private BaseGridContainer getGridContainer(){
-		BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
-				.getContainer(BaseGridContainer.class);
-		return gridContainer;
-	}
-	
-	@Override
-	public IInformationContainer loadPreferences(
-			IInformationContainer container, File file) throws BackendException {
-		FileInputStream fis = null;
-		ObjectInputStream in = null;
-		BaseVariableContainer returnContainer = null;
-		try {
-			fis = new FileInputStream(file);
-			in = new ObjectInputStream(fis);
-			returnContainer = (BaseVariableContainer) in.readObject();
-			in.close();
-		} catch (Exception ex) {
-			reportErrorToView(new BackendException(ex, "Error reading from file"));
-		}
+    @Override
+    public void setGridAsActive (int gridID) {
+        BaseGridContainer gridContainer = getGridContainer();
+        gridContainer.setGridAsActive(gridID);
+    }
 
-		return (IInformationContainer) returnContainer;
-	}
+    private BaseGridContainer getGridContainer () {
+        BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
+                .getContainer(BaseGridContainer.class);
+        return gridContainer;
+    }
 
-	@Override
-	public void savePreferences(IInformationContainer container, String filename)
-			throws BackendException {
-		FileOutputStream fos = null;
-		ObjectOutputStream out = null;
-		try {
-			fos = new FileOutputStream(filename);
-			out = new ObjectOutputStream(fos);
-			out.writeObject((BaseVariableContainer) container);
-			out.close();
-		} catch (Exception ex) {
-			reportErrorToView(new BackendException(ex, "Error writing to file"));
-		}
-	}
+    @Override
+    public IInformationContainer loadPreferences (IInformationContainer container, File file)
+            throws BackendException {
+        FileInputStream fis = null;
+        ObjectInputStream in = null;
+        BaseVariableContainer returnContainer = null;
+        try {
+            fis = new FileInputStream(file);
+            in = new ObjectInputStream(fis);
+            returnContainer = (BaseVariableContainer) in.readObject();
+            in.close();
+        } catch (Exception ex) {
+            reportErrorToView(new BackendException(ex, "Error reading from file"));
+        }
+
+        return (IInformationContainer) returnContainer;
+    }
+
+    @Override
+    public void savePreferences (IInformationContainer container, String filename)
+            throws BackendException {
+        FileOutputStream fos = null;
+        ObjectOutputStream out = null;
+        try {
+            fos = new FileOutputStream(filename);
+            out = new ObjectOutputStream(fos);
+            out.writeObject((BaseVariableContainer) container);
+            out.close();
+        } catch (Exception ex) {
+            reportErrorToView(new BackendException(ex, "Error writing to file"));
+        }
+    }
 }

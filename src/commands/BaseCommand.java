@@ -5,16 +5,18 @@ import java.util.Set;
 import java.util.Stack;
 
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commands.information.IInformationContainer;
 
-
 /**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  * 
- * Abstract class for a Turtle command. The update method will be implemented and
- * returns the turtle object that can be manipulated by other commands. All other
- * types of commands will extend the BaseCommand, such as commands that only
- * modify the view, commands that are conditional, mathematical operations.
+ * Abstract class for a Turtle command. The update method will be
+ * implemented and returns the turtle object that can be manipulated by
+ * other commands. All other types of commands will extend the
+ * BaseCommand, such as commands that only modify the view, commands
+ * that are conditional, mathematical operations.
  *
  */
 public abstract class BaseCommand {
@@ -31,7 +33,8 @@ public abstract class BaseCommand {
     /**
      * 
      * @param userInput
-     * @throws BackendException TODO
+     * @throws BackendException
+     *             TODO
      */
     public BaseCommand (String userInput, boolean isExpression) throws BackendException {
         myExpressionFlag = isExpression;
@@ -41,13 +44,14 @@ public abstract class BaseCommand {
     /**
      * Method returns the computation of the turtle command
      * 
-     * @throws BackendException TODO
+     * @throws BackendException
+     *             TODO
      * 
      */
 
-    public double execute() throws BackendException {
+    public double execute () throws BackendException {
         double result = onExecute();
-        if(getNextCommand() != null){
+        if (getNextCommand() != null) {
             return getNextCommand().execute();
         }
         return result;
@@ -69,11 +73,10 @@ public abstract class BaseCommand {
         return myLeftoverString;
     }
 
-    protected void setLeftoverCommands (String string) throws BackendException{
+    protected void setLeftoverCommands (String string) throws BackendException {
         if (myExpressionFlag) {
             myLeftoverString = string;
-        }
-        else if (string != null && string != "") {
+        } else if (string != null && string != "") {
             myNextCommand = CommandFactory.createCommand(string, false);
         }
     }
@@ -87,11 +90,10 @@ public abstract class BaseCommand {
         if (endIndex == -1) {
             // exception
         }
-        String innerListCommand =
-                treatedInput.substring(COMMAND_INDICATOR.length(),
-                        endIndex - COMMAND_END_INDICATOR.length()).trim();
+        String innerListCommand = treatedInput.substring(COMMAND_INDICATOR.length(),
+                endIndex - COMMAND_END_INDICATOR.length()).trim();
         String outsideString = treatedInput.substring(endIndex).trim();
-        String[] splitCommand = { innerListCommand, outsideString};
+        String[] splitCommand = { innerListCommand, outsideString };
         return splitCommand;
     }
 
@@ -105,12 +107,11 @@ public abstract class BaseCommand {
                 String aggregatedWord = temporaryStringBuilder.toString().trim();
                 if (aggregatedWord.equals(COMMAND_INDICATOR)) {
                     checkStack.push(aggregatedWord);
-                }
-                else if (aggregatedWord.equals(COMMAND_END_INDICATOR)) {
+                } else if (aggregatedWord.equals(COMMAND_END_INDICATOR)) {
                     checkStack.pop();
                 }
-                if (checkStack.size() == 0) { 
-                    return i; 
+                if (checkStack.size() == 0) {
+                    return i;
                 }
                 temporaryStringBuilder.setLength(0);
             }

@@ -1,11 +1,16 @@
 package commands.controlCommands;
 
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
 import commands.information.BaseVariableContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ForCommand extends ControlCommand {
 
     private static final String INVALID_COMMAND_ENTERED = "Invalid command entered";
@@ -28,9 +33,9 @@ public class ForCommand extends ControlCommand {
     protected double onExecute () throws BackendException {
         BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
-        int startValue = (int)myStartCommand.execute();
-        int stopValue = (int)myEndCommand.execute();
-        int incrementValue = (int)myIncrementCommand.execute();
+        int startValue = (int) myStartCommand.execute();
+        int stopValue = (int) myEndCommand.execute();
+        int incrementValue = (int) myIncrementCommand.execute();
         myVarExistsPreviously = false;
         BaseCommand oldCommand = null;
         if (variableContainer.containsVariable(myVariableName)) {
@@ -48,18 +53,15 @@ public class ForCommand extends ControlCommand {
     private void checkIfVariableExistsPreviously (BaseCommand oldCommand) throws BackendException {
         if (myVarExistsPreviously) {
             myVariableContainer.addVariable(myVariableName, oldCommand);
-        }
-        else {
+        } else {
             myVariableContainer.popOffVariable(myVariableName);
         }
     }
 
     @Override
     protected void parseArguments (String userInput) throws BackendException {
-
         String[] splitInput = splitByInnerListCommand(userInput);
         String innerInput = splitInput[0];
-
         String[] variableNameContents = innerInput.split(VARIABLE_INDICATOR);
         if (variableNameContents.length < 2) {
             throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
@@ -71,9 +73,8 @@ public class ForCommand extends ControlCommand {
             throw new BackendException(null, INVALID_COMMAND_ENTERED);
         }
 
-        myStartCommand =
-                CommandFactory.createCommand(variableNameContents[1].trim()
-                        .split(COMMAND_SEPARATOR, 2)[1].trim(), true);
+        myStartCommand = CommandFactory.createCommand(
+                variableNameContents[1].trim().split(COMMAND_SEPARATOR, 2)[1].trim(), true);
         myEndCommand = CommandFactory.createCommand(myStartCommand.getLeftoverString(), true);
         myIncrementCommand = CommandFactory.createCommand(myEndCommand.getLeftoverString(), true);
 

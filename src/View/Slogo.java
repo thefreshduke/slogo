@@ -3,17 +3,18 @@ package View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Slogo extends Application{
+public class Slogo extends Application {
 
-	@Override
-	public void start(Stage arg0) throws Exception {
-		SlogoView myView=new SlogoView();
-		myView.initialize(arg0);
-		arg0.show();
+    @Override
+    public void start (Stage arg0) throws Exception {
+        SlogoView myView = new SlogoView();
+        myView.initialize(arg0);
+        arg0.show();
 
-	}
-	public static void main(String[] args){
-		launch(args);
-	}
+    }
+
+    public static void main (String[] args) {
+        launch(args);
+    }
 
 }

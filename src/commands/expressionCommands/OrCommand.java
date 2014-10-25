@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class OrCommand extends TwoExpressionCommand {
 
     public OrCommand (String userInput, boolean isExpression) throws BackendException {
@@ -15,5 +19,4 @@ public class OrCommand extends TwoExpressionCommand {
         double result = (firstExpression != 0 || secondExpression != 0) ? 1 : 0;
         return result;
     }
-
 }

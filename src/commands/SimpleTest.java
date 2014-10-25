@@ -1,6 +1,6 @@
 package commands;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -8,44 +8,47 @@ import java.util.Map;
 import org.junit.Test;
 
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commands.controlCommands.IfElseCommand;
 import commands.expressionCommands.RandomIntegerCommand;
 import commands.expressionCommands.SumCommand;
 import commands.turtleCommands.ForwardCommand;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class SimpleTest {
 
     @Test
-    public void testSumParses(){
+    public void testSumParses () {
         setFactory();
         String input = "SUM 6 SUM 7 8 SUM 8 9 SUM 9 10";
         BaseCommand command = CommandFactory.createCommand(input, false);
-        try{
+        try {
             Double result = command.onExecute();
             assertEquals(result, new Double(19.0));
-        }
-        catch(BackendException ex){
-            
+        } catch (BackendException ex) {
+
         }
     }
-    
+
     @Test
-    public void testIfElse(){
+    public void testIfElse () {
         setFactory();
         String input = "IFELSE SUM 6 7 [ SUM 7 7 ] [ SUM 2 3 ]";
         BaseCommand command = CommandFactory.createCommand(input, false);
-        try{
+        try {
             double result = command.onExecute();
             assertEquals(new Double(result), new Double(14));
+        } catch (BackendException ex) {
+
         }
-        catch(BackendException ex){
-            
-        }
-       
+
     }
-    
-    private void setFactory(){
+
+    private void setFactory () {
         Map<String, Class> commandToClassMap = new HashMap<>();
         commandToClassMap.put("SUM", SumCommand.class);
         commandToClassMap.put("IFELSE", IfElseCommand.class);
