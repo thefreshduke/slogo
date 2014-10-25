@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 
 public class ButtonTemplate extends Button implements UserObjects{
-	int textSize;
+	int textSize=15;
 	/**
 	 * Constructor
 	 * @param s				Label for the Button	
@@ -21,8 +21,16 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
 		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
 		setStyle(textSize);
-		textSize=15;
 		this.setPrefSize(75, 55);
+	}
+	public ButtonTemplate(String s, double x, double y, EventHandler myEvent, int width, int height){
+		this.relocate(x, y);
+		this.setText(s);
+		this.addEvent(myEvent);
+		this.setPrefSize(width, height);
+		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
+		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
+		setStyle(textSize);
 	}
 	
 	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction, int width, int height){
@@ -31,6 +39,8 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.addEvent(event->myFunction.doAction());
 		this.setPrefSize(width, height);
 		setStyle(textSize);
+		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
+		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
 	}
 	@Override
 	public void addEvent(EventHandler<ActionEvent> handler) {

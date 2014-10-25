@@ -26,7 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class SingleGrid extends Grid {
-	private String backgroundColor = "000000";
+	private String backgroundColor = "FFFFFF";
 	public int myHeight;
 	public int myWidth;
 	private ImageView myImageView;
@@ -69,7 +69,7 @@ public class SingleGrid extends Grid {
 	}
 	public void moveTurtle(Turtle t){
 		t.relocate(t.getXPos(), t.getYPos());
-		t.rotate(t.getOrientation());
+		t.setRotate(t.getOrientation());
 	}
 	
 	/**

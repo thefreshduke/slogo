@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 
 import GUIFunctions.Add;
 import GUIFunctions.AddTurtle;
+import GUIFunctions.AskForInitialFile;
 import GUIFunctions.BackgroundColor;
 import GUIFunctions.BottomFunctions;
 import GUIFunctions.ClearFunction;
@@ -89,7 +90,7 @@ public class SlogoView {
 	private MenuTemplate userCommands;
 	private ResourceBundle myResources;
 	private Stage myStage;
-	
+
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -102,7 +103,7 @@ public class SlogoView {
 		myTime.setCycleCount(Timeline.INDEFINITE);
 		myTime.getKeyFrames().add(this.build(40));
 		myTime.play();
-		
+
 	}	
 	/**
 	 * 
@@ -147,8 +148,6 @@ public class SlogoView {
 		root.getChildren().add(myGridTabs);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		myStage.setScene(myScene);
-		myGrids.getActiveGrid().addTurtle(myController.getFirstTurtle());
-		myController.addGrid(myGrids.getActiveGrid(),true);
 		VariableTable myTable=new VariableTable(myGrids);
 	}
 	/**
@@ -164,48 +163,39 @@ public class SlogoView {
 	 * @param s		String representing the command to send that was inputed by the user
 	 *  
 	 */
-	private void sendCommand(){
-		if (commandLine.getText()!=null){
-			myController.receiveCommand(commandLine.getText());
-			ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, null, 180, 35);
-			mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
-			myCommands.add(mostRecent);
-			commandLine.clear();
-			updateCommandHistory();
-		}
-	}
-
-	//	ugly workaround, need to find elegant solution to get rid of repeated code
-	private void sendButtonCommand(ButtonTemplate b){
-		myController.receiveCommand(commandLine.getText());
-		ButtonTemplate mostRecent = new ButtonTemplate(b.getText(), 0, 0, null, 180, 35);
-		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
+	private void sendCommandAndMakeButton(String command){
+		sendCommand(command);
+		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
+	}
 
+
+	private void sendCommand(String myCommand){
+		myController.receiveCommand(myCommand);
 	}
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
 		myMenu.setStyle( "-fx-border-width: 5");
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
-		
-		MenuTemplate fileMenu = new MenuTemplate("File");
+		MenuTemplate fileMenu=this.createfileMenu();
 		MenuTemplate languages = new MenuTemplate("Languages");
 		MenuTemplate personalize=new MenuTemplate("Personalize");
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
 		
+
 		MenuTemplate help = new MenuTemplate("Help");
 		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
-		
+
 		userCommands = new MenuTemplate("User Commands");
-		
+
 		makeAddMenu(add);
 		this.makeMenu(LanguageMenu.class, languages);
 		this.makeMenu(PersonalizeMenu.class, personalize);
 		this.makeMenu(PenMenu.class, pen);
-		
+
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
@@ -242,7 +232,7 @@ public class SlogoView {
 
 		return myMap;
 	}
-	
+
 	private void createMenuItemsUnderFile(MenuTemplate fileMenu) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
@@ -250,7 +240,7 @@ public class SlogoView {
 	}
 	private void addTurtle(){
 		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
-		
+
 
 	}
 	public Grid addGrid() {
@@ -261,7 +251,7 @@ public class SlogoView {
 			myGrids.setActiveGrid((SingleGrid)myNewGrid);
 			myGridTabs.addTab("GRID", (SingleGrid)myNewGrid);
 			myController.addGrid((SingleGrid)myNewGrid, true);
-			
+
 			return myNewGrid;
 		} catch (InstantiationException e) {
 			// TODO Auto-generated catch block
@@ -285,7 +275,7 @@ public class SlogoView {
 		return null;
 	}
 
-	
+
 
 	private Pane setTextArea(){
 		Pane myTextArea=new Pane();
@@ -302,14 +292,14 @@ public class SlogoView {
 			@Override
 			public void handle(KeyEvent event) {
 				if(event.getCode().equals(KeyCode.ENTER)) 
-					sendCommand();		
+					sendCommandAndMakeButton(commandLine.getText());		
 			}
 		};
 		commandLine.addEventHandler(KeyEvent.KEY_PRESSED,enterEvent);
 		String[] value=myResources.getString("enter").split(";");
 		Button enter = new Button (value[0]);
 		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
-		enter.setOnAction(event->this.sendCommand());
+		enter.setOnAction(event->this.sendCommandAndMakeButton(commandLine.getText()));
 		enter.setPrefSize(70, 30);
 		commandLine.relocate(5, 60);
 		commandLine.setPrefSize(190,100);
@@ -318,22 +308,8 @@ public class SlogoView {
 		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
 		makeCommand.setPrefSize(120, 30);
 		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
-
-/*		
-		ColorBar backGroundColorBar=new ColorBar(myResources.getString("backgroundColor"));
-		backGroundColorBar.relocate(25, 350);
-		ColorBar penColorBar=new ColorBar(myResources.getString("penColor"));
-		backGroundColorBar.relocate(25, 350);
-		penColorBar.relocate(25, 385);
-		Iterator<String>myIterator=colorSelection.getAvailableColors().iterator();
-		while (myIterator.hasNext()){
-			String color=(String)myIterator.next();
-			ColorFunction myFunction= (ColorFunction) myUserFunctions.get("backgroundColor");
-			backGroundColorBar.addItem(color, event->myFunction.doAction(color));
-			ColorFunction myPenFunction=(ColorFunction) myUserFunctions.get("penColor");
-			penColorBar.addItem(color, event->myPenFunction.doAction(color));
-		}
-	*/
+		
+		
 		commandHistoryBox = new VBox();
 		Text history = new Text("  Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -342,8 +318,9 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		commandHistoryBox.relocate(0, 380);
+		
 		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand,
-				 history, commandHistoryBox, colorSelection);
+				history,  colorSelection, commandHistoryBox);
 		return myTextArea;
 	}
 
@@ -392,8 +369,7 @@ public class SlogoView {
 		myController.receiveCommand(commandLine.getText());
 		commandLine.setText(command);
 		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
-				0, 0, null, 180, 35);
-		mostRecent.addEvent(event -> sendButtonCommand(mostRecent));
+				0, 0, (event -> sendCommandAndMakeButton(commandLine.getText())), 180,10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
@@ -451,8 +427,9 @@ public class SlogoView {
 		myUserFunctions.put("penColor", new PenColor(myGrids));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPallete(colorSelection));
+		myUserFunctions.put("uploadFile", new AskForInitialFile());
 		addLanguages();
-		
+
 	}
 	private void addLanguages(){
 		try {
@@ -466,12 +443,22 @@ public class SlogoView {
 			JOptionPane.showMessageDialog(null, "Language File not Found, using default colors");	
 		}
 	}
-	private void createfileMenu(){
+	private MenuTemplate createfileMenu(){
 		MenuTemplate file=new MenuTemplate("File");
 		//file.addMenuItem("Export", myController.savePreferences(container, file));
-		//file.addMenuItem("Import", myController.loadPreferences(
+		AskForInitialFile myFunction=(AskForInitialFile)myUserFunctions.get("uploadFile");
+		file.addMenuItem(myResources.getString("uploadFile"),event->checkNullFile(myFunction.sendFile()));
+		return file;
 	}
 	private String saveFile(){
 		return JOptionPane.showInputDialog(null, "Name of desired file to save to:");
+	}
+	private void checkNullFile(File myFile){
+		if (myFile!=null){
+			//myController.savePreferences(container, filename);
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "The File was Null");
+		}
 	}
 }
