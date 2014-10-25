@@ -444,7 +444,7 @@ public class SlogoView {
 		myUserFunctions.put("stampTurtle", new Stamp(myGrids));
 	//	myUserFunctions.put(myResources.getString("spanish"), new SetLanguage());
 		myUserFunctions.put("helpPage", new HelpPage());
-		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids));
+		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids, colorSelection));
 		myUserFunctions.put("penColor", new PenColor(myGrids));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPallete(colorSelection));

@@ -31,7 +31,7 @@ public class ColorSelection extends Pane{
 	private ArrayList<String> myColors = new ArrayList<>();
 	private HashSet<ColorLabel> myLabels=new HashSet();
 	private GridTracker myGrids;
-	private HBox colorBox;
+	private HBox colorBox=new HBox();
 
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
@@ -49,8 +49,8 @@ public class ColorSelection extends Pane{
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Color File not Found, using default colors");
-			myColors.add("BLACK");
-			myColors.add("WHITE");
+			myColors.add("FFFFFF");
+			myColors.add("000000");
 		}
 		
 		this.setPrefSize(200, 200);
