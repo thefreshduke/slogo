@@ -24,10 +24,10 @@ public class SetBackgroundImage extends PersonalizeMenu {
 	private Stage myStage;
 	private ImageView myImageView;
 	public SetBackgroundImage(GridTracker grid, Stage mainStage){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 		myStage=mainStage;
 		myImageView=new ImageView();
-		myGrid.getChildren().add(myImageView);
+		allGrids.getActiveGrid().getChildren().add(myImageView);
 	}
 	@Override
 	//ugly but works need to change
@@ -42,13 +42,13 @@ public class SetBackgroundImage extends PersonalizeMenu {
 				buffer = ImageIO.read(file);
 				Image img=SwingFXUtils.toFXImage(buffer, null);
 				myImageView.setImage(img);
-				myImageView.setFitHeight(myGrid.myHeight);
-				myImageView.setFitWidth(myGrid.myWidth);
+				myImageView.setFitHeight(allGrids.getActiveGrid().myHeight);
+				myImageView.setFitWidth(allGrids.getActiveGrid().myWidth);
 				myImageView.setVisible(true);
-				myGrid.getChildren().removeAll(myGrid.getAllTurtles());
-				myGrid.getChildren().addAll(myGrid.getAllTurtles());
-				myGrid.getChildren().removeAll(myGrid.getAllPens());
-				myGrid.getChildren().addAll(myGrid.getAllPens());
+				allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllTurtles());
+				allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllTurtles());
+				allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllPens());
+				allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllPens());
 				
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Please select another file");

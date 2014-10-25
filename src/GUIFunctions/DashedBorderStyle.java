@@ -12,5 +12,6 @@ public class DashedBorderStyle extends BorderStyle {
 	public Double[] getStyle(int thickness){
 		Double[] myDashes={(double) (5*thickness) , (double) (5*thickness)};
 		return myDashes;
+		
 	}
 }

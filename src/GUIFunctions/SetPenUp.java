@@ -8,13 +8,13 @@ import View.SingleGrid;
 
 public class SetPenUp extends BottomFunctions{
 	public SetPenUp(GridTracker grid){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 	}
 
 	@Override
 	public void doAction() {
 	
-		for (Pen p: myGrid.getActivePens()){
+		for (Pen p: allGrids.getActiveGrid().getActivePens()){
 			p.setPenDown(false);
 		}
 		

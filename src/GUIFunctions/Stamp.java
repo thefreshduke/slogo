@@ -9,13 +9,13 @@ import javafx.scene.paint.Color;
 
 public class Stamp extends BottomFunctions {
 	public Stamp(GridTracker grid){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 	}
 
 	@Override
 	public void doAction() {
 		ImageView newImageView=new ImageView();
-		for (Turtle turtle: myGrid.getActiveTurtles()){
+		for (Turtle turtle: allGrids.getActiveGrid().getActiveTurtles()){
 			newImageView.setImage(turtle.getImage());
 			newImageView.setFitWidth(turtle.getFitWidth());;
 			newImageView.setPreserveRatio(true);
@@ -23,7 +23,7 @@ public class Stamp extends BottomFunctions {
 			newImageView.setDisable(true);
 			newImageView.relocate(100, 200);
 			addEffect(newImageView);
-			myGrid.getChildren().add(newImageView);
+			allGrids.getActiveGrid().getChildren().add(newImageView);
 		}
 	}
 

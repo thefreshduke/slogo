@@ -3,6 +3,8 @@ package View;
 import java.awt.Dimension;
 import java.awt.List;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -10,6 +12,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Properties;
 import java.util.Queue;
 import java.util.ResourceBundle;
 
@@ -35,6 +38,7 @@ import GUIFunctions.Stamp;
 import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
+import GUIFunctions.VariableTable;
 import turtle.Turtle;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
@@ -121,6 +125,7 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		makeListOfFunctions();
+		VariableTable myTable=new VariableTable(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -223,12 +228,12 @@ public class SlogoView {
 		return myMap;
 	}
 	
-	public void createMenuItemsUnderFile(MenuTemplate fileMenu) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
+	private void createMenuItemsUnderFile(MenuTemplate fileMenu) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		fileMenu.addMenuItem("Export to XML", null);
 		fileMenu.addMenuItem("Import to XML", null);
 		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
-	public void addTurtle(Object turtleToAdd){
+	private void addTurtle(Object turtleToAdd){
 		Turtle toAdd=(Turtle) turtleToAdd;
 		myController.addTurtle(toAdd, myGrids.getActiveGrid().getID(), true);
 		myGrids.getActiveGrid().addTurtle(toAdd);
@@ -312,18 +317,17 @@ public class SlogoView {
 		lastOrientation.relocate(5, 310);
 		//		temporary background color chooser
 
-		ColorBar backGroundColorBar=new ColorBar("BackgroundColor");
+		ColorBar backGroundColorBar=new ColorBar(myResources.getString("backgroundColor"));
 		backGroundColorBar.relocate(25, 350);
-		ColorBar penColorBar=new ColorBar("PenColor");
+		ColorBar penColorBar=new ColorBar(myResources.getString("penColor"));
 		backGroundColorBar.relocate(25, 350);
 		penColorBar.relocate(25, 385);
 		Iterator<String>myIterator=colorSelection.getAvailableColors().iterator();
-		
 		while (myIterator.hasNext()){
 			String color=(String)myIterator.next();
-			ColorFunction myFunction= (ColorFunction) myUserFunctions.get("BackgroundColor");
+			ColorFunction myFunction= (ColorFunction) myUserFunctions.get("backgroundColor");
 			backGroundColorBar.addItem(color, event->myFunction.doAction(color));
-			ColorFunction myPenFunction=(ColorFunction) myUserFunctions.get("PenColor");
+			ColorFunction myPenFunction=(ColorFunction) myUserFunctions.get("penColor");
 			penColorBar.addItem(color, event->myPenFunction.doAction(color));
 		}
 		
@@ -343,11 +347,11 @@ public class SlogoView {
 	}
 
 
-	private Pane addButtons(){
+	private Pane addButtons() {
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-		myButtonPanel.getChildren().addAll(this.makeButtons(BottomFunctions.class));;
+		myButtonPanel.getChildren().addAll(this.makeButtons(BottomFunctions.class, "BottomPanel"));
 		myButtonPanel.getChildren().addAll(this.makeSlidingBars());
 		return myButtonPanel;
 	}
@@ -394,15 +398,25 @@ public class SlogoView {
 		updateCommandHistory();
 	}
 
-	private ArrayList<ButtonTemplate> makeButtons(Class myClass){
-		ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
-		for (String s: myUserFunctions.keySet()){
-			if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
-				String[] value=myResources.getString(s).split(";");
-				myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myUserFunctions.get(s)));
+	private ArrayList<ButtonTemplate> makeButtons(Class myClass, String location){
+		Properties prop=new Properties();
+		InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/"+location+".Properties");
+		try {
+			prop.load(stream);
+			ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
+			for (String s: myUserFunctions.keySet()){
+				if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
+					System.out.println(prop.getProperty(s));
+					String[] value=prop.getProperty(s).split(";");
+					myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myUserFunctions.get(s)));
+				}
 			}
+			return myButtons;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return myButtons;
+		return null;
 	}
 	private void makeMenu(Class myClass, MenuTemplate myMenu){
 		for (String s: myUserFunctions.keySet()){
@@ -414,26 +428,10 @@ public class SlogoView {
 	}
 	private Collection<ScrollingBar> makeSlidingBars(){
 		Collection<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
-		ScrollingBar myPenBar=new PenScrollingBar("Pen Thickness", 200, 20, new PenThickness(myGrids));
+		ScrollingBar myPenBar=new PenScrollingBar(myResources.getString("penThickness"), 200, 20, myUserFunctions.get("penThickness"));
 		myListOfBars.add(myPenBar);
 		return myListOfBars;
 	}
-
-	
-	public void makeMenuItemMap(){
-	}
-
-	
-	/*
-	private HashMap<String, GUIFunction> makeUserObjectMap(){
-		HashMap<String, GUIFunction> myUserObjectMap=new HashMap<String, GUIFunction>();
-		myUserObjectMap.put("penDown", new SetPenDown(activeGrid));
-		myUserObjectMap.put("undo", new Undo(activeGrid));
-		myUserObjectMap.put("clear", new ClearFunction(activeGrid));
-		myUserObjectMap.put("penUp", new SetPenUp(activeGrid));
-		return myUserObjectMap;
-	}
-	 */
 
 	private void makeListOfFunctions(){
 		myUserFunctions.put("penDown", new SetPenDown(myGrids));
@@ -444,14 +442,15 @@ public class SlogoView {
 		myUserFunctions.put("toggleReferenceGrid", new ToggleGridLines(myGrids, 50));
 		myUserFunctions.put("uploadTurtleImage", new TurtleImageChange(myGrids, myStage));
 		myUserFunctions.put("addTurtle", new AddTurtle());
-		myUserFunctions.put("Dotted", new PenStyle(myGrids,"Dotted"));
-		myUserFunctions.put("Solid", new PenStyle(myGrids, "Solid"));
-		myUserFunctions.put("Dashed", new PenStyle(myGrids, "Dashed"));
+		myUserFunctions.put("dottedPenStyle", new PenStyle(myGrids,"Dotted"));
+		myUserFunctions.put("solidPenStyle", new PenStyle(myGrids, "Solid"));
+		myUserFunctions.put("dashedPenStyle", new PenStyle(myGrids, "Dashed"));
 		myUserFunctions.put("stampTurtle", new Stamp(myGrids));
-		myUserFunctions.put("Spanish", new SetLanguage());
-		myUserFunctions.put("Help", new HelpPage());
-		myUserFunctions.put("BackgroundColor", new BackgroundColor(myGrids));
-		myUserFunctions.put("PenColor", new PenColor(myGrids));
+	//	myUserFunctions.put(myResources.getString("spanish"), new SetLanguage());
+		myUserFunctions.put("helpPage", new HelpPage());
+		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids));
+		myUserFunctions.put("penColor", new PenColor(myGrids));
+		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 	}
 
 }

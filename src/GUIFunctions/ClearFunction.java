@@ -5,11 +5,11 @@ import View.SingleGrid;
 
 public class ClearFunction extends BottomFunctions{
 	public ClearFunction(GridTracker grid){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 	}
 	@Override
 	public void doAction() {
-		myGrid.getChildren().clear();
+		allGrids.getActiveGrid().getChildren().clear();
 	}
 	@Override
 	public void doAction(Number newVal) {

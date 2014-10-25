@@ -7,13 +7,7 @@ import View.SingleGrid;
 public class PenThickness extends GridFunction{
 	private Number myThickness=1;
 	public PenThickness(GridTracker grid){
-		myGrid=grid.getActiveGrid();
-	}
-	public void doAction(){
-		
-		for (Pen myP: myGrid.getActivePens()){
-			myP.changeThickness(myThickness);
-		}
+		allGrids=grid;
 	}
 	public void setMyThickness(Number thickness){
 		myThickness=thickness.intValue();
@@ -21,8 +15,13 @@ public class PenThickness extends GridFunction{
 	@Override
 	public void doAction(Number newVal) {
 		myThickness=newVal;
-		for (Pen myP: myGrid.getActivePens()){
+		for (Pen myP: allGrids.getActiveGrid().getActivePens()){
 			myP.changeThickness(myThickness);
 		}
+	}
+	@Override
+	public void doAction() {
+		// TODO Auto-generated method stub
+		
 	}
 }
