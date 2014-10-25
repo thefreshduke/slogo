@@ -1,5 +1,7 @@
 package GUIFunctions;
 
+import java.util.List;
+
 import View.GridTracker;
 import View.SingleGrid;
 import turtle.Turtle;
@@ -28,7 +30,7 @@ public class Stamp extends BottomFunctions {
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 
 	}

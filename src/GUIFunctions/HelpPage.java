@@ -1,5 +1,7 @@
 package GUIFunctions;
 
+import java.util.List;
+
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -23,7 +25,7 @@ public class HelpPage implements GUIFunction{
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 
 	}

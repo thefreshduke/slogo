@@ -1,6 +1,7 @@
 package GUIFunctions;
 
 import java.util.Collection;
+import java.util.List;
 
 import View.GridTracker;
 import View.Pen;
@@ -21,7 +22,7 @@ public class SetPenUp extends BottomFunctions{
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

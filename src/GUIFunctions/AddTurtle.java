@@ -1,5 +1,7 @@
 package GUIFunctions;
 
+import java.util.List;
+
 import View.GridTracker;
 import View.SingleGrid;
 import View.SlogoView;
@@ -19,7 +21,7 @@ public class AddTurtle extends Add{
 		
 	}
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}
