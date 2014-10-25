@@ -37,7 +37,7 @@ import GUIFunctions.Stamp;
 import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
-import GUIFunctions.VariableTable;
+import GUIFunctions.TurtleVariablesTable;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -136,7 +136,7 @@ public class SlogoView {
 		root.getChildren().add(myGridTabs);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		myStage.setScene(myScene);
-		VariableTable myTable=new VariableTable(myGrids);
+		TurtleVariablesTable myTable=new TurtleVariablesTable(myGrids);
 	}
 	/**
 	 * Displays the error message "message" on the screen
@@ -392,7 +392,9 @@ public class SlogoView {
 		myListOfBars.add(myPenBar);
 		return myListOfBars;
 	}
-
+	public void addVariable(){
+		
+	}
 	private void makeListOfFunctions(){
 		myUserFunctions.put("penDown", new SetPenDown(myGrids));
 		myUserFunctions.put("undo", new Undo(myGrids));
