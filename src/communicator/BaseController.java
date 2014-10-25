@@ -62,7 +62,7 @@ public abstract class BaseController {
 	
 	public abstract Turtle getFirstTurtle();
 
-	public abstract void addTurtle(Turtle turtle, boolean isActive);
+	public abstract void addTurtle(Turtle turtle, int gridID, boolean isActive);
 	
 	public abstract void addGrid(Grid grid, boolean isActive);
 

@@ -194,7 +194,7 @@ public class MainController extends BaseController {
 	}
 
 	@Override
-	public void addTurtle(Turtle turtle, boolean isActive) {
+	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
 		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
 				.getContainer(BaseTurtleContainer.class);
 		turtleContainer.addTurtle(turtle, isActive);
