@@ -6,6 +6,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
 public class ColorBar extends MenuBar {
+		
 		private MenuTemplate myMenu;
 		public ColorBar(String s){
 			myMenu= new MenuTemplate(s);

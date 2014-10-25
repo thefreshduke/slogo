@@ -76,6 +76,7 @@ public class SlogoView {
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
+	private ColorSelection colorSelection;
 	private Scene myScene;
 	private TextField commandLine;
 	//used to display Turtles most recent stats
@@ -130,6 +131,7 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		makeListOfFunctions();
+		colorSelection = new ColorSelection(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -143,13 +145,14 @@ public class SlogoView {
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		myStage.setScene(myScene);
 		myGrids.getActiveGrid().addTurtle(myController.getFirstTurtle());
+		myController.addGrid(myGrids.getActiveGrid(),true);
 		VariableTable myTable=new VariableTable(myGrids);
 	}
 	/**
 	 * Displays the error message "message" on the screen
 	 * 
 	 */
-	private void showError(String message){
+	public void showError(String message){
 		JOptionPane.showMessageDialog(null, message);
 	}
 	/**
@@ -298,12 +301,13 @@ public class SlogoView {
 		Button enter = new Button (value[0]);
 		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
 		enter.setOnAction(event->this.sendCommand());
+		enter.setPrefSize(70, 30);
 		commandLine.relocate(5, 60);
 		commandLine.setPrefSize(190,100);
 		value=myResources.getString("makeCommand").split(";");
 		Button makeCommand = new Button(value[0]);
 		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
-		makeCommand.setPrefSize(110, 55);
+		makeCommand.setPrefSize(120, 30);
 		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
 
 /*		
@@ -321,18 +325,17 @@ public class SlogoView {
 			penColorBar.addItem(color, event->myPenFunction.doAction(color));
 		}
 	*/
-	
-
 		commandHistoryBox = new VBox();
 		Text history = new Text("  Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		history.setFill(Color.WHITE);
-		history.relocate(0, 420);
+		history.relocate(0, 350);
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
-		commandHistoryBox.relocate(0, 450);
-		myTextArea.getChildren().addAll(label, commandLine, colorSelection, enter, makeCommand, lastX, lastY, lastOrientation,
-				 history, commandHistoryBox);
+		commandHistoryBox.relocate(0, 380);
+		System.out.println(colorSelection);
+		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand,
+				 history, commandHistoryBox, colorSelection);
 		return myTextArea;
 	}
 
