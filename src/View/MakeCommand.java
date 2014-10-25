@@ -5,21 +5,21 @@ import java.util.List;
 
 import GUIFunctions.GUIFunction;
 
-public class MakeCommand implements GUIFunction {
+public class MakeCommand implements GUIFunction{
     private TextField myTextField;
 
-    public MakeCommand (TextField myText, MenuTemplate myMenu) {
+    public MakeCommand(TextField myText, MenuTemplate myMenu){
 
     }
 
     @Override
-    public void doAction () {
+    public void doAction() {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void doAction (List<Number> newVal) {
+    public void doAction(List<? extends Number> newVal) {
         // TODO Auto-generated method stub
 
     }

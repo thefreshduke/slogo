@@ -54,6 +54,7 @@ public abstract class BaseCommand {
         if (getNextCommand() != null) {
             return getNextCommand().execute();
         }
+        reset();
         return result;
     }
 
@@ -123,4 +124,6 @@ public abstract class BaseCommand {
         String splitInput = input.trim().split(COMMAND_SEPARATOR, 2)[0];
         return splitInput.equals(COMMAND_INDICATOR);
     }
+
+    protected abstract void reset();
 }

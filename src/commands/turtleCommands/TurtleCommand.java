@@ -13,6 +13,7 @@ import commands.information.BaseTurtleContainer;
 import commands.information.IInformationContainer;
 
 public abstract class TurtleCommand extends BaseCommand {
+    private static final int NUM_TURTLE_CONTAINERS = 2;
     private BaseCommand[] myArgumentList;
     private BaseGridContainer myGridContainer;
     private BaseTurtleContainer myTurtleContainer;
@@ -31,7 +32,7 @@ public abstract class TurtleCommand extends BaseCommand {
 
     @Override
     public void setRequiredInformation (Collection<IInformationContainer> containers) {
-        if (containers.size() != 2) {
+        if (containers.size() != NUM_TURTLE_CONTAINERS) {
             // throw
         }
         // ArrayList<IInformationContainer> containerList = new
@@ -81,4 +82,6 @@ public abstract class TurtleCommand extends BaseCommand {
 
     protected abstract int getArgumentCount ();
 
+    @Override
+    protected void reset(){}
 }

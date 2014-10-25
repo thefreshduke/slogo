@@ -20,6 +20,8 @@ import backendExceptions.BackendException;
  */
 public class LanguageFileParser {
 
+    private static final String INVALID_COMMAND_MESSAGE = "Invalid command provided";
+
     public LanguageFileParser (File fileName) throws BackendException {
         extractFromLanguageFile(fileName);
         SPECIAL_CHARACTERS.add("[");
@@ -39,7 +41,8 @@ public class LanguageFileParser {
         ResourceBundle resourceBundle = null;
         try {
             resourceBundle = getBundle(file);
-        } catch (MalformedURLException e) {
+        }
+        catch (MalformedURLException e) {
             throw new BackendException(e, "Language file is not a valid .properties file");
         }
         Enumeration<String> values = resourceBundle.getKeys();
@@ -52,28 +55,27 @@ public class LanguageFileParser {
                 throw new BackendException(null, "Invalid language properties file");
             }
             for (String key : keyList) {
-                myUserInputToEnglishTranslationMap.put(key.toLowerCase().trim(), value
-                        .toLowerCase().trim());
+                myUserInputToEnglishTranslationMap.put(key.toLowerCase().trim(), value.toLowerCase().trim());
             }
         }
         myPreviousTranslationMap = myUserInputToEnglishTranslationMap;
         return myUserInputToEnglishTranslationMap;
     }
 
-    private void setToPreviousMap () {
+    private void setToPreviousMap() {
         myUserInputToEnglishTranslationMap = myPreviousTranslationMap;
     }
 
-    private ResourceBundle getBundle (File file) throws MalformedURLException {
+    private ResourceBundle getBundle(File file) throws MalformedURLException {
         File directory = file.getParentFile();
-        URL[] urls = { directory.toURI().toURL() };
+        URL[] urls = {directory.toURI().toURL()};
         ClassLoader loader = new URLClassLoader(urls);
         String fileName = getFileNameWithoutExtension(file);
         ResourceBundle rb = ResourceBundle.getBundle(fileName, Locale.getDefault(), loader);
         return rb;
     }
 
-    private String getFileNameWithoutExtension (File file) {
+    private String getFileNameWithoutExtension(File file) {
         String fullFileName = file.getName();
         int pos = fullFileName.lastIndexOf(".");
         String fileNameWithoutExtension = "";
@@ -83,9 +85,8 @@ public class LanguageFileParser {
         return fileNameWithoutExtension;
     }
 
-    public String translateUserInputIntoEnglish (String userInput) {
+    public String translateUserInputIntoEnglish (String userInput) throws BackendException{
         StringBuilder translatedUserInput = new StringBuilder();
-        // TODO: Change to string builder
         String[] userInputWords = userInput.split(myCommandSeparator);
         for (String rawCommand : userInputWords) {
             String command = rawCommand.toLowerCase().trim();
@@ -99,29 +100,35 @@ public class LanguageFileParser {
         return translatedUserInput.toString().trim();
     }
 
-    public String translateCommand (String command) {
+    public String translateCommand(String command) throws BackendException {
         String translatedCommand;
         if (myUserInputToEnglishTranslationMap.containsKey(command)) {
             translatedCommand = myUserInputToEnglishTranslationMap.get(command);
-        } else {
+        }
+        else{
             translatedCommand = translateByRegex(command);
+        }
+        if(translatedCommand == null){
+            throw new BackendException(null, INVALID_COMMAND_MESSAGE);
         }
         return translatedCommand;
     }
 
-    private String translateByRegex (String rawCommand) {
+    private String translateByRegex(String rawCommand) {
         Set<String> keySet = myUserInputToEnglishTranslationMap.keySet();
         for (String key : keySet) {
             try {
                 if (rawCommand.matches(key)) {
                     String command = myUserInputToEnglishTranslationMap.get(key).toLowerCase();
-                    if (command.equals("Variable".toLowerCase())) {
+                    if(command.equals("Variable".toLowerCase())) {
                         return command + " " + rawCommand.substring(1);
-                    } else {
+                    }
+                    else {
                         return command + " " + rawCommand;
                     }
                 }
-            } catch (Exception ex) {
+            }
+            catch(Exception ex) {
                 continue;
             }
         }

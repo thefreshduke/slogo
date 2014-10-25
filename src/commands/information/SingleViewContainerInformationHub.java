@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-
 import turtle.Turtle;
 import View.Grid;
 import backendExceptions.BackendException;
@@ -17,47 +16,51 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
     private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
     private MapBasedVariableContainer myVariableContainer;
 
-    public SingleViewContainerInformationHub (Grid grid, Turtle turtle) {
-        myGridContainer = new SingleActiveGridContainer(grid);
-        myGridContainer.addGrid(grid, true);
+    public SingleViewContainerInformationHub(){
+        myGridContainer = new SingleActiveGridContainer();
         myGridToTurtlesMap = new HashMap<>();
+        myVariableContainer = new MapBasedVariableContainer();
+    }
+
+    public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
+        this();
+        myGridContainer.addGrid(grid, true);
         BaseTurtleContainer turtleContainer = new TurtleList(turtle);
         myGridToTurtlesMap.put(grid.getID(), turtleContainer);
-        myVariableContainer = new MapBasedVariableContainer();
     }
 
     @Override
     public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType) {
-        if (BaseTurtleContainer.class.isAssignableFrom(containerType)) {
-            ArrayList<Grid> grids = (ArrayList<Grid>) myGridContainer.getActiveGrids();
-            if (grids.size() != 1) {
+        if(BaseTurtleContainer.class.isAssignableFrom(containerType)){
+            ArrayList<Grid> grids = (ArrayList<Grid>)myGridContainer.getActiveGrids();
+            if(grids.size() != 1){
                 return null;
             }
             Grid activeGrid = grids.get(0);
             Integer activeGridID = activeGrid.getID();
             BaseTurtleContainer turtleContainer = myGridToTurtlesMap.get(activeGridID);
-            if (turtleContainer == null) {
+            if(turtleContainer == null){
                 turtleContainer = new TurtleList();
                 myGridToTurtlesMap.put(activeGridID, turtleContainer);
             }
             return turtleContainer;
         }
-        if (BaseGridContainer.class.isAssignableFrom(containerType)) {
+        if(BaseGridContainer.class.isAssignableFrom(containerType)){
             return myGridContainer;
         }
-        if (BaseVariableContainer.class.isAssignableFrom(containerType)) {
+        if(BaseVariableContainer.class.isAssignableFrom(containerType)){
             return myVariableContainer;
         }
         return null;
     }
 
     @Override
-    public Collection<IInformationContainer> getContainers (
-            Set<Class<? extends IInformationContainer>> containerTypes) throws BackendException {
+    public Collection<IInformationContainer> getContainers (Set<Class<? extends IInformationContainer>> containerTypes)
+            throws BackendException {
         ArrayList<IInformationContainer> containerList = new ArrayList<>();
-        for (Class<? extends IInformationContainer> containerType : containerTypes) {
+        for(Class<? extends IInformationContainer> containerType : containerTypes){
             IInformationContainer container = getContainer(containerType);
-            if (container == null) {
+            if(container == null){
                 throw new BackendException(null, INVALID_CONTAINER_TYPE_ERROR);
             }
             containerList.add(container);

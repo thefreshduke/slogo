@@ -51,4 +51,7 @@ public abstract class ControlCommand extends ModelCommand {
     protected BaseVariableContainer getVariableContainer () {
         return myVariableContainer;
     }
+
+    @Override
+    protected void reset(){}
 }

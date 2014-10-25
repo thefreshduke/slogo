@@ -2,20 +2,19 @@ package GUIFunctions;
 
 import java.util.List;
 
-public abstract class Add implements GUIFunction {
+public abstract class Add implements GUIFunction{
 
     @Override
-    public void doAction () {
+    public void doAction() {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void doAction (List<Number> newVal) {
+    public void doAction(List<? extends Number> newVal) {
         // TODO Auto-generated method stub
 
     }
-
-    public abstract Object addAction ();
+    public abstract Object addAction();
 
 }

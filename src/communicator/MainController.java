@@ -48,7 +48,7 @@ public class MainController extends BaseController {
 
     private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
 
-    public MainController (SlogoView view) {
+    public MainController(SlogoView view) {
         super(view);
         myView = view;
         myModel = new SlogoModel();
@@ -61,6 +61,8 @@ public class MainController extends BaseController {
         myCommandParserTimer.start();
         myCommandExecutionTimer.start();
         myCommandToClassTranslator = new CommandToClassTranslator();
+        myCommandInformationHub = new SingleViewContainerInformationHub();
+        CommandFactory.setInformationHub(myCommandInformationHub);
         try {
             CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
                     .translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
@@ -76,22 +78,22 @@ public class MainController extends BaseController {
         }
     }
 
-    private void setTimers () {
+    private void setTimers() {
         myCommandParserTimer = new AnimationTimer() {
 
             @Override
-            public void handle (long now) {
+            public void handle(long now) {
                 if (!myInputsToParse.isEmpty()) {
                     String input = myInputsToParse.poll();
-                    try {
+                    try{
                         BaseCommand command = CommandFactory.createCommand(input, false);
                         myCommandQueue.add(command);
-                    } catch (BackendException ex) {
+                    }
+                    catch(BackendException ex) {
                         reportErrorToView(ex);
                     }
-                    // BaseCommand command =
-                    // myModel.createInitialCommand(input);
-                    // myCommandQueue.add(command);
+                    //BaseCommand command = myModel.createInitialCommand(input);
+                    //myCommandQueue.add(command);
 
                 }
             }
@@ -99,8 +101,9 @@ public class MainController extends BaseController {
         myCommandExecutionTimer = new AnimationTimer() {
 
             @Override
-            public void handle (long now) {
-                if (!myCommandQueue.isEmpty() && !myCommandIsExecuting.getAndSet(true)) {
+            public void handle(long now) {
+                if (!myCommandQueue.isEmpty()
+                        && !myCommandIsExecuting.getAndSet(true)) {
                     BaseCommand command = myCommandQueue.poll();
                     executeCommand(command);
 
@@ -110,53 +113,60 @@ public class MainController extends BaseController {
     }
 
     @Override
-    public void receiveCommand (String enteredText) {
-        String translatedText = myTranslator.translateUserInputIntoEnglish(enteredText);
-        myInputsToParse.add(translatedText);
+    public void receiveCommand(String enteredText) {
+        try{
+            String translatedText = myTranslator
+                    .translateUserInputIntoEnglish(enteredText);
+            myInputsToParse.add(translatedText);
+        }
+        catch (BackendException ex){
+            reportErrorToView(ex);
+        }
     }
 
     @Override
-    protected void initializeModel () {
+    protected void initializeModel() {
         myModel.initializeModel();
     }
 
     @Override
-    public void start () {
+    public void start() {
         myCommandParserTimer.start();
         myCommandExecutionTimer.start();
     }
 
     @Override
-    public void pause (int x, int y) {
+    public void pause(int x, int y) {
         myCommandExecutionTimer.stop();
     }
 
     @Override
-    public void stop () {
+    public void stop() {
         myCommandExecutionTimer.stop();
         myCommandParserTimer.stop();
         myInputsToParse.clear();
         myCommandQueue.clear();
     }
 
-    private void executeCommand (BaseCommand command) {
+    private void executeCommand(BaseCommand command) {
         try {
             command.execute();
         } catch (BackendException ex) {
             reportErrorToView(ex);
-        } finally {
+        }
+        finally{
             myExecutedCommands.add(command);
             myCommandIsExecuting.set(false);
         }
     }
 
     @Override
-    protected void reportErrorToView (Exception ex) {
-
+    protected void reportErrorToView(Exception ex) {
+        myView.showError(ex.getMessage());
     }
 
     @Override
-    public void loadLanguage (File file) {
+    public void loadLanguage(File file) {
         try {
             myTranslator.extractFromLanguageFile(file);
         } catch (BackendException e) {
@@ -171,52 +181,48 @@ public class MainController extends BaseController {
      *            of turtle
      * @return turtle matching ID, else return null if no turtle match
      */
-    public Turtle findTurtle (int ID) {
+    public Turtle findTurtle(int ID) {
         return myModel.findTurtle(ID);
     }
 
-    public List<Turtle> getActiveTurtles () {
+    public List<Turtle> getActiveTurtles() {
         return myModel.getActiveTurtles();
     }
 
-    public Turtle getFirstTurtle () {
+    public Turtle getFirstTurtle() {
         // TODO Auto-generated method stub
         return myModel.findTurtle(0);
     }
 
-    public void setInitial (Grid grid, Turtle turtle) {
-        myCommandInformationHub = new SingleViewContainerInformationHub(grid, turtle);
-        CommandFactory.setInformationHub(myCommandInformationHub);
-    }
-
     @Override
-    public void addTurtle (Turtle turtle, int gridID, boolean isActive) {
+    public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
         BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
                 .getContainer(BaseTurtleContainer.class);
         turtleContainer.addTurtle(turtle, isActive);
     }
 
     @Override
-    public void addGrid (Grid grid, boolean isActive) {
+    public void addGrid(Grid grid, boolean isActive) {
         BaseGridContainer gridContainer = getGridContainer();
         gridContainer.addGrid(grid, isActive);
     }
 
+
     @Override
-    public void setGridAsActive (int gridID) {
+    public void setGridAsActive(int gridID) {
         BaseGridContainer gridContainer = getGridContainer();
         gridContainer.setGridAsActive(gridID);
     }
 
-    private BaseGridContainer getGridContainer () {
+    private BaseGridContainer getGridContainer(){
         BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
                 .getContainer(BaseGridContainer.class);
         return gridContainer;
     }
 
     @Override
-    public IInformationContainer loadPreferences (IInformationContainer container, File file)
-            throws BackendException {
+    public IInformationContainer loadPreferences(
+            IInformationContainer container, File file) throws BackendException {
         FileInputStream fis = null;
         ObjectInputStream in = null;
         BaseVariableContainer returnContainer = null;
@@ -233,7 +239,7 @@ public class MainController extends BaseController {
     }
 
     @Override
-    public void savePreferences (IInformationContainer container, String filename)
+    public void savePreferences(IInformationContainer container, String filename)
             throws BackendException {
         FileOutputStream fos = null;
         ObjectOutputStream out = null;
