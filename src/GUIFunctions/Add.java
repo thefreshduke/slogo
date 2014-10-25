@@ -11,7 +11,7 @@ public abstract class Add implements GUIFunction{
 	}
 
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

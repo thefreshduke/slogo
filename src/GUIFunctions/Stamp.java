@@ -30,7 +30,7 @@ public class Stamp extends BottomFunctions {
 	}
 
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
 
 	}

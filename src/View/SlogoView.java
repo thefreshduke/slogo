@@ -27,6 +27,7 @@ import GUIFunctions.ColorFunction;
 import GUIFunctions.ControllerFunctions;
 import GUIFunctions.GUIFunction;
 import GUIFunctions.HelpPage;
+import GUIFunctions.LanguageMenu;
 import GUIFunctions.PenStyle;
 import GUIFunctions.PenThickness;
 import GUIFunctions.PersonalizeMenu;
@@ -155,7 +156,8 @@ public class SlogoView {
 	 * 
 	 */
 	public void showError(String message){
-		JOptionPane.showMessageDialog(null, message);
+		System.out.println(message);
+		//JOptionPane.showMessageDialog(null, message);
 	}
 	/**
 	 *Passes the commands from the textbox on the GUI to the controller for parsing.  
@@ -187,16 +189,20 @@ public class SlogoView {
 		MenuBar myMenu=new MenuBar();
 		myMenu.setStyle( "-fx-border-width: 5");
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
+		
 		MenuTemplate fileMenu = new MenuTemplate("File");
 		MenuTemplate languages = new MenuTemplate("Languages");
 		MenuTemplate personalize=new MenuTemplate("Personalize");
+		MenuTemplate pen=new MenuTemplate("Pen");
+		MenuTemplate add=new MenuTemplate("Add");
+		
 		MenuTemplate help = new MenuTemplate("Help");
 		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
-		MenuTemplate pen=new MenuTemplate("Pen");
+		
 		userCommands = new MenuTemplate("User Commands");
-		MenuTemplate add=new MenuTemplate("Add");
+		
 		makeAddMenu(add);
-	//	this.makeLanguageMenuItems(languages);
+		this.makeMenu(LanguageMenu.class, languages);
 		this.makeMenu(PersonalizeMenu.class, personalize);
 		this.makeMenu(PenMenu.class, pen);
 		
@@ -336,7 +342,6 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		commandHistoryBox.relocate(0, 380);
-		System.out.println(colorSelection);
 		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand,
 				 history, commandHistoryBox, colorSelection);
 		return myTextArea;
@@ -402,7 +407,6 @@ public class SlogoView {
 			ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
 			for (String s: myUserFunctions.keySet()){
 				if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
-					System.out.println(myUserFunctions.get(s));
 					String[] value=prop.getProperty(s).split(";");
 					myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myUserFunctions.get(s)));
 				}
@@ -442,12 +446,32 @@ public class SlogoView {
 		myUserFunctions.put("solidPenStyle", new PenStyle(myGrids, "Solid"));
 		myUserFunctions.put("dashedPenStyle", new PenStyle(myGrids, "Dashed"));
 		myUserFunctions.put("stampTurtle", new Stamp(myGrids));
-	//	myUserFunctions.put(myResources.getString("spanish"), new SetLanguage());
 		myUserFunctions.put("helpPage", new HelpPage());
 		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids, colorSelection));
 		myUserFunctions.put("penColor", new PenColor(myGrids));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPallete(colorSelection));
+		addLanguages();
+		
 	}
-
+	private void addLanguages(){
+		try {
+			Properties prop = new Properties();
+			InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/Languages.Properties");
+			prop.load(stream);
+			for(Object language : prop.keySet()){
+				myUserFunctions.put((String) language, new SetLanguage()); 
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Language File not Found, using default colors");	
+		}
+	}
+	private void createfileMenu(){
+		MenuTemplate file=new MenuTemplate("File");
+		//file.addMenuItem("Export", myController.savePreferences(container, file));
+		//file.addMenuItem("Import", myController.loadPreferences(
+	}
+	private String saveFile(){
+		return JOptionPane.showInputDialog(null, "Name of desired file to save to:");
+	}
 }
