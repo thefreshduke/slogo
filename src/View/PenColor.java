@@ -4,9 +4,8 @@ import GUIFunctions.ColorFunction;
 import GUIFunctions.GridFunction;
 
 public class PenColor extends ColorFunction{
-	SingleGrid myGrid;
 	public PenColor(GridTracker grid){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 	}
 	@Override
 	public void doAction() {
@@ -20,8 +19,11 @@ public class PenColor extends ColorFunction{
 	}
 	@Override
 	public void doAction(String myColor) {
-		myGrid.setBackgroundColor(myColor);
-		
+		System.out.println("HEY");
+		for (Pen p: allGrids.getActiveGrid().getActivePens()){
+			System.out.println(p);
+			p.setColor(myColor);
+		}
 	}
 
 }

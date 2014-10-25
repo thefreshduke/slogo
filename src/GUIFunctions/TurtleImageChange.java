@@ -20,7 +20,7 @@ import turtle.Turtle;
 public class TurtleImageChange extends PersonalizeMenu{
 	private Stage myStage;
 	public TurtleImageChange(GridTracker grid, Stage main){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 	}
 	@Override
 	public void doAction() {
@@ -34,7 +34,7 @@ public class TurtleImageChange extends PersonalizeMenu{
 				try {
 					buffer = ImageIO.read(file);
 					Image img=SwingFXUtils.toFXImage(buffer, null);
-					for (Turtle t: myGrid.getActiveTurtles()){
+					for (Turtle t: allGrids.getActiveGrid().getActiveTurtles()){
 						t.setImage(img);
 					}
 				} 

@@ -8,9 +8,8 @@ import View.SingleGrid;
 
 
 public class BackgroundColor extends ColorFunction{
-	SingleGrid myGrid;
 	public BackgroundColor(GridTracker grid){
-		myGrid=grid.getActiveGrid();
+		myGrids=grid;
 		
 	}
 	
@@ -18,7 +17,7 @@ public class BackgroundColor extends ColorFunction{
 		
 	}
 	public void doAction(String myColor){
-		myGrid.setBackgroundColor(myColor);
+		myGrids.getActiveGrid().setBackgroundColor(myColor);
 	}
 
 	@Override

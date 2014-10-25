@@ -12,14 +12,14 @@ public class PenStyle extends PenMenu{
 	private String myStyle;
 
 	public PenStyle(GridTracker grid, String whichStyle) {
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 		myStyleMap=new HashMap<String,BorderStyle>();
 		myStyle=whichStyle;
 		makeMap();
 		
 	}
 	public void doAction(){
-		for (Pen p: myGrid.getActivePens()){
+		for (Pen p: allGrids.getActiveGrid().getActivePens()){
 			p.setBorderStyle(myStyleMap.get(myStyle));
 		}
 	}

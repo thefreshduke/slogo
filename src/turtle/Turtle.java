@@ -129,10 +129,12 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 
 	public void setXPos(double xPos) {
 		myPosition.setXPos(xPos);
+		myPastPositions.push(new Position(myPosition.getXPos(), myPosition.getYPos(), myPosition.getRotate()));
 	}
 
 	public void setYPos(double yPos) {
 		myPosition.setYPos(yPos);
+		
 	}
 
 	public void setRotation (double rotateVal) {

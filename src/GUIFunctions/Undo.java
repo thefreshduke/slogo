@@ -8,14 +8,14 @@ import turtle.Turtle;
 
 public class Undo extends BottomFunctions{
 	public Undo(GridTracker grid){
-		myGrid=grid.getActiveGrid();
+		allGrids=grid;
 	}
 
 	@Override
 	public void doAction() {
-		for (Turtle t: myGrid.getActiveTurtles()){
+		for (Turtle t: allGrids.getActiveGrid().getActiveTurtles()){
 			t.undo();
-			myGrid.moveTurtle(t);
+			allGrids.getActiveGrid().moveTurtle(t);
 			this.undoLine(t);
 
 		}
@@ -23,7 +23,7 @@ public class Undo extends BottomFunctions{
 
 
 	private void undoLine(Turtle t){
-		myGrid.getChildren().remove(t.getPen().undo());
+		allGrids.getActiveGrid().getChildren().remove(t.getPen().undo());
 		//this.getChildren().remove();
 	}
 
