@@ -1,12 +1,9 @@
 package commands.turtleCommands;
 
-
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
 public class RightCommand extends TurtleCommand {
 
@@ -15,7 +12,7 @@ public class RightCommand extends TurtleCommand {
 	}
 
 	@Override
-    protected double onExecute() throws BackendException {
+	protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		BaseGridContainer grid = getGridContainer();
 		double rotateRight = getExpressionList()[0].execute();

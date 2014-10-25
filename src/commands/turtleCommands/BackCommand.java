@@ -3,9 +3,6 @@ package commands.turtleCommands;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
-
 
 public class BackCommand extends TurtleCommand {
 

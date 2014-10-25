@@ -33,9 +33,6 @@ public class AskCommand extends TurtleCommand {
 
 	@Override
 	protected double onExecute() throws BackendException {
-		String[] splitInput = splitByInnerListCommand(userInput);
-		String innerInput = splitInput[0];
-		String [] turtleIDs = innerInput.split(COMMAND_SEPARATOR);
 
 		if ((turtleIDs.length == 1) && (turtleIDs[0].equals(""))) {
 			throw new BackendException(null, "Invalid syntax for ID");
@@ -106,7 +103,7 @@ public class AskCommand extends TurtleCommand {
 				myTempActiveTurtleIDs.add(i);
 			}
 		}
-		
+
 		String commandActions = splitInput[1];
 		myInternalCommand = CommandFactory.createCommand(commandActions, false);
 		setLeftoverCommands(myInternalCommand.getLeftoverString());

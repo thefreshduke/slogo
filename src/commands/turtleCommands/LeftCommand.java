@@ -3,8 +3,6 @@ package commands.turtleCommands;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
 public class LeftCommand extends TurtleCommand {
 
@@ -13,11 +11,11 @@ public class LeftCommand extends TurtleCommand {
 	}
 
 	@Override
-    protected double onExecute() throws BackendException {
+	protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		BaseGridContainer grid = getGridContainer();
 		double rotateLeft = getExpressionList()[0].execute();
-		turtle.rotate(rotateLeft*-1);
+		turtle.rotate(rotateLeft * -1);
 		grid.update(turtle.getActiveTurtles());;
 		return rotateLeft;
 	}

@@ -3,8 +3,6 @@ package commands.turtleCommands;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
 public class SetHeadingCommand extends TurtleCommand {
 
@@ -13,7 +11,7 @@ public class SetHeadingCommand extends TurtleCommand {
 	}
 
 	@Override
-    protected double onExecute() throws BackendException {
+	protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		BaseGridContainer grid = getGridContainer();
 		double absHeading = (getExpressionList()[0]).execute();

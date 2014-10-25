@@ -11,10 +11,10 @@ import backendExceptions.BackendException;
 
 public class SingleViewContainerInformationHub implements ICommandInformationHub {
 
-    private static final String INVALID_CONTAINER_TYPE_ERROR = "Invalid container type";
-    private SingleActiveGridContainer myGridContainer;
-    private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
-    private MapBasedVariableContainer myVariableContainer;
+	private static final String INVALID_CONTAINER_TYPE_ERROR = "Invalid container type";
+	private SingleActiveGridContainer myGridContainer;
+	private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
+	private MapBasedVariableContainer myVariableContainer;
     
     public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
         myGridContainer = new SingleActiveGridContainer(grid);
@@ -34,7 +34,12 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
             }
             Grid activeGrid = grids.get(0);
             Integer activeGridID = activeGrid.getID();
-            return myGridToTurtlesMap.get(activeGridID);
+            BaseTurtleContainer turtleContainer = myGridToTurtlesMap.get(activeGridID);
+            if(turtleContainer == null){
+            	turtleContainer = new TurtleList();
+            	myGridToTurtlesMap.put(activeGridID, turtleContainer);
+            }
+            return turtleContainer;
     	}
     	if(BaseGridContainer.class.isAssignableFrom(containerType)){
     	    return myGridContainer;
@@ -45,17 +50,17 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
         return null;
     }
 
-    @Override
-    public Collection<IInformationContainer> getContainers (Set<Class<? extends IInformationContainer>> containerTypes)
-                                                                                                                       throws BackendException {
-        ArrayList<IInformationContainer> containerList = new ArrayList<>();
-        for(Class<? extends IInformationContainer> containerType : containerTypes){
-            IInformationContainer container = getContainer(containerType);
-            if(container == null){
-                throw new BackendException(null, INVALID_CONTAINER_TYPE_ERROR);
-            }
-            containerList.add(container);
-        }
-        return containerList;
-    }
+	@Override
+	public Collection<IInformationContainer> getContainers (Set<Class<? extends IInformationContainer>> containerTypes)
+			throws BackendException {
+		ArrayList<IInformationContainer> containerList = new ArrayList<>();
+		for(Class<? extends IInformationContainer> containerType : containerTypes){
+			IInformationContainer container = getContainer(containerType);
+			if(container == null){
+				throw new BackendException(null, INVALID_CONTAINER_TYPE_ERROR);
+			}
+			containerList.add(container);
+		}
+		return containerList;
+	}
 }

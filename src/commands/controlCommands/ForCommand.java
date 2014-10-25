@@ -6,7 +6,6 @@ import commands.BaseCommand;
 import commands.ControlCommand;
 import commands.information.BaseVariableContainer;
 
-
 public class ForCommand extends ControlCommand {
 	private String myVariableName;
 	private BaseCommand myStartCommand;
@@ -27,7 +26,7 @@ public class ForCommand extends ControlCommand {
 		int incrementValue = (int) myIncrementCommand.execute();
 		boolean varExistPreviously = false;
 		BaseCommand oldCommand = null;
-		if(variableContainer.containsVariable(myVariableName)){
+		if (variableContainer.containsVariable(myVariableName)) {
 			oldCommand = variableContainer.getValue(myVariableName);
 			varExistPreviously = true;
 		}
