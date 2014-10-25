@@ -1,5 +1,6 @@
 package commands.turtleCommands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import turtle.Turtle;
@@ -21,10 +22,10 @@ public class AskCommand extends MultipleTurtleCommand {
 	protected double onExecute () throws BackendException {
 
 		BaseTurtleContainer turtle = getTurtleContainer();
-		List<Integer> myAllTurtlesID = (List<Integer>)turtle
-				.getAllTurtlesByID();
-		List<Integer> myCurrentActiveTurtleIDs = (List<Integer>)turtle
-				.getAllTurtlesByID();
+		List<Integer> myAllTurtlesID = new ArrayList<>(turtle
+				.getAllTurtlesByID());
+		List<Integer> myCurrentActiveTurtleIDs = new ArrayList<>(turtle
+				.getAllTurtlesByID());
 
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();

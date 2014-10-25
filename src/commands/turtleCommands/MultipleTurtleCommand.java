@@ -1,5 +1,6 @@
 package commands.turtleCommands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import commandParser.CommandFactory;
@@ -28,13 +29,13 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 		if ((myTurtleIDs.length == 1) && (myTurtleIDs[0].equals(""))) {
 			throw new BackendException(null, "Invalid syntax for ID");
 		}
-
+		myTempActiveTurtleIDs = new ArrayList<>();
 		String turtleID = "";
 		for (int i = 0; i < myTurtleIDs.length; i++) {
 			turtleID = myTurtleIDs[i];
 			if (isEven(i) && !turtleID.equals(CONSTANT_INDICATOR)) {
 				throw new BackendException(null, INVALID_ERROR_MESSAGE);
-			} else {
+			} else if(!isEven(i)){
 				if (Integer.parseInt(turtleID) < 0) {
 					throw new BackendException(null,
 							"Invalid Turtle ID: negative value");
@@ -43,9 +44,10 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 			}
 		}
 
-		String commandActions = splitInput[1];
+		String[] splitCommandLeftover = splitByInnerListCommand(splitInput[1]);
+		String commandActions = splitCommandLeftover[0];
 		setInternalCommand(CommandFactory.createCommand(commandActions, false));
-		setLeftoverCommands(myInternalCommand.getLeftoverString());
+		setLeftoverCommands(splitCommandLeftover[1]);
 	}
 
 	protected int findMax (List<Integer> list) {
