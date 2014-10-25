@@ -1,7 +1,11 @@
 package turtle;
 import java.util.ArrayList;
 import java.util.List;
+
 import commands.information.ITurtleBehavior;
+
+
+
 
 
 import java.util.Stack;
@@ -13,12 +17,17 @@ import com.sun.glass.events.MouseEvent;
 import GUIFunctions.BorderStyle;
 import View.Pen;
 import View.TurtleMovement;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Line;
 import javafx.scene.paint.Color;
+
 import java.awt.color.*;
 
 /**
@@ -31,6 +40,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private int myID;
 	private int velocity;
 	private boolean active=false;
+	private EventHandler myEvent;
 
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
@@ -186,9 +196,9 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		Position myTempPosition=myDirection.move(myPosition, velocity);
 		if (myTempPosition!=null){
 			myPosition=myTempPosition;
-			myPastPositions.add(myPosition);
-
+			myPastPositions.add(new Position(myTempPosition.getXPos(), myTempPosition.getYPos(), myTempPosition.getRotate()));
 		}
+		
 	}
 	
 	@Override
@@ -218,5 +228,5 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		double distance = Math.sqrt(Math.pow(getXYCoordinates()[0]- newXPos, 2) + Math.pow(getXYCoordinates()[1] - newYPos, 2));
 		return distance;
 	}
-
+	
 }

@@ -19,7 +19,6 @@ public class AllLanguages{
 		try {
 			myLanguage=myClass.getConstructor(null).newInstance();
 			File languageFile=new File("/resources/languages" + myLanguage.getLanguageName() + ".properties");
-			System.out.println("YO");
 			return languageFile;
 		
 		} catch (InstantiationException | IllegalAccessException

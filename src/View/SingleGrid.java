@@ -8,12 +8,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+
 import javax.swing.JOptionPane;
+
 import GUIFunctions.GUIFunction;
+import turtle.Position;
 import turtle.Turtle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 
 public class SingleGrid extends Grid {
 	private String backgroundColor = "WHITE";
@@ -38,17 +47,19 @@ public class SingleGrid extends Grid {
 		time.getKeyFrames().add(frame);
 		setBackgroundColor(backgroundColor);
 		myGridFunctions=myMap;
+		
 	}
 	public Collection<Turtle> getAllTurtles(){
 		return allTurtles;
 	}
-	public void addTurtle(Turtle t){
-		t.move(myWidth/2,myHeight/2);
-		t.getPen().setInitialPosition(t.getXPos(), t.getYPos());
-		moveTurtle(t);
-		allTurtles.add(t);
-		activeTurtles.add(t);
-		getChildren().add(t);
+	public Turtle addTurtle(){
+		Image image = new Image("bowser.png");
+		Turtle myTurtle = new Turtle(new Position(0, 0), image);
+		myTurtle.setID(getAllTurtles().size());
+		myTurtle.setFitWidth(60);
+		myTurtle.setPreserveRatio(true);
+		myTurtle.setSmooth(true);
+		return addTurtle(myTurtle);
 	}
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
@@ -80,6 +91,7 @@ public class SingleGrid extends Grid {
 		}	
 	}
 	public Collection<Turtle> getActiveTurtles(){
+		activeTurtles.clear();
 		for (Turtle a: allTurtles){
 			if (a.isActive()){
 				activeTurtles.add(a);
@@ -109,8 +121,26 @@ public class SingleGrid extends Grid {
 	public void sendErrorMessage(String s){
 		JOptionPane.showMessageDialog(null, s);
 	}
+	public Turtle addTurtle(Turtle myTurtle){
+		allTurtles.add(myTurtle);
+		activeTurtles.add(myTurtle);
+		getChildren().add(myTurtle);
+		myTurtle.move(myWidth/2,myHeight/2);
+		myTurtle.getPen().setInitialPosition(myTurtle.getXPos(), myTurtle.getYPos());
+		moveTurtle(myTurtle);
+		return myTurtle;
+	}	
+	public void setPalette(Double myRed, Double myGreen, Double myBlue){
+		backgroundColor =myRed+""+myGreen+""+myBlue;
+		this.getChildren().remove(myImageView);
+		setStyle("-fx-background-color: #backgroundColor");
+	}
+	
+//	public void setPalette(String myColor) {
+		// TODO Auto-generated method stub
 		
-		
+//	}
+	
 	
 }
 
