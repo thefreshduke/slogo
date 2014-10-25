@@ -22,15 +22,32 @@ public class ToCommandTest {
     public void testToParsing () {
         setFactory();
         String command = "To cmd [ :x :y ] [ sum :x :y ]";
+        String command2 = "To second [ :x :y ] [ difference :x :y ]";
         String use = "cmd 3 4";
+        String use2 = "second 3 4";
+        String use3 = "cmd second 3 4 3";
         try {
             String processedCommand = processInput(command);
             BaseCommand toCommand = CommandFactory.createCommand(processedCommand, false);
             toCommand.execute();
+            String processedCommand2 = processInput(command2);
+            BaseCommand toCommand2 = CommandFactory.createCommand(processedCommand2, false);
+            toCommand2.execute();
+            
             String convertedUse = processInput(use);
             BaseCommand useCommand = CommandFactory.createCommand(convertedUse, false);
             Double result = useCommand.execute();
             assertEquals(result, new Double(7));
+            
+            String convertedUse2 = processInput(use2);
+            BaseCommand useCommand2 = CommandFactory.createCommand(convertedUse2, false);
+            Double result2 = useCommand2.execute();
+            assertEquals(result2, new Double(-1));
+            
+            String convertedUse3 = processInput(use3);
+            BaseCommand useCommand3 = CommandFactory.createCommand(convertedUse3, false);
+            Double result3 = useCommand3.execute();
+            assertEquals(result3, new Double(2));
         }
         catch (Exception e) {
             // TODO Auto-generated catch block

@@ -45,26 +45,30 @@ public class ToCommand extends ControlCommand {
         String innerListCommands = innerArguments[1].trim();
         String[] splitString = splitByInnerListCommand(innerListCommands);
         String variables = splitString[0];
-
-        String[] unfilteredVariableList = variables.split(COMMAND_SEPARATOR);
-        if (!isEven(unfilteredVariableList.length)) {
-            throw new BackendException(null, INVALID_ERROR_MESSAGE);
-        }
-        HashSet<String> tempRepeatChecker = new HashSet<>();
-        ArrayList<String> variableList = new ArrayList<>();
-        for (int i = 0; i < unfilteredVariableList.length; i++) {
-            String word = unfilteredVariableList[i].trim();
-            if (isEven(i) && !word.equals(VARIABLE_INDICATOR)) {
+        if(!variables.equals("")){
+        	String[] unfilteredVariableList = variables.split(COMMAND_SEPARATOR);
+            if (!isEven(unfilteredVariableList.length)) {
                 throw new BackendException(null, INVALID_ERROR_MESSAGE);
             }
-            else if (!isEven(i)) {
-                if (tempRepeatChecker.contains(word)) { throw new BackendException(null,
-                                                                                   REPEATED_VARIABLE_ERROR_MESSAGE); }
-                variableList.add(word);
-                tempRepeatChecker.add(word);
+            HashSet<String> tempRepeatChecker = new HashSet<>();
+            ArrayList<String> variableList = new ArrayList<>();
+            for (int i = 0; i < unfilteredVariableList.length; i++) {
+                String word = unfilteredVariableList[i].trim();
+                if (isEven(i) && !word.equals(VARIABLE_INDICATOR)) {
+                    throw new BackendException(null, INVALID_ERROR_MESSAGE);
+                }
+                else if (!isEven(i)) {
+                    if (tempRepeatChecker.contains(word)) { throw new BackendException(null,
+                                                                                       REPEATED_VARIABLE_ERROR_MESSAGE); }
+                    variableList.add(word);
+                    tempRepeatChecker.add(word);
+                }
             }
+            myVariables =  variableList.toArray(new String[variableList.size()]);
         }
-        myVariables =  variableList.toArray(new String[variableList.size()]);
+        else{
+        	myVariables = new String[0];
+        }
         String[] secondSplitString = splitByInnerListCommand(splitString[1]);
         myInternalCommand = secondSplitString[0];
         setLeftoverCommands(secondSplitString[1]);
