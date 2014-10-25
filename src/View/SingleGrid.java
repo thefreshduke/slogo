@@ -116,7 +116,7 @@ public class SingleGrid extends Grid {
 	public void updateGUI(String myFunction){
 		myGridFunctions.get(myFunction).doAction();
 	}
-	public void updateGUI(String myFunction, List<Number> myNumber){
+	public void updateGUI(String myFunction, List<? extends Number> myNumber){
 		myGridFunctions.get(myFunction).doAction(myNumber);
 	}
 	public void sendErrorMessage(String s){

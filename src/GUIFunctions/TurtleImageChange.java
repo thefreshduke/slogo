@@ -47,7 +47,7 @@ public class TurtleImageChange extends PersonalizeMenu{
 					JOptionPane.showMessageDialog(null, "Please select another file");
 	}
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}	

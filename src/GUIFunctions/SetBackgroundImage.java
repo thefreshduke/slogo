@@ -62,7 +62,7 @@ public class SetBackgroundImage extends PersonalizeMenu {
 		allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllPens());
 	}
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

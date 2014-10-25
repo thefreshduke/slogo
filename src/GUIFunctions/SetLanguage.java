@@ -6,7 +6,7 @@ import java.util.List;
 import View.SingleGrid;
 import communicator.MainController;
 
-public class SetLanguage extends LanuageMenu {
+public class SetLanguage extends LanguageMenu {
 	
 	@Override
 	public File doAction(String s) {
@@ -27,7 +27,7 @@ public class SetLanguage extends LanuageMenu {
 	}
 
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

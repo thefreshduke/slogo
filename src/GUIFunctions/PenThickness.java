@@ -15,7 +15,7 @@ public class PenThickness extends GridFunction{
 		myThickness=thickness.intValue();
 	}
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		myThickness=newVal.get(0);
 		for (Pen myP: allGrids.getActiveGrid().getActivePens()){
 			myP.changeThickness(myThickness);

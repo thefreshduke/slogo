@@ -16,7 +16,7 @@ public class ClearFunction extends BottomFunctions{
 		allGrids.getActiveGrid().getAllTurtles().clear();
 	}
 	@Override
-	public void doAction(List<Number> newVal) {
+	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}
