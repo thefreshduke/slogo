@@ -36,12 +36,14 @@ public class CommandFactory {
         String subInput = input.replaceFirst(firstCommand, "").trim();
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
         try {
+            BaseCommand command = null;
             if (commandClass == null) {
                 BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub.getContainer(BaseVariableContainer.class);
-                return variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
+                command = variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
             }
-            BaseCommand command = null;
-            command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
+            else{
+                command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
+            }
             Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
             if(containerTypes != null){
                 Collection<IInformationContainer> containers = myInformationHub.getContainers(containerTypes);
