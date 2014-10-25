@@ -130,6 +130,8 @@ public class SlogoView {
 	 */
 	public void initialize(Stage mainStage) {
 		addGrid();
+		addTurtle();
+		//
 		makeListOfFunctions();
 		colorSelection = new ColorSelection(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
@@ -241,7 +243,7 @@ public class SlogoView {
 		fileMenu.addMenuItem("Add Grid", event->addGrid());
 	}
 	private void addTurtle(){
-		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
+		//myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
 		
 
 	}

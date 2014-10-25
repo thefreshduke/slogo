@@ -4,8 +4,6 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
 public class TowardsCommand extends TurtleCommand {
 
@@ -26,7 +24,7 @@ public class TowardsCommand extends TurtleCommand {
 		double newYPos = getExpressionList()[1].execute();
 		double degreesTurned = turtle.towardsPosition(newXPos, newYPos);
 		grid.update(turtle.getActiveTurtles());
-		
+
 		return degreesTurned;
 	}
 }

@@ -2,6 +2,7 @@ package GUIFunctions;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import View.GridTracker;
 import View.SingleGrid;
@@ -57,7 +58,7 @@ public class ToggleGridLines extends PersonalizeMenu{
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

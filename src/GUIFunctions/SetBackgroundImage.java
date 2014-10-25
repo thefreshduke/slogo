@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
@@ -61,7 +62,7 @@ public class SetBackgroundImage extends PersonalizeMenu {
 		allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllPens());
 	}
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

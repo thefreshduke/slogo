@@ -30,6 +30,7 @@ public class ColorSelection extends Pane{
 	private ArrayList<String> myColors = new ArrayList<>();
 	private HashSet<ColorLabel> myLabels=new HashSet();
 	private GridTracker myGrids;
+	private HBox colorBox;
 
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
@@ -53,36 +54,49 @@ public class ColorSelection extends Pane{
 		
 		this.setPrefSize(200, 200);
 		this.getChildren().addAll(myLabels);
-		this.getChildren().add(myColorPane());
+		myColorPane();
+		this.getChildren().add(colorBox);
 		
 	}
 	public Collection<String> getAvailableColors(){
 		return myColors;
 	}
-	public void addColor(){
-		//myColors.add
-	}
-	public void removeColor(){
-		
-	}
-	private HBox myColorPane(){
-		HBox myBox=new HBox();
+	
+	private void myColorPane(){
+		colorBox.getChildren().clear();
+		colorBox=new HBox();
 		for(String color: myColors){
 			Circle myCircle=new Circle();
 			myCircle.setFill(Paint.valueOf(color));
 			myCircle.setOnMouseClicked(event->doColorEvent(color));
 			myCircle.setRadius(10);
-			myBox.getChildren().add(myCircle);	
+			colorBox.getChildren().add(myCircle);	
 		}
-		myBox.relocate(30,50);
-		return myBox;
-	
+		colorBox.relocate(30,50);
 	}
 	private void doColorEvent(String color){
 		for (ColorLabel myLabel: myLabels){
 			myLabel.isActive(color);
 		}
 	}
+
+	public void setColor(int myIndex, String color){
+		if (myColors.contains(color)){
+			switchPosition(myColors.indexOf(color), color, myIndex, myColors.get(myIndex));
+		}
+		else{
+			myColors.add(color);
+			switchPosition(myColors.indexOf(color), color, myIndex, myColors.get(myIndex));
+		}
+		myColorPane();
+	}
+	
+	public void switchPosition(int firstIndex, String firstString, int secondIndex, String secondString){
+		myColors.set(secondIndex, firstString);
+		myColors.set(firstIndex, secondString);
+	
+	}
+
 	
 
 

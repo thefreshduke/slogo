@@ -7,19 +7,18 @@ import backendExceptions.BackendException;
 import commands.TurtleQuery;
 import commands.information.BaseTurtleContainer;
 
-public class IDCommand extends TurtleQuery{
+public class IDCommand extends TurtleQuery {
 
-	public IDCommand(String userInput, boolean isExpression)
-			throws BackendException {
-		super(userInput, isExpression);
-	}
+    public IDCommand(String userInput, boolean isExpression)
+            throws BackendException {
+        super(userInput, isExpression);
+    }
 
-	@Override
-	protected double onExecute() throws BackendException {
-		BaseTurtleContainer turtle = getTurtleContainer();
-		Turtle lastActiveTurtle = ((List<Turtle>) turtle.getActiveTurtles()).get(turtle.getActiveTurtles().size()-1);
-		return lastActiveTurtle.getID();
-	}
-
-
+    @Override
+    protected double onExecute() throws BackendException {
+        BaseTurtleContainer turtle = getTurtleContainer();
+        List<Turtle> turtleList = (List<Turtle>) turtle.getActiveTurtles();
+        Turtle lastActiveTurtle = turtleList.get(turtle.getActiveTurtles().size() - 1);
+        return lastActiveTurtle.getID();
+    }
 }

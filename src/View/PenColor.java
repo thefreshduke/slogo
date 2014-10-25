@@ -1,5 +1,7 @@
 package View;
 
+import java.util.List;
+
 import GUIFunctions.ColorFunction;
 import GUIFunctions.GridFunction;
 
@@ -13,7 +15,7 @@ public class PenColor extends ColorFunction{
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

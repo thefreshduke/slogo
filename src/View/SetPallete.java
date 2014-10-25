@@ -14,11 +14,7 @@ public class SetPallete extends GridFunction{
 	@Override
 	public void doAction() {
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override
-	public void doAction(List<Number> newVal) {
-		
-
-	}
+	public void doAction(List<Number> newVal) {}}

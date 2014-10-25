@@ -1,14 +1,12 @@
 package commands.controlCommands;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.ControlCommand;
 import commands.information.BaseVariableContainer;
-
 
 public class ToCommand extends ControlCommand {
     private String myCommandName;
@@ -22,7 +20,7 @@ public class ToCommand extends ControlCommand {
     private static final int EVEN_NUMBER_CHECKER = 2;
 
     public ToCommand (String userInput, boolean isExpression)
-                                                             throws BackendException {
+            throws BackendException {
         super(userInput, isExpression);
     }
 
@@ -45,8 +43,8 @@ public class ToCommand extends ControlCommand {
         String innerListCommands = innerArguments[1].trim();
         String[] splitString = splitByInnerListCommand(innerListCommands);
         String variables = splitString[0];
-        if(!variables.equals("")){
-        	String[] unfilteredVariableList = variables.split(COMMAND_SEPARATOR);
+        if (!variables.equals("")) {
+            String[] unfilteredVariableList = variables.split(COMMAND_SEPARATOR);
             if (!isEven(unfilteredVariableList.length)) {
                 throw new BackendException(null, INVALID_ERROR_MESSAGE);
             }
@@ -58,16 +56,17 @@ public class ToCommand extends ControlCommand {
                     throw new BackendException(null, INVALID_ERROR_MESSAGE);
                 }
                 else if (!isEven(i)) {
-                    if (tempRepeatChecker.contains(word)) { throw new BackendException(null,
-                                                                                       REPEATED_VARIABLE_ERROR_MESSAGE); }
+                    if (tempRepeatChecker.contains(word)) {
+                        throw new BackendException(null, REPEATED_VARIABLE_ERROR_MESSAGE);
+                    }
                     variableList.add(word);
                     tempRepeatChecker.add(word);
                 }
             }
             myVariables =  variableList.toArray(new String[variableList.size()]);
         }
-        else{
-        	myVariables = new String[0];
+        else {
+            myVariables = new String[0];
         }
         String[] secondSplitString = splitByInnerListCommand(splitString[1]);
         myInternalCommand = secondSplitString[0];
