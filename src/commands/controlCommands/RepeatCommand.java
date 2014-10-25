@@ -22,7 +22,7 @@ public class RepeatCommand extends ControlCommand {
 			returnValue = 0;
 		}
 		else {
-			int repetitionCount = (int) expressionResult;
+			int repetitionCount = (int)expressionResult;
 			for (int i = 0; i < repetitionCount; i++) {
 				returnValue = myInternalCommand.execute();
 			}
@@ -31,7 +31,7 @@ public class RepeatCommand extends ControlCommand {
 	}
 
 	@Override
-	protected void parseArguments (String userInput) throws BackendException{
+	protected void parseArguments (String userInput) throws BackendException {
 		myExpression = CommandFactory.createCommand(userInput, true);
 		String leftOver = new String(myExpression.getLeftoverString().trim());
 		String[] splitCommand = splitByInnerListCommand(leftOver);

@@ -61,6 +61,8 @@ public class MainController extends BaseController {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
 		myCommandToClassTranslator = new CommandToClassTranslator();
+		myCommandInformationHub = new SingleViewContainerInformationHub();
+		CommandFactory.setInformationHub(myCommandInformationHub);
 		try {
 			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
 					.translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
@@ -187,14 +189,8 @@ public class MainController extends BaseController {
 		return myModel.findTurtle(0);
 	}
 
-	public void setInitial(Grid grid, Turtle turtle) {
-		myCommandInformationHub = new SingleViewContainerInformationHub(grid,
-				turtle);
-		CommandFactory.setInformationHub(myCommandInformationHub);
-	}
-
 	@Override
-	public void addTurtle(Turtle turtle, boolean isActive) {
+	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
 		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
 				.getContainer(BaseTurtleContainer.class);
 		turtleContainer.addTurtle(turtle, isActive);

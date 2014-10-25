@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Properties;
 
 import javax.imageio.IIOException;
@@ -30,11 +31,12 @@ public class ColorSelection extends Pane{
 	private ArrayList<String> myColors = new ArrayList<>();
 	private HashSet<ColorLabel> myLabels=new HashSet();
 	private GridTracker myGrids;
-	private HBox colorBox;
+	private HBox colorBox=new HBox();
+
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
 		
-		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids)));
+		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids, this)));
 		myLabels.add(new ColorLabel(100, 0, 80, 20, "Pen Color", new PenColor(myGrids)));
 		
 		this.relocate(0,250);
@@ -47,25 +49,21 @@ public class ColorSelection extends Pane{
 			}
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, "Color File not Found, using default colors");
-			myColors.add("BLACK");
-			myColors.add("WHITE");
+			myColors.add("FFFFFF");
+			myColors.add("000000");
 		}
 		
 		this.setPrefSize(200, 200);
 		this.getChildren().addAll(myLabels);
-		this.getChildren().add(myColorPane());
+		myColorPane();
+		this.getChildren().add(colorBox);
 		
 	}
-	public Collection<String> getAvailableColors(){
+	public List<String> getAvailableColors(){
 		return myColors;
 	}
-	public void addColor(){
-		//myColors.add
-	}
-	public void removeColor(){
-		
-	}
-	private HBox myColorPane(){
+	
+	private void myColorPane(){
 		colorBox.getChildren().clear();
 		colorBox=new HBox();
 		for(String color: myColors){
@@ -76,14 +74,13 @@ public class ColorSelection extends Pane{
 			colorBox.getChildren().add(myCircle);	
 		}
 		colorBox.relocate(30,50);
-		return colorBox;
-	
 	}
 	private void doColorEvent(String color){
 		for (ColorLabel myLabel: myLabels){
 			myLabel.isActive(color);
 		}
 	}
+
 	public void setColor(int myIndex, String color){
 		if (myColors.contains(color)){
 			switchPosition(myColors.indexOf(color), color, myIndex, myColors.get(myIndex));
@@ -100,6 +97,7 @@ public class ColorSelection extends Pane{
 		myColors.set(firstIndex, secondString);
 	
 	}
+
 	
 
 

@@ -26,7 +26,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class SingleGrid extends Grid {
-	private String backgroundColor = "WHITE";
+	private String backgroundColor = "000000";
 	public int myHeight;
 	public int myWidth;
 	private ImageView myImageView;
@@ -130,17 +130,14 @@ public class SingleGrid extends Grid {
 		myTurtle.getPen().setInitialPosition(myTurtle.getXPos(), myTurtle.getYPos());
 		moveTurtle(myTurtle);
 		return myTurtle;
-	}	
-	public void setPalette(Double myRed, Double myGreen, Double myBlue){
-		backgroundColor =myRed+""+myGreen+""+myBlue;
-		this.getChildren().remove(myImageView);
-		setStyle("-fx-background-color: #backgroundColor");
 	}
-	
-//	public void setPalette(String myColor) {
+	@Override
+	public void setPalette(Double myRed, Double myGreen, Double myBlue) {
 		// TODO Auto-generated method stub
 		
-//	}
+	}	
+	
+
 	
 	
 }

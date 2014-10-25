@@ -13,11 +13,10 @@ public class IfElseCommand extends ControlCommand {
 
 	public IfElseCommand (String userInput, boolean isExpression) throws BackendException {
 		super(userInput, isExpression);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	protected double onExecute() throws BackendException {
+	protected double onExecute () throws BackendException {
 		double returnValue;
 		if (myExpression.execute() != 0) {
 			returnValue = myIfCommand.execute();

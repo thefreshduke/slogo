@@ -16,13 +16,17 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
 	private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
 	private MapBasedVariableContainer myVariableContainer;
     
+	public SingleViewContainerInformationHub(){
+		myGridContainer = new SingleActiveGridContainer();
+		myGridToTurtlesMap = new HashMap<>();
+		myVariableContainer = new MapBasedVariableContainer();
+	}
+	
     public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
-        myGridContainer = new SingleActiveGridContainer(grid);
+    	this();
         myGridContainer.addGrid(grid, true);
-        myGridToTurtlesMap = new HashMap<>();
         BaseTurtleContainer turtleContainer = new TurtleList(turtle);
         myGridToTurtlesMap.put(grid.getID(), turtleContainer);
-        myVariableContainer = new MapBasedVariableContainer();
     }
     
     @Override

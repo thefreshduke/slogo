@@ -10,12 +10,15 @@ import View.SingleGrid;
 
 
 public class BackgroundColor extends ColorFunction{
-	public BackgroundColor(GridTracker grid){
+	ColorSelection myColors;
+	public BackgroundColor(GridTracker grid, ColorSelection colors){
 		myGrids=grid;
+		myColors=myColors;
 		
 	}
 	
 	public void doAction(List<Number> newVal) {
+		myGrids.getActiveGrid().setBackgroundColor(myColors.getAvailableColors().get((int)newVal.get(0)));
 		
 	}
 	public void doAction(String myColor){
