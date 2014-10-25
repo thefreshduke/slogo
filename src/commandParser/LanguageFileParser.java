@@ -11,10 +11,13 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
 import backendExceptions.BackendException;
 
 
 public class LanguageFileParser {
+
+	private static final String INVALID_COMMAND_MESSAGE = "Invalid command provided";
 
 	public LanguageFileParser (File fileName) throws BackendException {
 		extractFromLanguageFile(fileName);
@@ -79,9 +82,8 @@ public class LanguageFileParser {
 		return fileNameWithoutExtension;
 	}
 
-	public String translateUserInputIntoEnglish (String userInput) {
+	public String translateUserInputIntoEnglish (String userInput) throws BackendException{
 		StringBuilder translatedUserInput = new StringBuilder();
-		// TODO: Change to string builder
 		String[] userInputWords = userInput.split(myCommandSeparator);
 		for (String rawCommand : userInputWords) {
 			String command = rawCommand.toLowerCase().trim();
@@ -95,13 +97,16 @@ public class LanguageFileParser {
 		return translatedUserInput.toString().trim();
 	}
 
-	public String translateCommand(String command) {
+	public String translateCommand(String command) throws BackendException {
 		String translatedCommand;
 		if (myUserInputToEnglishTranslationMap.containsKey(command)) {
 			translatedCommand = myUserInputToEnglishTranslationMap.get(command);
 		}
 		else{
 			translatedCommand = translateByRegex(command);
+		}
+		if(translatedCommand == null){
+			throw new BackendException(null, INVALID_COMMAND_MESSAGE);
 		}
 		return translatedCommand;
 	}
