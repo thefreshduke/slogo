@@ -42,7 +42,7 @@ public abstract class BaseCommand {
     public double execute() throws BackendException {
         double result = onExecute();
         if(getNextCommand() != null){
-            return getNextCommand().onExecute();
+            return getNextCommand().execute();
         }
         return result;
     }

@@ -23,15 +23,15 @@ public class ContainerTest {
 
 	@Test
 	public void testThatIfWorks(){
-		String testString = "if sum 50 50 [ fd 50 ]";
-		String translated;
+		String testString = "IF sum 1 0 [ fd 50 bk 75 ]";
+		String translated = "";
 		try {
 			translated = processInput(testString);
 		} catch (BackendException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		BaseCommand command = CommandFactory.createCommand(testString, false);
+		BaseCommand command = CommandFactory.createCommand(translated, false);
 		Double result = null;
 		try {
 			result = new Double(command.execute());
@@ -39,7 +39,7 @@ public class ContainerTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertEquals(result, new Double(50.0));
+		assertEquals(result, new Double(75.0));
 	}
 	
 	private String processInput(String input) throws BackendException {

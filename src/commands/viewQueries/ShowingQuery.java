@@ -3,29 +3,23 @@ package commands.viewQueries;
 import turtle.Turtle;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
+import commands.ViewQuery;
+import commands.information.BaseGridContainer;
 
-public class ShowingQuery extends ViewCommand {
+public class ShowingQuery extends ViewQuery {
+
+	//TODO add the string of function to be called.
+	private static final String GET_SHAPE_INDEX = "";
 
 	public ShowingQuery(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
 
 	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-    protected double onExecute() throws BackendException {
-//		return turtleIsShowing ? 1 : 0; //return 1 if turtle showing, 0 if not
-		System.out.println("Is turtle showing?");
+	protected double onExecute() throws BackendException {
+		BaseGridContainer grid = getGridContainer();
+		grid.updateDisplayOptions(GET_SHAPE_INDEX);
+		//TODO get correct return value
 		return 0;
 	}
-
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
 }

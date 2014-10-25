@@ -46,8 +46,9 @@ public abstract class ViewCommand extends BaseCommand {
         if (!extendsGridContainer) {
             // throw exception
         }
-        BaseGridContainer variableContainer = (BaseGridContainer) container;
-        myGridContainer = variableContainer;
+        
+        myGridContainer = (BaseGridContainer) container;
+        
     }
 
     protected BaseGridContainer getGridContainer () {

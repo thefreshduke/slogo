@@ -3,8 +3,10 @@ package commands.information;
 import java.util.HashMap;
 import java.util.Map;
 import backendExceptions.BackendException;
+import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.NumericalCommand;
+import commands.variableCommands.CreatedCommand;
 
 public class MapBasedVariableContainer extends BaseVariableContainer{
     
@@ -32,6 +34,11 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
         }
     }
 
+    @Override
+    public boolean containsVariable(String variable){
+        return myVariableToCommandMap.containsKey(variable);
+    }
+    
     @Override
     public boolean addVariable (String variable, double value) throws BackendException{
         NumericalCommand number = new NumericalCommand(((Double)value).toString(), true);
@@ -61,12 +68,26 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
     @Override
     public void addNewCommand (String commandName, String innerCommands, String[] temporaryVariables) {
         myCreatedCommandMap.put(commandName, innerCommands);
-        
+        myCreatedCommanVariableMap.put(commandName, temporaryVariables);
     }
 
     @Override
-    public BaseCommand getCreatedCommand (String commandName, String input) {
-        // TODO Auto-generated method stub
-        return null;
+    public BaseCommand getCreatedCommand (String commandName, String input, boolean isExpression) throws BackendException{
+        String[] variables = myCreatedCommanVariableMap.get(commandName);
+        BaseCommand[] correspondingExpressions = new BaseCommand[variables.length];
+        String subInput = input;
+        for(int i= 0; i < variables.length; i++){
+            BaseCommand expression = CommandFactory.createCommand(subInput, true);
+            subInput = expression.getLeftoverString();
+            correspondingExpressions[i] = expression;
+        }
+        
+        String innerCommandString = new String(myCreatedCommandMap.get(commandName));
+        BaseCommand innerCommand = CommandFactory.createCommand(innerCommandString, false);
+        
+        CreatedCommand createdCommand = new CreatedCommand(subInput, isExpression);
+        createdCommand.setInnerCommand(innerCommand);
+        createdCommand.setVariables(variables.clone(), correspondingExpressions);
+        return createdCommand;
     }
 }

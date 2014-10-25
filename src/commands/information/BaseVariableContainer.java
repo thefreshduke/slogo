@@ -19,5 +19,7 @@ public abstract class BaseVariableContainer implements IInformationContainer{
     
     public abstract void addNewCommand(String commandName, String innerCommands, String[] temporaryVariables);
     
-    public abstract BaseCommand getCreatedCommand(String commandName, String input);
+    public abstract BaseCommand getCreatedCommand(String commandName, String input, boolean isExpression) throws BackendException;
+
+    public abstract boolean containsVariable (String variable);
 }

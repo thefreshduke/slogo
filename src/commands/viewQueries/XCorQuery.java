@@ -1,30 +1,19 @@
 package commands.viewQueries;
 
-import turtle.Turtle;
 import backendExceptions.BackendException;
-import commands.ViewCommand;
+import commands.TurtleQuery;
+import commands.information.BaseTurtleContainer;
 
-public class XCorQuery extends ViewCommand {
+public class XCorQuery extends TurtleQuery {
 
 	public XCorQuery(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);
 	}
 
 	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
+	protected double onExecute() throws BackendException {
+		BaseTurtleContainer turtle = getTurtleContainer();
+		double xCoordinate = turtle.getXPos();
+		return xCoordinate;
 	}
-
-	@Override
-    protected double onExecute() throws BackendException {
-		System.out.println("XCOR: " + turtle.getXPos()); //doesn't work for some reason???
-		return turtle.getXPos();
-	}
-
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
 }

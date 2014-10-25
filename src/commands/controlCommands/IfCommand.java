@@ -17,16 +17,14 @@ public class IfCommand extends ControlCommand{
     
     public IfCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     protected double onExecute() throws BackendException {
-    	BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         double expressionResult = myExpression.execute();
         if(expressionResult != 0){
-            myInternalCommand.execute();
+            returnValue = myInternalCommand.execute();
         }
         else{
             returnValue = expressionResult;

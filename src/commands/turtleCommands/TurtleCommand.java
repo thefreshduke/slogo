@@ -32,7 +32,7 @@ public abstract class TurtleCommand extends BaseCommand {
     @Override
     public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
         Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
-        typeSet.add(BaseVariableContainer.class);
+        typeSet.add(BaseTurtleContainer.class);
         typeSet.add(BaseGridContainer.class);
         return typeSet;
     }
