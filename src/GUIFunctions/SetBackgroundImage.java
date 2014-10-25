@@ -36,20 +36,12 @@ public class SetBackgroundImage extends PersonalizeMenu {
 			fileChooser.setTitle("Select Background Image");
 			fileChooser.setInitialDirectory(new File("./"));
 			File file = fileChooser.showOpenDialog(myStage);
-			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
+			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png")||file.getName().contains(".JPEG"))){
 			BufferedImage buffer;
 			try {
 				buffer = ImageIO.read(file);
 				Image img=SwingFXUtils.toFXImage(buffer, null);
-				myImageView.setImage(img);
-				myImageView.setFitHeight(allGrids.getActiveGrid().myHeight);
-				myImageView.setFitWidth(allGrids.getActiveGrid().myWidth);
-				myImageView.setVisible(true);
-				allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllTurtles());
-				allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllTurtles());
-				allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllPens());
-				allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllPens());
-				
+				this.gridSetAction(img);
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Please select another file");
 			}
@@ -57,6 +49,16 @@ public class SetBackgroundImage extends PersonalizeMenu {
 
 		}
 	
+	}
+	public void gridSetAction(Image img){
+		myImageView.setImage(img);
+		myImageView.setFitHeight(allGrids.getActiveGrid().myHeight);
+		myImageView.setFitWidth(allGrids.getActiveGrid().myWidth);
+		myImageView.setVisible(true);
+		allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllTurtles());
+		allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllTurtles());
+		allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllPens());
+		allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllPens());
 	}
 	@Override
 	public void doAction(Number newVal) {

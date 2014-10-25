@@ -87,7 +87,7 @@ public class SlogoView {
 	private MenuTemplate userCommands;
 	private ResourceBundle myResources;
 	private Stage myStage;
-	private ColorSelection colorSelection = new ColorSelection("");
+	
 	public final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -130,7 +130,6 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		makeListOfFunctions();
-		VariableTable myTable=new VariableTable(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -144,6 +143,7 @@ public class SlogoView {
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
 		myStage.setScene(myScene);
 		myGrids.getActiveGrid().addTurtle(myController.getFirstTurtle());
+		VariableTable myTable=new VariableTable(myGrids);
 	}
 	/**
 	 * Displays the error message "message" on the screen
@@ -305,21 +305,8 @@ public class SlogoView {
 		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
 		makeCommand.setPrefSize(110, 55);
 		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
-		//		create Turtle display stats
-		lastX = new Text("X Position: " + 0);
-		lastY = new Text("Y Position: " + 0);
-		lastOrientation = new Text("Orientation: " + 0);
-		lastX.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-		lastY.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-		lastOrientation.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-		lastX.setFill(Color.WHITE);
-		lastY.setFill(Color.WHITE);
-		lastOrientation.setFill(Color.WHITE);
-		lastX.relocate(5, 250);
-		lastY.relocate(5, 280);
-		lastOrientation.relocate(5, 310);
-		//		temporary background color chooser
 
+/*		
 		ColorBar backGroundColorBar=new ColorBar(myResources.getString("backgroundColor"));
 		backGroundColorBar.relocate(25, 350);
 		ColorBar penColorBar=new ColorBar(myResources.getString("penColor"));
@@ -333,8 +320,8 @@ public class SlogoView {
 			ColorFunction myPenFunction=(ColorFunction) myUserFunctions.get("penColor");
 			penColorBar.addItem(color, event->myPenFunction.doAction(color));
 		}
-		
-		//		command History
+	*/
+	
 
 		commandHistoryBox = new VBox();
 		Text history = new Text("  Command History");
@@ -344,7 +331,7 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		commandHistoryBox.relocate(0, 450);
-		myTextArea.getChildren().addAll(label, backGroundColorBar, penColorBar, commandLine, enter, makeCommand, lastX, lastY, lastOrientation,
+		myTextArea.getChildren().addAll(label, commandLine, colorSelection, enter, makeCommand, lastX, lastY, lastOrientation,
 				 history, commandHistoryBox);
 		return myTextArea;
 	}
@@ -409,6 +396,7 @@ public class SlogoView {
 			ArrayList<ButtonTemplate> myButtons=new ArrayList<ButtonTemplate>();
 			for (String s: myUserFunctions.keySet()){
 				if (myUserFunctions.get(s).getClass().getSuperclass().equals(myClass)){
+					System.out.println(myUserFunctions.get(s));
 					String[] value=prop.getProperty(s).split(";");
 					myButtons.add(new ButtonTemplate(value[0], Double.parseDouble(value[1]), Double.parseDouble(value[2]), myUserFunctions.get(s)));
 				}
