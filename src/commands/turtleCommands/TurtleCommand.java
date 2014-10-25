@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.information.BaseGridContainer;
@@ -87,4 +88,6 @@ public abstract class TurtleCommand extends BaseCommand {
 
     protected abstract int getArgumentCount ();
 
+    @Override
+	protected void reset(){}
 }

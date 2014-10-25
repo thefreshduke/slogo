@@ -45,6 +45,9 @@ public class CommandFactory {
 				throw new BackendException(e, INVALID_COMMAND_CLASS_TYPE_MESSAGE);
 			}
 		}
+		if(command == null){
+			throw new BackendException(null, INVALID_COMMAND_CLASS_TYPE_MESSAGE);
+		}
 		Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
 		if (containerTypes != null) {
 			Collection<IInformationContainer> containers = myInformationHub.getContainers(containerTypes);

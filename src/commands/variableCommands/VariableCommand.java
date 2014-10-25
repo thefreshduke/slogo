@@ -48,4 +48,7 @@ public abstract class VariableCommand extends BaseCommand{
     protected BaseVariableContainer getVariableContainer(){
         return myVariableContainer;
     }
+    
+    @Override
+	protected void reset(){}
 }

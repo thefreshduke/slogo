@@ -114,9 +114,14 @@ public class MainController extends BaseController {
 
 	@Override
 	public void receiveCommand(String enteredText) {
-		String translatedText = myTranslator
-				.translateUserInputIntoEnglish(enteredText);
-		myInputsToParse.add(translatedText);
+		try{
+			String translatedText = myTranslator
+					.translateUserInputIntoEnglish(enteredText);
+			myInputsToParse.add(translatedText);
+		}
+		catch (BackendException ex){
+			reportErrorToView(ex);
+		}
 	}
 
 	@Override
@@ -157,7 +162,7 @@ public class MainController extends BaseController {
 
 	@Override
 	protected void reportErrorToView(Exception ex) {
-		
+		myView.showError(ex.getMessage());
 	}
 
 	@Override
