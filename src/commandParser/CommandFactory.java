@@ -35,23 +35,24 @@ public class CommandFactory {
         String firstCommand = identifyFirstCommand(trimmedInput);
         String subInput = input.replaceFirst(firstCommand, "").trim();
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
-//        if (commandClass == null) {
-//            BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub.getContainer(BaseVariableContainer.class);
-//            variableContainer.getCreatedCommand(firstCommand, subInput);
-//        }
-        BaseCommand command = null;
         try {
+            if (commandClass == null) {
+                BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub.getContainer(BaseVariableContainer.class);
+                return variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
+            }
+            BaseCommand command = null;
             command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
             Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
             if(containerTypes != null){
                 Collection<IInformationContainer> containers = myInformationHub.getContainers(containerTypes);
                 command.setRequiredInformation(containers);
             }
+            return command;
         }
         catch (Exception ex) {
         	ex.printStackTrace();
+        	return null;
         }
-        return command;
     }
     
     private static boolean checkIfNumerical(String string){
