@@ -1,13 +1,12 @@
 package commands.information;
 
 import java.util.Collection;
-import java.util.function.Function;
+
 import javafx.scene.shape.Line;
-import GUIFunctions.BorderStyle;
-import View.Pen;
 import turtle.Position;
 import turtle.Turtle;
-
+import GUIFunctions.BorderStyle;
+import View.Pen;
 
 public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer {
 
@@ -19,16 +18,18 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 
     public abstract Collection<Integer> getActiveTurtlesByID ();
 
+    public abstract void setActiveTurtle(int turtleID);
+    
     public abstract void setActiveTurtles (Collection<Integer> turtleIDs);
 
     public abstract Collection<Turtle> getActiveTurtles ();
 
-    public abstract Collection<Integer> getAllTurtlesByID();
-    
+    public abstract Collection<Integer> getAllTurtlesByID ();
+
     private interface TurtleActionWithResult {
         public Object execute (Turtle turtle);
     }
-    
+
     private Object loopOverTurtleWithResult (TurtleActionWithResult action) {
         Object result = null;
         for (Turtle turtle : getActiveTurtles()) {
@@ -120,7 +121,7 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     }
 
     public void setPenWidth (Number thickness) {
-        loopOverTurtleWithResult(turtle -> { 
+        loopOverTurtleWithResult(turtle -> {
             turtle.setPenWidth(thickness);
             return thickness;
         });
@@ -134,8 +135,8 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
         return (Pen) loopOverTurtleWithResult(turtle -> turtle.getPen());
     }
 
-    public Position undo (){
+    public Position undo () {
         return (Position) loopOverTurtleWithResult(turtle -> turtle.undo());
     }
-    
+
 }

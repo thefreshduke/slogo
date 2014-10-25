@@ -1,10 +1,15 @@
 package commands.controlCommands;
 
+import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class IfCommand extends ControlCommand {
 
     private BaseCommand myExpression;
@@ -20,8 +25,7 @@ public class IfCommand extends ControlCommand {
         double expressionResult = myExpression.execute();
         if (expressionResult != 0) {
             returnValue = myInternalCommand.execute();
-        }
-        else {
+        } else {
             returnValue = expressionResult;
         }
         return returnValue;

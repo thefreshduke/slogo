@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class DifferenceCommand extends TwoExpressionCommand {
 
     public DifferenceCommand (String userInput, boolean isExpression) throws BackendException {
@@ -15,5 +19,4 @@ public class DifferenceCommand extends TwoExpressionCommand {
         double result = firstExpression - secondExpression;
         return result;
     }
-
 }

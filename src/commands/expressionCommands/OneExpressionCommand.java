@@ -1,8 +1,13 @@
 package commands.expressionCommands;
 
-import commands.BaseCommand;
 import backendExceptions.BackendException;
 
+import commands.BaseCommand;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class OneExpressionCommand extends ExpressionCommand {
 
     public OneExpressionCommand (String userInput, boolean isExpression) throws BackendException {
@@ -17,5 +22,4 @@ public abstract class OneExpressionCommand extends ExpressionCommand {
     protected final int getArgumentCount () {
         return 1;
     }
-
 }

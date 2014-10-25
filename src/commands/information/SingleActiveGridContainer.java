@@ -4,21 +4,20 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+
 import turtle.Turtle;
 import View.Grid;
 
-
 public class SingleActiveGridContainer extends BaseGridContainer {
 
-    //Needs to be list because we are removing by indexes.
+    // Needs to be list because we are removing by indexes.
     private List<Grid> myGridList;
     private Grid myActiveGrid;
 
-    
-    public SingleActiveGridContainer(){
-    	myGridList = new ArrayList<>();
+    public SingleActiveGridContainer () {
+        myGridList = new ArrayList<>();
     }
-    
+
     public SingleActiveGridContainer (Grid grid) {
         this();
         myGridList.add(grid);
