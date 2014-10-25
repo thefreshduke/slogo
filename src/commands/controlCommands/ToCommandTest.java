@@ -17,6 +17,8 @@ import commands.information.SingleViewContainerInformationHub;
 
 public class ToCommandTest {
 
+    private static final double toTestAnswer = 7;
+
     @Test
     public void testToParsing () {
         setFactory();
@@ -36,7 +38,7 @@ public class ToCommandTest {
             String convertedUse = processInput(use);
             BaseCommand useCommand = CommandFactory.createCommand(convertedUse, false);
             Double result = useCommand.execute();
-            assertEquals(result, new Double(7));
+            assertEquals(result, new Double(toTestAnswer));
 
             String convertedUse2 = processInput(use2);
             BaseCommand useCommand2 = CommandFactory.createCommand(convertedUse2, false);
@@ -53,7 +55,7 @@ public class ToCommandTest {
         }
     }
 
-    private void setFactory(){
+    private void setFactory () {
         Grid grid = new SingleGrid();
         Turtle turtle = new Turtle(new Position(0, 0), null);
         ICommandInformationHub hub = new SingleViewContainerInformationHub(grid, turtle);
@@ -65,8 +67,9 @@ public class ToCommandTest {
                 new LanguageFileParser(new File("src/resources/languages/English.properties"));
         CommandToClassTranslator commandToClassTranslator = new CommandToClassTranslator();
         try {
-            CommandFactory.setCommandToClassRelation(commandToClassTranslator.translateCommandToClass(
-                    new File("src/resources/languages/EnglishToClassName.properties")));
+            CommandFactory.setCommandToClassRelation(
+                    commandToClassTranslator.translateCommandToClass(
+                            new File("src/resources/languages/EnglishToClassName.properties")));
         }
         catch (BackendException ex) {
 

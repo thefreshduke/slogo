@@ -7,68 +7,80 @@ import commands.ControlCommand;
 import commands.information.BaseVariableContainer;
 
 public class ForCommand extends ControlCommand {
-	private String myVariableName;
-	private BaseCommand myStartCommand;
-	private BaseCommand myEndCommand;
-	private BaseCommand myIncrementCommand;
-	private BaseCommand myInternalCommand;
 
-	public ForCommand (String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
+    private static final String INVALID_COMMAND_ENTERED = "Invalid command entered";
+    private static final String INSUFFICIENT_COMMANDS_ENTERED = "Insufficient commands entered";
 
-	@Override
-	protected double onExecute () throws BackendException {
-		BaseVariableContainer variableContainer = getVariableContainer();
-		double returnValue = 0;
-		int startValue = (int) myStartCommand.execute();
-		int stopValue = (int) myEndCommand.execute();
-		int incrementValue = (int) myIncrementCommand.execute();
-		boolean varExistPreviously = false;
-		BaseCommand oldCommand = null;
-		if (variableContainer.containsVariable(myVariableName)) {
-			oldCommand = variableContainer.getValue(myVariableName);
-			varExistPreviously = true;
-		}
-		for (int i = startValue; i < stopValue; i += incrementValue) {
-			variableContainer.addVariable(myVariableName, i);
-			returnValue = myInternalCommand.execute();
-		}
-		if (varExistPreviously) {
-			variableContainer.addVariable(myVariableName, oldCommand);
-		} else {
-			variableContainer.popOffVariable(myVariableName);
-		}
-		return returnValue;
-	}
+    private String myVariableName;
+    private BaseCommand myStartCommand;
+    private BaseCommand myEndCommand;
+    private BaseCommand myIncrementCommand;
+    private BaseCommand myInternalCommand;
 
-	@Override
-	protected void parseArguments (String userInput) throws BackendException{
+    private BaseVariableContainer myVariableContainer;
+    private boolean myVarExistsPreviously;
 
-		String[] splitInput = splitByInnerListCommand(userInput);
-		String innerInput = splitInput[0];
+    public ForCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
 
-		String[] variableNameContents = innerInput.split(VARIABLE_INDICATOR);
-		if (variableNameContents.length < 2) {
-			// TODO throw exception invalid # of arguments
-		}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseVariableContainer variableContainer = getVariableContainer();
+        double returnValue = 0;
+        int startValue = (int)myStartCommand.execute();
+        int stopValue = (int)myEndCommand.execute();
+        int incrementValue = (int)myIncrementCommand.execute();
+        myVarExistsPreviously = false;
+        BaseCommand oldCommand = null;
+        if (variableContainer.containsVariable(myVariableName)) {
+            oldCommand = variableContainer.getValue(myVariableName);
+            myVarExistsPreviously = true;
+        }
+        for (int i = startValue; i < stopValue; i += incrementValue) {
+            variableContainer.addVariable(myVariableName, i);
+            returnValue = myInternalCommand.execute();
+        }
+        checkIfVariableExistsPreviously(oldCommand);
+        return returnValue;
+    }
 
-		myVariableName = variableNameContents[1].trim().split(COMMAND_SEPARATOR)[0];
+    private void checkIfVariableExistsPreviously (BaseCommand oldCommand) throws BackendException {
+        if (myVarExistsPreviously) {
+            myVariableContainer.addVariable(myVariableName, oldCommand);
+        }
+        else {
+            myVariableContainer.popOffVariable(myVariableName);
+        }
+    }
 
-		if (myVariableName.equals("")) {
-			// TODO throw exception no variable name provided
-		}
+    @Override
+    protected void parseArguments (String userInput) throws BackendException {
 
-		myStartCommand =
-				CommandFactory.createCommand(variableNameContents[1].trim()
-						.split(COMMAND_SEPARATOR, 2)[1].trim(), true);
-		myEndCommand = CommandFactory.createCommand(myStartCommand.getLeftoverString(), true);
-		myIncrementCommand = CommandFactory.createCommand(myEndCommand.getLeftoverString(), true);
+        String[] splitInput = splitByInnerListCommand(userInput);
+        String innerInput = splitInput[0];
 
-		// Now matching the second set of braces to get internal commands
-		String[] splitSecondInput = splitByInnerListCommand(splitInput[1]);
-		myInternalCommand = CommandFactory.createCommand(splitSecondInput[0], false);
+        String[] variableNameContents = innerInput.split(VARIABLE_INDICATOR);
+        if (variableNameContents.length < 2) {
+            throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
+        }
 
-		setLeftoverCommands(splitSecondInput[1]);
-	}
+        myVariableName = variableNameContents[1].trim().split(COMMAND_SEPARATOR)[0];
+
+        if (myVariableName.equals("")) {
+            throw new BackendException(null, INVALID_COMMAND_ENTERED);
+        }
+
+        myStartCommand =
+                CommandFactory.createCommand(variableNameContents[1].trim()
+                        .split(COMMAND_SEPARATOR, 2)[1].trim(), true);
+        myEndCommand = CommandFactory.createCommand(myStartCommand.getLeftoverString(), true);
+        myIncrementCommand = CommandFactory.createCommand(myEndCommand.getLeftoverString(), true);
+
+        // Now matching the second set of braces to get internal commands
+        String[] splitSecondInput = splitByInnerListCommand(splitInput[1]);
+        myInternalCommand = CommandFactory.createCommand(splitSecondInput[0], false);
+
+        setLeftoverCommands(splitSecondInput[1]);
+    }
 }
