@@ -21,7 +21,6 @@ public class AskCommand extends TurtleCommand {
 	private static final String CONSTANT_INDICATOR = "constant";
 	private static final String INVALID_ERROR_MESSAGE = "Malformed input for Turtle IDs";
 	private BaseCommand myInternalCommand;
-	private List<Integer> myCurrentActiveTurtleIDs;
 	private List<Integer> myTempActiveTurtleIDs;
 	private String [] myTurtleIDs;
 
@@ -34,29 +33,9 @@ public class AskCommand extends TurtleCommand {
 	@Override
 	protected double onExecute() throws BackendException {
 
-		if ((turtleIDs.length == 1) && (turtleIDs[0].equals(""))) {
-			throw new BackendException(null, "Invalid syntax for ID");
-		}
-
-		myTempActiveTurtleIDs = new ArrayList<Integer>();
-		String turtleID = "";
-		for (int i = 0; i < turtleIDs.length; i++) {
-			turtleID = turtleIDs[i];
-			if (isEven(i) && !turtleID.equals(CONSTANT_INDICATOR)) {
-				throw new BackendException(null, INVALID_ERROR_MESSAGE);
-			} else {
-				if (Integer.parseInt(turtleID) < 0) {
-					throw new BackendException(null, "Invalid Turtle ID: negative value");
-				} 
-				myTempActiveTurtleIDs.add(i);
-			}
-		}
 		BaseTurtleContainer turtle = getTurtleContainer();
-		myCurrentActiveTurtleIDs = (List<Integer>) turtle.getActiveTurtlesByID();
-		String commandActions = splitInput[1];
-		myInternalCommand = CommandFactory.createCommand(commandActions, false);
-
 		List<Integer> myAllTurtlesID = (List<Integer>) turtle.getAllTurtlesByID();
+		List<Integer> myCurrentActiveTurtleIDs = (List<Integer>) turtle.getAllTurtlesByID();
 
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>) grid.getActiveGrids();
@@ -71,15 +50,19 @@ public class AskCommand extends TurtleCommand {
 		for (int i = minID; i <  maxID; i++) {
 			if (!myAllTurtlesID.contains(i)) {
 				Turtle newTurtle = activeGrid.addTurtle();
-				if (myTempActiveTurtleIDs.contains(i)) {
-					turtle.addTurtle(newTurtle, true);
-				} else {
-					turtle.addTurtle(newTurtle, false);
-				}
+				turtle.addTurtle(newTurtle, false);
 			}
-		}	
+		}
+		turtle.setActiveTurtles(myTempActiveTurtleIDs);
+		double result = myInternalCommand.execute();
+		turtle.setActiveTurtles(myCurrentActiveTurtleIDs);
 
-	}
+		return result;
+	}	
+
+
+
+
 
 	@Override
 	protected void parseArguments(String userInput) throws BackendException {
