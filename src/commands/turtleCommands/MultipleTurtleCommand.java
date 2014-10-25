@@ -39,13 +39,13 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 					throw new BackendException(null,
 							"Invalid Turtle ID: negative value");
 				}
-				getActiveTurtleIDs().add(i);
+				myTempActiveTurtleIDs.add(i);
 			}
 		}
 
 		String commandActions = splitInput[1];
 		setInternalCommand(CommandFactory.createCommand(commandActions, false));
-		setLeftoverCommands(getInternalCommand().getLeftoverString());
+		setLeftoverCommands(myInternalCommand.getLeftoverString());
 	}
 
 	protected int findMax (List<Integer> list) {
@@ -89,7 +89,6 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 	}
 	@Override
 	protected int getArgumentCount() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 }

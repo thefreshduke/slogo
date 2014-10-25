@@ -3,10 +3,8 @@ package commands.turtleCommands;
 import java.util.List;
 
 import turtle.Turtle;
-
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
-
 import View.Grid;
 import backendExceptions.BackendException;
 
@@ -22,8 +20,6 @@ public class TellCommand extends MultipleTurtleCommand {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		List<Integer> myAllTurtlesID = (List<Integer>)turtle
 				.getAllTurtlesByID();
-		List<Integer> myCurrentActiveTurtleIDs = (List<Integer>)turtle
-				.getAllTurtlesByID();
 
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();
@@ -32,16 +28,15 @@ public class TellCommand extends MultipleTurtleCommand {
 		}
 		Grid activeGrid = allGrids.get(0);
 
-		int minID = findMin(myCurrentActiveTurtleIDs);
-		int maxID = findMax(myCurrentActiveTurtleIDs);
+		int minID = findMin(getActiveTurtleIDs());
+		int maxID = findMax(getActiveTurtleIDs());
 
-		for (int i = minID; i < maxID; i++) {
+		for (int i = minID; i <= maxID; i++) {
 			if (!myAllTurtlesID.contains(i)) {
 				Turtle newTurtle = activeGrid.addTurtle();
 				turtle.addTurtle(newTurtle, false);
 			}
 		}
-		
 		turtle.setActiveTurtles(getActiveTurtleIDs());
 		double result = getInternalCommand().execute();
 
