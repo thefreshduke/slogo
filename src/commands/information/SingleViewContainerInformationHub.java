@@ -15,35 +15,40 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
 	private SingleActiveGridContainer myGridContainer;
 	private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
 	private MapBasedVariableContainer myVariableContainer;
-
-	public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
-		myGridContainer = new SingleActiveGridContainer(grid);
-		myGridContainer.addGrid(grid, true);
-		myGridToTurtlesMap = new HashMap<>();
-		BaseTurtleContainer turtleContainer = new TurtleList(turtle);
-		myGridToTurtlesMap.put(grid.getID(), turtleContainer);
-		myVariableContainer = new MapBasedVariableContainer();
-	}
-
-	@Override
-	public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType) {
-		if(BaseTurtleContainer.class.isAssignableFrom(containerType)){
-			ArrayList<Grid> grids = (ArrayList<Grid>)myGridContainer.getActiveGrids();
-			if(grids.size() != 1){
-				return null;
-			}
-			Grid activeGrid = grids.get(0);
-			Integer activeGridID = activeGrid.getID();
-			return myGridToTurtlesMap.get(activeGridID);
-		}
-		if(BaseGridContainer.class.isAssignableFrom(containerType)){
-			return myGridContainer;
-		}
-		if(BaseVariableContainer.class.isAssignableFrom(containerType)){
-			return myVariableContainer;
-		}
-		return null;
-	}
+    
+    public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
+        myGridContainer = new SingleActiveGridContainer(grid);
+        myGridContainer.addGrid(grid, true);
+        myGridToTurtlesMap = new HashMap<>();
+        BaseTurtleContainer turtleContainer = new TurtleList(turtle);
+        myGridToTurtlesMap.put(grid.getID(), turtleContainer);
+        myVariableContainer = new MapBasedVariableContainer();
+    }
+    
+    @Override
+    public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType) {
+    	if(BaseTurtleContainer.class.isAssignableFrom(containerType)){
+    	    ArrayList<Grid> grids = (ArrayList<Grid>)myGridContainer.getActiveGrids();
+            if(grids.size() != 1){
+            	return null;
+            }
+            Grid activeGrid = grids.get(0);
+            Integer activeGridID = activeGrid.getID();
+            BaseTurtleContainer turtleContainer = myGridToTurtlesMap.get(activeGridID);
+            if(turtleContainer == null){
+            	turtleContainer = new TurtleList();
+            	myGridToTurtlesMap.put(activeGridID, turtleContainer);
+            }
+            return turtleContainer;
+    	}
+    	if(BaseGridContainer.class.isAssignableFrom(containerType)){
+    	    return myGridContainer;
+    	}
+    	if(BaseVariableContainer.class.isAssignableFrom(containerType)){
+    	    return myVariableContainer;
+    	}
+        return null;
+    }
 
 	@Override
 	public Collection<IInformationContainer> getContainers (Set<Class<? extends IInformationContainer>> containerTypes)

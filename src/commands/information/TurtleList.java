@@ -13,9 +13,12 @@ public class TurtleList extends BaseTurtleContainer {
 	private Collection<Turtle> myTurtles;
 	private Collection<Turtle> myActiveTurtles;
 
-	public TurtleList(Turtle turtle) {
+	public TurtleList(){
 		myTurtles = new LinkedHashSet<>();
 		myActiveTurtles = new LinkedHashSet<>();
+	}
+	public TurtleList(Turtle turtle) {
+		this();
 		myTurtles.add(turtle);
 		myActiveTurtles.add(turtle);
 	}
