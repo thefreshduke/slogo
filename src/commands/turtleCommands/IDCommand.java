@@ -1,7 +1,25 @@
 package commands.turtleCommands;
 
-public class IDCommand {
+import java.util.List;
 
-	//return the LAST active turtle's ID number
+import turtle.Turtle;
+import backendExceptions.BackendException;
+import commands.TurtleQuery;
+import commands.information.BaseTurtleContainer;
+
+public class IDCommand extends TurtleQuery{
+
+	public IDCommand(String userInput, boolean isExpression)
+			throws BackendException {
+		super(userInput, isExpression);
+	}
+
+	@Override
+	protected double onExecute() throws BackendException {
+		BaseTurtleContainer turtle = getTurtleContainer();
+		Turtle lastActiveTurtle = ((List<Turtle>) turtle.getActiveTurtles()).get(turtle.getActiveTurtles().size()-1);
+		return lastActiveTurtle.getID();
+	}
+
 
 }

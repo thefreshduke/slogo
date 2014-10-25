@@ -7,7 +7,7 @@ import commands.turtleCommands.TurtleCommand;
 
 public class ClearScreenCommand extends TurtleCommand {
 
-	private static final String CLEAR_GUI = "clearGUI";
+	private static final String CLEAR_GUI = "clear";
 
 	public ClearScreenCommand(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);

@@ -12,12 +12,6 @@ public abstract class TurtleQuery extends TurtleCommand {
 	}
 
 	@Override
-	protected double onExecute() throws BackendException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	protected int getArgumentCount() {
 		// TODO Auto-generated method stub
 		return 0;

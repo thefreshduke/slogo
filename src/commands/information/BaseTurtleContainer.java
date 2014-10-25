@@ -23,10 +23,12 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 
     public abstract Collection<Turtle> getActiveTurtles ();
 
+    public abstract Collection<Integer> getAllTurtlesByID();
+    
     private interface TurtleActionWithResult {
         public Object execute (Turtle turtle);
     }
-
+    
     private Object loopOverTurtleWithResult (TurtleActionWithResult action) {
         Object result = null;
         for (Turtle turtle : getActiveTurtles()) {
@@ -136,100 +138,4 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
         return (Position) loopOverTurtleWithResult(turtle -> turtle.undo());
     }
     
-
-    // private interface TurtleActionWithResult{
-    // public double execute(Turtle turtle);
-    // }
-    //
-    // private interface TurtleActionWithoutResult{
-    // public void execute(Turtle turtle);
-    // }
-    //
-    // private double loopOverTurtleWithResult(TurtleActionWithResult action){
-    // double result = -1;
-    // for(Turtle turtle : getActiveTurtles()){
-    // result = action.execute(turtle);
-    // }
-    // return result;
-    // }
-    //
-    // private void loopOverTurtleWithoutResult(TurtleActionWithoutResult action){
-    // for(Turtle turtle: getActiveTurtles()){
-    // action.execute(turtle);
-    // }
-    // }
-    //
-    // @Override
-    // public void rotate (double rotateIncrement) {
-    // loopOverTurtleWithoutResult(turtle -> turtle.rotate(rotateIncrement));
-    // }
-    //
-    // @Override
-    // public void move (double xIncrement, double yIncrement) {
-    // loopOverTurtleWithoutResult(turtle -> turtle.move(xIncrement, yIncrement));
-    // }
-    //
-    // public double setHeading(double absHeading) {
-    // return loopOverTurtleWithResult(turtle -> turtle.setHeading(absHeading));
-    // }
-    //
-    // public double towardsPosition(double newXPos, double newYPos){
-    // return loopOverTurtleWithResult(turtle -> turtle.towardsPosition(newXPos, newYPos));
-    // }
-    //
-    // public double setPosition(double newXPos, double newYPos){
-    // return loopOverTurtleWithResult(turtle -> turtle.setPosition(newXPos, newYPos));
-    // }
-    //
-    // public void moveTowardsHeading(double increment){
-    // loopOverTurtleWithoutResult(turtle -> turtle.moveTowardsHeading(increment));
-    // }
-    //
-    // public double getOrientation(){
-    // return loopOverTurtleWithResult(turtle -> turtle.getOrientation());
-    // }
-    //
-    // public double getXPos(){
-    // return loopOverTurtleWithResult(turtle -> turtle.getXPos());
-    // }
-    //
-    // public double getYPos(){
-    // return loopOverTurtleWithResult(turtle -> turtle.getYPos());
-    // }
-    //
-    // public void setXPos(double xPos){
-    // loopOverTurtleWithoutResult(turtle -> turtle.setXPos(xPos));
-    // }
-    //
-    // public void setYPos(double yPos){
-    // loopOverTurtleWithoutResult(turtle -> turtle.setYPos(yPos));
-    // }
-    //
-    // public void setRotation (double rotateVal){
-    // loopOverTurtleWithoutResult(turtle -> turtle.setRotation(rotateVal));
-    // }
-    //
-    // public void setPenColor(String color){
-    // loopOverTurtleWithoutResult(turtle -> turtle.setPenColor(color));
-    // }
-    //
-    // public void setPenBorderStyle(BorderStyle style){
-    // loopOverTurtleWithoutResult(turtle -> turtle.setPenBorderStyle(style));
-    // }
-    //
-    // public void setPenWidth(Number thickness){
-    // loopOverTurtleWithoutResult(turtle -> turtle.setPenWidth(thickness));
-    // }
-    //
-    // public Line penUndo(){
-    // Line result = null;
-    // for(Turtle turtle : getActiveTurtles()) {
-    // result = turtle.penUndo();
-    // }
-    // return result;
-    // }
-    //
-    // public Pen getPen();
-    //
-    // public Position undo();
 }

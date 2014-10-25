@@ -10,7 +10,7 @@ import commands.turtleCommands.TurtleCommand;
 public class ClearStampsCommand extends ViewCommand {
 
 	//TODO change to include string name for grid function to clear stamps
-	private static final String CLEAR_STAMPS = "";
+	private static final String CLEAR_STAMPS = "clearStamps";
 
 	public ClearStampsCommand(String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);

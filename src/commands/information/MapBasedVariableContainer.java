@@ -10,14 +10,14 @@ import commands.variableCommands.CreatedCommand;
 
 public class MapBasedVariableContainer extends BaseVariableContainer{
     
-    private Map<String, BaseCommand> myVariableToCommandMap;
+    private Map<String, BaseCommand> myVariableToValuesMap;
     private Map<String, String> myCreatedCommandMap;
-    private Map<String, String[]> myCreatedCommanVariableMap;
+    private Map<String, String[]> myCreatedCommandVariableMap;
     
     public MapBasedVariableContainer () {
-        myVariableToCommandMap = new HashMap<>();
+        myVariableToValuesMap = new HashMap<>();
         myCreatedCommandMap = new HashMap<>();
-        myCreatedCommanVariableMap = new HashMap<>();
+        myCreatedCommandVariableMap = new HashMap<>();
     }
     
     @Override
@@ -26,7 +26,7 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
             throw new BackendException(null, "Invalid variable or command provided");
         }
         try{
-            myVariableToCommandMap.put(variable, command);
+            myVariableToValuesMap.put(variable, command);
             return true;
         }
         catch (Exception ex){
@@ -36,7 +36,7 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
 
     @Override
     public boolean containsVariable(String variable){
-        return myVariableToCommandMap.containsKey(variable);
+        return myVariableToValuesMap.containsKey(variable);
     }
     
     @Override
@@ -47,8 +47,8 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
 
     @Override
     public BaseCommand getValue (String variable) throws BackendException {
-        if(myVariableToCommandMap.containsKey(variable)){
-            return myVariableToCommandMap.get(variable);
+        if(myVariableToValuesMap.containsKey(variable)){
+            return myVariableToValuesMap.get(variable);
         }
         else{
             return new NumericalCommand(((Double)0.0).toString(), true);
@@ -57,9 +57,9 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
 
     @Override
     public BaseCommand popOffVariable (String variable) {
-        if(myVariableToCommandMap.containsKey(variable)){
-            BaseCommand value = myVariableToCommandMap.get(variable);
-            myVariableToCommandMap.remove(variable);
+        if(myVariableToValuesMap.containsKey(variable)){
+            BaseCommand value = myVariableToValuesMap.get(variable);
+            myVariableToValuesMap.remove(variable);
             return value;
         }
         return null;
@@ -68,12 +68,12 @@ public class MapBasedVariableContainer extends BaseVariableContainer{
     @Override
     public void addNewCommand (String commandName, String innerCommands, String[] temporaryVariables) {
         myCreatedCommandMap.put(commandName, innerCommands);
-        myCreatedCommanVariableMap.put(commandName, temporaryVariables);
+        myCreatedCommandVariableMap.put(commandName, temporaryVariables);
     }
 
     @Override
     public BaseCommand getCreatedCommand (String commandName, String input, boolean isExpression) throws BackendException{
-        String[] variables = myCreatedCommanVariableMap.get(commandName);
+        String[] variables = myCreatedCommandVariableMap.get(commandName);
         BaseCommand[] correspondingExpressions = new BaseCommand[variables.length];
         String subInput = input;
         for(int i= 0; i < variables.length; i++){
