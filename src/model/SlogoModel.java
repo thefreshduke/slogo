@@ -34,9 +34,6 @@ public class SlogoModel {
 		return myTurtleFactory.getActiveTurtles();
 	}
 
-	public BaseCommand createInitialCommand(String input) {
-		return CommandFactory.createCommand(input, false);
-	}
 
 	public Turtle findTurtle(int ID) {
 		return myTurtleFactory.findTurtle(ID);

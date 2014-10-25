@@ -32,7 +32,6 @@ import commands.information.SingleViewContainerInformationHub;
 public class MainController extends BaseController {
 
 	private SlogoView myView;
-	private SlogoModel myModel;
 	private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
 	private ConcurrentLinkedQueue<String> myInputsToParse;
 
@@ -51,7 +50,6 @@ public class MainController extends BaseController {
 	public MainController(SlogoView view) {
 		super(view);
 		myView = view;
-		myModel = new SlogoModel();
 		myCommandQueue = new ConcurrentLinkedQueue<>();
 		myInputsToParse = new ConcurrentLinkedQueue<>();
 		myCommandIsExecuting = new AtomicBoolean(false);
@@ -125,11 +123,6 @@ public class MainController extends BaseController {
 	}
 
 	@Override
-	protected void initializeModel() {
-		myModel.initializeModel();
-	}
-
-	@Override
 	public void start() {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
@@ -174,26 +167,6 @@ public class MainController extends BaseController {
 		}
 	}
 
-	/**
-	 * Find turtle matching specified ID
-	 * 
-	 * @param ID
-	 *            of turtle
-	 * @return turtle matching ID, else return null if no turtle match
-	 */
-	public Turtle findTurtle(int ID) {
-		return myModel.findTurtle(ID);
-	}
-
-	public List<Turtle> getActiveTurtles() {
-		return myModel.getActiveTurtles();
-	}
-
-	public Turtle getFirstTurtle() {
-		// TODO Auto-generated method stub
-		return myModel.findTurtle(0);
-	}
-
 	@Override
 	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
 		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
@@ -221,8 +194,7 @@ public class MainController extends BaseController {
 	}
 	
 	@Override
-	public IInformationContainer loadPreferences(
-			IInformationContainer container, File file) throws BackendException {
+	public IInformationContainer loadPreferences(File file) throws BackendException {
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		BaseVariableContainer returnContainer = null;
@@ -236,6 +208,10 @@ public class MainController extends BaseController {
 		}
 
 		return (IInformationContainer) returnContainer;
+	}
+		
+	public void savePreferences(String filename) throws BackendException {
+		savePreferences((myCommandInformationHub.getContainer(BaseVariableContainer.class)), filename);
 	}
 
 	@Override
@@ -251,5 +227,17 @@ public class MainController extends BaseController {
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex, "Error writing to file"));
 		}
+	}
+
+	@Override
+	protected void initializeModel() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Turtle> getActiveTurtles() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

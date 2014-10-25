@@ -35,8 +35,8 @@ public class TurtleCommandsTest {
 		String input = "FD SUM 50 50 SUM 25 30";
 		String input2 = "BK DIFFERENCE 70 20";
 		String input3 = "RT 90";
-		String input4 = 
-		String input5 = 
+		String input4 = "";
+		String input5 = "";
 		
 		
 		

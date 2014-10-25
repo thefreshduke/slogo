@@ -60,15 +60,13 @@ public abstract class BaseController {
 	 */
 	public abstract void loadLanguage(File file);
 	
-	public abstract Turtle getFirstTurtle();
-
 	public abstract void addTurtle(Turtle turtle, int gridID, boolean isActive);
 	
 	public abstract void addGrid(Grid grid, boolean isActive);
 
 	public abstract List<Turtle> getActiveTurtles();
 	
-	public abstract IInformationContainer loadPreferences(IInformationContainer container, File file) throws BackendException;
+	public abstract IInformationContainer loadPreferences (File file) throws BackendException;
 	
 	public abstract void savePreferences(IInformationContainer container, String filename) throws BackendException;
 
