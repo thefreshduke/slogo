@@ -83,15 +83,15 @@ public class MainController extends BaseController {
 			public void handle(long now) {
 				if (!myInputsToParse.isEmpty()) {
 					String input = myInputsToParse.poll();
-					// try{
-					// BaseCommand command = myFactory.createCommand(input);
-					// myCommandQueue.add(command);
-					// }
-					// catch(BackendException ex) {
-					// reportErrorToView(ex);
-					// }
-					BaseCommand command = myModel.createInitialCommand(input);
-					myCommandQueue.add(command);
+					 try{
+						 BaseCommand command = CommandFactory.createCommand(input, false);
+						 myCommandQueue.add(command);
+					 }
+					 catch(BackendException ex) {
+						 reportErrorToView(ex);
+					 }
+					//BaseCommand command = myModel.createInitialCommand(input);
+					//myCommandQueue.add(command);
 
 				}
 			}
@@ -144,17 +144,18 @@ public class MainController extends BaseController {
 	private void executeCommand(BaseCommand command) {
 		try {
 			command.execute();
-			myExecutedCommands.add(command);
-			myCommandIsExecuting.set(false);
 		} catch (BackendException ex) {
 			reportErrorToView(ex);
+		}
+		finally{
+			myExecutedCommands.add(command);
+			myCommandIsExecuting.set(false);
 		}
 	}
 
 	@Override
 	protected void reportErrorToView(Exception ex) {
-		// TODO: view takes error myView.
-
+		
 	}
 
 	@Override
@@ -162,8 +163,7 @@ public class MainController extends BaseController {
 		try {
 			myTranslator.extractFromLanguageFile(file);
 		} catch (BackendException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			reportErrorToView(e);
 		}
 	}
 
@@ -231,7 +231,7 @@ public class MainController extends BaseController {
 			returnContainer = (BaseVariableContainer) in.readObject();
 			in.close();
 		} catch (Exception ex) {
-			throw new BackendException(ex, "Error reading from file");
+			reportErrorToView(new BackendException(ex, "Error reading from file"));
 		}
 
 		return (IInformationContainer) returnContainer;
@@ -248,7 +248,7 @@ public class MainController extends BaseController {
 			out.writeObject((BaseVariableContainer) container);
 			out.close();
 		} catch (Exception ex) {
-			throw new BackendException(ex, "Error writing to file");
+			reportErrorToView(new BackendException(ex, "Error writing to file"));
 		}
 	}
 }

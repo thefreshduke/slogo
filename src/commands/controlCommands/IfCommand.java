@@ -28,7 +28,7 @@ public class IfCommand extends ControlCommand{
 	}
 
 	@Override
-	protected void parseArguments (String userInput) {
+	protected void parseArguments (String userInput) throws BackendException{
 		myExpression = CommandFactory.createCommand(userInput, true);
 		String leftOver = new String(myExpression.getLeftoverString().trim());
 		String[] splitCommand = splitByInnerListCommand(leftOver);

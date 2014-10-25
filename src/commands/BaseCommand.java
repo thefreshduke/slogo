@@ -69,7 +69,7 @@ public abstract class BaseCommand {
         return myLeftoverString;
     }
 
-    protected void setLeftoverCommands (String string) {
+    protected void setLeftoverCommands (String string) throws BackendException{
         if (myExpressionFlag) {
             myLeftoverString = string;
         }

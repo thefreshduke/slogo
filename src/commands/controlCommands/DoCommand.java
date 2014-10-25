@@ -50,7 +50,7 @@ public class DoCommand extends ControlCommand {
 	}
 
 	@Override
-	protected void parseArguments (String userInput) {
+	protected void parseArguments (String userInput) throws BackendException{
 		String[] splitInput = splitByInnerListCommand(userInput);
 
 		String [] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR);

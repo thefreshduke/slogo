@@ -43,7 +43,7 @@ public class ForCommand extends ControlCommand {
 	}
 
 	@Override
-	protected void parseArguments (String userInput) {
+	protected void parseArguments (String userInput) throws BackendException{
 
 		String[] splitInput = splitByInnerListCommand(userInput);
 		String innerInput = splitInput[0];
