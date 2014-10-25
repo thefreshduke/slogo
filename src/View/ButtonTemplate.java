@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 
 public class ButtonTemplate extends Button implements UserObjects{
-	int textSize=15;
+	int textSize=10;
 	/**
 	 * Constructor
 	 * @param s				Label for the Button	

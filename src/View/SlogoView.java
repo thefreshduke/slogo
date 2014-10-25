@@ -1,16 +1,13 @@
 package View;
 
 import java.awt.Dimension;
-import java.awt.List;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Properties;
 import java.util.Queue;
@@ -18,14 +15,14 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import backendExceptions.BackendException;
 import GUIFunctions.Add;
 import GUIFunctions.AddTurtle;
 import GUIFunctions.AskForInitialFile;
 import GUIFunctions.BackgroundColor;
 import GUIFunctions.BottomFunctions;
 import GUIFunctions.ClearFunction;
-import GUIFunctions.ColorFunction;
-import GUIFunctions.ControllerFunctions;
+import GUIFunctions.ClearStamps;
 import GUIFunctions.GUIFunction;
 import GUIFunctions.HelpPage;
 import GUIFunctions.LanguageMenu;
@@ -41,25 +38,19 @@ import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
 import GUIFunctions.VariableTable;
-import turtle.Turtle;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.ScrollBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -84,19 +75,16 @@ public class SlogoView {
 	//used to display Turtles most recent stats
 	private Text lastX, lastY, lastOrientation;
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
-	String penColor;
-	//for displaying command history
 	private VBox commandHistoryBox;
 	private MenuTemplate userCommands;
 	private ResourceBundle myResources;
 	private Stage myStage;
-
-	public final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
+	private final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public SlogoView() throws ClassNotFoundException{
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
-		myGridFactory=new GridFactory(DEFAULT_SIZE.height-100, DEFAULT_SIZE.width-200, this.build(5), null);
+		myGridFactory=new GridFactory(DEFAULT_SIZE.height, DEFAULT_SIZE.width, this.build(5), null);
 		myGrids=new GridTracker();
 		myController=new MainController(this);
 		Timeline myTime=new Timeline();
@@ -184,7 +172,7 @@ public class SlogoView {
 		MenuTemplate personalize=new MenuTemplate("Personalize");
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
-		
+
 
 		MenuTemplate help = new MenuTemplate("Help");
 		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
@@ -308,8 +296,8 @@ public class SlogoView {
 		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
 		makeCommand.setPrefSize(120, 30);
 		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
-		
-		
+
+
 		commandHistoryBox = new VBox();
 		Text history = new Text("  Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -318,7 +306,7 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		updateCommandHistory();
 		commandHistoryBox.relocate(0, 380);
-		
+
 		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand,
 				history,  colorSelection, commandHistoryBox);
 		return myTextArea;
@@ -353,10 +341,6 @@ public class SlogoView {
 
 	public void setBackgroundColor(String color){
 		myGrids.getActiveGrid().setBackgroundColor(color);
-	}
-
-	public void setPenColor(String color){
-		penColor = color;
 	}
 
 	public void makeUserCommand(String command){
@@ -404,7 +388,7 @@ public class SlogoView {
 	}
 	private Collection<ScrollingBar> makeSlidingBars(){
 		Collection<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
-		ScrollingBar myPenBar=new PenScrollingBar(myResources.getString("penThickness"), 200, 20, myUserFunctions.get("penThickness"));
+		ScrollingBar myPenBar=new PenScrollingBar(myResources.getString("penThickness"), 250, 20, myUserFunctions.get("penThickness"));
 		myListOfBars.add(myPenBar);
 		return myListOfBars;
 	}
@@ -428,6 +412,7 @@ public class SlogoView {
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPallete(colorSelection));
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
+		myUserFunctions.put("clearStamp", new ClearStamps(myGrids));
 		addLanguages();
 
 	}
@@ -445,7 +430,7 @@ public class SlogoView {
 	}
 	private MenuTemplate createfileMenu(){
 		MenuTemplate file=new MenuTemplate("File");
-		//file.addMenuItem("Export", myController.savePreferences(container, file));
+		file.addMenuItem("Export", event->saveFileToController(saveFile()));
 		AskForInitialFile myFunction=(AskForInitialFile)myUserFunctions.get("uploadFile");
 		file.addMenuItem(myResources.getString("uploadFile"),event->checkNullFile(myFunction.sendFile()));
 		return file;
@@ -453,12 +438,20 @@ public class SlogoView {
 	private String saveFile(){
 		return JOptionPane.showInputDialog(null, "Name of desired file to save to:");
 	}
-	private void checkNullFile(File myFile){
-		if (myFile!=null){
-			//myController.savePreferences(container, filename);
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "The File was Null");
+	private void saveFileToController(String fileName){
+		try {
+			myController.savePreferences(fileName);
+		} catch (BackendException e) {
+			JOptionPane.showMessageDialog(null, "No input");
 		}
 	}
+	private void checkNullFile(File myFile){
+		if (myFile!=null){
+			myController.loadLanguage(myFile);
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "The file was null");
+		}
+	}
+	//private void 
 }

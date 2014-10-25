@@ -9,16 +9,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Properties;
-
-import turtle.Position;
 import turtle.Turtle;
 import View.Grid;
 import View.GridTracker;
 import View.SingleGrid;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -26,21 +22,17 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class VariableTable extends TableView{
-	GridTracker allGrids;
-	Collection<Column> myColumns;
+	
+	private GridTracker allGrids;
+	private Collection<Column> myColumns;
 	public VariableTable(GridTracker grid){
 		myColumns=new HashSet<Column>();
 		allGrids=grid;

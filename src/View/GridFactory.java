@@ -29,7 +29,7 @@ public class GridFactory {
 	}
 	public Grid makeGrid(String s) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
 		Grid myGrid=null;
-		myGrid=(Grid) myGrids.get(s).getConstructor(int.class, int.class, KeyFrame.class, HashMap.class, int.class).newInstance(myWidth, myHeight, myFrame, myMap, my_ID++);
+		myGrid=(Grid) myGrids.get(s).getConstructor(KeyFrame.class, HashMap.class, int.class).newInstance(myFrame, myMap, my_ID++);
 		allGrids.add(myGrid);
 		return myGrid;
 
