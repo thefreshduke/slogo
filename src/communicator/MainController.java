@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import model.SlogoModel;
 import View.Grid;
 import View.SlogoView;
@@ -22,6 +23,7 @@ import commands.BaseCommand;
 import commands.information.ICommandInformationHub;
 import commands.information.IInformationContainer;
 import commands.information.BaseVariableContainer;
+import commands.information.SingleActiveGridContainer;
 import javafx.animation.AnimationTimer;
 
 
@@ -59,6 +61,8 @@ public class MainController extends BaseController {
         myCommandExecutionTimer.start();
         myCommandToClassTranslator = new CommandToClassTranslator();
         try {
+        	ICommandInformationHub informationHub = null; //new SingleActiveGridContainer(grid);
+        	CommandFactory.setInformationHub(informationHub);
             CommandFactory
                     .setCommandToClassRelation(myCommandToClassTranslator
                             .translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
