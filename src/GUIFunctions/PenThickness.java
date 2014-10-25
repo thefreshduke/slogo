@@ -1,5 +1,7 @@
 package GUIFunctions;
 
+import java.util.List;
+
 import View.GridTracker;
 import View.Pen;
 import View.SingleGrid;
@@ -13,8 +15,8 @@ public class PenThickness extends GridFunction{
 		myThickness=thickness.intValue();
 	}
 	@Override
-	public void doAction(Number newVal) {
-		myThickness=newVal;
+	public void doAction(List<Number> newVal) {
+		myThickness=newVal.get(0);
 		for (Pen myP: allGrids.getActiveGrid().getActivePens()){
 			myP.changeThickness(myThickness);
 		}
@@ -24,4 +26,5 @@ public class PenThickness extends GridFunction{
 		// TODO Auto-generated method stub
 		
 	}
+	
 }

@@ -1,16 +1,12 @@
 package View;
 
-import java.awt.TextField;
 import java.util.List;
 
-import GUIFunctions.GUIFunction;
+import GUIFunctions.GridFunction;
 
-public class MakeCommand implements GUIFunction{
-	private TextField myTextField;
-	
-	public MakeCommand(TextField myText, MenuTemplate myMenu){
-		
-	}
+public class SetPallete extends GridFunction{
+	public setPallete()
+}
 
 	@Override
 	public void doAction() {
@@ -23,4 +19,3 @@ public class MakeCommand implements GUIFunction{
 		// TODO Auto-generated method stub
 		
 	}
-}

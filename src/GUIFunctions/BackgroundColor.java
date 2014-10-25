@@ -1,5 +1,7 @@
 package GUIFunctions;
 
+import java.util.List;
+
 import javafx.scene.control.MenuBar;
 import View.ColorSelection;
 import View.GridTracker;
@@ -13,7 +15,7 @@ public class BackgroundColor extends ColorFunction{
 		
 	}
 	
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		
 	}
 	public void doAction(String myColor){

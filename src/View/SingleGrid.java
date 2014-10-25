@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -64,7 +65,7 @@ public class SingleGrid extends Grid {
 	public void setBackgroundColor(String color){
 		backgroundColor = color;
 		this.getChildren().remove(myImageView);
-		setStyle("-fx-background-color: "+backgroundColor);
+		setStyle("-fx-background-color: #"+backgroundColor);
 	}
 	public void moveTurtle(Turtle t){
 		t.relocate(t.getXPos(), t.getYPos());
@@ -115,7 +116,7 @@ public class SingleGrid extends Grid {
 	public void updateGUI(String myFunction){
 		myGridFunctions.get(myFunction).doAction();
 	}
-	public void updateGUI(String myFunction, Number myNumber){
+	public void updateGUI(String myFunction, List<Number> myNumber){
 		myGridFunctions.get(myFunction).doAction(myNumber);
 	}
 	public void sendErrorMessage(String s){

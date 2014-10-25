@@ -1,5 +1,8 @@
 package View;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import GUIFunctions.GUIFunction;
 import GUIFunctions.PenThickness;
 import javafx.beans.value.ChangeListener;
@@ -30,7 +33,9 @@ public class PenScrollingBar extends ScrollingBar{
 		ChangeListener<Number> myListener=new ChangeListener<Number>(){
 			@Override
 			public void changed(ObservableValue<? extends Number> ov,Number oldVal, Number newVal) {
-				myFunction.doAction(newVal);
+				List<Number> myNewValue=new ArrayList<Number>();
+				myNewValue.add(newVal);
+				myFunction.doAction(myNewValue);
 			}
 		};
 		return myListener;
