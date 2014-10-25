@@ -1,37 +1,56 @@
 package commands.turtleCommands;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import turtle.Turtle;
+import commandParser.CommandFactory;
+import commands.BaseCommand;
+import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
 
 public class AskWithCommand extends TurtleCommand{
 
-    private String myCondition;
-    private String myInnerCommand;
+	private BaseCommand myCondition;
+	private BaseCommand myInternalCommand;
+	
+	public AskWithCommand(String userInput, boolean isExpression)
+			throws BackendException {
+		super(userInput, isExpression);
+	}
+	
+	@Override
+	protected int getArgumentCount() {
+		return 0;
+	}
 
-    public AskWithCommand(String userInput, boolean isExpression)
-            throws BackendException {
-        super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
-    }
-
-
-    @Override
-    protected int getArgumentCount() {
-        return 0;
-    }
-
-    @Override
-    protected void parseArguments(String userInput) throws BackendException {
-        String[] splitConditionCommand = splitByInnerListCommand(userInput.trim());
-        myCondition = splitConditionCommand[0];
-        String[] splitCommandLeftover = splitByInnerListCommand(splitConditionCommand[1]);
-        myInnerCommand = splitCommandLeftover[0];
-        setLeftoverCommands(splitCommandLeftover[1]);
-    }
-
-    @Override
-    protected double onExecute() throws BackendException {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
+	@Override
+	protected void parseArguments(String userInput) throws BackendException {
+		String[] splitConditionCommand = splitByInnerListCommand(userInput.trim());
+		myCondition = CommandFactory.createCommand(splitConditionCommand[0], true);
+		String[] splitCommandLeftover = splitByInnerListCommand(splitConditionCommand[1]);
+		myInternalCommand = CommandFactory.createCommand(splitCommandLeftover[0], false);
+		setLeftoverCommands(splitCommandLeftover[1]);
+	}
+	
+	@Override
+	protected double onExecute() throws BackendException {
+		BaseTurtleContainer turtleContainer = getTurtleContainer();
+		Collection<Integer> oldActiveTurtles = turtleContainer.getActiveTurtlesByID();
+		Collection<Integer> allTurtles = turtleContainer.getAllTurtlesByID();
+		Collection<Integer> conditionMetTurtles = new LinkedHashSet<>();
+		for(int turtleID : allTurtles){
+			turtleContainer.setActiveTurtle(turtleID);
+			double conditionResult = myCondition.execute();
+			if(conditionResult != 0){
+				conditionMetTurtles.add(turtleID);
+			}
+		}
+		turtleContainer.setActiveTurtles(conditionMetTurtles);
+		double result = myInternalCommand.execute();
+		turtleContainer.setActiveTurtles(oldActiveTurtles);
+		return result;
+	}
 }

@@ -10,6 +10,8 @@ import commands.information.BaseTurtleContainer;
 
 public class AskCommand extends MultipleTurtleCommand {
 
+	private static final String MULTIPLE_ACTIVE_GRID_MESSAGE = "More than one grid is active";
+
 	public AskCommand (String userInput, boolean isExpression)
 			throws BackendException {
 		super(userInput, isExpression);
@@ -27,7 +29,7 @@ public class AskCommand extends MultipleTurtleCommand {
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();
 		if (grid.getActiveGrids().size() != 1) {
-			throw new BackendException(null, "More than one grid is active");
+			throw new BackendException(null, MULTIPLE_ACTIVE_GRID_MESSAGE);
 		}
 		Grid activeGrid = allGrids.get(0);
 

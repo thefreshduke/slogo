@@ -18,6 +18,8 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 
     public abstract Collection<Integer> getActiveTurtlesByID ();
 
+    public abstract void setActiveTurtle(int turtleID);
+    
     public abstract void setActiveTurtles (Collection<Integer> turtleIDs);
 
     public abstract Collection<Turtle> getActiveTurtles ();

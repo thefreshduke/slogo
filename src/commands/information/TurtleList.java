@@ -61,17 +61,28 @@ public class TurtleList extends BaseTurtleContainer {
         return activeTurtleIDs;
     }
 
-    @Override
-    public void setActiveTurtles (Collection<Integer> turtleIDs) {
-        myActiveTurtles.clear();
-        HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
-        for (Turtle turtle : myTurtles) {
-            if (turtleIDSet.contains(turtle.getID())) {
-                turtle.setActive();
-                myActiveTurtles.add(turtle);
-            }
-        }
-    }
+	@Override
+	public void setActiveTurtle(int turtleID) {
+		myActiveTurtles.clear();
+		for(Turtle turtle : myTurtles){
+			if(turtle.getID() == turtleID){
+				myActiveTurtles.add(turtle);
+				break;
+			}
+		}
+	}
+	
+	@Override
+	public void setActiveTurtles(Collection<Integer> turtleIDs) {
+		myActiveTurtles.clear();
+		HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
+		for (Turtle turtle : myTurtles) {
+			if (turtleIDSet.contains(turtle.getID())) {
+				turtle.setActive();
+				myActiveTurtles.add(turtle);
+			}
+		}
+	}
 
     @Override
     public Collection<Turtle> getActiveTurtles () {
