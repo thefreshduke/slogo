@@ -25,7 +25,7 @@ public class AskCommand extends MultipleTurtleCommand {
 		List<Integer> myAllTurtlesID = new ArrayList<>(turtle
 				.getAllTurtlesByID());
 		List<Integer> myCurrentActiveTurtleIDs = new ArrayList<>(turtle
-				.getAllTurtlesByID());
+				.getActiveTurtlesByID());
 
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();
@@ -34,8 +34,12 @@ public class AskCommand extends MultipleTurtleCommand {
 		}
 		Grid activeGrid = allGrids.get(0);
 
-		int minID = findMin(myCurrentActiveTurtleIDs);
-		int maxID = findMax(myCurrentActiveTurtleIDs);
+		int minID = findMin(getActiveTurtleIDs());
+		int maxID = findMax(getActiveTurtleIDs());
+		
+		if (getActiveTurtleIDs().size() != 1) {
+			
+		}
 
 		for (int i = minID; i < maxID; i++) {
 			if (!myAllTurtlesID.contains(i)) {

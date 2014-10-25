@@ -30,17 +30,19 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 			throw new BackendException(null, "Invalid syntax for ID");
 		}
 		myTempActiveTurtleIDs = new ArrayList<>();
-		String turtleID = "";
+		String strTurtleID = "";
+		int turtleID = 0;
 		for (int i = 0; i < myTurtleIDs.length; i++) {
-			turtleID = myTurtleIDs[i];
-			if (isEven(i) && !turtleID.equals(CONSTANT_INDICATOR)) {
+			strTurtleID = myTurtleIDs[i];
+			if (isEven(i) && !strTurtleID.equals(CONSTANT_INDICATOR)) {
 				throw new BackendException(null, INVALID_ERROR_MESSAGE);
 			} else if(!isEven(i)){
-				if (Integer.parseInt(turtleID) < 0) {
+				 turtleID = Integer.parseInt(strTurtleID);
+				if (turtleID < 0) {
 					throw new BackendException(null,
 							"Invalid Turtle ID: negative value");
 				}
-				myTempActiveTurtleIDs.add(i);
+				myTempActiveTurtleIDs.add(turtleID);
 			}
 		}
 
