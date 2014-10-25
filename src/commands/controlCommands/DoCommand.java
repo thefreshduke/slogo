@@ -14,7 +14,7 @@ public class DoCommand extends ControlCommand {
     private String myVariableName;
     private BaseCommand myLimitCommand;
     private BaseCommand myInternalCommand;
-    
+
     private BaseVariableContainer myVariableContainer;
     private boolean myVarExistsPreviously;
 
@@ -59,9 +59,8 @@ public class DoCommand extends ControlCommand {
     }
 
     @Override
-    protected void parseArguments (String userInput) throws BackendException  {
+    protected void parseArguments (String userInput) throws BackendException {
         String[] splitInput = splitByInnerListCommand(userInput);
-
         String [] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR);
         if (variableNameContents.length < 2) {
             throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);

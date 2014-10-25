@@ -21,7 +21,7 @@ import commands.information.SingleViewContainerInformationHub;
 public class ContainerTest {
 
     @Test
-    public void testThatIfWorks () {
+    public void testThatIfWorks () throws BackendException {
         String testString = "IF sum 1 0 [ fd 50 bk 75 ]";
         String translated = "";
         try {

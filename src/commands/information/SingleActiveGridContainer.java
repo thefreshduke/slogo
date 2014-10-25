@@ -63,8 +63,8 @@ public class SingleActiveGridContainer extends BaseGridContainer {
     }
 
     @Override
-    public void updateDisplayOptions (String guiCommand, double parameter) {
-        myActiveGrid.updateGUI(guiCommand, parameter);
+    public void updateDisplayOptions (String guiCommand, List<Double> parameters) {
+        myActiveGrid.updateGUI(guiCommand, parameters);
     }
 
     @Override

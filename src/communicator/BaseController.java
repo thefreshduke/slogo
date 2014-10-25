@@ -48,25 +48,11 @@ public abstract class BaseController {
 	protected abstract void reportErrorToView(Exception ex);
 
 	/**
-	 * Hard sets the Turtle's position and orientation. It will clear any queued commands and coordinates.
-	 * @param position New position
-	 * @param orientation New orientation
-	 */
-	public abstract void hardSetTurtle(double x, double y, double orientationAngle);
-
-	/**
 	 * Hard sets just the position. Still clears any queued commands and coordinates
 	 * @param position New position
 	 */
 
 	public abstract void start();
-
-
-	/**
-	 * Hard sets just the orientation. Still clears any queued commands and coordinates
-	 * @param orientation New orientation
-	 */
-	public void hardSetTurtleOrientation(double orientation){}
 
 	/**
 	 * Gives the controller the language file resource selected by the user
@@ -76,7 +62,7 @@ public abstract class BaseController {
 	
 	public abstract Turtle getFirstTurtle();
 
-	public abstract void addTurtle(Turtle turtle, int ID, boolean isActive);
+	public abstract void addTurtle(Turtle turtle, int gridID, boolean isActive);
 	
 	public abstract void addGrid(Grid grid, boolean isActive);
 
@@ -86,7 +72,7 @@ public abstract class BaseController {
 	
 	public abstract void savePreferences(IInformationContainer container, String filename) throws BackendException;
 
-	//public abstract void setTurtleImage(Image image);
+	public abstract void setGridAsActive(int gridID);
 
 }
 

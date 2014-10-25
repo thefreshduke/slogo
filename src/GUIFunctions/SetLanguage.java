@@ -1,6 +1,7 @@
 package GUIFunctions;
 
 import java.io.File;
+import java.util.List;
 
 import View.SingleGrid;
 import communicator.MainController;
@@ -26,9 +27,11 @@ public class SetLanguage extends LanuageMenu {
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

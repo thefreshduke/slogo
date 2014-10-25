@@ -20,7 +20,7 @@ public final class NumericalCommand extends BaseCommand{
     }
 
     @Override
-    protected void parseArguments (String userInput) {
+    protected void parseArguments (String userInput) throws BackendException{
         String number = userInput.split("\\s+")[0];
         myNumber = Double.parseDouble(number);
         String leftover = userInput.replaceFirst(number, "").trim();

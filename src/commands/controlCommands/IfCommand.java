@@ -37,4 +37,5 @@ public class IfCommand extends ControlCommand {
         String outerString = splitCommand[1];
         setLeftoverCommands(outerString);
     }
+
 }

@@ -1,6 +1,7 @@
 package GUIFunctions;
 
 import java.util.HashMap;
+import java.util.List;
 
 import View.GridTracker;
 import View.Pen;
@@ -25,7 +26,7 @@ public class PenStyle extends PenMenu{
 	}
 
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}

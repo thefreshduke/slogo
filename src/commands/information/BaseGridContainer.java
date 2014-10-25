@@ -1,6 +1,7 @@
 package commands.information;
 
 import java.util.Collection;
+import java.util.List;
 
 import turtle.Turtle;
 import View.Grid;
@@ -9,7 +10,7 @@ public abstract class BaseGridContainer implements IInformationContainer {
 
 	public abstract void updateDisplayOptions(String guiCommand);
 
-	public abstract void updateDisplayOptions(String guiCommand, double parameter);
+	public abstract void updateDisplayOptions(String guiCommand, List<Double> parameters);
 
 	public abstract void addGrid(Grid grid, boolean isActive);
 

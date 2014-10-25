@@ -3,6 +3,7 @@ package View;
 import java.util.Collection;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
@@ -57,7 +58,7 @@ public abstract class Grid extends Pane {
 	
 	public abstract void setPalette(Double myRed, Double myGreen, Double myBlue);
 	public abstract void updateGUI(String myFunction);
-	public abstract void updateGUI(String myFunction, Number myNumber);
+	public abstract void updateGUI(String myFunction, List<Number> myNumber);
 	public abstract void sendErrorMessage(String s);
 	public abstract void update(Collection<Turtle> activatedTurtles);
 

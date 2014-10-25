@@ -1,5 +1,7 @@
 package GUIFunctions;
 
+import java.util.List;
+
 import View.GridTracker;
 import View.SingleGrid;
 
@@ -14,7 +16,7 @@ public class ClearFunction extends BottomFunctions{
 		allGrids.getActiveGrid().getAllTurtles().clear();
 	}
 	@Override
-	public void doAction(Number newVal) {
+	public void doAction(List<Number> newVal) {
 		// TODO Auto-generated method stub
 		
 	}
