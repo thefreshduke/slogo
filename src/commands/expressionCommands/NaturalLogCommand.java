@@ -2,17 +2,16 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
-public class NaturalLogCommand extends SingleExpressionCommand {
+public class NaturalLogCommand extends OneExpressionCommand {
 
     public NaturalLogCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public double expressionExecute () throws BackendException {
-        double result = executeCommand(getArgument());
-        return Math.log(result);
+        double result = Math.log(executeCommand(getArgument()));
+        return result;
     }
 
 }

@@ -3,8 +3,6 @@ package commands.turtleCommands;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
 public class SetPositionCommand extends TurtleCommand {
 
@@ -25,7 +23,7 @@ public class SetPositionCommand extends TurtleCommand {
 		double newYPos = getExpressionList()[1].execute();
 		double distance = turtle.setPosition(newXPos, newYPos);
 		grid.update(turtle.getActiveTurtles());
-		
+
 		return distance;
 	}	
 }

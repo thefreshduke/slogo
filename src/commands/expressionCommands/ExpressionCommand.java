@@ -11,55 +11,59 @@ import backendExceptions.BackendException;
 
 public abstract class ExpressionCommand extends LogicCommand {
 
-	private BaseCommand[] myArgumentList;
+    private static final String INSUFFICIENT_COMMANDS_ENTERED = "Insufficient commands entered";
+    private BaseCommand[] myArgumentList;
 
-	public ExpressionCommand(String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
+    public ExpressionCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
 
-	@Override
-	protected
-	final double onExecute() throws BackendException{
-	    return expressionExecute();
-	}
+    @Override
+    protected
+    final double onExecute () throws BackendException {
+        return expressionExecute();
+    }
 
-	public abstract double expressionExecute() throws BackendException;
+    public abstract double expressionExecute () throws BackendException;
 
-	@Override
-	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes(){
-		return null;
-	}
-	
-	@Override
-	public void setRequiredInformation(Collection<IInformationContainer> containers){}
-	
-	@Override
-	protected void parseArguments(String userInput) {
-		int argumentCount = getArgumentCount();
-		if (argumentCount < 0) {
-			// TODO: make separate exception
-			//throw new BackendException(null, "ff");
-		}
-		myArgumentList = new BaseCommand[argumentCount];
-		for (int i = 0; i < argumentCount; i++) {
-			String subInput;
-			if (i == 0) {
-				subInput = userInput;
-			}
-			else {
-				subInput = myArgumentList[i-1].getLeftoverString();
-			}
-			if(!subInput.equals("")){
-				BaseCommand argument = CommandFactory.createCommand(subInput, true);
-				myArgumentList[i] = argument;
-			}
-		}
-		setLeftoverCommands(myArgumentList[myArgumentList.length - 1].getLeftoverString());
-	}
+    @Override
+    public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
+        return null;
+    }
 
-	protected BaseCommand[] getExpressionList() {
-		return myArgumentList;
-	}
+    @Override
+    public void setRequiredInformation (Collection<IInformationContainer> containers) {
 
-	protected abstract int getArgumentCount();
+    }
+
+    @Override
+    protected void parseArguments (String userInput) throws BackendException {
+        int argumentCount = getArgumentCount();
+        if (argumentCount < 0) {
+            throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
+        }
+        myArgumentList = new BaseCommand[argumentCount];
+        for (int i = 0; i < argumentCount; i++) {
+            String subInput;
+
+            if (i == 0) {
+                subInput = userInput;
+            }
+            else {
+                subInput = myArgumentList[i - 1].getLeftoverString();
+            }
+
+            if (!subInput.equals("")) {
+                BaseCommand argument = CommandFactory.createCommand(subInput, true);
+                myArgumentList[i] = argument;
+            }
+        }
+        setLeftoverCommands(myArgumentList[myArgumentList.length - 1].getLeftoverString());
+    }
+
+    protected BaseCommand[] getExpressionList () {
+        return myArgumentList;
+    }
+
+    protected abstract int getArgumentCount ();
 }

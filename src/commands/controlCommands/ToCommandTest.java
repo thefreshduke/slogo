@@ -15,7 +15,6 @@ import commands.BaseCommand;
 import commands.information.ICommandInformationHub;
 import commands.information.SingleViewContainerInformationHub;
 
-
 public class ToCommandTest {
 
     @Test
@@ -33,25 +32,24 @@ public class ToCommandTest {
             String processedCommand2 = processInput(command2);
             BaseCommand toCommand2 = CommandFactory.createCommand(processedCommand2, false);
             toCommand2.execute();
-            
+
             String convertedUse = processInput(use);
             BaseCommand useCommand = CommandFactory.createCommand(convertedUse, false);
             Double result = useCommand.execute();
             assertEquals(result, new Double(7));
-            
+
             String convertedUse2 = processInput(use2);
             BaseCommand useCommand2 = CommandFactory.createCommand(convertedUse2, false);
             Double result2 = useCommand2.execute();
             assertEquals(result2, new Double(-1));
-            
+
             String convertedUse3 = processInput(use3);
             BaseCommand useCommand3 = CommandFactory.createCommand(convertedUse3, false);
             Double result3 = useCommand3.execute();
             assertEquals(result3, new Double(2));
         }
-        catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        catch (BackendException ex) {
+
         }
     }
 
@@ -62,19 +60,16 @@ public class ToCommandTest {
         CommandFactory.setInformationHub(hub);
     }
     private String processInput (String input) throws BackendException {
-        
+
         LanguageFileParser myTranslator =
                 new LanguageFileParser(new File("src/resources/languages/English.properties"));
         CommandToClassTranslator commandToClassTranslator = new CommandToClassTranslator();
         try {
-            CommandFactory
-                    .setCommandToClassRelation(commandToClassTranslator
-                            .translateCommandToClass(new File(
-                                                              "src/resources/languages/EnglishToClassName.properties")));
+            CommandFactory.setCommandToClassRelation(commandToClassTranslator.translateCommandToClass(
+                    new File("src/resources/languages/EnglishToClassName.properties")));
         }
-        catch (BackendException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        catch (BackendException ex) {
+
         }
         return myTranslator.translateUserInputIntoEnglish(input);
 

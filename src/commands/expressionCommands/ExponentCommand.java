@@ -2,11 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
-public class ExponentCommand extends DoubleExpressionCommand {
+public class ExponentCommand extends TwoExpressionCommand {
 
     public ExponentCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
