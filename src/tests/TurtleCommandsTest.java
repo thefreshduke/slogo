@@ -1,4 +1,4 @@
-package commands.turtleCommands;
+package tests;
 import static org.junit.Assert.assertEquals;
 import java.io.File;
 import org.junit.Test;
