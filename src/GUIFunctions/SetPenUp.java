@@ -8,22 +8,22 @@ import View.Pen;
 import View.SingleGrid;
 
 public class SetPenUp extends BottomFunctions{
-	public SetPenUp(GridTracker grid){
-		allGrids=grid;
-	}
+    public SetPenUp(GridTracker grid){
+        allGrids=grid;
+    }
 
-	@Override
-	public void doAction() {
-	
-		for (Pen p: allGrids.getActiveGrid().getActivePens()){
-			p.setPenDown(false);
-		}
-		
-	}
+    @Override
+    public void doAction() {
 
-	@Override
-	public void doAction(List<? extends Number> newVal) {
-		// TODO Auto-generated method stub
-		
-	}
+        for (Pen p: allGrids.getActiveGrid().getActivePens()){
+            p.setPenDown(false);
+        }
+
+    }
+
+    @Override
+    public void doAction(List<? extends Number> newVal) {
+        // TODO Auto-generated method stub
+
+    }
 }

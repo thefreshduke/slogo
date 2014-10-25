@@ -1,7 +1,7 @@
 package GUIFunctions;
 
-public abstract class BottomFunctions extends GridFunction{
-	public BottomFunctions(){
-		
-	}
+public abstract class BottomFunctions extends GridFunction {
+    public BottomFunctions () {
+
+    }
 }

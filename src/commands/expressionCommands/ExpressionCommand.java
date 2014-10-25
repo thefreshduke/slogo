@@ -3,12 +3,17 @@ package commands.expressionCommands;
 import java.util.Collection;
 import java.util.Set;
 
+import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.LogicCommand;
 import commands.information.IInformationContainer;
-import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class ExpressionCommand extends LogicCommand {
 
     private static final String INSUFFICIENT_COMMANDS_ENTERED = "Insufficient commands entered";
@@ -19,8 +24,7 @@ public abstract class ExpressionCommand extends LogicCommand {
     }
 
     @Override
-    protected
-    final double onExecute () throws BackendException {
+    protected final double onExecute () throws BackendException {
         return expressionExecute();
     }
 
@@ -45,14 +49,11 @@ public abstract class ExpressionCommand extends LogicCommand {
         myArgumentList = new BaseCommand[argumentCount];
         for (int i = 0; i < argumentCount; i++) {
             String subInput;
-
             if (i == 0) {
                 subInput = userInput;
-            }
-            else {
+            } else {
                 subInput = myArgumentList[i - 1].getLeftoverString();
             }
-
             if (!subInput.equals("")) {
                 BaseCommand argument = CommandFactory.createCommand(subInput, true);
                 myArgumentList[i] = argument;

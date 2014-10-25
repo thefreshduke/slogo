@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class RemainderCommand extends TwoExpressionCommand {
 
     public RemainderCommand (String userInput, boolean isExpression) throws BackendException {
@@ -15,5 +19,4 @@ public class RemainderCommand extends TwoExpressionCommand {
         double result = firstExpression % secondExpression;
         return result;
     }
-
 }

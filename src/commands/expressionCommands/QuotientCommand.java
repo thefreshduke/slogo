@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class QuotientCommand extends TwoExpressionCommand {
 
     public QuotientCommand (String userInput, boolean isExpression) throws BackendException {

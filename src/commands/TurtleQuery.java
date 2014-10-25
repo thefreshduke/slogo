@@ -1,9 +1,12 @@
 package commands;
 
 import backendExceptions.BackendException;
-import commandParser.CommandFactory;
 import commands.turtleCommands.TurtleCommand;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class TurtleQuery extends TurtleCommand {
 	private static final String INVALID_ARGUMENT_COUNT_FOR_TURTLE_QUERY = "Invalid argument count for turtle query";
 
@@ -26,5 +29,4 @@ public abstract class TurtleQuery extends TurtleCommand {
 	protected int getArgumentCount() {
 		return 0;
 	}
-
 }

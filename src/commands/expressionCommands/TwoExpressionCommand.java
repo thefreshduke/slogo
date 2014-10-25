@@ -1,8 +1,13 @@
 package commands.expressionCommands;
 
-import commands.BaseCommand;
 import backendExceptions.BackendException;
 
+import commands.BaseCommand;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class TwoExpressionCommand extends ExpressionCommand {
 
     public TwoExpressionCommand (String userInput, boolean isExpression) throws BackendException {
@@ -21,5 +26,4 @@ public abstract class TwoExpressionCommand extends ExpressionCommand {
     protected BaseCommand getSecondExpression () {
         return getExpressionList()[1];
     }
-
 }

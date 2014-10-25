@@ -1,11 +1,16 @@
 package commands.controlCommands;
 
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
 import commands.information.BaseVariableContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class DoCommand extends ControlCommand {
 
     private static final String INVALID_COMMAND_ENTERED = "Invalid command entered";
@@ -18,8 +23,7 @@ public class DoCommand extends ControlCommand {
     private BaseVariableContainer myVariableContainer;
     private boolean myVarExistsPreviously;
 
-    public DoCommand (String userInput, boolean isExpression)
-            throws BackendException {
+    public DoCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
@@ -36,9 +40,8 @@ public class DoCommand extends ControlCommand {
         }
         if (expressionResult < 1) {
             returnValue = 0;
-        }
-        else {
-            int repetitionCount = (int)expressionResult;
+        } else {
+            int repetitionCount = (int) expressionResult;
 
             for (int i = 1; i <= repetitionCount; i++) {
                 myVariableContainer.addVariable(myVariableName, i);
@@ -52,8 +55,7 @@ public class DoCommand extends ControlCommand {
     private void checkIfVariableExistsPreviously (BaseCommand oldCommand) throws BackendException {
         if (myVarExistsPreviously) {
             myVariableContainer.addVariable(myVariableName, oldCommand);
-        }
-        else {
+        } else {
             myVariableContainer.popOffVariable(myVariableName);
         }
     }
@@ -61,16 +63,16 @@ public class DoCommand extends ControlCommand {
     @Override
     protected void parseArguments (String userInput) throws BackendException {
         String[] splitInput = splitByInnerListCommand(userInput);
-        String [] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR);
+        String[] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR);
         if (variableNameContents.length < 2) {
             throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
         }
-        myVariableName =  variableNameContents[1].trim().split(COMMAND_SEPARATOR)[0];
+        myVariableName = variableNameContents[1].trim().split(COMMAND_SEPARATOR)[0];
 
         if (myVariableName.equals("")) {
             throw new BackendException(null, INVALID_COMMAND_ENTERED);
         }
-        String  variableExpression = splitInput[0].split(VARIABLE_INDICATOR)[1].trim();
+        String variableExpression = splitInput[0].split(VARIABLE_INDICATOR)[1].trim();
         String variableLimit = variableExpression.replace(myVariableName, "").trim();
         myLimitCommand = CommandFactory.createCommand(variableLimit, true);
 

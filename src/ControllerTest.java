@@ -1,25 +1,29 @@
-import javafx.scene.Node;
 import org.junit.Test;
 
-
 public class ControllerTest {
-    
+
     @Test
-    public void testThatCommandIsReceived(){}
-    
+    public void testThatCommandIsReceived () {
+    }
+
     @Test
-    public void testThatPauseOccurs(){}
-    
+    public void testThatPauseOccurs () {
+    }
+
     @Test
-    public void testThatModelInitializes(){}
-    
+    public void testThatModelInitializes () {
+    }
+
     @Test
-    public void testThatErrorPropagates(){}
-    
+    public void testThatErrorPropagates () {
+    }
+
     @Test
-    public void testThatHardSetOverridesState(){}
-    
+    public void testThatHardSetOverridesState () {
+    }
+
     @Test
-    public void testThatHardSetClearsHistory(){}
+    public void testThatHardSetClearsHistory () {
+    }
 
 }

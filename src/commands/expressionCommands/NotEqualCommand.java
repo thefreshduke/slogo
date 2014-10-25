@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class NotEqualCommand extends TwoExpressionCommand {
 
     public NotEqualCommand (String userInput, boolean isExpression) throws BackendException {
@@ -15,5 +19,4 @@ public class NotEqualCommand extends TwoExpressionCommand {
         double result = (firstExpression != secondExpression) ? 1 : 0;
         return result;
     }
-
 }

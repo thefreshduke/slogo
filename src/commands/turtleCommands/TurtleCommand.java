@@ -1,25 +1,20 @@
 package commands.turtleCommands;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import backendExceptions.BackendException;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
-import commands.information.BaseVariableContainer;
 import commands.information.IInformationContainer;
-import commands.information.BaseVariableContainer;
-import backendExceptions.BackendException;
-import View.SlogoView;
-import turtle.Turtle;
-
 
 public abstract class TurtleCommand extends BaseCommand {
     private static final int NUM_TURTLE_CONTAINERS = 2;
-	private BaseCommand[] myArgumentList;
+    private BaseCommand[] myArgumentList;
     private BaseGridContainer myGridContainer;
     private BaseTurtleContainer myTurtleContainer;
 
@@ -40,12 +35,12 @@ public abstract class TurtleCommand extends BaseCommand {
         if (containers.size() != NUM_TURTLE_CONTAINERS) {
             // throw
         }
-        //ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
+        // ArrayList<IInformationContainer> containerList = new
+        // ArrayList<>(containers);
         for (IInformationContainer container : containers) {
             if (BaseGridContainer.class.isAssignableFrom(container.getClass())) {
                 myGridContainer = (BaseGridContainer) container;
-            }
-            else if (BaseTurtleContainer.class.isAssignableFrom(container.getClass())) {
+            } else if (BaseTurtleContainer.class.isAssignableFrom(container.getClass())) {
                 myTurtleContainer = (BaseTurtleContainer) container;
             }
         }
@@ -72,8 +67,7 @@ public abstract class TurtleCommand extends BaseCommand {
             String subInput;
             if (i == 0) {
                 subInput = userInput;
-            }
-            else {
+            } else {
                 subInput = myArgumentList[i - 1].getLeftoverString();
             }
             BaseCommand argument = CommandFactory.createCommand(subInput, true);
@@ -89,5 +83,5 @@ public abstract class TurtleCommand extends BaseCommand {
     protected abstract int getArgumentCount ();
 
     @Override
-	protected void reset(){}
+    protected void reset(){}
 }

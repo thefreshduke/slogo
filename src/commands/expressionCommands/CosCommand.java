@@ -2,6 +2,10 @@ package commands.expressionCommands;
 
 import backendExceptions.BackendException;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class CosCommand extends OneExpressionCommand {
 
     public CosCommand (String userInput, boolean isExpression) throws BackendException {
@@ -13,5 +17,4 @@ public class CosCommand extends OneExpressionCommand {
         double angle = executeCommand(getArgument());
         return Math.cos(Math.toRadians(angle));
     }
-
 }

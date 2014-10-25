@@ -1,13 +1,17 @@
 package commands.controlCommands;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+
 import java.io.File;
+
 import org.junit.Test;
+
 import turtle.Position;
 import turtle.Turtle;
 import View.Grid;
 import View.SingleGrid;
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
@@ -15,6 +19,10 @@ import commands.BaseCommand;
 import commands.information.ICommandInformationHub;
 import commands.information.SingleViewContainerInformationHub;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ToCommandTest {
 
     private static final double toTestAnswer = 7;
@@ -49,8 +57,7 @@ public class ToCommandTest {
             BaseCommand useCommand3 = CommandFactory.createCommand(convertedUse3, false);
             Double result3 = useCommand3.execute();
             assertEquals(result3, new Double(2));
-        }
-        catch (BackendException ex) {
+        } catch (BackendException ex) {
 
         }
     }
@@ -61,17 +68,17 @@ public class ToCommandTest {
         ICommandInformationHub hub = new SingleViewContainerInformationHub(grid, turtle);
         CommandFactory.setInformationHub(hub);
     }
+
     private String processInput (String input) throws BackendException {
 
-        LanguageFileParser myTranslator =
-                new LanguageFileParser(new File("src/resources/languages/English.properties"));
+        LanguageFileParser myTranslator = new LanguageFileParser(new File(
+                "src/resources/languages/English.properties"));
         CommandToClassTranslator commandToClassTranslator = new CommandToClassTranslator();
         try {
-            CommandFactory.setCommandToClassRelation(
-                    commandToClassTranslator.translateCommandToClass(
-                            new File("src/resources/languages/EnglishToClassName.properties")));
-        }
-        catch (BackendException ex) {
+            CommandFactory.setCommandToClassRelation(commandToClassTranslator
+                    .translateCommandToClass(new File(
+                            "src/resources/languages/EnglishToClassName.properties")));
+        } catch (BackendException ex) {
 
         }
         return myTranslator.translateUserInputIntoEnglish(input);

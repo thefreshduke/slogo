@@ -1,31 +1,30 @@
 package commands.viewCommands;
 
-import turtle.Turtle;
 import backendExceptions.BackendException;
-import commands.ViewCommand;
+
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.turtleCommands.TurtleCommand;
 
 public class HomeCommand extends TurtleCommand {
 
-	private static final String CLEAR_GUI = "clearGUI";
+    private static final String CLEAR_GUI = "clearGUI";
 
-	public HomeCommand(String command, boolean isExpression) throws BackendException {
-		super(command, isExpression);
-	}
+    public HomeCommand (String command, boolean isExpression) throws BackendException {
+        super(command, isExpression);
+    }
 
-	@Override
-	protected double onExecute() throws BackendException {
-		BaseGridContainer grid = getGridContainer();
-		grid.updateDisplayOptions(CLEAR_GUI);
-		BaseTurtleContainer turtle = getTurtleContainer();
-		double distanceTraveled = turtle.setPosition(0, 0);
-		return distanceTraveled;
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseGridContainer grid = getGridContainer();
+        grid.updateDisplayOptions(CLEAR_GUI);
+        BaseTurtleContainer turtle = getTurtleContainer();
+        double distanceTraveled = turtle.setPosition(0, 0);
+        return distanceTraveled;
+    }
 
-	@Override
-	protected int getArgumentCount() {
-		return 0;
-	}
+    @Override
+    protected int getArgumentCount () {
+        return 0;
+    }
 }

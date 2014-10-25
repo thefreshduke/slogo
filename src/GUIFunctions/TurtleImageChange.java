@@ -19,36 +19,36 @@ import View.SingleGrid;
 import turtle.Turtle;
 
 public class TurtleImageChange extends PersonalizeMenu{
-	private Stage myStage;
-	public TurtleImageChange(GridTracker grid, Stage main){
-		allGrids=grid;
-	}
-	@Override
-	public void doAction() {
-		
-			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Select Turtle Image");
-			fileChooser.setInitialDirectory(new File("./"));
-			File file = fileChooser.showOpenDialog(myStage);
-			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
-				BufferedImage buffer;
-				try {
-					buffer = ImageIO.read(file);
-					Image img=SwingFXUtils.toFXImage(buffer, null);
-					for (Turtle t: allGrids.getActiveGrid().getActiveTurtles()){
-						t.setImage(img);
-					}
-				} 
-				catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Please select another file");
-				}
-			}
-				else
-					JOptionPane.showMessageDialog(null, "Please select another file");
-	}
-	@Override
-	public void doAction(List<? extends Number> newVal) {
-		// TODO Auto-generated method stub
-		
-	}	
+    private Stage myStage;
+    public TurtleImageChange(GridTracker grid, Stage main){
+        allGrids=grid;
+    }
+    @Override
+    public void doAction() {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Turtle Image");
+        fileChooser.setInitialDirectory(new File("./"));
+        File file = fileChooser.showOpenDialog(myStage);
+        if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
+            BufferedImage buffer;
+            try {
+                buffer = ImageIO.read(file);
+                Image img=SwingFXUtils.toFXImage(buffer, null);
+                for (Turtle t: allGrids.getActiveGrid().getActiveTurtles()){
+                    t.setImage(img);
+                }
+            } 
+            catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Please select another file");
+            }
+        }
+        else
+            JOptionPane.showMessageDialog(null, "Please select another file");
+    }
+    @Override
+    public void doAction(List<? extends Number> newVal) {
+        // TODO Auto-generated method stub
+
+    }	
 }
