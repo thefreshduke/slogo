@@ -3,71 +3,83 @@ package commands.information;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+
 import turtle.Turtle;
 
-public class TurtleList extends BaseTurtleContainer{
-    
-    private Collection<Turtle> myTurtleList;
-    private Collection<Turtle> myActiveTurtleList;
-    
-    public TurtleList(Turtle turtle){
-        myTurtleList = new HashSet<>();
-        myActiveTurtleList = new HashSet<>();
-        myTurtleList.add(turtle);
-        myActiveTurtleList.add(turtle);
-    }
-    @Override
-    public void removeTurtle (int turtleID) {
-        Turtle turtleToRemove = null;
-        for(Turtle turtle : myTurtleList){
-            if(turtle.getID() == turtleID){
-                turtleToRemove = turtle;
-            }
-        }
-        if(turtleToRemove != null){
-            myTurtleList.remove(turtleToRemove);
-            myActiveTurtleList.remove(turtleToRemove);
-        }
-    }
+public class TurtleList extends BaseTurtleContainer {
 
-    @Override
-    public void addTurtle (Turtle turtle, boolean isActive) {
-        myTurtleList.add(turtle);
-        if(isActive){
-            myActiveTurtleList.add(turtle);
-        }
-    }
+	private Collection<Turtle> myTurtles;
+	private Collection<Turtle> myActiveTurtles;
 
-    @Override
-    public Collection<Turtle> getAllTurtles () {
-        return new ArrayList<>(myTurtleList);
-    }
+	public TurtleList(Turtle turtle) {
+		myTurtles = new LinkedHashSet<>();
+		myActiveTurtles = new LinkedHashSet<>();
+		myTurtles.add(turtle);
+		myActiveTurtles.add(turtle);
+	}
 
-    @Override
-    public Collection<Integer> getActiveTurtlesByID () {
-        HashSet<Integer> activeTurtleIDs = new HashSet<>();
-        for(Turtle turtle : myActiveTurtleList){
-            if(turtle != null){
-                activeTurtleIDs.add(turtle.getID());
-            } 
-        }
-        return activeTurtleIDs;
-    }
+	@Override
+	public void removeTurtle(int turtleID) {
+		Turtle turtleToRemove = null;
+		for (Turtle turtle : myTurtles) {
+			if (turtle.getID() == turtleID) {
+				turtleToRemove = turtle;
+			}
+		}
+		if (turtleToRemove != null) {
+			myTurtles.remove(turtleToRemove);
+			myActiveTurtles.remove(turtleToRemove);
+		}
+	}
 
-    @Override
-    public void setActiveTurtles (Collection<Integer> turtleIDs) {
-        myActiveTurtleList.clear();
-        HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
-        for(Turtle turtle : myTurtleList){
-            if(turtleIDSet.contains(turtle.getID())){
-                myActiveTurtleList.add(turtle);
-            }
-        }
-    }
+	@Override
+	public void addTurtle(Turtle turtle, boolean isActive) {
+		myTurtles.add(turtle);
+		if (isActive) {
+			myActiveTurtles.add(turtle);
+		}
+	}
 
-    @Override
-    public Collection<Turtle> getActiveTurtles () {
-        return new ArrayList<>(myActiveTurtleList);
-    }
+	@Override
+	public Collection<Turtle> getAllTurtles() {
+		return new ArrayList<>(myTurtles);
+	}
 
+	@Override
+	public Collection<Integer> getActiveTurtlesByID() {
+		LinkedHashSet<Integer> activeTurtleIDs = new LinkedHashSet<>();
+		for (Turtle turtle : myActiveTurtles) {
+			if (turtle != null) {
+				activeTurtleIDs.add(turtle.getID());
+			}
+		}
+		return activeTurtleIDs;
+	}
+
+	@Override
+	public void setActiveTurtles(Collection<Integer> turtleIDs) {
+		myActiveTurtles.clear();
+		HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
+		for (Turtle turtle : myTurtles) {
+			if (turtleIDSet.contains(turtle.getID())) {
+				myActiveTurtles.add(turtle);
+			}
+		}
+	}
+
+	@Override
+	public Collection<Turtle> getActiveTurtles() {
+		return new ArrayList<>(myActiveTurtles);
+	}
+
+	@Override
+	public Collection<Integer> getAllTurtlesByID() {
+		LinkedHashSet<Integer> turtleIDSet = new LinkedHashSet<>();
+		for(Turtle turtle : myTurtles){
+			turtleIDSet.add(turtle.getID());
+		}
+		return turtleIDSet;
+	}
 }
