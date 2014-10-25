@@ -24,6 +24,7 @@ import commands.information.ICommandInformationHub;
 import commands.information.IInformationContainer;
 import commands.information.BaseVariableContainer;
 import commands.information.SingleActiveGridContainer;
+import commands.information.SingleViewContainerInformationHub;
 import javafx.animation.AnimationTimer;
 
 
@@ -61,8 +62,6 @@ public class MainController extends BaseController {
         myCommandExecutionTimer.start();
         myCommandToClassTranslator = new CommandToClassTranslator();
         try {
-        	ICommandInformationHub informationHub = null; //new SingleActiveGridContainer(grid);
-        	CommandFactory.setInformationHub(informationHub);
             CommandFactory
                     .setCommandToClassRelation(myCommandToClassTranslator
                             .translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
@@ -195,6 +194,11 @@ public class MainController extends BaseController {
         return myModel.findTurtle(0);
     }
 
+    public void setInitial(Grid grid, Turtle turtle){
+    	myCommandInformationHub = new SingleViewContainerInformationHub(grid, turtle);
+    	CommandFactory.setInformationHub(myCommandInformationHub);
+    }
+    
     @Override
     public void addTurtle (Turtle turtle, int ID, boolean isActive) {
         // TODO Auto-generated method stub

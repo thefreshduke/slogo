@@ -14,8 +14,14 @@ public class SingleActiveGridContainer extends BaseGridContainer {
     private List<Grid> myGridList;
     private Grid myActiveGrid;
 
+    
+    public SingleActiveGridContainer(){
+    	myGridList = new ArrayList<>();
+    }
+    
     public SingleActiveGridContainer (Grid grid) {
-        myGridList = new ArrayList<Grid>();
+        this();
+        myGridList.add(grid);
         myActiveGrid = grid;
     }
 

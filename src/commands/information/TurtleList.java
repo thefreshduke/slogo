@@ -64,6 +64,7 @@ public class TurtleList extends BaseTurtleContainer {
 		HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
 		for (Turtle turtle : myTurtles) {
 			if (turtleIDSet.contains(turtle.getID())) {
+				turtle.setActive();
 				myActiveTurtles.add(turtle);
 			}
 		}
