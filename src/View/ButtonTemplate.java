@@ -17,6 +17,11 @@ public class ButtonTemplate extends Button implements UserObjects{
 	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction){
 		this(s,x,y,myFunction,75,55);
 	}
+	
+	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction, int width, int height){
+		this(s,x,y,event->myFunction.doAction(),width,height);
+	}
+	
 	public ButtonTemplate(String s, double x, double y, EventHandler myEvent, int width, int height){
 		this.relocate(x, y);
 		this.setText(s);
@@ -25,16 +30,6 @@ public class ButtonTemplate extends Button implements UserObjects{
 		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
 		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
 		setStyle(textSize);
-	}
-	
-	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction, int width, int height){
-		this.relocate(x, y);
-		this.setText(s);
-		this.addEvent(event->myFunction.doAction());
-		this.setPrefSize(width, height);
-		setStyle(textSize);
-		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
-		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
 	}
 	@Override
 	public void addEvent(EventHandler<ActionEvent> handler) {
