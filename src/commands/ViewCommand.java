@@ -18,6 +18,8 @@ import commands.information.IInformationContainer;
  */
 public abstract class ViewCommand extends BaseCommand {
 
+    private static final String INVALID_EXTENSION_OF_GRID_CONTAINER = "Invalid extension of Grid Container";
+    private static final String INVALID_CONTAINERS_RECEIVED = "Invalid containers received";
     private static final String INVALID_NUMBER_OF_ARGUMENTS_PROVIDED = "Invalid number of arguments provided";
 	private BaseGridContainer myGridContainer;
     private BaseCommand[] myArgumentList;
@@ -26,8 +28,6 @@ public abstract class ViewCommand extends BaseCommand {
         super(command, isExpression);
     }
 
-    // public abstract void updateTurtle(Turtle turtle);
-
     @Override
     public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
         Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
@@ -35,16 +35,16 @@ public abstract class ViewCommand extends BaseCommand {
         return typeSet;
     }
 
-    public void setRequiredInformation (Collection<IInformationContainer> containers) {
+    public void setRequiredInformation (Collection<IInformationContainer> containers) throws BackendException {
         if (containers.size() != 1) {
-            // throw throw new BackendException
+            throw new BackendException(null, INVALID_CONTAINERS_RECEIVED);
         }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
         boolean extendsGridContainer = BaseGridContainer.class.isAssignableFrom(container
                 .getClass());
         if (!extendsGridContainer) {
-            // throw exception
+            throw new BackendException(null, INVALID_EXTENSION_OF_GRID_CONTAINER);
         }
         myGridContainer = (BaseGridContainer)container;
     }

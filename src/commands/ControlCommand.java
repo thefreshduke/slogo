@@ -16,8 +16,11 @@ import commands.information.IInformationContainer;
  */
 public abstract class ControlCommand extends BaseCommand {
 
-    private static final String INVALID_CONTAINERS_MESSAGE = "Invalid containers received";
-	protected static String COMMAND_INDICATOR = "liststart";
+    private static final String INVALID_CONTAINERS_RECEIVED =
+            "Invalid containers received";
+    private static final String INVALID_EXTENSION_OF_VARIABLE_CONTAINER =
+            "Invalid extension of Variable Container";
+    protected static String COMMAND_INDICATOR = "liststart";
     protected static String COMMAND_END_INDICATOR = "listend";
     protected static String COMMAND_SEPARATOR = " ";
     protected static String VARIABLE_INDICATOR = "variable";
@@ -34,18 +37,19 @@ public abstract class ControlCommand extends BaseCommand {
         return typeSet;
     }
 
-    public void setRequiredInformation (Collection<IInformationContainer> containers) throws BackendException {
+    public void setRequiredInformation (Collection<IInformationContainer> containers)
+            throws BackendException {
         if (containers.size() != 1) {
-            throw new BackendException(null, INVALID_CONTAINERS_MESSAGE);
+            throw new BackendException(null, INVALID_CONTAINERS_RECEIVED);
         }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
         boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
                 .getClass());
         if (!extendsVariableContainer) {
-        	throw new BackendException(null, INVALID_CONTAINERS_MESSAGE);
+            throw new BackendException(null, INVALID_EXTENSION_OF_VARIABLE_CONTAINER);
         }
-        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) container;
+        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer)container;
         myVariableContainer = variableContainer;
     }
 
@@ -55,6 +59,6 @@ public abstract class ControlCommand extends BaseCommand {
 
     @Override
     protected void reset () {
-        
+
     }
 }
