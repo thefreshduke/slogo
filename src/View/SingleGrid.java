@@ -31,8 +31,8 @@ public class SingleGrid extends Grid {
 	
     private final static Dimension DEFAULT_GRID_SIZE = new Dimension(800, 500);
     private String backgroundColor = "FFFFFF";
-    public int myHeight;
-    public int myWidth;
+    private int myHeight;
+    private int myWidth;
     private ImageView myImageView;
     private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
     private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
@@ -52,7 +52,12 @@ public class SingleGrid extends Grid {
         time.getKeyFrames().add(frame);
         setBackgroundColor(backgroundColor);
         myGridFunctions=myMap;
-
+    }
+    public int getMyHeight(){
+    	return myHeight;
+    }
+    public int getMyWidth(){
+    	return myWidth;
     }
     public Collection<Turtle> getAllTurtles(){
         return allTurtles;
@@ -89,9 +94,11 @@ public class SingleGrid extends Grid {
             activeTurtles.add(active);
         }	
     }
+   
     public void keyUpdate(){
         for (Turtle active: getActiveTurtles()){
             moveTurtle(active);
+            System.out.println(this.getChildren());
             getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
         }	
     }

@@ -44,6 +44,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -108,7 +109,6 @@ public class SlogoView {
 					myGrids.setActiveGrid(myGridTabs.getActiveGrid());
 					myController.setGridAsActive(myGrids.getActiveGrid().getID());
 				}
-		
 			}
 		};
 		return new KeyFrame(speed, loop);
@@ -161,11 +161,15 @@ public class SlogoView {
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
+		this.disable();
 	}
 
 
 	private void sendCommand(String myCommand){
 		myController.receiveCommand(myCommand);
+	}
+	public void enable(){
+		myStage.getScene().getRoot().setDisable(false);
 	}
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
@@ -176,8 +180,6 @@ public class SlogoView {
 		MenuTemplate personalize=new MenuTemplate("Personalize");
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
-
-
 		MenuTemplate help = new MenuTemplate("Help");
 		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
 
@@ -191,7 +193,9 @@ public class SlogoView {
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
-	
+	private void disable(){
+		for (Node myNode: myStage.getScene().getRoot().get
+	}
 	private void makeLanguageMenu(Class myClass, MenuTemplate myMenu){
 		for (String myName: myUserFunctions.keySet()){
 			if (myUserFunctions.get(myName) instanceof LanguageMenu){
@@ -242,7 +246,7 @@ public class SlogoView {
 	}
 
 
-
+	
 	private Pane setTextArea(){
 		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
