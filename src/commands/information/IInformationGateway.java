@@ -5,7 +5,7 @@ import java.util.Set;
 
 import backendExceptions.BackendException;
 
-public interface ICommandInformationHub {
+public interface IInformationGateway {
 
     public IInformationContainer getContainer (Class<? extends IInformationContainer> containerType);
 

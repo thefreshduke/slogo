@@ -9,23 +9,23 @@ import turtle.Turtle;
 import View.Grid;
 import backendExceptions.BackendException;
 
-public class SingleViewContainerInformationHub implements ICommandInformationHub {
+public class SingleViewInformationGateway implements IInformationGateway {
 
     private static final String INVALID_CONTAINER_TYPE_ERROR = "Invalid container type";
     private SingleActiveGridContainer myGridContainer;
     private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
     private MapBasedVariableContainer myVariableContainer;
 
-    public SingleViewContainerInformationHub(){
+    public SingleViewInformationGateway(){
         myGridContainer = new SingleActiveGridContainer();
         myGridToTurtlesMap = new HashMap<>();
         myVariableContainer = new MapBasedVariableContainer();
     }
 
-    public SingleViewContainerInformationHub(Grid grid, Turtle turtle){
+    public SingleViewInformationGateway(Grid grid, Turtle turtle){
         this();
         myGridContainer.addGrid(grid, true);
-        BaseTurtleContainer turtleContainer = new TurtleList(turtle);
+        BaseTurtleContainer turtleContainer = new SingleViewTurtleContainer(turtle);
         myGridToTurtlesMap.put(grid.getID(), turtleContainer);
     }
 
@@ -40,7 +40,7 @@ public class SingleViewContainerInformationHub implements ICommandInformationHub
             Integer activeGridID = activeGrid.getID();
             BaseTurtleContainer turtleContainer = myGridToTurtlesMap.get(activeGridID);
             if(turtleContainer == null){
-                turtleContainer = new TurtleList();
+                turtleContainer = new SingleViewTurtleContainer();
                 myGridToTurtlesMap.put(activeGridID, turtleContainer);
             }
             return turtleContainer;

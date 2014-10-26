@@ -7,17 +7,17 @@ import java.util.LinkedHashSet;
 
 import turtle.Turtle;
 
-public class TurtleList extends BaseTurtleContainer {
+public class SingleViewTurtleContainer extends BaseTurtleContainer {
 
     private Collection<Turtle> myTurtles;
     private Collection<Turtle> myActiveTurtles;
 
-    public TurtleList () {
+    public SingleViewTurtleContainer () {
         myTurtles = new LinkedHashSet<>();
         myActiveTurtles = new LinkedHashSet<>();
     }
 
-    public TurtleList (Turtle turtle) {
+    public SingleViewTurtleContainer (Turtle turtle) {
         this();
         myTurtles.add(turtle);
         myActiveTurtles.add(turtle);

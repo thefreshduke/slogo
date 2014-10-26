@@ -25,12 +25,13 @@ import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.BaseVariableContainer;
-import commands.information.ICommandInformationHub;
+import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
-import commands.information.SingleViewContainerInformationHub;
+import commands.information.SingleViewInformationGateway;
 
 public class MainController extends BaseController {
 
+	private static final String DEFAULT_ENGLISH_FILE = "src/resources/languages/English.properties";
 	private SlogoView myView;
 	private SlogoModel myModel;
 	private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
@@ -41,7 +42,7 @@ public class MainController extends BaseController {
 	private AnimationTimer myCommandParserTimer;
 	private LanguageFileParser myTranslator;
 	private CommandToClassTranslator myCommandToClassTranslator;
-	private ICommandInformationHub myCommandInformationHub;
+	private IInformationGateway myCommandInformationHub;
 
 	private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
 
@@ -58,20 +59,15 @@ public class MainController extends BaseController {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
 		myCommandToClassTranslator = new CommandToClassTranslator();
-		myCommandInformationHub = new SingleViewContainerInformationHub();
+		myCommandInformationHub = new SingleViewInformationGateway();
 		CommandFactory.setInformationHub(myCommandInformationHub);
 		try {
 			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
 					.translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
-		} catch (BackendException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
 			myTranslator = new LanguageFileParser(new File(
-					"src/resources/languages/English.properties"));
-		} catch (BackendException e) {
-			System.out.println("ff'");
+					DEFAULT_ENGLISH_FILE));
+		} catch (BackendException e1) {
+			reportErrorToView(e1);
 		}
 	}
 
@@ -83,15 +79,14 @@ public class MainController extends BaseController {
 				if (!myInputsToParse.isEmpty()) {
 					String input = myInputsToParse.poll();
 					try {
+						myView.setDisable(true);
 						BaseCommand command = CommandFactory.createCommand(
 								input, false);
 						myCommandQueue.add(command);
 					} catch (BackendException ex) {
 						reportErrorToView(ex);
+						myView.setDisable(false);
 					}
-					// BaseCommand command =
-					// myModel.createInitialCommand(input);
-					// myCommandQueue.add(command);
 
 				}
 			}
@@ -104,7 +99,6 @@ public class MainController extends BaseController {
 						&& !myCommandIsExecuting.getAndSet(true)) {
 					BaseCommand command = myCommandQueue.poll();
 					executeCommand(command);
-
 				}
 			}
 		};
@@ -113,10 +107,12 @@ public class MainController extends BaseController {
 	@Override
 	public void receiveCommand(String enteredText) {
 		try {
+			myView.setDisable(true);
 			String translatedText = myTranslator
 					.translateUserInputIntoEnglish(enteredText);
 			myInputsToParse.add(translatedText);
 		} catch (BackendException ex) {
+			myView.setDisable(false);
 			reportErrorToView(ex);
 		}
 	}
@@ -153,7 +149,9 @@ public class MainController extends BaseController {
 		} finally {
 			myExecutedCommands.add(command);
 			myCommandIsExecuting.set(false);
+			myView.setDisable(false);
 		}
+		
 	}
 
 	private void sendDefinedVariables() {

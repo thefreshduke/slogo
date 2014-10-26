@@ -16,8 +16,8 @@ import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
-import commands.information.ICommandInformationHub;
-import commands.information.SingleViewContainerInformationHub;
+import commands.information.IInformationGateway;
+import commands.information.SingleViewInformationGateway;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -66,7 +66,7 @@ public class ToCommandTest {
     private void setFactory () {
         Grid grid = new SingleGrid();
         Turtle turtle = new Turtle(new Position(0, 0), null);
-        ICommandInformationHub hub = new SingleViewContainerInformationHub(grid, turtle);
+        IInformationGateway hub = new SingleViewInformationGateway(grid, turtle);
         CommandFactory.setInformationHub(hub);
     }
 
