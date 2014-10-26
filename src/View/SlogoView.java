@@ -83,7 +83,6 @@ public class SlogoView {
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
 	private Scene myScene;
 	private TextField commandLine;
-	
 	//used to display Turtles most recent stats
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
@@ -114,7 +113,6 @@ public class SlogoView {
 	 * 
 	 * @return A KeyFrame for the TimeLine of the program
 	 */
-
 	private KeyFrame build(int fps){
 		Duration speed=Duration.millis(1000/fps);
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
