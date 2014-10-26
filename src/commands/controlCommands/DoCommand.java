@@ -65,7 +65,7 @@ public class DoCommand extends ControlCommand {
     @Override
     protected void parseArguments (String userInput) throws BackendException {
         String[] splitInput = splitByInnerListCommand(userInput);
-        String[] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR);
+        String[] variableNameContents = splitInput[0].split(VARIABLE_INDICATOR, 2);
         if (variableNameContents.length < 2) {
             throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
         }
@@ -74,7 +74,7 @@ public class DoCommand extends ControlCommand {
         if (myVariableName.equals("")) {
             throw new BackendException(null, INVALID_COMMAND_ENTERED);
         }
-        String variableExpression = splitInput[0].split(VARIABLE_INDICATOR)[1].trim();
+        String variableExpression = variableNameContents[1].trim();
         String variableLimit = variableExpression.replace(myVariableName, "").trim();
         myLimitCommand = CommandFactory.createCommand(variableLimit, true);
 
