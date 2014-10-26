@@ -1,5 +1,6 @@
 package commands.turtleCommands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import turtle.Turtle;
@@ -18,8 +19,8 @@ public class TellCommand extends MultipleTurtleCommand {
 	@Override
 	protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
-		List<Integer> myAllTurtlesID = (List<Integer>)turtle
-				.getAllTurtlesByID();
+		List<Integer> myAllTurtlesID = new ArrayList<>(turtle
+				.getAllTurtlesByID());
 
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();
@@ -28,10 +29,11 @@ public class TellCommand extends MultipleTurtleCommand {
 		}
 		Grid activeGrid = allGrids.get(0);
 
-		int minID = findMin(getFutureActiveTurtleIDs());
+		
+		
 		int maxID = findMax(getFutureActiveTurtleIDs());
 
-		for (int i = minID; i <= maxID; i++) {
+		for (int i = 0; i <= maxID; i++) {
 			if (!myAllTurtlesID.contains(i)) {
 				Turtle newTurtle = activeGrid.addTurtle();
 				turtle.addTurtle(newTurtle, false);
