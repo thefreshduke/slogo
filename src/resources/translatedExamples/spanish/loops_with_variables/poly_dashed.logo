@@ -1,0 +1,13 @@
+crear :distance 100
+crear :angle 90
+
+haz [ :k cociente 360 :angle ]
+[
+  ava :distance
+  der :angle
+  siotro igual? cociente :k 2 0 [
+    psu
+  ] [
+    pab
+  ]
+]

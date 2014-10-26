@@ -1,0 +1,9 @@
+crear :number 5
+crear :order 3
+crear :x / - * 2 :order :number * :number 2
+crear :step 5
+
+haz [ :k * 360 :n ] [ 
+  ava :step
+  der + :k :x
+]
