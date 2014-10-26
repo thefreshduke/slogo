@@ -24,12 +24,12 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class VariableTable extends Pane {
-	private ArrayList<Variable> myVariables;
+	private ArrayList<UserInput> myVariables;
 	private TableView myTableView;
 	private TableView myUserView;
 	public VariableTable(){
 		myTableView=new TableView();
-		myUserView=new Table
+		myUserView=new TableView();
 		myVariables=new ArrayList();
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
@@ -46,18 +46,19 @@ public class VariableTable extends Pane {
 		TableColumn myVariableColumn=new TableColumn("Variable");
 		TableColumn myVariableName=new TableColumn("Name");
 		TableColumn myValue=new TableColumn("Value");
-		myValue.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<Double>>() {
+		myValue.setCellValueFactory(new Callback<CellDataFeatures<UserInput, Double>, ObservableValue<Double>>() {
 			@Override
 			public ObservableValue<Double> call(
-					CellDataFeatures<Variable, Double> myData) {
-				return new ReadOnlyObjectWrapper<Double> (myData.getValue().getValue());
+					CellDataFeatures<UserInput, Double> myData) {
+					Variable myVariable=(Variable)myData.getValue();
+				return new ReadOnlyObjectWrapper<Double> (myVariable.getValue());
 			}
 		});
 		
-		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<String>>() {
+		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(
-					CellDataFeatures<Variable, Double> myData) {
+					CellDataFeatures<UserInput, String> myData) {
 				return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
 			}
 		});
@@ -91,15 +92,15 @@ public class VariableTable extends Pane {
 		return myFrame;
 	}
 
-	public void addVariables(ArrayList<Variable> myVars){
+	public void addVariables(ArrayList<UserInput> myVars){
 		myVariables=myVars;
 	}
 
 	public void update(){
 		myTableView.getItems().clear();
-		ObservableList<Variable> myObservableList=FXCollections.observableArrayList();
+		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
 		myTableView.getItems().clear();
-		for (Variable myVar: myVariables){
+		for (UserInput myVar: myVariables){
 			myObservableList=FXCollections.observableArrayList();
 			myObservableList.add(myVar);
 		}
