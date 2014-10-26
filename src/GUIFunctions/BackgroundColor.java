@@ -13,7 +13,7 @@ public class BackgroundColor extends ColorFunction{
 	ColorSelection myColors;
 	public BackgroundColor(GridTracker grid, ColorSelection colors){
 		myGrids=grid;
-		myColors=myColors;
+		myColors=colors;
 		
 	}
 	
