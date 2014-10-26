@@ -13,7 +13,6 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.StrokeType;
 
-//why do you not use arraylist
 public class Pen extends Line{
 	private Stack<Line>myLines;
 	private String myColor;
@@ -70,6 +69,10 @@ public class Pen extends Line{
 			return myLines.peek();
 		}
 	}
+	/**
+	 * determines appearance of line such as color and thickness
+	 * @param myLine
+	 */
 	private void setLineStyle(Line myLine){
 		myLine.setStyle("-fx-stroke: #"+myColor);
 		myLine.setStrokeWidth(myThickness);
