@@ -1,0 +1,10 @@
+machen :distance 10
+wh 18
+[
+  vor produkt 5 :distance
+  rt 150
+  vor produkt 6 :distance
+  rt 100
+  vor produkt 3 :distance
+  rt 90
+]

@@ -1,8 +1,8 @@
 a square [ :distance ]
 [
   repetir 4 [
-    fd :distance
-    rt 90
+    ava :distance
+    der 90
   ]
 ]
 

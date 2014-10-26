@@ -1,0 +1,42 @@
+za slice [ ]
+[
+  rt 30
+  vor 50
+  lk 105
+  vor 25
+  ruc 25
+  rt 105
+  ruc 50
+]
+
+za pizza [ ]
+[
+  wh 12
+  [
+    slice
+  ]
+]
+
+pizza
+
+
+zu slice [ ]
+[
+  rt 30
+  vor 50
+  lk 105
+  vor 25
+  ruc 25
+  rt 105
+  ruc 50
+]
+
+zu pizza [ ]
+[
+  wh 12
+  [
+    slice
+  ]
+]
+
+pizza

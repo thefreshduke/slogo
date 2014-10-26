@@ -1,0 +1,21 @@
+stexy -300 0
+wiederholen 8
+[
+  vor 50
+  wiederholen 3
+  [
+    vor 50
+    rt 120
+  ]
+]
+
+stexy -300 0
+wiederholen 8
+[
+  vor 50
+  wiederholen 3
+  [
+    vor 50
+    lk 120
+  ]
+]

@@ -1,0 +1,28 @@
+zu square [ :distance ]
+[
+  wh 4 [
+    vor :distance
+    rt 90
+  ]
+]
+
+
+zu face [ ]
+[
+  stun square 100
+  stob vor 20
+  rt 90 vor 25
+  stun vor 50
+  stob ruc 75
+  lk 90 vor 65
+  rt 90 vor 20
+  stun square 15
+  stob vor 45
+  stun square 15           
+  stob ruc 15
+  rt 90 vor 20 lk 45
+  stun square 20
+]
+
+
+face

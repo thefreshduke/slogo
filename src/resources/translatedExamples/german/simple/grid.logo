@@ -1,0 +1,35 @@
+# draw upper right quadrant
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+
+# draw upper left quadrant
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+
+# draw lower left quadrant
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+
+# draw lower right quadrant
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100

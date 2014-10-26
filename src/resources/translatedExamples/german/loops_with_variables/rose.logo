@@ -1,0 +1,9 @@
+machen :number 5
+machen :order 3
+machen :x / - * 2 :order :number * :number 2
+machen :step 5
+
+tunmal [ :k * 360 :n ] [ 
+  vor :step
+  rt + :k :x
+]
