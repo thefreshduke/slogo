@@ -1,0 +1,7 @@
+a square [ :distance ]
+[
+  repetir 4 [
+    ava :distance
+    der 90
+  ]
+]

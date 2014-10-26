@@ -107,7 +107,7 @@ public class VariableTable extends TableView {
 
 	public void addVariables(List<UserInput> myFunctions){
 		myVariables.clear();
-		myVariables=(ArrayList<UserInput>) myFunctions;
+		myVariables= (ArrayList<UserInput>) myFunctions;
 		
 	}
 	public void addInputs(List<UserInput> myFunctions){

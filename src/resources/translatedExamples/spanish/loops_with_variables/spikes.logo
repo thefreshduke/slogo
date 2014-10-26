@@ -1,0 +1,8 @@
+crear :length suma 50 azar 250
+crear :numspikes 18
+
+repetir :numspikes
+[
+  ava :length 
+  der cociente 360 :numspikes
+]

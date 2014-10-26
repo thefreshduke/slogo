@@ -1,0 +1,12 @@
+crear :count 12
+
+a dash [ ]
+[
+  repetir :count 
+  [
+    psu ava 4 pab ava 4
+  ]
+]
+
+
+dash

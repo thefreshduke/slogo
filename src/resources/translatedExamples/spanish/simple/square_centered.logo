@@ -1,0 +1,20 @@
+# move to side of square
+psu
+ava 50
+der 90
+
+# draw square
+pab
+ava 50
+der 90
+ava 100
+der 90
+ava 100
+der 90
+ava 100
+der 90
+ava 50
+
+# move back to center
+psu
+casa

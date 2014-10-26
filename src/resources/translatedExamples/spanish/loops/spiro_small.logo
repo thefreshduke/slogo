@@ -1,0 +1,15 @@
+casa
+
+repetir 30 
+[
+  repetir 20 
+  [
+    ava 10
+    der 10
+  ]
+  repetir 10
+  [
+    ava 20
+    der 100
+  ]
+]

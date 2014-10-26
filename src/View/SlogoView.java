@@ -230,7 +230,8 @@ public class SlogoView {
 			Variable myNewVariable=new Variable(name, myVariables.get(name));
 			myVars.add(myNewVariable);
 		}
-		myVariableTable.addInput(myVars);
+
+		myVariableTable.addVariables(myVars);
 	}
 	
 	/**
@@ -243,7 +244,9 @@ public class SlogoView {
 			UserInput myUserInput=new Function(myName);
 			myInputs.add(myUserInput);
 		}
-		myVariableTable.addInput(myInputs);
+		
+		myVariableTable.addInputs(myInputs);
+
 	}
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
