@@ -1,0 +1,11 @@
+zu regularShape [ :distance :angle ]
+[
+  wh quotient 360 :angle
+  [
+    vor :distance
+    rt :angle
+  ]
+]
+
+ws
+regularShape

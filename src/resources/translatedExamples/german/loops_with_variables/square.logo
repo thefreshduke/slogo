@@ -1,0 +1,7 @@
+machen :distance 50
+
+wh 4
+[
+  vor :distance
+  rt 90
+]

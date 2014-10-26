@@ -1,0 +1,7 @@
+wh 11 [
+   tunmal [ :t 360 ] 
+   [
+      vor 1
+      rt / sin :t 2
+   ]
+]

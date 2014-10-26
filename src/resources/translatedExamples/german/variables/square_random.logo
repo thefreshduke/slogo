@@ -1,0 +1,10 @@
+machen :random summe 1 zf 100
+
+vor :random
+rt 90
+vor :random
+rt 90
+vor :random
+rt 90
+vor :random
+rt 90
