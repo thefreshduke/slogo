@@ -90,6 +90,7 @@ public class SlogoView {
 	public SlogoView() throws ClassNotFoundException{
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
 		myGrids=new GridTracker();
+		colorSelection = new ColorSelection(myGrids);
 		makeListOfFunctions();
 		myGridFactory=new GridFactory(DEFAULT_SIZE.height, DEFAULT_SIZE.width, this.build(5), myUserFunctions);
 		myController=new MainController(this);
@@ -129,7 +130,6 @@ public class SlogoView {
 	 * @throws ClassNotFoundException 
 	 */
 	public void initialize(Stage mainStage) {
-		colorSelection = new ColorSelection(myGrids);
 		addGrid();
 		addTurtle();
 		myVariableTable=new VariableTable();
