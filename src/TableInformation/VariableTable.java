@@ -1,9 +1,12 @@
-package GUIFunctions;
+package TableInformation;
 import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import GUIFunctions.Function;
+import GUIFunctions.UserInput;
+import GUIFunctions.Variable;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.ReadOnlyObjectWrapper;

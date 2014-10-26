@@ -1,34 +1,17 @@
 package turtle;
-import java.util.ArrayList;
-import java.util.List;
-
 import commands.information.ITurtleBehavior;
-
-
-
-
-
 import java.util.Stack;
-
 import javax.swing.JOptionPane;
-
-import com.sun.glass.events.MouseEvent;
-
 import GUIFunctions.BorderStyle;
 import View.Pen;
-import View.TurtleMovement;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Line;
 import javafx.scene.paint.Color;
-
-import java.awt.color.*;
 
 /**
  * Backend Turtle class that has ability to modify its position (location and orientation).
@@ -38,10 +21,9 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private Pen myPen;
 	private Stack<Position> myPastPositions;
 	private int myID;
-	private int velocity;
 	private boolean active=false;
-	private EventHandler myEvent;
-
+	private EventHandler<ActionEvent> myEvent;
+	private final static int velocity=5;
 	/**
 	 * The Turtle takes a Position object (Composition technique) which encapsulates the data concerning the turtle's movement. 
 	 * @param position - Position object that stores location information about the Turtle
@@ -51,7 +33,6 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		myPosition = position;
 		myPen=new Pen();
 		myPastPositions=new Stack<Position>();
-		velocity=5;
 		setActive();
 		this.setOnMouseClicked(event-> {
 			setActiveStatus(!active);
@@ -65,7 +46,6 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
 	}
-	
 	public void setActiveStatus(boolean isActive){
 		if(isActive){
 			setActive();
@@ -78,12 +58,12 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		active= true;
 		glow();
 	}
-	
+
 	private void setInactive(){
 		active = false;
 		dimmer();
 	}
-	
+
 	private void glow(){
 		DropShadow myShadow=new DropShadow();
 		myShadow.setColor(Color.YELLOW);
@@ -96,9 +76,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public boolean isActive(){
 		return active;
 	}
-	
-	
-	
+
 	/**
 	 * Moves the vertically 
 	 * @param yIncrement - vertical movement increment
@@ -156,13 +134,13 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 
 	public void setYPos(double yPos) {
 		myPosition.setYPos(yPos);
-		
+
 	}
 
 	public void setRotation (double rotateVal) {
 		myPosition.setRotation(rotateVal);
 	}
-	
+
 	/*
 	 * Pen stuff
 	 */
@@ -181,8 +159,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public Pen getPen(){
 		return myPen;
 	}
-	
-	//could return null
+
 	public Position undo(){
 		if (myPastPositions.size()<=1){
 			JOptionPane.showMessageDialog(null, "CANT UNDO");
@@ -202,7 +179,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public int getID() {
 		return myID;
 	}
-	
+
 	public void move (KeyCode e){
 		Direction myDirection=new Direction(e);
 		Position myTempPosition=myDirection.move(myPosition, velocity);
@@ -210,9 +187,9 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 			myPosition=myTempPosition;
 			myPastPositions.add(new Position(myTempPosition.getXPos(), myTempPosition.getYPos(), myTempPosition.getRotate()));
 		}
-		
+
 	}
-	
+
 	@Override
 	public double setHeading(double absHeading) {
 		double rotationDegrees = Math.abs(myPosition.getRotate() - absHeading);
@@ -227,7 +204,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		setRotation(angleDegrees);
 		return angleDegrees;
 	}
-	
+
 	private double [] getXYCoordinates() {
 		double [] coordinates = new double[2];
 		coordinates[0] = getXPos();
@@ -247,5 +224,5 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	public void setVisibility(boolean isVisible) {
 		this.setVisible(isVisible);
 	}
-	
+
 }

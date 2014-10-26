@@ -184,10 +184,5 @@ public class SingleGrid extends Grid {
 		myTurtle.getPen().setInitialPosition(myTurtle.getXPos(), myTurtle.getYPos());
 		moveTurtle(myTurtle);
 		return myTurtle;
-	}
-	@Override
-	public void setPalette(Double myRed, Double myGreen, Double myBlue) {
-		// TODO Auto-generated method stub		
 	}	
-
 }

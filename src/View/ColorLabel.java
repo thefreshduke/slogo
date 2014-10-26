@@ -1,15 +1,12 @@
 package View;
 import GUIFunctions.ColorFunction;
-import GUIFunctions.GUIFunction;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.paint.Color;
-
-
-
+import javafx.scene.paint.Paint;
 public  class ColorLabel extends Button {
 	private boolean isActive;
 	private ColorFunction myFunction;
+	private int myEffectSize=2;
+	private final int myTextSize=10;
 	public ColorLabel(double x, double y, double width, double height, String myName,ColorFunction myGUIFunction){
 		this.setText(myName);
 		this.setPrefSize(width, height);
@@ -17,6 +14,7 @@ public  class ColorLabel extends Button {
 		isActive=false;
 		this.addEvent();
 		myFunction=myGUIFunction;
+		setStyle(myTextSize);
 	}
 	private void addEvent(){
 		this.setOnMouseClicked(event->setActive(!isActive));
@@ -24,17 +22,18 @@ public  class ColorLabel extends Button {
 	private void setActive(boolean active){
 		isActive=active;
 		if (isActive){
-			DropShadow myShadow=new DropShadow();
-			myShadow.setColor(Color.DARKBLUE);
-			myShadow.setRadius(20);
-			setEffect(myShadow);
+			this.setStyle(myTextSize+myEffectSize);
 		}
 		else 
-			setEffect(null);
+			this.setStyle(myTextSize-myEffectSize);
 	}
 	public void isActive(String color){
 		if (isActive){
 			myFunction.doAction(color);
 		}
+	}
+	public void setStyle(int text){
+		setTextFill(Paint.valueOf("WHITE"));
+		setStyle("-fx-background-color: BLACK; -fx-border-color: WHITE; -fx-font-size:"+text);
 	}
 }

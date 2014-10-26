@@ -6,8 +6,6 @@ public class Right extends MoveDirection{
 	public Position move(Position p, int speed) {
 		p.setXPos(p.getXPos()+speed);
 		return p;
-
 	}
-
 }
 

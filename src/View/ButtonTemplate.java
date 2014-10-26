@@ -8,7 +8,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 
 public class ButtonTemplate extends Button implements UserObjects{
-	int textSize=10;
+	private final int textSize=10;
+	private final int offSet=2;
 	/**
 	 * Constructor
 	 * @param s				Label for the Button	
@@ -17,7 +18,7 @@ public class ButtonTemplate extends Button implements UserObjects{
 	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction){
 		this(s,x,y,myFunction,75,55);
 	}
-	public ButtonTemplate(String s, double x, double y, EventHandler myEvent, int width, int height){
+	public ButtonTemplate(String s, double x, double y, EventHandler<ActionEvent> myEvent, int width, int height){
 		this.relocate(x, y);
 		this.setText(s);
 		this.addEvent(myEvent);
@@ -45,10 +46,10 @@ public class ButtonTemplate extends Button implements UserObjects{
 		setStyle("-fx-background-color: BLACK; -fx-border-color: WHITE; -fx-font-size:"+text);
 	}
 	public void actionOnMouseHover(){
-		setStyle(textSize+2);
+		setStyle(textSize+offSet);
 	}
 	public void actionOnMouseExit(){
-		setStyle(textSize-2);
+		setStyle(textSize-offSet);
 	}
 
 
