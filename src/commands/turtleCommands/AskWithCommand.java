@@ -42,7 +42,9 @@ public class AskWithCommand extends TurtleCommand{
 		Collection<Integer> allTurtles = turtleContainer.getAllTurtlesByID();
 		Collection<Integer> conditionMetTurtles = new LinkedHashSet<>();
 		for(int turtleID : allTurtles){
-			turtleContainer.setActiveTurtle(turtleID);
+			ArrayList<Integer> idList = new ArrayList<>();
+			idList.add(turtleID);
+			turtleContainer.setActiveTurtles(idList);
 			double conditionResult = myCondition.execute();
 			if(conditionResult != 0){
 				conditionMetTurtles.add(turtleID);

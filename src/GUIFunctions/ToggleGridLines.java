@@ -14,15 +14,17 @@ public class ToggleGridLines extends PersonalizeMenu{
 	int translate;
 	private Collection<Line> myGridLines;
 	private SingleGrid myGrid;
+	
 	public ToggleGridLines(GridTracker grid, int gridSize){
 		showGridLines=true;
-		myGrid=grid.getActiveGrid();
 		translate=gridSize;
 		myGridLines=new ArrayList<Line>();
+		allGrids=grid;
 	}
 	
 	@Override
 	public void doAction() {
+		myGrid=allGrids.getActiveGrid();
 		if (showGridLines){
 			makeGridLines();
 			showGridLines=false;

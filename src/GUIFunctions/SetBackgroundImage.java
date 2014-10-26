@@ -28,11 +28,12 @@ public class SetBackgroundImage extends PersonalizeMenu {
 		allGrids=grid;
 		myStage=mainStage;
 		myImageView=new ImageView();
-		allGrids.getActiveGrid().getChildren().add(myImageView);
+
 	}
 	@Override
 	//ugly but works need to change
 	public void doAction() {
+			allGrids.getActiveGrid().getChildren().add(myImageView);
 			FileChooser fileChooser = new FileChooser();
 			fileChooser.setTitle("Select Background Image");
 			fileChooser.setInitialDirectory(new File("./"));

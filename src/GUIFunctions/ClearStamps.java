@@ -13,8 +13,8 @@ public class ClearStamps extends BottomFunctions{
 	@Override
 	public void doAction() {
 		SingleGrid active=allGrids.getActiveGrid();
-		for (Node myStamp: active.getChildren()){
-			if (myStamp instanceof StampImage){
+		for (Node myStamp: active.getChildren()) {
+			if (myStamp instanceof StampImage) {
 				active.getChildren().remove(myStamp);
 			}
 		}
