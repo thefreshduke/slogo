@@ -1,10 +1,11 @@
 package commands.information;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import backendExceptions.BackendException;
-
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.NumericalCommand;
@@ -91,4 +92,23 @@ public class MapBasedVariableContainer extends BaseVariableContainer {
         createdCommand.setVariables(variables.clone(), correspondingExpressions);
         return createdCommand;
     }
+
+	@Override
+	public Map<String, Double> getAllVariablesAndValues() throws BackendException {
+		HashMap<String, Double> variableToComputedValueMap = new HashMap<>();
+		for(String variable : myVariableToValuesMap.keySet()) {
+			BaseCommand command = myVariableToValuesMap.get(variable);
+			try {
+				variableToComputedValueMap.put(variable, command.execute());
+			} catch (BackendException e) {
+				throw new BackendException(e, "There is an invalid variable in the container");
+			}
+		}
+		return variableToComputedValueMap;
+	}
+
+	@Override
+	public List<String> getAllCustomCommands() {
+		return new ArrayList<>(myCreatedCommandMap.keySet());
+	}
 }

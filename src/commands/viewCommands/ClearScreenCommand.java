@@ -1,12 +1,12 @@
 package commands.viewCommands;
 
 import backendExceptions.BackendException;
-
+import commands.TurtleQuery;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.turtleCommands.TurtleCommand;
 
-public class ClearScreenCommand extends TurtleCommand {
+public class ClearScreenCommand extends TurtleQuery {
 
     private static final String CLEAR_GUI = "clear";
 

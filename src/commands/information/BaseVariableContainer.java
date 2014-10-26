@@ -1,7 +1,9 @@
 package commands.information;
 
-import backendExceptions.BackendException;
+import java.util.List;
+import java.util.Map;
 
+import backendExceptions.BackendException;
 import commands.BaseCommand;
 
 public abstract class BaseVariableContainer implements IInformationContainer {
@@ -22,4 +24,8 @@ public abstract class BaseVariableContainer implements IInformationContainer {
             boolean isExpression) throws BackendException;
 
     public abstract boolean containsVariable (String variable);
+    
+    public abstract Map<String, Double> getAllVariablesAndValues() throws BackendException;
+    
+    public abstract List<String> getAllCustomCommands();
 }

@@ -53,7 +53,14 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		myPastPositions=new Stack<Position>();
 		velocity=5;
 		setActive();
-		this.setOnMouseClicked(event->setActive());
+		this.setOnMouseClicked(event-> {
+			if(active){
+				setInactive();
+			}
+			else{
+				setActive();
+			}
+		});
 	}
 
 	/**
@@ -63,15 +70,17 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	private void moveHorizontal(double xIncrement) {
 		myPosition.moveHorizontal(xIncrement);
 	}
+	
 	public void setActive(){
-		active=!active;
-		if (active){
-			glow();
-		}
-		else{
-			dimmer();
-		}
+		active= true;
+		glow();
 	}
+	
+	public void setInactive(){
+		active = false;
+		dimmer();
+	}
+	
 	private void glow(){
 		DropShadow myShadow=new DropShadow();
 		myShadow.setColor(Color.YELLOW);

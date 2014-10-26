@@ -12,11 +12,8 @@ import commands.information.IInformationContainer;
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  * 
- * Abstract class for a Turtle command. The update method will be
- * implemented and returns the turtle object that can be manipulated by
- * other commands. All other types of commands will extend the
- * BaseCommand, such as commands that only modify the view, commands
- * that are conditional, mathematical operations.
+ * Abstract class for all commands. All other types of commands will extend the
+ * BaseCommand. 
  *
  */
 public abstract class BaseCommand {
