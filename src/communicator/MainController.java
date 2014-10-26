@@ -27,6 +27,7 @@ import commands.information.BaseTurtleContainer;
 import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
+import commands.information.MapBasedUserDefinedContainer;
 import commands.information.SingleGridInformationGateway;
 
 public class MainController extends BaseController {
@@ -238,13 +239,12 @@ public class MainController extends BaseController {
 		try {
 			fis = new FileInputStream(file);
 			in = new ObjectInputStream(fis);
-			returnContainer = (BaseUserDefinedContainer) in.readObject();
+			returnContainer = (MapBasedUserDefinedContainer) in.readObject();
 			in.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex,
 					"Error reading from file"));
 		}
-
 		return (IInformationContainer) returnContainer;
 	}
 
@@ -256,7 +256,7 @@ public class MainController extends BaseController {
 		try {
 			fos = new FileOutputStream(filename);
 			out = new ObjectOutputStream(fos);
-			out.writeObject(container);
+			out.writeObject((MapBasedUserDefinedContainer) container);
 			out.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex, "Error writing to file"));
