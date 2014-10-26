@@ -1,9 +1,10 @@
-package View;
+package GUIFunctions;
 
 import java.util.List;
 
-import GUIFunctions.ColorFunction;
-import GUIFunctions.GridFunction;
+import View.ColorSelection;
+import View.GridTracker;
+import View.Pen;
 
 public class PenColor extends ColorFunction{
 	ColorSelection myColors;

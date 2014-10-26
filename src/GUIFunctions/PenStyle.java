@@ -6,7 +6,6 @@ import java.util.List;
 import View.GridTracker;
 import View.Pen;
 import View.PenMenu;
-import View.SingleGrid;
 
 public class PenStyle extends PenMenu{
 	private HashMap<String, BorderStyle> myStyleMap;

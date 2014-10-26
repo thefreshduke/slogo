@@ -1,26 +1,27 @@
 package turtle;
 
+import java.util.HashMap;
+
 import javafx.scene.input.KeyCode;
 
 public class Direction {
 	private MoveDirection direction;
+	public HashMap<KeyCode, MoveDirection> myDirections=new HashMap<KeyCode, MoveDirection>();
 	public Direction(KeyCode e){
-		if (e==KeyCode.RIGHT){
-			direction=new Right();
-		}
-		else if (e==KeyCode.LEFT){
-			direction=new Left();
-		}
-		else if (e==KeyCode.UP){
-			direction=new Up();
-		}
-		else if (e==KeyCode.DOWN){
-			direction=new Down();
-		}
-		else
+		makeDirectionMap();
+		direction=myDirections.get(e);
+		if (direction==null){
 			direction=new NullDirection();
+		}
 	}
 	public Position move(Position p, int speed){
 		return direction.move(p, speed);
+	}
+	public void makeDirectionMap(){
+		myDirections.put(KeyCode.RIGHT, new Right());
+		myDirections.put(KeyCode.LEFT, new Left());
+		myDirections.put(KeyCode.UP, new Up());
+		myDirections.put(KeyCode.DOWN, new Down());
+		
 	}
 }

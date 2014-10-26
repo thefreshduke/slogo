@@ -39,10 +39,8 @@ public class SingleGrid extends Grid {
 	private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
 	private boolean outOfBounds;
 	public SingleGrid(){
-
-
-
 	}
+	
 	public SingleGrid(KeyFrame frame, HashMap myMap, int ID){
 		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
 		myID=ID;

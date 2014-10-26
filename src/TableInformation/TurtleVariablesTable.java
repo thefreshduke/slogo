@@ -53,6 +53,7 @@ public class TurtleVariablesTable extends TableView{
 			setColumnEditable();
 			getColumns().addAll(myColumns);
 			updateList();
+			
 			VBox vbox = new VBox();
 			vbox.setSpacing(5);
 			vbox.getChildren().addAll(label, this);
@@ -60,8 +61,6 @@ public class TurtleVariablesTable extends TableView{
 			newStage.setScene(scene);
 			newStage.show();
 		}
-
-
 	}
 	private KeyFrame build(){
 		Duration speed=Duration.millis(1000/100);
@@ -125,6 +124,7 @@ public class TurtleVariablesTable extends TableView{
 			try {
 				myClass = (Class<? extends Column>) Class.forName(myValues[1]);
 			} catch (ClassNotFoundException e) {
+				System.out.println(myValues[1]);
 				return false;
 			}		
 			Column myNewColumn;

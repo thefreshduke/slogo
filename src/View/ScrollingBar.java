@@ -16,8 +16,6 @@ public abstract class ScrollingBar extends Group implements UserObjects{
 	protected int myWidth;
 	protected GUIFunction myFunction;
 	protected Slider myBar;
-	
-	
 	public ScrollingBar(String myLabel, int x, int y, int height, int width, int min, int max, int value, GUIFunction function){
 		myX=x;
 		myY=y;
@@ -27,7 +25,6 @@ public abstract class ScrollingBar extends Group implements UserObjects{
 		makeScrollingBar(min, max, value);
 		makeLabel(myLabel);
 	}
-
 	private void makeScrollingBar(int min, int max, int value){
 		myBar=new Slider(1, 20, 10);
 		myBar.relocate(myX, myY);

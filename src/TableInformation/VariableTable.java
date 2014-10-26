@@ -39,13 +39,12 @@ public class VariableTable extends Pane {
 		functions=new TableView();
 		myVariables=new ArrayList<UserInput>();
 		myFunctions=new ArrayList<UserInput>();
+		
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
 		newStage.setTitle("Variable Table");
 		newStage.setWidth(DEFAULT_SIZE.width);
 		newStage.setHeight(DEFAULT_SIZE.height);
-		Label label = new Label("My Variable Table");
-		label.setFont(new Font("Arial", 20));
 		TableColumn myVariableColumn=new TableColumn("Variable");
 		TableColumn myVariableName=new TableColumn("Name");
 		TableColumn myValue=new TableColumn("Value");

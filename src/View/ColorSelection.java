@@ -5,9 +5,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
+
 import javax.swing.JOptionPane;
 
 import GUIFunctions.BackgroundColor;
+import GUIFunctions.PenColor;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
