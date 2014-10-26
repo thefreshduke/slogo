@@ -41,6 +41,7 @@ public class SingleGrid extends Grid {
 	public SingleGrid(){
 
 
+
 	}
 	public SingleGrid(KeyFrame frame, HashMap myMap, int ID){
 		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
@@ -183,4 +184,5 @@ public class SingleGrid extends Grid {
 	public void setPalette(Double myRed, Double myGreen, Double myBlue) {
 		// TODO Auto-generated method stub		
 	}	
+
 }

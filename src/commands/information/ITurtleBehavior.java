@@ -42,4 +42,6 @@ public interface ITurtleBehavior {
     public Pen getPen ();
 
     public Position undo ();
+    
+    public void setVisibility(boolean isVisible);
 }
