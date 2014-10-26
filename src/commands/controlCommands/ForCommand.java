@@ -33,9 +33,9 @@ public class ForCommand extends ControlCommand {
     protected double onExecute () throws BackendException {
         BaseVariableContainer variableContainer = getVariableContainer();
         double returnValue = 0;
-        int startValue = (int) myStartCommand.execute();
-        int stopValue = (int) myEndCommand.execute();
-        int incrementValue = (int) myIncrementCommand.execute();
+        int startValue = (int)myStartCommand.execute();
+        int stopValue = (int)myEndCommand.execute();
+        int incrementValue = (int)myIncrementCommand.execute();
         myVarExistsPreviously = false;
         BaseCommand oldCommand = null;
         if (variableContainer.containsVariable(myVariableName)) {
@@ -53,7 +53,8 @@ public class ForCommand extends ControlCommand {
     private void checkIfVariableExistsPreviously (BaseCommand oldCommand) throws BackendException {
         if (myVarExistsPreviously) {
             myVariableContainer.addVariable(myVariableName, oldCommand);
-        } else {
+        }
+        else {
             myVariableContainer.popOffVariable(myVariableName);
         }
     }

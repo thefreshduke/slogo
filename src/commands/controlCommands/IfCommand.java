@@ -25,7 +25,8 @@ public class IfCommand extends ControlCommand {
         double expressionResult = myExpression.execute();
         if (expressionResult != 0) {
             returnValue = myInternalCommand.execute();
-        } else {
+        }
+        else {
             returnValue = expressionResult;
         }
         return returnValue;

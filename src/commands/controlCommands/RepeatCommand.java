@@ -25,8 +25,9 @@ public class RepeatCommand extends ControlCommand {
         double expressionResult = myExpression.execute();
         if (expressionResult < 1) {
             returnValue = 0;
-        } else {
-            int repetitionCount = (int) expressionResult;
+        }
+        else {
+            int repetitionCount = (int)expressionResult;
             for (int i = 0; i < repetitionCount; i++) {
                 returnValue = myInternalCommand.execute();
             }
