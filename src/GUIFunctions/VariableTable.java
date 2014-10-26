@@ -1,4 +1,5 @@
 package GUIFunctions;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -24,19 +25,24 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
-public class VariableTable extends TableView {
+public class VariableTable extends Pane {
 	private ArrayList<UserInput> myVariables;
+	private final static Dimension DEFAULT_SIZE=new Dimension(500,500);
+	private ArrayList<UserInput> myFunctions;
+	TableView variables;
+	TableView functions;
 	public VariableTable(){
+		variables=new TableView();
+		functions=new TableView();
 		myVariables=new ArrayList<UserInput>();
+		myFunctions=new ArrayList<UserInput>();
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
 		newStage.setTitle("Variable Table");
-		newStage.setWidth(500);
-		newStage.setHeight(500);
+		newStage.setWidth(DEFAULT_SIZE.width);
+		newStage.setHeight(DEFAULT_SIZE.height);
 		Label label = new Label("My Variable Table");
 		label.setFont(new Font("Arial", 20));
-
-		setEditable(false);
 		TableColumn myVariableColumn=new TableColumn("Variable");
 		TableColumn myVariableName=new TableColumn("Name");
 		TableColumn myValue=new TableColumn("Value");
@@ -86,12 +92,17 @@ public class VariableTable extends TableView {
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(build());
 		time.play();
-		
-		getColumns().addAll(myVariableColumn, myUserFunctions);
+		variables.getColumns().addAll(myVariableColumn);
+		functions.getColumns().addAll(myUserFunctions);
 		((Group) scene.getRoot()).getChildren().addAll(this);
 		newStage.setScene(scene);
 		newStage.show();
-		newStage.show();
+		variables.relocate(0, 0);
+		variables.setPrefSize(DEFAULT_SIZE.width/2, DEFAULT_SIZE.height);
+		functions.setPrefSize(DEFAULT_SIZE.width/2, DEFAULT_SIZE.height);
+		functions.relocate(DEFAULT_SIZE.width/2, 0);
+		this.setPrefSize(DEFAULT_SIZE.width, DEFAULT_SIZE.height);
+		this.getChildren().addAll(variables, functions);
 	}
 
 	private KeyFrame build() {
@@ -99,28 +110,42 @@ public class VariableTable extends TableView {
 		KeyFrame myFrame=new KeyFrame(myDuration, new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent arg0) {
-				update();
+				updateVariables();
+				updateFunctions();
 			}
 		});
 		return myFrame;
 	}
 
-	public void addVariables(List<UserInput> myFunctions){
+	public void addVariables(List<UserInput> myUserInputFunctions){
 		myVariables.clear();
-		myVariables= (ArrayList<UserInput>) myFunctions;
+		myVariables= (ArrayList<UserInput>) myUserInputFunctions;
 		
 	}
-	public void addInputs(List<UserInput> myFunctions){
-		
+	public void addInputs(List<UserInput> myUserInputFunctions){
+		myFunctions.clear();
+		myFunctions=(ArrayList<UserInput>) myUserInputFunctions;
 	}
 
-	public void update(){
-		getItems().clear();
+	private void updateVariables(){
+		variables.getItems().clear();
 		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
 		for (UserInput myVar: myVariables){
 			myObservableList.add(myVar);
 		}
-		setItems((myObservableList));
+		variables.setItems((myObservableList));
+	}
+	private void updateFunctions(){
+		functions.getItems().clear();
+		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
+		for (UserInput myVar: myFunctions){
+			myObservableList.add(myVar);
+		}
+		functions.setItems((myObservableList));
+		
+	}
+	public void makeTableView(TableView myTable){
+		myTable.setEditable(false);
 	}
 
 }
