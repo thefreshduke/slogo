@@ -81,6 +81,7 @@ public class SlogoView {
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
 	private MenuTemplate userCommands;
+	private Map<String, String> userCommandMap = new HashMap<>();
 	private ResourceBundle myResources;
 	private Stage myStage;
 	//private VariableTable myVariableTable;
@@ -161,7 +162,7 @@ public class SlogoView {
 	 */
 	private void sendCommandAndMakeButton(String command){
 		sendCommand(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command, 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
@@ -340,16 +341,17 @@ public class SlogoView {
 	}
 
 	public void makeUserCommand(String command){
-		commandLine.clear();
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
-		userCommands.addMenuItem(name, event->executeUserCommand(command));
+		userCommandMap.put(name, commandLine.getText());
+		commandLine.clear();
+		userCommands.addMenuItem(name, event->executeUserCommand(userCommandMap.get(name)));
 	}
 
 	public void executeUserCommand(String command){
-		myController.receiveCommand(commandLine.getText());
+		myController.receiveCommand(command);
 		commandLine.setText(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
-				0, 0, (event -> sendCommandAndMakeButton(commandLine.getText())), 180,10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command,
+				0, 0, (event -> sendCommandAndMakeButton(command)), 180,10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
