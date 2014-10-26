@@ -13,8 +13,8 @@ public class NotCommand extends OneExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double result = (executeCommand(getArgument()) == 0) ? 1 : 0;
+    public double onExecute () throws BackendException {
+        double result = ((getArgument().execute()) == 0) ? 1 : 0;
         return result;
     }
 }

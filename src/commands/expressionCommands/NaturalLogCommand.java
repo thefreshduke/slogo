@@ -13,8 +13,8 @@ public class NaturalLogCommand extends OneExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double result = Math.log(executeCommand(getArgument()));
+    public double onExecute () throws BackendException {
+        double result = Math.log(getArgument().execute());
         return result;
     }
 }

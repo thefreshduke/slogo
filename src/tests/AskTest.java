@@ -19,7 +19,7 @@ import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.IInformationGateway;
-import commands.information.SingleViewInformationGateway;
+import commands.information.SingleGridInformationGateway;
 
 public class AskTest {
 
@@ -37,7 +37,7 @@ public class AskTest {
 	
     private IInformationGateway setFactory () {
         Grid grid = new SingleGrid();
-        IInformationGateway hub = new SingleViewInformationGateway();
+        IInformationGateway hub = new SingleGridInformationGateway();
         BaseGridContainer gridContainer = (BaseGridContainer)hub.getContainer(BaseGridContainer.class);
         gridContainer.addGrid(grid, true);
         CommandFactory.setInformationGateway(hub);

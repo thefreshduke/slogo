@@ -58,7 +58,7 @@ public abstract class BaseCommand {
 
     public abstract Set<Class<? extends IInformationContainer>> getRequiredInformationTypes ();
 
-    public abstract void setRequiredInformation (Collection<IInformationContainer> containers);
+    public abstract void setRequiredInformation (Collection<IInformationContainer> containers) throws BackendException;
 
     private BaseCommand getNextCommand () {
         return myNextCommand;

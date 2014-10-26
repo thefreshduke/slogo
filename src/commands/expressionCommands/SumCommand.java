@@ -13,9 +13,9 @@ public class SumCommand extends TwoExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double firstExpression = executeCommand(getFirstExpression());
-        double secondExpression = executeCommand(getSecondExpression());
+    public double onExecute () throws BackendException {
+        double firstExpression = getFirstExpression().execute();
+        double secondExpression = getSecondExpression().execute();
         double result = firstExpression + secondExpression;
         return result;
     }

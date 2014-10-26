@@ -13,8 +13,8 @@ public class SinCommand extends OneExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double angle = executeCommand(getArgument());
+    public double onExecute () throws BackendException {
+        double angle = getArgument().execute();
         return Math.sin(Math.toRadians(angle));
     }
 }
