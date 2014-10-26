@@ -80,7 +80,6 @@ public class SlogoView {
 	private Scene myScene;
 	private TextField commandLine;
 	//used to display Turtles most recent stats
-	private Text lastX, lastY, lastOrientation;
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
 	private MenuTemplate userCommands;
@@ -172,7 +171,7 @@ public class SlogoView {
 	}
 
 
-	private void sendCommand(String myCommand){
+	public void sendCommand(String myCommand){
 		myController.receiveCommand(myCommand);
 	}
 	public void enable(){
@@ -200,6 +199,12 @@ public class SlogoView {
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
+	
+	/**
+	 * Disables all of the buttons on the GUI. Used when a command is sent
+	 *  to the backend to prevent concurrency issues.
+	 * @param toDisable
+	 */
 	public void setDisable(Boolean toDisable){
 		for (Node myNode: root.getChildren()){
 			myNode.setDisable(toDisable);
@@ -215,6 +220,11 @@ public class SlogoView {
 			}
 	}
 	
+	/**
+	 * 
+	 * @param myVariables
+	 */
+	
 	public void addVariables(Map<String, Double> myVariables){
 		ArrayList<UserInput> myVars=new ArrayList<UserInput>();
 		for (String name: myVariables.keySet()){
@@ -223,6 +233,11 @@ public class SlogoView {
 		}
 		myVariableTable.addInput(myVars);
 	}
+	
+	/**
+	 * 
+	 * @param myFunctions
+	 */
 	public void addUserFunctions(List<String> myFunctions){
 		ArrayList<UserInput> myInputs=new ArrayList<UserInput>();
 		for (String myName: myFunctions){
@@ -239,6 +254,11 @@ public class SlogoView {
 	private void addTurtle(){
 		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
 	}
+	
+	/**
+	 * Used to create the original grid and any additional grids the user wants.
+	 * @return
+	 */
 	public Grid addGrid() {
 		Grid myNewGrid;
 		try {
@@ -272,18 +292,66 @@ public class SlogoView {
 	}
 
 
-	
+
+	/**
+	 * Creates all information on left side of screen
+	 * @return
+	 */
 	private Pane setTextArea(){
 		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
 		myTextArea.setPrefSize(200, DEFAULT_SIZE.height-200);
-		//		create command line
+		createCommandLineWithLabel(myTextArea);
+		Button enter = makeEnterButton();
+		Button makeCommand = makeCommandButton();
+		Text history = makeCommandHistoryLabel();
+		makeCommandHistoryBox();
+		myTextArea.getChildren().addAll( enter, makeCommand,
+				history,  colorSelection, commandHistoryBox);
+		return myTextArea;
+	}
+	
+	private Button makeEnterButton(){
+		String[] value=myResources.getString("enter").split(";");
+		Button enter = new Button (value[0]);
+		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
+		enter.setOnAction(event->this.sendCommandAndMakeButton(commandLine.getText()));
+		enter.setPrefSize(70, 30);
+		return enter;
+	}
+
+	private Button makeCommandButton(){
+		String[] value=myResources.getString("makeCommand").split(";");
+		Button makeCommand = new Button(value[0]);
+		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
+		makeCommand.setPrefSize(120, 30);
+		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
+		return makeCommand;
+
+	}
+	
+	private Text makeCommandHistoryLabel(){
+		Text history = new Text("  Command History");
+		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+		history.setFill(Color.WHITE);
+		history.relocate(0, 350);
+		return history;
+	}
+	private void makeCommandHistoryBox(){
+		commandHistoryBox = new VBox();
+		commandHistoryBox.setSpacing(10);		
+		commandHistoryBox.relocate(0, 380);
+	}
+	
+	private void createCommandLineWithLabel(Pane textArea){
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
 		label.setStyle("-fx-font-size: 25");
 		label.setPrefSize(200, 50);
 		label.relocate(10, 5);
 		commandLine = new TextField();
+		commandLine.relocate(5, 60);
+		commandLine.setPrefSize(190,100);
 		EventHandler enterEvent=new EventHandler<KeyEvent>() {
 			@Override
 			public void handle(KeyEvent event) {
@@ -292,35 +360,13 @@ public class SlogoView {
 			}
 		};
 		commandLine.addEventHandler(KeyEvent.KEY_PRESSED,enterEvent);
-		String[] value=myResources.getString("enter").split(";");
-		Button enter = new Button (value[0]);
-		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
-		enter.setOnAction(event->this.sendCommandAndMakeButton(commandLine.getText()));
-		enter.setPrefSize(70, 30);
-		commandLine.relocate(5, 60);
-		commandLine.setPrefSize(190,100);
-		value=myResources.getString("makeCommand").split(";");
-		Button makeCommand = new Button(value[0]);
-		makeCommand.setOnAction(event-> makeUserCommand(commandLine.getText()));
-		makeCommand.setPrefSize(120, 30);
-		makeCommand.relocate(Double.parseDouble(value[1]),Double.parseDouble(value[2]));
-
-
-		commandHistoryBox = new VBox();
-		Text history = new Text("  Command History");
-		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-		history.setFill(Color.WHITE);
-		history.relocate(0, 350);
-		commandHistoryBox.setSpacing(10);		
-		updateCommandHistory();
-		commandHistoryBox.relocate(0, 380);
-
-		myTextArea.getChildren().addAll(label, commandLine, enter, makeCommand,
-				history,  colorSelection, commandHistoryBox);
-		return myTextArea;
+		textArea.getChildren().addAll(label, commandLine);
 	}
 
-
+	/**
+	 * Creates buttons on bottom of GUI
+	 * @return
+	 */
 	private Pane addButtons() {
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
@@ -330,13 +376,8 @@ public class SlogoView {
 		return myButtonPanel;
 	}
 
-	public void updateTurtleStats(int x, int y, int or){
-		lastX.setText("X Position: " + x);
-		lastY.setText("Y Position: " + y);
-		lastOrientation.setText("Orientation " + or);
-	}
 
-	public void updateCommandHistory(){
+	private void updateCommandHistory(){
 		commandHistoryBox.getChildren().clear();
 
 		if(myCommands.size() > MAX_COMMAND_HISTORY){
@@ -347,18 +388,16 @@ public class SlogoView {
 		}
 	}
 
-	public void setBackgroundColor(String color){
-		myGrids.getActiveGrid().setBackgroundColor(color);
-	}
 
-	public void makeUserCommand(String command){
+
+	private void makeUserCommand(String command){
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
 		userCommandMap.put(name, commandLine.getText());
 		commandLine.clear();
 		userCommands.addMenuItem(name, event->executeUserCommand(userCommandMap.get(name)));
 	}
 
-	public void executeUserCommand(String command){
+	private void executeUserCommand(String command){
 		myController.receiveCommand(command);
 		commandLine.setText(command);
 		ButtonTemplate mostRecent = new ButtonTemplate(command,
@@ -368,6 +407,12 @@ public class SlogoView {
 		updateCommandHistory();
 	}
 
+	/**
+	 * creates all of the buttons for the GUI from a resource file
+	 * @param myClass
+	 * @param location
+	 * @return
+	 */
 	private ArrayList<ButtonTemplate> makeButtons(Class myClass, String location){
 		Properties prop=new Properties();
 		InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/"+location+".Properties");
@@ -387,6 +432,12 @@ public class SlogoView {
 		}
 		return null;
 	}
+	
+	/**
+	 * Creates all of the menus for the GUI from a resource file
+	 * @param myClass
+	 * @param myMenu
+	 */
 	private void makeMenu(Class myClass, MenuTemplate myMenu){
 		for (String s: myUserFunctions.keySet()){
 			Class<? extends GUIFunction> myFunctionClass=(Class<? extends GUIFunction>) myUserFunctions.get(s).getClass().getSuperclass();
@@ -402,6 +453,9 @@ public class SlogoView {
 		return myListOfBars;
 	}
 
+	/**
+	 * Creates a list of functions to be used with the GUI's buttons, menus, etc.
+	 */
 	private void makeListOfFunctions(){
 		myUserFunctions.put("penDown", new SetPenDown(myGrids));
 		myUserFunctions.put("undo", new Undo(myGrids));
