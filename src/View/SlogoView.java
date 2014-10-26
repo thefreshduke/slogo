@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
 import java.util.ResourceBundle;
@@ -38,6 +39,8 @@ import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
 import GUIFunctions.TurtleVariablesTable;
+import GUIFunctions.Variable;
+import GUIFunctions.VariableTable;
 import communicator.MainController;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -80,6 +83,7 @@ public class SlogoView {
 	private MenuTemplate userCommands;
 	private ResourceBundle myResources;
 	private Stage myStage;
+	private VariableTable myVariableTable;
 	private final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -125,9 +129,10 @@ public class SlogoView {
 	 * @throws ClassNotFoundException 
 	 */
 	public void initialize(Stage mainStage) {
+		colorSelection = new ColorSelection(myGrids);
 		addGrid();
 		addTurtle();
-		colorSelection = new ColorSelection(myGrids);
+		myVariableTable=new VariableTable();
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -147,8 +152,7 @@ public class SlogoView {
 	 * 
 	 */
 	public void showError(String message){
-		System.out.println(message);
-		//JOptionPane.showMessageDialog(null, message);
+		JOptionPane.showMessageDialog(null, message);
 	}
 	/**
 	 *Passes the commands from the textbox on the GUI to the controller for parsing.  
@@ -205,7 +209,15 @@ public class SlogoView {
 					myMenu.addMenuItem(myName, event->myController.loadLanguage(languageFunction.doAction(myResources.getString(myName))));
 				}
 			}
+	}
+	
+	public void addVariables(Map<String, Double> myVariables){
+		ArrayList<Variable> myVars=new ArrayList<Variable>();
+		for (String name: myVariables.keySet()){
+			Variable myNewVariable=new Variable(name, myVariables.get(name));
+			myVars.add(myNewVariable);
 		}
+	}
 	
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());

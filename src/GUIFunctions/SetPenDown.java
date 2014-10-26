@@ -15,6 +15,7 @@ public class SetPenDown extends BottomFunctions{
 		for (Pen myP: allGrids.getActiveGrid().getActivePens()){
 			myP.setPenDown(true);
 		}
+		
 	}
 	@Override
 	public void doAction(List<? extends Number> newVal) {
