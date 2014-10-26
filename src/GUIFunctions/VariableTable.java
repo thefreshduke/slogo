@@ -38,8 +38,9 @@ public class VariableTable extends TableView {
 		time.getKeyFrames().add(build());
 		time.play();
 		setEditable(true);
-		TableColumn myVariableName=new TableColumn("Variable Name");
-		TableColumn myValue=new TableColumn("My Value");
+		TableColumn myVariableColumn=new TableColumn("Variable");
+		TableColumn myVariableName=new TableColumn("Name");
+		TableColumn myValue=new TableColumn("Value");
 		myValue.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<Double>>() {
 			@Override
 			public ObservableValue<Double> call(
@@ -47,7 +48,7 @@ public class VariableTable extends TableView {
 				return new ReadOnlyObjectWrapper<Double> (myData.getValue().getValue());
 			}
 		});
-
+		
 		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(
@@ -55,8 +56,10 @@ public class VariableTable extends TableView {
 				return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
 			}
 		});
-
-
+		myVariableColumn.getColumns().addAll(myVariableName, myValue);
+		
+		TableColumn myUserFunctions=new TableColumn("User Functions");
+		//myUserFunctions.ad
 		VBox vbox = new VBox();
 		vbox.setSpacing(5);
 		vbox.getChildren().addAll(label, this);
