@@ -8,7 +8,7 @@ import java.util.Set;
 import backendExceptions.BackendException;
 
 import commands.ControlCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -35,7 +35,7 @@ public class ToCommand extends ControlCommand {
 
     @Override
     protected double onExecute () throws BackendException {
-        BaseVariableContainer variableContainer = getVariableContainer();
+        BaseUserDefinedContainer variableContainer = getVariableContainer();
         variableContainer.addNewCommand(myCommandName, myInternalCommand, myVariables);
         return 1;
     }

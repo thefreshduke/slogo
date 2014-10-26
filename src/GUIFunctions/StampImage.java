@@ -12,7 +12,7 @@ public class StampImage extends ImageView{
 		setPreserveRatio(true);
 		setSmooth(true);
 		setDisable(true);
-		relocate(100, 200);
+		relocate(myTurtle.getXPos(), myTurtle.getYPos());
 		addEffect();
 		
 	}

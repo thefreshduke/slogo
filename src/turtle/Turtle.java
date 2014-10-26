@@ -233,9 +233,16 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 	}
 
 	@Override
-	public double setPosition(double newXPos, double newYPos) {
+	public double setPosition(double newXPos, double newYPos) {		
 		double distance = Math.sqrt(Math.pow(getXYCoordinates()[0]- newXPos, 2) + Math.pow(getXYCoordinates()[1] - newYPos, 2));
+		setXPos(newXPos);
+		setYPos(newYPos);
 		return distance;
+	}
+
+	@Override
+	public void setVisibility(boolean isVisible) {
+		this.setVisible(isVisible);
 	}
 	
 }

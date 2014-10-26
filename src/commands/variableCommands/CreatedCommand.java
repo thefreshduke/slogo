@@ -9,7 +9,7 @@ import java.util.Set;
 import backendExceptions.BackendException;
 
 import commands.BaseCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 
 public class CreatedCommand extends VariableCommand {
 
@@ -35,7 +35,7 @@ public class CreatedCommand extends VariableCommand {
 
     private void setNewVariables () throws BackendException {
         Set<String> variableSet = myNewVariableToCommandMap.keySet();
-        BaseVariableContainer variableContainer = getVariableContainer();
+        BaseUserDefinedContainer variableContainer = getVariableContainer();
         for (String variable : variableSet) {
             if (variableContainer.containsVariable(variable)) {
                 BaseCommand oldCommand = variableContainer.getValue(variable);
@@ -49,7 +49,7 @@ public class CreatedCommand extends VariableCommand {
     }
 
     private void revertVariables () throws BackendException {
-        BaseVariableContainer variableContainer = getVariableContainer();
+        BaseUserDefinedContainer variableContainer = getVariableContainer();
         for (String variable : myNonExistingVariables) {
             variableContainer.popOffVariable(variable);
         }

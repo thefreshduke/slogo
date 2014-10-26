@@ -7,20 +7,20 @@ import java.util.Set;
 
 import backendExceptions.BackendException;
 
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationContainer;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public abstract class ControlCommand extends ModelCommand {
+public abstract class ControlCommand extends BaseCommand {
 
     protected static String COMMAND_INDICATOR = "liststart";
     protected static String COMMAND_END_INDICATOR = "listend";
     protected static String COMMAND_SEPARATOR = " ";
     protected static String VARIABLE_INDICATOR = "variable";
-    private BaseVariableContainer myVariableContainer;
+    private BaseUserDefinedContainer myVariableContainer;
 
     public ControlCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -29,7 +29,7 @@ public abstract class ControlCommand extends ModelCommand {
     @Override
     public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
         Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
-        typeSet.add(BaseVariableContainer.class);
+        typeSet.add(BaseUserDefinedContainer.class);
         return typeSet;
     }
 
@@ -39,16 +39,16 @@ public abstract class ControlCommand extends ModelCommand {
         }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
-        boolean extendsVariableContainer = BaseVariableContainer.class.isAssignableFrom(container
+        boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
                 .getClass());
         if (!extendsVariableContainer) {
             // throw exception
         }
-        BaseVariableContainer variableContainer = (BaseVariableContainer) container;
+        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) container;
         myVariableContainer = variableContainer;
     }
 
-    protected BaseVariableContainer getVariableContainer () {
+    protected BaseUserDefinedContainer getVariableContainer () {
         return myVariableContainer;
     }
 

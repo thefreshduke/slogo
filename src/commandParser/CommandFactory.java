@@ -7,7 +7,7 @@ import java.util.Set;
 
 import backendExceptions.BackendException;
 import commands.BaseCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
 
@@ -27,7 +27,7 @@ public class CommandFactory {
 	private static Map<String, Class> myCommandToClassMap;
 	private static String myCommandSeparator = "\\s+";
 	private static IInformationGateway myInformationHub;
-	private static Class[] x = { BaseVariableContainer.class };
+	private static Class[] x = { BaseUserDefinedContainer.class };
 
 	public static BaseCommand createCommand(String input, boolean isExpression)
 			throws BackendException {
@@ -43,8 +43,8 @@ public class CommandFactory {
 		Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
 		BaseCommand command = null;
 		if (commandClass == null) {
-			BaseVariableContainer variableContainer = (BaseVariableContainer) myInformationHub
-					.getContainer(BaseVariableContainer.class);
+			BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) myInformationHub
+					.getContainer(BaseUserDefinedContainer.class);
 			if (variableContainer.containsCustomCommand(firstCommand)) {
 				command = variableContainer.getCreatedCommand(firstCommand,
 						subInput, isExpression);

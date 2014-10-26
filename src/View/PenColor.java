@@ -6,8 +6,10 @@ import GUIFunctions.ColorFunction;
 import GUIFunctions.GridFunction;
 
 public class PenColor extends ColorFunction{
-	public PenColor(GridTracker grid){
+	ColorSelection myColors;
+	public PenColor(GridTracker grid, ColorSelection color){
 		allGrids=grid;
+		myColors=color;
 	}
 	@Override
 	public void doAction() {
@@ -16,14 +18,14 @@ public class PenColor extends ColorFunction{
 
 	@Override
 	public void doAction(List<? extends Number> newVal) {
-		// TODO Auto-generated method stub
+		for (Pen p: allGrids.getActiveGrid().getActivePens()){
+			p.setColor(myColors.getAvailableColors().get(newVal.get(0).intValue()));
+		}
 		
 	}
 	@Override
 	public void doAction(String myColor) {
-		System.out.println("HEY");
 		for (Pen p: allGrids.getActiveGrid().getActivePens()){
-			System.out.println(p);
 			p.setColor(myColor);
 		}
 	}

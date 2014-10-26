@@ -1,6 +1,7 @@
 package GUIFunctions;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -16,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn.CellDataFeatures;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -23,51 +25,71 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class VariableTable extends TableView {
-	ArrayList<Variable> myVariables;
+	private ArrayList<UserInput> myVariables;
 	public VariableTable(){
-		myVariables=new ArrayList();
+		myVariables=new ArrayList<UserInput>();
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
 		newStage.setTitle("Variable Table");
-		newStage.setWidth(300);
+		newStage.setWidth(500);
 		newStage.setHeight(500);
 		Label label = new Label("My Variable Table");
 		label.setFont(new Font("Arial", 20));
+		
+		setEditable(false);
+		TableColumn myVariableColumn=new TableColumn("Variable");
+		TableColumn myVariableName=new TableColumn("Name");
+		TableColumn myValue=new TableColumn("Value");
+		
+		myValue.setCellValueFactory(new Callback<CellDataFeatures<UserInput, Double>, ObservableValue<Double>>() {
+			@Override
+			public ObservableValue<Double> call(
+					CellDataFeatures<UserInput, Double> myData) {
+				if (myData.getValue() instanceof Variable){
+					Variable myVariable=(Variable)myData.getValue();
+					return new ReadOnlyObjectWrapper<Double> (myVariable.getValue());
+				}
+				return null;
+			}
+		});
+		
+
+		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(
+					CellDataFeatures<UserInput, String> myData) {
+				if (myData.getValue() instanceof Variable){
+					return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
+				}
+				return null;
+			}
+		});
+
+		myVariableColumn.getColumns().addAll(myVariableName, myValue);
+		
+		TableColumn myUserFunctions=new TableColumn("User Functions");
+		
+		myUserFunctions.setPrefWidth(200);
+		
+		myUserFunctions.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(
+					CellDataFeatures<UserInput, String> myData) {
+				if (myData.getValue() instanceof Function){
+					return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
+				}
+				return null;
+			}
+		});
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(build());
 		time.play();
-		setEditable(true);
-		TableColumn myVariableColumn=new TableColumn("Variable");
-		TableColumn myVariableName=new TableColumn("Name");
-		TableColumn myValue=new TableColumn("Value");
-		myValue.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<Double>>() {
-			@Override
-			public ObservableValue<Double> call(
-					CellDataFeatures<Variable, Double> myData) {
-				return new ReadOnlyObjectWrapper<Double> (myData.getValue().getValue());
-			}
-		});
 		
-		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(
-					CellDataFeatures<Variable, Double> myData) {
-				return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
-			}
-		});
-		myVariableColumn.getColumns().addAll(myVariableName, myValue);
-		
-		TableColumn myUserFunctions=new TableColumn("User Functions");
-		//myUserFunctions.ad
-		VBox vbox = new VBox();
-		vbox.setSpacing(5);
-		vbox.getChildren().addAll(label, this);
-		((Group) scene.getRoot()).getChildren().addAll(vbox);
+		getColumns().addAll(myVariableColumn, myUserFunctions);
+		((Group) scene.getRoot()).getChildren().addAll(this);
 		newStage.setScene(scene);
 		newStage.show();
-
-		getColumns().addAll(myVariableName, myValue);
 		newStage.show();
 	}
 
@@ -82,19 +104,22 @@ public class VariableTable extends TableView {
 		return myFrame;
 	}
 
-	public void addVariables(ArrayList<Variable> myVars){
-		myVariables=myVars;
+	public void addInput(List<UserInput> myFunctions){
+		for (UserInput input: myFunctions){
+			if (!myVariables.contains(input)){
+				myVariables.add(input);
+			}
+		}
 	}
 
 	public void update(){
-		this.getItems().clear();
-		ObservableList<Variable> myObservableList=FXCollections.observableArrayList();
-		this.getItems().clear();
-		for (Variable myVar: myVariables){
+		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
+		getItems().clear();
+		for (UserInput myVar: myVariables){
 			myObservableList=FXCollections.observableArrayList();
 			myObservableList.add(myVar);
 		}
-		this.setItems((myObservableList));
+		setItems((myObservableList));
 	}
 
 }

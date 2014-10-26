@@ -35,9 +35,8 @@ public class ColorSelection extends Pane{
 
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
-		
 		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids, this)));
-		myLabels.add(new ColorLabel(100, 0, 80, 20, "Pen Color", new PenColor(myGrids)));
+		myLabels.add(new ColorLabel(100, 0, 80, 20, "Pen Color", new PenColor(myGrids, this)));
 		
 		this.relocate(0,250);
 		try {
@@ -68,7 +67,7 @@ public class ColorSelection extends Pane{
 		colorBox=new HBox();
 		for(String color: myColors){
 			Circle myCircle=new Circle();
-			myCircle.setFill(Paint.valueOf(color));
+			myCircle.setStyle("-fx-fill: #"+color);
 			myCircle.setOnMouseClicked(event->doColorEvent(color));
 			myCircle.setRadius(10);
 			colorBox.getChildren().add(myCircle);	

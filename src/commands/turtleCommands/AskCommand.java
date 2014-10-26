@@ -24,7 +24,7 @@ public class AskCommand extends MultipleTurtleCommand {
 		BaseCommand internalCommand = getInternalCommand();
 		addFutureActiveTurtleTurtles();
 		double result = internalCommand.execute();
-		turtle.setActiveTurtles(myCurrentActiveTurtleIDs);
+		turtle.hardSetActiveTurtles(myCurrentActiveTurtleIDs);
 
 		return result;
 	}

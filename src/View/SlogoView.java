@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
@@ -24,6 +25,7 @@ import GUIFunctions.BackgroundColor;
 import GUIFunctions.BottomFunctions;
 import GUIFunctions.ClearFunction;
 import GUIFunctions.ClearStamps;
+import GUIFunctions.Function;
 import GUIFunctions.GUIFunction;
 import GUIFunctions.HelpPage;
 import GUIFunctions.LanguageMenu;
@@ -39,6 +41,7 @@ import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
 import GUIFunctions.TurtleVariablesTable;
+import GUIFunctions.UserInput;
 import GUIFunctions.Variable;
 import GUIFunctions.VariableTable;
 import communicator.MainController;
@@ -81,6 +84,7 @@ public class SlogoView {
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
 	private MenuTemplate userCommands;
+	private Map<String, String> userCommandMap = new HashMap<>();
 	private ResourceBundle myResources;
 	private Stage myStage;
 	private VariableTable myVariableTable;
@@ -161,7 +165,7 @@ public class SlogoView {
 	 */
 	private void sendCommandAndMakeButton(String command){
 		sendCommand(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command, 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
@@ -184,7 +188,7 @@ public class SlogoView {
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
 		MenuTemplate help = new MenuTemplate("Help");
-		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
+		help.addMenuItem("Help Page", event->myUserFunctions.get("helpPage").doAction());
 
 		userCommands = new MenuTemplate("User Commands");
 
@@ -212,13 +216,21 @@ public class SlogoView {
 	}
 	
 	public void addVariables(Map<String, Double> myVariables){
-		ArrayList<Variable> myVars=new ArrayList<Variable>();
+		ArrayList<UserInput> myVars=new ArrayList<UserInput>();
 		for (String name: myVariables.keySet()){
 			Variable myNewVariable=new Variable(name, myVariables.get(name));
 			myVars.add(myNewVariable);
 		}
+		myVariableTable.addInput(myVars);
 	}
-	
+	public void addUserFunctions(List<String> myFunctions){
+		ArrayList<UserInput> myInputs=new ArrayList<UserInput>();
+		for (String myName: myFunctions){
+			UserInput myUserInput=new Function(myName);
+			myInputs.add(myUserInput);
+		}
+		myVariableTable.addInput(myInputs);
+	}
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
 		myAdd.addMenuItem("Add Turtle", event->addTurtle());
@@ -340,16 +352,17 @@ public class SlogoView {
 	}
 
 	public void makeUserCommand(String command){
-		commandLine.clear();
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
-		userCommands.addMenuItem(name, event->executeUserCommand(command));
+		userCommandMap.put(name, commandLine.getText());
+		commandLine.clear();
+		userCommands.addMenuItem(name, event->executeUserCommand(userCommandMap.get(name)));
 	}
 
 	public void executeUserCommand(String command){
-		myController.receiveCommand(commandLine.getText());
+		myController.receiveCommand(command);
 		commandLine.setText(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
-				0, 0, (event -> sendCommandAndMakeButton(commandLine.getText())), 180,10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command,
+				0, 0, (event -> sendCommandAndMakeButton(command)), 180,10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
@@ -388,9 +401,7 @@ public class SlogoView {
 		myListOfBars.add(myPenBar);
 		return myListOfBars;
 	}
-	public void addVariable(){
 
-	}
 	private void makeListOfFunctions(){
 		myUserFunctions.put("penDown", new SetPenDown(myGrids));
 		myUserFunctions.put("undo", new Undo(myGrids));
@@ -406,7 +417,7 @@ public class SlogoView {
 		myUserFunctions.put("stampTurtle", new Stamp(myGrids));
 		myUserFunctions.put("helpPage", new HelpPage());
 		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids, colorSelection));
-		myUserFunctions.put("penColor", new PenColor(myGrids));
+		myUserFunctions.put("penColor", new PenColor(myGrids,colorSelection));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPalette(colorSelection));
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
