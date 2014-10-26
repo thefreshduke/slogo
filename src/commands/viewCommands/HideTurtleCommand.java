@@ -14,6 +14,7 @@ public class HideTurtleCommand extends TurtleCommand {
     @Override
     protected double onExecute () throws BackendException {
         BaseTurtleContainer turtle = getTurtleContainer();
+        turtle.setVisibility(false);
         return 0;
     }
 

@@ -21,12 +21,13 @@ public class SetPalette extends GridFunction{
     public void doAction(List<? extends Number> newVal) {
         int myIndex=0;
         String myColor="";
+        List<Integer> colorParams = new ArrayList<Integer>();
         Iterator<Number> it=(Iterator<Number>) newVal.iterator();
         if (newVal.size()!=0){
-            myIndex=(int)it.next();
+            myIndex=it.next().intValue();
         }
         while (it.hasNext()){
-            myColor=it.next()+"";
+            colorParams.add(it.next().intValue());
         }
         myColors.setColor(myIndex, myColor);
 
