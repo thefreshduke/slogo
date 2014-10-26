@@ -25,7 +25,7 @@ public class Pen extends Line{
 
 	public Pen(){
 		myLines=new Stack<Line>();
-		myColor="FFFFFF";
+		myColor="000000";
 		myStyle=new SolidBorderStyle();
 		penDown=true;
 		myThickness=1;
@@ -61,26 +61,24 @@ public class Pen extends Line{
 	public Line drawLine(double xPos, double yPos) {
 		if (myLines.size()==0){
 			Line myLine=new Line(startX, startY, xPos, yPos);
-			myLine.setStroke(Paint.valueOf(myColor));
-			myLine.setStrokeWidth(myThickness);
-			myLine.getStrokeDashArray().clear();
-			myLine.getStrokeDashArray().addAll(myStyle.getStyle(myThickness));
-			myLine.setVisible(penDown);
-			myLines.push(myLine);
+			setLineStyle(myLine);
 			return myLines.peek();
 		}
 		else{
 			Line myLine=new Line(myLines.peek().getEndX(), myLines.peek().getEndY(), xPos, yPos);
-			myLine.setStyle("-fx-stroke: #"+myColor);
-			myLine.setStrokeWidth(myThickness);
-			myLine.getStrokeDashArray().clear();
-			myLine.getStrokeDashArray().addAll(myStyle.getStyle(myThickness));
-			myLine.setVisible(penDown);
-			myLines.push(myLine);
+			setLineStyle(myLine);
 			return myLines.peek();
 		}
 	}
-
+	private void setLineStyle(Line myLine){
+		myLine.setStyle("-fx-stroke: #"+myColor);
+		myLine.setStrokeWidth(myThickness);
+		myLine.getStrokeDashArray().clear();
+		myLine.getStrokeDashArray().addAll(myStyle.getStyle(myThickness));
+		myLine.setVisible(penDown);
+		myLines.push(myLine);
+	}
+	
 	public void setPenDown(boolean down){
 		penDown=down;
 	}
