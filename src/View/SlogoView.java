@@ -158,12 +158,14 @@ public class SlogoView {
 		JOptionPane.showMessageDialog(null, message);
 	}
 	/**
-	 *Passes the commands from the textbox on the GUI to the controller for parsing.  
+	 *Passes the commands from the textbox on the GUI to the controller for parsing. Also 
+	 *creates a interactive button of the command to be shown in the command history.  
 	 * @param s		String representing the command to send that was inputed by the user
 	 *  
 	 */
 	private void sendCommandAndMakeButton(String command){
-		sendCommand(command);
+		myController.receiveCommand(command);
+
 		ButtonTemplate mostRecent = new ButtonTemplate(command, 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
@@ -171,9 +173,6 @@ public class SlogoView {
 	}
 
 
-	public void sendCommand(String myCommand){
-		myController.receiveCommand(myCommand);
-	}
 	public void enable(){
 		myStage.getScene().getRoot().setDisable(false);
 	}
@@ -388,7 +387,10 @@ public class SlogoView {
 		}
 	}
 
-
+/**
+ * allows the user to save a set of instructions as a menu item for easy access later
+ * @param command
+ */
 
 	private void makeUserCommand(String command){
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
@@ -521,5 +523,4 @@ public class SlogoView {
 			JOptionPane.showMessageDialog(null, "The file was null");
 		}
 	}
-	//private void 
 }

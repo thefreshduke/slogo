@@ -98,7 +98,9 @@ public class SingleGrid extends Grid {
 		}	
 	}
 
-
+/**
+ * Similar to update except it is activated by directional key presses
+ */
 	public void keyUpdate(){
 		for (Turtle active: getActiveTurtles()){
 			keepTurtleInBounds(active);
@@ -108,6 +110,9 @@ public class SingleGrid extends Grid {
 		}	
 	}
 	
+	/**
+	 * Allows the turtle to "Wrap" around the borders of the drawing instead of disappearing
+	 */
 	public void keepTurtleInBounds(Turtle t){
 		boolean penStatus = t.getPen().getPenDown();
 		t.getPen().setPenDown(false);
