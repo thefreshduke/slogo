@@ -202,7 +202,6 @@ public class MainController extends BaseController {
 	}
 
 	public Turtle getFirstTurtle() {
-		// TODO Auto-generated method stub
 		return myModel.findTurtle(0);
 	}
 
