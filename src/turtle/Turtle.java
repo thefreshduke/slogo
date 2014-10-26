@@ -239,5 +239,10 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		setYPos(newYPos);
 		return distance;
 	}
+
+	@Override
+	public void setVisibility(boolean isVisible) {
+		this.setVisible(isVisible);
+	}
 	
 }
