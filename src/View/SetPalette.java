@@ -23,10 +23,10 @@ public class SetPalette extends GridFunction{
         String myColor="";
         Iterator<Number> it=(Iterator<Number>) newVal.iterator();
         if (newVal.size()!=0){
-            myIndex=(int)it.next();
+            myIndex=it.next().intValue();
         }
         while (it.hasNext()){
-            myColor=it.next()+"";
+            myColor+=it.next()+"";
         }
         myColors.setColor(myIndex, myColor);
 

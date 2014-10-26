@@ -78,6 +78,7 @@ public class Pen extends Line{
 		myLine.setVisible(penDown);
 		myLines.push(myLine);
 	}
+	
 	public void setPenDown(boolean down){
 		penDown=down;
 	}
