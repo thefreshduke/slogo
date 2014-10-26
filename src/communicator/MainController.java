@@ -24,7 +24,7 @@ import commandParser.LanguageFileParser;
 import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
 import commands.information.SingleViewInformationGateway;
@@ -156,8 +156,8 @@ public class MainController extends BaseController {
 	}
 
 	private void sendDefinedVariables() {
-		BaseVariableContainer variableContainer = (BaseVariableContainer) myInformationGateway
-				.getContainer(BaseVariableContainer.class);
+		BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) myInformationGateway
+				.getContainer(BaseUserDefinedContainer.class);
 		try {
 			Map<String, Double> variableMap = variableContainer
 					.getAllVariablesAndValues();
@@ -234,11 +234,11 @@ public class MainController extends BaseController {
 			throws BackendException {
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
-		BaseVariableContainer returnContainer = null;
+		BaseUserDefinedContainer returnContainer = null;
 		try {
 			fis = new FileInputStream(file);
 			in = new ObjectInputStream(fis);
-			returnContainer = (BaseVariableContainer) in.readObject();
+			returnContainer = (BaseUserDefinedContainer) in.readObject();
 			in.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex,
@@ -256,7 +256,7 @@ public class MainController extends BaseController {
 		try {
 			fos = new FileOutputStream(filename);
 			out = new ObjectOutputStream(fos);
-			out.writeObject((BaseVariableContainer) container);
+			out.writeObject((BaseUserDefinedContainer) container);
 			out.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex, "Error writing to file"));
@@ -266,7 +266,7 @@ public class MainController extends BaseController {
 	public void savePreferences(String filename) throws BackendException {
 		savePreferences(
 				(IInformationContainer) myInformationGateway
-						.getContainer(BaseVariableContainer.class),
+						.getContainer(BaseUserDefinedContainer.class),
 				filename);
 
 	}

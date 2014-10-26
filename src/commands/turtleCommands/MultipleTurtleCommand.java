@@ -83,7 +83,7 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 				turtle.addTurtle(newTurtle, false);
 			}
 		}
-		turtle.setActiveTurtles(getFutureActiveTurtleIDs());
+		turtle.hardSetActiveTurtles(getFutureActiveTurtleIDs());
 	}
 	
 	protected void storeFutureActiveIDs(String innerInput)

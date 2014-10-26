@@ -5,16 +5,16 @@ import java.util.List;
 import javafx.scene.image.Image;
 import turtle.Turtle;
 
-import commands.information.BaseVariableContainer;
-import commands.information.MapBasedVariableContainer;
+import commands.information.BaseUserDefinedContainer;
+import commands.information.MapBasedUserDefinedContainer;
 
 public class SlogoModel {
     private static final String INITIAL_TURTLE_SPRITE = "bowser.png";
     private Turtle myTurtle;
-    private BaseVariableContainer myVariableContainer;
+    private BaseUserDefinedContainer myVariableContainer;
     private TurtleFactory myTurtleFactory;
     public void initializeModel () {
-        myVariableContainer = new MapBasedVariableContainer();
+        myVariableContainer = new MapBasedUserDefinedContainer();
         initializeTurtle(new Image(INITIAL_TURTLE_SPRITE));
     }	
 
