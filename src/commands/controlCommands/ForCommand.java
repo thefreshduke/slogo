@@ -5,7 +5,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -22,7 +22,7 @@ public class ForCommand extends ControlCommand {
     private BaseCommand myIncrementCommand;
     private BaseCommand myInternalCommand;
 
-    private BaseVariableContainer myVariableContainer;
+    private BaseUserDefinedContainer myVariableContainer;
     private boolean myVarExistsPreviously;
 
     public ForCommand (String userInput, boolean isExpression) throws BackendException {
@@ -31,7 +31,7 @@ public class ForCommand extends ControlCommand {
 
     @Override
     protected double onExecute () throws BackendException {
-        BaseVariableContainer variableContainer = getVariableContainer();
+        BaseUserDefinedContainer variableContainer = getVariableContainer();
         double returnValue = 0;
         int startValue = (int)myStartCommand.execute();
         int stopValue = (int)myEndCommand.execute();

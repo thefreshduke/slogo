@@ -44,15 +44,15 @@ public class AskWithCommand extends TurtleCommand{
 		for(int turtleID : allTurtles){
 			ArrayList<Integer> idList = new ArrayList<>();
 			idList.add(turtleID);
-			turtleContainer.setActiveTurtles(idList);
+			turtleContainer.hardSetActiveTurtles(idList);
 			double conditionResult = myCondition.execute();
 			if(conditionResult != 0){
 				conditionMetTurtles.add(turtleID);
 			}
 		}
-		turtleContainer.setActiveTurtles(conditionMetTurtles);
+		turtleContainer.hardSetActiveTurtles(conditionMetTurtles);
 		double result = myInternalCommand.execute();
-		turtleContainer.setActiveTurtles(oldActiveTurtles);
+		turtleContainer.hardSetActiveTurtles(oldActiveTurtles);
 		return result;
 	}
 }

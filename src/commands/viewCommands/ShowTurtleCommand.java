@@ -1,14 +1,12 @@
 package commands.viewCommands;
 
 import backendExceptions.BackendException;
-
 import commands.ViewCommand;
 import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.turtleCommands.TurtleCommand;
 
-public class ShowTurtleCommand extends ViewCommand {
-
-    // TODO: GUI Function name to show the turtle
-    private static final String SHOW_TURTLE = "";
+public class ShowTurtleCommand extends TurtleCommand {
 
     public ShowTurtleCommand (String command, boolean isExpression) throws BackendException {
         super(command, isExpression);
@@ -16,9 +14,9 @@ public class ShowTurtleCommand extends ViewCommand {
 
     @Override
     protected double onExecute () throws BackendException {
-        BaseGridContainer grid = getGridContainer();
-        grid.updateDisplayOptions(SHOW_TURTLE);
-        return 1;
+    	  BaseTurtleContainer turtle = getTurtleContainer();
+          turtle.setVisibility(true);
+          return 1;
     }
 
     @Override

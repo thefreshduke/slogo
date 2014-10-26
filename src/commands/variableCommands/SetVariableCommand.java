@@ -4,7 +4,7 @@ import backendExceptions.BackendException;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 
 public class SetVariableCommand extends VariableCommand {
 
@@ -13,13 +13,12 @@ public class SetVariableCommand extends VariableCommand {
 
     public SetVariableCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     protected double onExecute () throws BackendException {
         double expressionResult = myExpression.execute();
-        BaseVariableContainer container = getVariableContainer();
+        BaseUserDefinedContainer container = getVariableContainer();
         container.addVariable(myVariableName, expressionResult);
         return expressionResult;
     }

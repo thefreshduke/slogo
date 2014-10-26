@@ -25,6 +25,7 @@ import GUIFunctions.BackgroundColor;
 import GUIFunctions.BottomFunctions;
 import GUIFunctions.ClearFunction;
 import GUIFunctions.ClearStamps;
+import GUIFunctions.Function;
 import GUIFunctions.GUIFunction;
 import GUIFunctions.HelpPage;
 import GUIFunctions.LanguageMenu;
@@ -222,8 +223,13 @@ public class SlogoView {
 		}
 		myVariableTable.addInput(myVars);
 	}
-	public void addUserFunctions(List myFunctions){
-		myVariableTable.addInput(myFunctions);
+	public void addUserFunctions(List<String> myFunctions){
+		ArrayList<UserInput> myInputs=new ArrayList<UserInput>();
+		for (String myName: myFunctions){
+			UserInput myUserInput=new Function(myName);
+			myInputs.add(myUserInput);
+		}
+		myVariableTable.addInput(myInputs);
 	}
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
