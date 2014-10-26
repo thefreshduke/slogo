@@ -34,20 +34,20 @@ public class AskCommand extends MultipleTurtleCommand {
 		}
 		Grid activeGrid = allGrids.get(0);
 
-		int minID = findMin(getActiveTurtleIDs());
-		int maxID = findMax(getActiveTurtleIDs());
+		int minID = findMin(getFutureActiveTurtleIDs());
+		int maxID = findMax(getFutureActiveTurtleIDs());
 		
-		if (getActiveTurtleIDs().size() != 1) {
+		if (getFutureActiveTurtleIDs().size() != 1) {
 			
 		}
 
-		for (int i = minID; i < maxID; i++) {
+		for (int i = minID; i <= maxID; i++) {
 			if (!myAllTurtlesID.contains(i)) {
 				Turtle newTurtle = activeGrid.addTurtle();
 				turtle.addTurtle(newTurtle, false);
 			}
 		}
-		turtle.setActiveTurtles(getActiveTurtleIDs());
+		turtle.setActiveTurtles(getFutureActiveTurtleIDs());
 		double result = getInternalCommand().execute();
 		turtle.setActiveTurtles(myCurrentActiveTurtleIDs);
 

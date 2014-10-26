@@ -76,7 +76,7 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 		return number % EVEN_NUMBER_CHECKER == 0;
 	}
 
-	public List<Integer> getActiveTurtleIDs() {
+	public List<Integer> getFutureActiveTurtleIDs() {
 		return myTempActiveTurtleIDs;
 	}
 
