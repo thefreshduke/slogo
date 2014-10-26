@@ -1,13 +1,10 @@
 package GUIFunctions;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
-import turtle.Turtle;
-import View.Grid;
-import View.SingleGrid;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,9 +23,9 @@ import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class VariableTable extends TableView {
-	HashSet<Variable> myVariables;
+	ArrayList<Variable> myVariables;
 	public VariableTable(){
-		myVariables=new HashSet();
+		myVariables=new ArrayList();
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
 		newStage.setTitle("Variable Table");
@@ -41,26 +38,37 @@ public class VariableTable extends TableView {
 		time.getKeyFrames().add(build());
 		time.play();
 		setEditable(true);
-		TableColumn myVariableName=new TableColumn("Variable Name");
-		TableColumn myValue=new TableColumn("My Value");
-		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<Double>>() {
-				@Override
-				public ObservableValue<Double> call(
-						CellDataFeatures<Variable, Double> myData) {
-					return 
-				}
-			});
-		}
-
+		TableColumn myVariableColumn=new TableColumn("Variable");
+		TableColumn myVariableName=new TableColumn("Name");
+		TableColumn myValue=new TableColumn("Value");
+		myValue.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<Double>>() {
+			@Override
+			public ObservableValue<Double> call(
+					CellDataFeatures<Variable, Double> myData) {
+				return new ReadOnlyObjectWrapper<Double> (myData.getValue().getValue());
+			}
+		});
+		
+		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<String>>() {
+			@Override
+			public ObservableValue<String> call(
+					CellDataFeatures<Variable, Double> myData) {
+				return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
+			}
+		});
+		myVariableColumn.getColumns().addAll(myVariableName, myValue);
+		
+		TableColumn myUserFunctions=new TableColumn("User Functions");
+		//myUserFunctions.ad
 		VBox vbox = new VBox();
 		vbox.setSpacing(5);
 		vbox.getChildren().addAll(label, this);
 		((Group) scene.getRoot()).getChildren().addAll(vbox);
 		newStage.setScene(scene);
 		newStage.show();
-		
-		getColumns().addAll(myColumns);
-		myStage.show();
+
+		getColumns().addAll(myVariableName, myValue);
+		newStage.show();
 	}
 
 	private KeyFrame build() {
@@ -74,18 +82,20 @@ public class VariableTable extends TableView {
 		return myFrame;
 	}
 
-	public void addVariable(String myName, Double myValue){
+	public void addVariables(ArrayList<Variable> myVars){
+		myVariables=myVars;
 	}
+
 	public void update(){
 		this.getItems().clear();
 		ObservableList<Variable> myObservableList=FXCollections.observableArrayList();
 		this.getItems().clear();
 		for (Variable myVar: myVariables){
 			myObservableList=FXCollections.observableArrayList();
-				myObservableList.add(myVar);
+			myObservableList.add(myVar);
 		}
-	this.setItems((myObservableList));
+		this.setItems((myObservableList));
 	}
-	
+
 }
 
