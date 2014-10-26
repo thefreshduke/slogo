@@ -16,7 +16,7 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  * 
  */
-public class CommandToClassTranslator {
+public class CommandToClassTranslator extends PropertiesFileReader{
 
     private static final String INVALID_PROPERTIES_FILE = "Language file is not a valid .properties file";
 	private static final String CLASS_NOT_FOUND = "Class Not Found";
@@ -44,24 +44,5 @@ public class CommandToClassTranslator {
 			throw new BackendException(e, CLASS_NOT_FOUND);
 		}
         return commandToClassTranslation;
-    }
-    
-    private ResourceBundle getBundle(File file) throws MalformedURLException {
-        File directory = file.getParentFile();
-        URL[] urls = {directory.toURI().toURL()};
-        ClassLoader loader = new URLClassLoader(urls);
-        String fileName = getFileNameWithoutExtension(file);
-        ResourceBundle rb = ResourceBundle.getBundle(fileName, Locale.getDefault(), loader);
-        return rb;
-    }
-
-    private String getFileNameWithoutExtension(File file) {
-        String fullFileName = file.getName();
-        int pos = fullFileName.lastIndexOf(".");
-        String fileNameWithoutExtension = "";
-        if (pos > 0) {
-            fileNameWithoutExtension = fullFileName.substring(0, pos);
-        }
-        return fileNameWithoutExtension;
     }
 }
