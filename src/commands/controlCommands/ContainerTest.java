@@ -31,14 +31,16 @@ public class ContainerTest {
         String translated = "";
         try {
             translated = processInput(testString);
-        } catch (BackendException ex) {
+        }
+        catch (BackendException ex) {
 
         }
         BaseCommand command = CommandFactory.createCommand(translated, false);
         Double result = null;
         try {
             result = new Double(command.execute());
-        } catch (BackendException ex) {
+        }
+        catch (BackendException ex) {
 
         }
         assertEquals(result, new Double(75.0));
@@ -56,7 +58,8 @@ public class ContainerTest {
             CommandFactory.setCommandToClassRelation(commandToClassTranslator
                     .translateCommandToClass(new File(
                             "src/resources/languages/EnglishToClassName.properties")));
-        } catch (BackendException ex) {
+        }
+        catch (BackendException ex) {
 
         }
         return myTranslator.translateUserInputIntoEnglish(input);
