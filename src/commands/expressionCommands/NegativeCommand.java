@@ -13,8 +13,8 @@ public class NegativeCommand extends OneExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double result = -executeCommand(getArgument());
+    public double onExecute () throws BackendException {
+        double result = -getArgument().execute();
         return result;
     }
 }

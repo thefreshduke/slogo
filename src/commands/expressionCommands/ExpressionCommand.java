@@ -14,7 +14,7 @@ import commands.information.IInformationContainer;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public abstract class ExpressionCommand extends LogicCommand {
+public abstract class ExpressionCommand extends BaseCommand {
 
     private static final String INSUFFICIENT_COMMANDS_ENTERED = "Insufficient commands entered";
     private BaseCommand[] myArgumentList;
@@ -22,13 +22,6 @@ public abstract class ExpressionCommand extends LogicCommand {
     public ExpressionCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
-
-    @Override
-    protected final double onExecute () throws BackendException {
-        return expressionExecute();
-    }
-
-    public abstract double expressionExecute () throws BackendException;
 
     @Override
     public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
@@ -67,5 +60,8 @@ public abstract class ExpressionCommand extends LogicCommand {
         return myArgumentList;
     }
 
+    @Override
+    protected void reset(){}
+    
     protected abstract int getArgumentCount ();
 }

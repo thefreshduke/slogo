@@ -13,9 +13,9 @@ public class OrCommand extends TwoExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double firstExpression = executeCommand(getFirstExpression());
-        double secondExpression = executeCommand(getSecondExpression());
+    public double onExecute () throws BackendException {
+        double firstExpression = getFirstExpression().execute();
+        double secondExpression = getSecondExpression().execute();
         double result = (firstExpression != 0 || secondExpression != 0) ? 1 : 0;
         return result;
     }

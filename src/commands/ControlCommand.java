@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import backendExceptions.BackendException;
-
 import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationContainer;
 
@@ -17,7 +16,8 @@ import commands.information.IInformationContainer;
  */
 public abstract class ControlCommand extends BaseCommand {
 
-    protected static String COMMAND_INDICATOR = "liststart";
+    private static final String INVALID_CONTAINERS_MESSAGE = "Invalid containers received";
+	protected static String COMMAND_INDICATOR = "liststart";
     protected static String COMMAND_END_INDICATOR = "listend";
     protected static String COMMAND_SEPARATOR = " ";
     protected static String VARIABLE_INDICATOR = "variable";
@@ -36,14 +36,14 @@ public abstract class ControlCommand extends BaseCommand {
 
     public void setRequiredInformation (Collection<IInformationContainer> containers) throws BackendException {
         if (containers.size() != 1) {
-            throw new BackendException(null, "Invalid containers received");
+            throw new BackendException(null, INVALID_CONTAINERS_MESSAGE);
         }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
         boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
                 .getClass());
         if (!extendsVariableContainer) {
-            // throw exception
+        	throw new BackendException(null, INVALID_CONTAINERS_MESSAGE);
         }
         BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) container;
         myVariableContainer = variableContainer;

@@ -13,9 +13,9 @@ public class ExponentCommand extends TwoExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double base = executeCommand(getFirstExpression());
-        double exponent = executeCommand(getSecondExpression());
+    public double onExecute () throws BackendException {
+        double base = getFirstExpression().execute();
+        double exponent = getSecondExpression().execute();
         return Math.pow(base, exponent);
     }
 }
