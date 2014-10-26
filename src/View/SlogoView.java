@@ -188,7 +188,7 @@ public class SlogoView {
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
 		MenuTemplate help = new MenuTemplate("Help");
-		help.addMenuItem("Help Page", event->myUserFunctions.get("helpPage").doAction());
+		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
 
 		userCommands = new MenuTemplate("User Commands");
 
@@ -456,7 +456,12 @@ public class SlogoView {
 	}
 	private void checkNullFile(File myFile){
 		if (myFile!=null){
-			myController.loadPreferences(myFile);
+			try {
+				myController.loadPreferences(myFile);
+			} catch (BackendException e) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null, "The file was null");
+			}
 		}
 		else{
 			JOptionPane.showMessageDialog(null, "The file was null");
