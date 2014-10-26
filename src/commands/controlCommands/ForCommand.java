@@ -31,19 +31,19 @@ public class ForCommand extends ControlCommand {
 
     @Override
     protected double onExecute () throws BackendException {
-        BaseUserDefinedContainer variableContainer = getVariableContainer();
+        myVariableContainer = getVariableContainer();
         double returnValue = 0;
         int startValue = (int)myStartCommand.execute();
         int stopValue = (int)myEndCommand.execute();
         int incrementValue = (int)myIncrementCommand.execute();
         myVarExistsPreviously = false;
         BaseCommand oldCommand = null;
-        if (variableContainer.containsVariable(myVariableName)) {
-            oldCommand = variableContainer.getValue(myVariableName);
+        if (myVariableContainer.containsVariable(myVariableName)) {
+            oldCommand = myVariableContainer.getValue(myVariableName);
             myVarExistsPreviously = true;
         }
         for (int i = startValue; i < stopValue; i += incrementValue) {
-            variableContainer.addVariable(myVariableName, i);
+            myVariableContainer.addVariable(myVariableName, i);
             returnValue = myInternalCommand.execute();
         }
         checkIfVariableExistsPreviously(oldCommand);
@@ -63,7 +63,7 @@ public class ForCommand extends ControlCommand {
     protected void parseArguments (String userInput) throws BackendException {
         String[] splitInput = splitByInnerListCommand(userInput);
         String innerInput = splitInput[0];
-        String[] variableNameContents = innerInput.split(VARIABLE_INDICATOR);
+        String[] variableNameContents = innerInput.split(VARIABLE_INDICATOR, 2);
         if (variableNameContents.length < 2) {
             throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
         }
