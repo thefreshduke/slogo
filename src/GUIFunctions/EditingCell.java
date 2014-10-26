@@ -60,7 +60,6 @@ public abstract class EditingCell<T, G> extends TableCell<T, G> {
 
 			@Override
 			public void handle(MouseEvent arg0) {
-				// TODO Auto-generated method stub
 				myTextField.setText(getText());
 				setGraphic(myTextField);
 
