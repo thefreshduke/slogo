@@ -1,17 +1,16 @@
 package commandParser;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-import commands.BaseCommand;
 import backendExceptions.BackendException;
-import backendExceptions.SlogoFileNotFoundException;
-import backendExceptions.SlogoIOException;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -19,45 +18,50 @@ import backendExceptions.SlogoIOException;
  */
 public class CommandToClassTranslator {
 
-    private static final String CLASS_NOT_FOUND = "Class Not Found";
-    private String myCommandToClassDelimeter = "=";
-    private static final int MY_NUM_SPLIT_PARAMS = 2;
+    private static final String INVALID_PROPERTIES_FILE = "Language file is not a valid .properties file";
+	private static final String CLASS_NOT_FOUND = "Class Not Found";
 
     public Map<String, Class> translateCommandToClass(File file)
             throws BackendException {
-        BufferedReader reader = null;
-        // Maps command name to corresponding package class name (for instance,
-        // if commands
-        // are in a different package.
         Map<String, Class> commandToClassTranslation = new HashMap<>();
+        ResourceBundle resourceBundle = null;
         try {
-            reader = new BufferedReader(new FileReader(file));
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String spaceRemovedLine = line.replaceAll("\\s+", "");
-                String[] splitLine = spaceRemovedLine.split(
-                        myCommandToClassDelimeter, MY_NUM_SPLIT_PARAMS);
-                if (splitLine.length == MY_NUM_SPLIT_PARAMS) {
-                    String englishCommandName = splitLine[0].toLowerCase();
-                    String className = splitLine[1];
-                    Class commandClass = Class.forName(className);
-                    if (BaseCommand.class.isAssignableFrom(commandClass)) {
-                        commandToClassTranslation.put(englishCommandName,
-                                commandClass);
-                    }
-                }
-            }
-            reader.close();
-        } catch (FileNotFoundException e1) {
-            throw new SlogoFileNotFoundException(e1, file.getName());
-        } catch (IOException e2) {
-            throw new SlogoIOException(e2);
-        } catch (NullPointerException e3) {
-            throw new NullPointerException();
-        } catch (ClassNotFoundException e) {
-            throw new BackendException(e, CLASS_NOT_FOUND);
+            resourceBundle = getBundle(file);
         }
-
+        catch (MalformedURLException e) {
+            throw new BackendException(e, INVALID_PROPERTIES_FILE);
+        }
+        Enumeration<String> values = resourceBundle.getKeys();
+        try{
+        	while (values.hasMoreElements()) {
+            	String key = values.nextElement().trim();
+            	String value = resourceBundle.getString(key).trim();
+            	Class commandClass = Class.forName(value);
+            	commandToClassTranslation.put(key.toLowerCase(),  commandClass);
+            }
+        }
+        catch (ClassNotFoundException e) {
+			throw new BackendException(e, CLASS_NOT_FOUND);
+		}
         return commandToClassTranslation;
+    }
+    
+    private ResourceBundle getBundle(File file) throws MalformedURLException {
+        File directory = file.getParentFile();
+        URL[] urls = {directory.toURI().toURL()};
+        ClassLoader loader = new URLClassLoader(urls);
+        String fileName = getFileNameWithoutExtension(file);
+        ResourceBundle rb = ResourceBundle.getBundle(fileName, Locale.getDefault(), loader);
+        return rb;
+    }
+
+    private String getFileNameWithoutExtension(File file) {
+        String fullFileName = file.getName();
+        int pos = fullFileName.lastIndexOf(".");
+        String fileNameWithoutExtension = "";
+        if (pos > 0) {
+            fileNameWithoutExtension = fullFileName.substring(0, pos);
+        }
+        return fileNameWithoutExtension;
     }
 }
