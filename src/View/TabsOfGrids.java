@@ -4,13 +4,9 @@ import turtle.Turtle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.stage.Stage;
 
 public class TabsOfGrids extends TabPane{
 	private EventHandler myEvent;
@@ -44,15 +40,11 @@ public class TabsOfGrids extends TabPane{
 			@Override
 			public void handle(KeyEvent arg0) {
 				arg0.consume();
-				
 			}
-			
 		});
-	
 	}
 	public void setUpKeyBoardHandler(Tab myTab){
 		SingleGrid myGrid=(SingleGrid) myTab.getContent();
-		
 		myEvent=new EventHandler<KeyEvent>(){
 			@Override
 			public void handle(KeyEvent e) {
@@ -60,14 +52,10 @@ public class TabsOfGrids extends TabPane{
 					t.move(e.getCode());
 				}
 				myGrid.keyUpdate();
-				
 			}
-			
 		};
 		addEventHandler(KeyEvent.KEY_PRESSED, myEvent);
 	}
-
-	
 	public void setGridTabsFocused(Tab myTab){
 		SingleGrid myGrid=(SingleGrid) myTab.getContent();
 		myGrid.focusedProperty().addListener(new ChangeListener <Boolean>(){
@@ -79,8 +67,6 @@ public class TabsOfGrids extends TabPane{
 				else{
 					myGrid.removeEventHandler(KeyEvent.KEY_PRESSED, myEvent);
 				}
-		}});
-		
+		}});	
 	}
-	
 }

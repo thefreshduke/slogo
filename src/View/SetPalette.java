@@ -7,7 +7,7 @@ import java.util.List;
 import GUIFunctions.GridFunction;
 
 public class SetPalette extends GridFunction{
-	ColorSelection myColors;
+	private ColorSelection myColors;
 	public SetPalette(ColorSelection colors){
 		myColors=colors;
 	}
@@ -17,7 +17,6 @@ public class SetPalette extends GridFunction{
 	public void doAction() {
 		// TODO Auto-generated method stub
 	}
-
 	@Override
 	public void doAction(List<? extends Number> newVal) {
 		Iterator<Number> myIterator=(Iterator<Number>) newVal.iterator();
@@ -32,7 +31,5 @@ public class SetPalette extends GridFunction{
 			}
 			myColors.setColor(index, myColor);
 		}
-		
 	}
-
 }

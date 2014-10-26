@@ -40,7 +40,6 @@ public class PenScrollingBar extends ScrollingBar{
 		};
 		return myListener;
 	}
-	
 	private void setFocus(){
 		myBar.focusedProperty().addListener(new ChangeListener<Boolean> (){
 			@Override
@@ -53,8 +52,6 @@ public class PenScrollingBar extends ScrollingBar{
 					myBar.valueProperty().removeListener(addEvent());
 				}
 			}
-	
-			
 		});
 	}
 

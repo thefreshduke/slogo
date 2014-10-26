@@ -2,8 +2,7 @@ package GUIFunctions;
 
 import java.io.File;
 
-import communicator.MainController;
 
-public abstract class LanguageMenu extends ControllerFunctions{
+public abstract class LanguageMenu implements GUIFunction{
 	public abstract File doAction(String s);
 }

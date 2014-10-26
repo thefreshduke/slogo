@@ -18,16 +18,11 @@ public class ButtonTemplate extends Button implements UserObjects{
 	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction){
 		this(s,x,y,myFunction,75,55);
 	}
-<<<<<<< HEAD
-	public ButtonTemplate(String s, double x, double y, EventHandler<ActionEvent> myEvent, int width, int height){
-=======
-	
 	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction, int width, int height){
 		this(s,x,y,event->myFunction.doAction(),width,height);
 	}
 	
 	public ButtonTemplate(String s, double x, double y, EventHandler myEvent, int width, int height){
->>>>>>> dab34556184e20fb3460081de12c6446a24b91a5
 		this.relocate(x, y);
 		this.setText(s);
 		this.addEvent(myEvent);

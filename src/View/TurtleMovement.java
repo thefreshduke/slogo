@@ -1,9 +1,7 @@
 package View;
 
 
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import turtle.Turtle;
 

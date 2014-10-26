@@ -30,6 +30,7 @@ import GUIFunctions.Function;
 import GUIFunctions.GUIFunction;
 import GUIFunctions.HelpPage;
 import GUIFunctions.LanguageMenu;
+import GUIFunctions.PenColor;
 import GUIFunctions.PenStyle;
 import GUIFunctions.PenThickness;
 import GUIFunctions.PersonalizeMenu;
@@ -485,7 +486,6 @@ public class SlogoView {
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
 		myUserFunctions.put("clearStamp", new ClearStamps(myGrids));
 		addLanguages();
-
 	}
 	private void addLanguages(){
 		try {
