@@ -105,19 +105,19 @@ public class VariableTable extends TableView {
 		return myFrame;
 	}
 
-	public void addInput(List<UserInput> myFunctions){
-		for (UserInput input: myFunctions){
-			if (!myVariables.contains(input)){
-				myVariables.add(input);
-			}
-		}
+	public void addVariables(List<UserInput> myFunctions){
+		myVariables.clear();
+		myVariables=(ArrayList<UserInput>) myFunctions;
+		
+	}
+	public void addInputs(List<UserInput> myFunctions){
+		
 	}
 
 	public void update(){
 		getItems().clear();
 		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
 		for (UserInput myVar: myVariables){
-			myObservableList=FXCollections.observableArrayList();
 			myObservableList.add(myVar);
 		}
 		setItems((myObservableList));
