@@ -27,7 +27,7 @@ import javafx.util.Duration;
 public class VariableTable extends TableView {
 	private ArrayList<UserInput> myVariables;
 	public VariableTable(){
-		myVariables=new ArrayList();
+		myVariables=new ArrayList<UserInput>();
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
 		newStage.setTitle("Variable Table");
@@ -35,14 +35,12 @@ public class VariableTable extends TableView {
 		newStage.setHeight(500);
 		Label label = new Label("My Variable Table");
 		label.setFont(new Font("Arial", 20));
-		Timeline time=new Timeline();
-		time.setCycleCount(Timeline.INDEFINITE);
-		time.getKeyFrames().add(build());
-		time.play();
-		setEditable(true);
+		
+		setEditable(false);
 		TableColumn myVariableColumn=new TableColumn("Variable");
 		TableColumn myVariableName=new TableColumn("Name");
 		TableColumn myValue=new TableColumn("Value");
+		
 		myValue.setCellValueFactory(new Callback<CellDataFeatures<UserInput, Double>, ObservableValue<Double>>() {
 			@Override
 			public ObservableValue<Double> call(
@@ -54,6 +52,7 @@ public class VariableTable extends TableView {
 				return null;
 			}
 		});
+		
 
 		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
 			@Override
@@ -67,22 +66,30 @@ public class VariableTable extends TableView {
 		});
 
 		myVariableColumn.getColumns().addAll(myVariableName, myValue);
+		
 		TableColumn myUserFunctions=new TableColumn("User Functions");
+		
 		myUserFunctions.setPrefWidth(200);
-		myUserFunctions.setCellValueFactory(new Callback<CellDataFeatures<UserInput, Double>, ObservableValue<String>>() {
+		
+		myUserFunctions.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(
-					CellDataFeatures<UserInput, Double> myData) {
+					CellDataFeatures<UserInput, String> myData) {
 				if (myData.getValue() instanceof Function){
 					return new ReadOnlyObjectWrapper<String> (myData.getValue().getName());
 				}
 				return null;
 			}
 		});
+		Timeline time=new Timeline();
+		time.setCycleCount(Timeline.INDEFINITE);
+		time.getKeyFrames().add(build());
+		time.play();
+		
+		getColumns().addAll(myVariableColumn, myUserFunctions);
 		((Group) scene.getRoot()).getChildren().addAll(this);
 		newStage.setScene(scene);
 		newStage.show();
-		getColumns().addAll(myVariableColumn, myUserFunctions);
 		newStage.show();
 	}
 
@@ -106,7 +113,6 @@ public class VariableTable extends TableView {
 	}
 
 	public void update(){
-		getItems().clear();
 		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
 		getItems().clear();
 		for (UserInput myVar: myVariables){

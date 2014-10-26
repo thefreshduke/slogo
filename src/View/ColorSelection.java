@@ -67,7 +67,7 @@ public class ColorSelection extends Pane{
 		colorBox=new HBox();
 		for(String color: myColors){
 			Circle myCircle=new Circle();
-			myCircle.setFill(Paint.valueOf(color));
+			myCircle.setStyle("-fx-fill: #"+color);
 			myCircle.setOnMouseClicked(event->doColorEvent(color));
 			myCircle.setRadius(10);
 			colorBox.getChildren().add(myCircle);	
