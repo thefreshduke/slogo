@@ -200,8 +200,7 @@ public class SlogoView {
 	
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
-		Add newAddFunction=(Add) myUserFunctions.get("addTurtle");
-		myAdd.addMenuItem("Add Turtle", event->myGrids.getActiveGrid().addTurtle());
+		myAdd.addMenuItem("Add Turtle", event->addTurtle());
 	}
 
 	private void addTurtle(){
