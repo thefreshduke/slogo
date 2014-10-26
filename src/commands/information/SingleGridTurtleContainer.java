@@ -17,42 +17,29 @@ import turtle.Turtle;
 public class SingleGridTurtleContainer extends BaseTurtleContainer {
 
 	private Collection<Turtle> myTurtles;
-	private Collection<Turtle> myActiveTurtles;
 
 	public SingleGridTurtleContainer() {
 		myTurtles = new LinkedHashSet<>();
-		myActiveTurtles = new LinkedHashSet<>();
 	}
 
 	public SingleGridTurtleContainer(Turtle turtle) {
 		this();
 		myTurtles.add(turtle);
-		myActiveTurtles.add(turtle);
 	}
 
 	@Override
 	public void removeTurtle(int turtleID) {
-		Turtle turtleToRemove = null;
 		for (Turtle turtle : myTurtles) {
 			if (turtle.getID() == turtleID) {
-				turtleToRemove = turtle;
+				myTurtles.remove(turtle);
 			}
-		}
-		if (turtleToRemove != null) {
-			myTurtles.remove(turtleToRemove);
-			myActiveTurtles.remove(turtleToRemove);
 		}
 	}
 
 	@Override
 	public void addTurtle(Turtle turtle, boolean isActive) {
 		myTurtles.add(turtle);
-		if (isActive) {
-			myActiveTurtles.add(turtle);
-			turtle.setActive();
-		} else {
-			turtle.setInactive();
-		}
+		turtle.setActiveStatus(isActive);
 	}
 
 	@Override
@@ -63,8 +50,8 @@ public class SingleGridTurtleContainer extends BaseTurtleContainer {
 	@Override
 	public Collection<Integer> getActiveTurtlesByID() {
 		LinkedHashSet<Integer> activeTurtleIDs = new LinkedHashSet<>();
-		for (Turtle turtle : myActiveTurtles) {
-			if (turtle != null) {
+		for (Turtle turtle : myTurtles) {
+			if (turtle != null && turtle.isActive()) {
 				activeTurtleIDs.add(turtle.getID());
 			}
 		}
@@ -75,7 +62,7 @@ public class SingleGridTurtleContainer extends BaseTurtleContainer {
 	public void setTurtleAsActive(int turtleID) {
 		for (Turtle turtle : myTurtles) {
 			if (turtle.getID() == turtleID) {
-				myActiveTurtles.add(turtle);
+				turtle.setActiveStatus(true);
 				break;
 			}
 		}
@@ -83,23 +70,26 @@ public class SingleGridTurtleContainer extends BaseTurtleContainer {
 
 	@Override
 	public void hardSetActiveTurtles(Collection<Integer> turtleIDs) {
-		myActiveTurtles.clear();
-		for (Turtle toBeInactiveTurtle : myActiveTurtles) {
-			toBeInactiveTurtle.setInactive();
-		}
-		myActiveTurtles.clear();
 		HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
 		for (Turtle turtle : myTurtles) {
 			if (turtleIDSet.contains(turtle.getID())) {
-				turtle.setActive();
-				myActiveTurtles.add(turtle);
+				turtle.setActiveStatus(true);
+			}
+			else{
+				turtle.setActiveStatus(false);
 			}
 		}
 	}
 
 	@Override
 	public Collection<Turtle> getActiveTurtles() {
-		return new ArrayList<>(myActiveTurtles);
+		ArrayList<Turtle> activeTurtles = new ArrayList<>();
+		for (Turtle turtle : myTurtles) {
+			if (turtle != null && turtle.isActive()) {
+				activeTurtles.add(turtle);
+			}
+		}
+		return activeTurtles;
 	}
 
 	@Override
@@ -114,6 +104,5 @@ public class SingleGridTurtleContainer extends BaseTurtleContainer {
 	@Override
 	public void clear() {
 		myTurtles.clear();
-		myActiveTurtles.clear();
 	}
 }
