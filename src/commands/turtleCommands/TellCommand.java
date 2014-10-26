@@ -1,7 +1,6 @@
 package commands.turtleCommands;
 
 import java.util.ArrayList;
-
 import backendExceptions.BackendException;
 
 public class TellCommand extends MultipleTurtleCommand {

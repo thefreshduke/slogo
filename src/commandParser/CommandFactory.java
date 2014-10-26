@@ -43,7 +43,9 @@ public class CommandFactory {
         BaseCommand command = null;
         if (commandClass == null) {
             BaseVariableContainer variableContainer = (BaseVariableContainer) myInformationHub.getContainer(BaseVariableContainer.class);
-            command = variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
+            if(variableContainer.containsVariable(firstCommand)){
+            	command =  variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
+            }
         }
         else {
             try {
@@ -63,7 +65,6 @@ public class CommandFactory {
             command.setRequiredInformation(containers);
         }
         return command;
-
     }
 
     private static boolean checkIfNumerical(String string) {
