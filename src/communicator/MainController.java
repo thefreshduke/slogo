@@ -160,14 +160,16 @@ public class MainController extends BaseController {
 		BaseVariableContainer variableContainer = (BaseVariableContainer) myCommandInformationHub
 				.getContainer(BaseVariableContainer.class);
 		try {
-			Map<String, Double> variableMap = variableContainer.getAllVariablesAndValues();
-			//TODO myView.setVariables(variableMap);
-			List<String> customCommandList = variableContainer.getAllCustomCommands();
-			//TODO myView.setCommands(customCommandLis);
+			Map<String, Double> variableMap = variableContainer
+					.getAllVariablesAndValues();
+			// TODO myView.setVariables(variableMap);
+			List<String> customCommandList = variableContainer
+					.getAllCustomCommands();
+			// TODO myView.setCommands(customCommandLis);
 		} catch (BackendException e) {
 			reportErrorToView(e);
 		}
-		
+
 	}
 
 	@Override
@@ -273,7 +275,8 @@ public class MainController extends BaseController {
 
 	@Override
 	public void setTurtleAsActive(int turtleID) {
-		// TODO Auto-generated method stub
-		
+		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
+				.getContainer(BaseTurtleContainer.class);
+		turtleContainer.setTurtleAsActive(turtleID);
 	}
 }

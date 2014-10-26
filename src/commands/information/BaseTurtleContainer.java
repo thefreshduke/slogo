@@ -17,8 +17,6 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     public abstract Collection<Turtle> getAllTurtles ();
 
     public abstract Collection<Integer> getActiveTurtlesByID ();
-
-    public abstract void setActiveTurtle(int turtleID);
     
     public abstract void setActiveTurtles (Collection<Integer> turtleIDs);
 
@@ -26,6 +24,8 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
 
     public abstract Collection<Integer> getAllTurtlesByID ();
 
+    public abstract void clear();
+    
     private interface TurtleActionWithResult {
         public Object execute (Turtle turtle);
     }
@@ -138,5 +138,7 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     public Position undo () {
         return (Position) loopOverTurtleWithResult(turtle -> turtle.undo());
     }
+
+	public abstract void setTurtleAsActive(int turtleID);
 
 }
