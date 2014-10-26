@@ -1,0 +1,10 @@
+machen :distance 50
+
+vor :distance
+rt 90
+vor :distance
+rt 90
+vor :distance
+rt 90
+vor :distance
+rt 90

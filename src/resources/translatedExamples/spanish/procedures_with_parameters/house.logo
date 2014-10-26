@@ -1,0 +1,29 @@
+a poly [ :numsides :length ]
+[
+  repetir :numsides
+  [
+    ava :length 
+    der cociente 360 :numsides
+  ]
+]
+
+a square [ :side ]
+[
+  poly 4 :side
+]
+
+a triangle [ :side ]
+[
+  poly 3 :side
+]
+
+
+a house [ :size ]
+[
+  square :size
+  ava :size der 30
+  triangle :size
+]
+
+
+house

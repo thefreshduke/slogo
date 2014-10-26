@@ -1,0 +1,7 @@
+crear :distance 50
+
+rpt 4
+[
+  ava :distance
+  der 90
+]

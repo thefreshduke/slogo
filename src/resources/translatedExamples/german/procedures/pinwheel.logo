@@ -1,0 +1,18 @@
+zu squiggle [ ]
+[
+  vor 50
+  rt 150
+  vor 60                       
+  rt 100
+  vor 30
+  rt 90
+]
+
+
+zu pinwheel [ ]
+[
+  wh 18 [ squiggle ]
+]
+
+
+pinwheel

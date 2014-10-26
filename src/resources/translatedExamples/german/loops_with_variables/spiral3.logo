@@ -1,0 +1,7 @@
+wh 200
+[
+  # note, variable set to 0 first time seen
+  machen :dist + :dist 1
+  vor :dist
+  rt 89
+]

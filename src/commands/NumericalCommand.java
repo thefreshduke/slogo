@@ -1,30 +1,48 @@
 package commands;
 
-import communicator.IVariableContainer;
-import backendExceptions.BackendException;
-import View.SlogoView;
-import turtle.Turtle;
+import java.util.Collection;
+import java.util.Set;
 
-public final class NumericalCommand extends BaseCommand{
+import commands.information.IInformationContainer;
+import backendExceptions.BackendException;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
+public final class NumericalCommand extends BaseCommand {
 
     private double myNumber;
-    
-    public NumericalCommand(String userInput, double num) throws BackendException {
-        this(userInput, true);
-        myNumber = num;
-    }
-    
-    private NumericalCommand (String userInput, boolean isExpression) throws BackendException {
+
+    public NumericalCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
-    public double execute (SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
+    protected double onExecute () throws BackendException {
         return myNumber;
     }
 
     @Override
-    protected void parseArguments (String userInput) {
-        setLeftoverCommands(userInput);
+    protected void parseArguments (String userInput) throws BackendException {
+        String number = userInput.split("\\s+")[0];
+        myNumber = Double.parseDouble(number);
+        String leftover = userInput.replaceFirst(number, "").trim();
+        setLeftoverCommands(leftover);
+    }
+
+    @Override
+    public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
+        return null;
+    }
+
+    @Override
+    public void setRequiredInformation(Collection<IInformationContainer> containers) {
+
+    }
+
+    @Override
+    protected void reset () {
+
     }
 }

@@ -1,26 +1,32 @@
 package commands.turtleCommands;
 
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class BackCommand extends TurtleCommand {
 
+    public BackCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
 
-	public BackCommand(String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseGridContainer gridContainer = getGridContainer();
+        BaseTurtleContainer turtle = getTurtleContainer();
+        double movedDistance = getExpressionList()[0].execute();
+        turtle.moveTowardsHeading(movedDistance * -1);
+        gridContainer.update(turtle.getActiveTurtles());
+        return movedDistance;
+    }
 
-	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double movedDistance = executeCommand(getExpressionList()[0]);
-		turtle.move(movedDistance*-1);
-		view.update(turtle.getXPos(), turtle.getYPos());
-		return movedDistance;
-	}
-
-	@Override
-	protected int getArgumentCount() {
-		return 1;
-	}
+    @Override
+    protected int getArgumentCount () {
+        return 1;
+    }
 }

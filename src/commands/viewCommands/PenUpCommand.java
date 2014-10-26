@@ -1,32 +1,31 @@
 package commands.viewCommands;
 
-import turtle.Turtle;
-import View.SlogoView;
 import backendExceptions.BackendException;
-import commands.ViewCommand;
-import communicator.IVariableContainer;
 
+import commands.ViewCommand;
+import commands.information.BaseGridContainer;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class PenUpCommand extends ViewCommand {
 
-	public PenUpCommand(String command, boolean isExpression) throws BackendException {
-		super(command, isExpression);
-	}
+    private static final String PEN_UP = "penUp";
 
-	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
+    public PenUpCommand (String command, boolean isExpression) throws BackendException {
+        super(command, isExpression);
+    }
 
-	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		System.out.println("Pen Up: 0");
-		return 0;
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseGridContainer grid = getGridContainer();
+        grid.updateDisplayOptions(PEN_UP);
+        return 0;
+    }
 
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
+    @Override
+    protected int getArgumentCount () {
+        return 0;
+    }
 }

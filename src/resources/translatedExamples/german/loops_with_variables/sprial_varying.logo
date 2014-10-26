@@ -1,0 +1,5 @@
+f [ :dist 1 110 1 ] 
+[
+  vor :dist
+  rt produkt :dist 3
+]

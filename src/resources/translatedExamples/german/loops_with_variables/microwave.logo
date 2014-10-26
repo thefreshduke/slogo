@@ -1,0 +1,14 @@
+machen :x 20 
+wh :x 
+[ 
+  vor :x 
+  wh :x 
+  [ 
+    vor 50 
+    rt 80
+    vor 20
+    lk 160
+  ]
+  rt 90
+  vor 10
+]

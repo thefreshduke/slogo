@@ -1,0 +1,5 @@
+para [ :dist 1 110 1 ] 
+[
+  ava :dist
+  der producto :dist 3
+]

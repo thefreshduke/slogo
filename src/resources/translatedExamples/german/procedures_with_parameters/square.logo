@@ -1,0 +1,7 @@
+zu square [ :distance ]
+[
+  wh 4 [
+    vor :distance
+    rt 90
+  ]
+]

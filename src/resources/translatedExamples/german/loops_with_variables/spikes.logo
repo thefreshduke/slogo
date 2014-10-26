@@ -1,0 +1,8 @@
+machen :length summe 50 zf 250
+machen :numspikes 18
+
+wh :numspikes
+[
+  vor :length 
+  rt quotient 360 :numspikes
+]

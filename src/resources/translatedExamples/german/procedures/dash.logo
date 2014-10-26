@@ -1,0 +1,12 @@
+machen :count 12
+
+zu dash [ ]
+[
+  wh :count 
+  [
+    stob vor 4 stun for 4
+  ]
+]
+
+
+dash

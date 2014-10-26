@@ -1,38 +1,40 @@
 package commands.viewCommands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import turtle.Turtle;
-import View.SlogoView;
+import View.Grid;
 import backendExceptions.BackendException;
-import commands.ViewCommand;
-import communicator.IVariableContainer;
+import commands.TurtleQuery;
+import commands.ViewQuery;
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.turtleCommands.TurtleCommand;
 
-public class HomeCommand extends ViewCommand {
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
+public class HomeCommand extends TurtleQuery {
 
-	public HomeCommand(String command, boolean isExpression) throws BackendException {
-		super(command, isExpression);
-	}
+    private static final String EXACTLY_ONE_ACTIVE_GRID_IS_NOT_SET = "Exactly one active grid is not set";
 
-	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
+    public HomeCommand (String command, boolean isExpression) throws BackendException {
+        super(command, isExpression);
+    }
 
-	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		double initialXPos = turtle.getXPos();
-		double initialYPos = turtle.getYPos();
-		turtle.setXPos(0); //need width/2 from front end
-		turtle.setYPos(0); //need height/2 from front end
-		view.update(turtle.getXPos(), turtle.getYPos());
-		System.out.println("Home: " + Math.sqrt(Math.pow(turtle.getXPos() - initialXPos, 2) + Math.pow(turtle.getYPos() - initialYPos, 2)));
-		return Math.sqrt(Math.pow(turtle.getXPos() - initialXPos, 2) + Math.pow(turtle.getYPos() - initialYPos, 2));
-		//trail to home or no trail?
-	}
-
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseGridContainer grid = getGridContainer();
+        BaseTurtleContainer turtle = getTurtleContainer();
+        List<Grid> gridList = (ArrayList<Grid>) grid.getActiveGrids();
+        if (gridList.size() != 1) {
+        	throw new BackendException(null, EXACTLY_ONE_ACTIVE_GRID_IS_NOT_SET);
+        }
+        Grid activeGrid = gridList.get(0);
+        double distanceTraveled = turtle.setPosition(activeGrid.getWidth()/2, activeGrid.getHeight()/2);
+        grid.update(turtle.getActiveTurtles());
+        return distanceTraveled;
+    }
 }

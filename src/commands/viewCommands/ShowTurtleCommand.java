@@ -1,32 +1,30 @@
 package commands.viewCommands;
 
-import turtle.Turtle;
-import View.SlogoView;
 import backendExceptions.BackendException;
 import commands.ViewCommand;
-import communicator.IVariableContainer;
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.turtleCommands.TurtleCommand;
 
-public class ShowTurtleCommand extends ViewCommand {
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
+public class ShowTurtleCommand extends TurtleCommand {
 
-	public ShowTurtleCommand(String command, boolean isExpression) throws BackendException {
-		super(command, isExpression);
-	}
+    public ShowTurtleCommand (String command, boolean isExpression) throws BackendException {
+        super(command, isExpression);
+    }
 
-	@Override
-	public void updateTurtle(Turtle turtle) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+    	  BaseTurtleContainer turtle = getTurtleContainer();
+          turtle.setVisibility(true);
+          return 1;
+    }
 
-	@Override
-	public double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		System.out.println("Show Turtle");
-		return 1;
-	}
-
-	@Override
-	protected void parseArguments(String userInput) throws BackendException {
-		
-	}
-	
+    @Override
+    protected int getArgumentCount () {
+        return 0;
+    }
 }

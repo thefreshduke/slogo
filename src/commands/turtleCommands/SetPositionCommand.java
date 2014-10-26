@@ -1,28 +1,34 @@
 package commands.turtleCommands;
 
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class SetPositionCommand extends TurtleCommand {
 
-	public SetPositionCommand(String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
+    public SetPositionCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
 
-	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double currentXPos = turtle.getXPos();
-		double currentYPos = turtle.getYPos();
-		turtle.setXPos(executeCommand(getExpressionList()[0]));
-		turtle.setYPos(executeCommand(getExpressionList()[1]));
-		view.update(turtle.getXPos(), turtle.getYPos());
-		double distance = Math.sqrt(Math.pow(currentXPos-turtle.getXPos(), 2) + Math.pow(currentYPos - turtle.getYPos(), 2));
-		return distance;
-	}
+    @Override
+    protected int getArgumentCount () {
+        return 2;
+    }
 
-	@Override
-	protected int getArgumentCount() {
-		return 2;
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseGridContainer grid = getGridContainer();
+        BaseTurtleContainer turtle = getTurtleContainer();
+        double newXPos = getExpressionList()[0].execute();
+        double newYPos = getExpressionList()[1].execute();
+        double distance = turtle.setPosition(newXPos, newYPos);
+        grid.update(turtle.getActiveTurtles());
+
+        return distance;
+    }
 }

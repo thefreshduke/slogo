@@ -1,0 +1,20 @@
+# move to side of square
+stob
+vor 50
+rt 90
+
+# draw square
+stun
+vor 50
+rt 90
+vor 100
+rt 90
+vor 100
+rt 90
+vor 100
+rt 90
+vor 50
+
+# move back to center
+stob
+haus
