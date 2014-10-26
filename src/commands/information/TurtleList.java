@@ -64,8 +64,12 @@ public class TurtleList extends BaseTurtleContainer {
 	@Override
 	public void setActiveTurtle(int turtleID) {
 		myActiveTurtles.clear();
+		for(Turtle toBeInactiveTurtle : myActiveTurtles){
+			toBeInactiveTurtle.setInactive();
+		}
 		for(Turtle turtle : myTurtles){
 			if(turtle.getID() == turtleID){
+				turtle.setActive();
 				myActiveTurtles.add(turtle);
 				break;
 			}

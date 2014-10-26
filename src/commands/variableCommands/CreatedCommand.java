@@ -43,8 +43,8 @@ public class CreatedCommand extends VariableCommand {
             } else {
                 myNonExistingVariables.add(variable);
             }
-            BaseCommand newCommand = myNewVariableToCommandMap.get(variable);
-            variableContainer.addVariable(variable, newCommand);
+            double newCommandResult = myNewVariableToCommandMap.get(variable).execute();
+            variableContainer.addVariable(variable, newCommandResult);
         }
     }
 

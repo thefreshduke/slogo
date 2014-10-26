@@ -132,6 +132,6 @@ public class LanguageFileParser {
                 continue;
             }
         }
-        return null;
+        return rawCommand;
     }
 }

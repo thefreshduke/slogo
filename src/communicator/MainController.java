@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -17,7 +18,6 @@ import turtle.Turtle;
 import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
-
 import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
@@ -82,15 +82,16 @@ public class MainController extends BaseController {
 			public void handle(long now) {
 				if (!myInputsToParse.isEmpty()) {
 					String input = myInputsToParse.poll();
-					try{
-						BaseCommand command = CommandFactory.createCommand(input, false);
+					try {
+						BaseCommand command = CommandFactory.createCommand(
+								input, false);
 						myCommandQueue.add(command);
-					}
-					catch(BackendException ex) {
+					} catch (BackendException ex) {
 						reportErrorToView(ex);
 					}
-					//BaseCommand command = myModel.createInitialCommand(input);
-					//myCommandQueue.add(command);
+					// BaseCommand command =
+					// myModel.createInitialCommand(input);
+					// myCommandQueue.add(command);
 
 				}
 			}
@@ -111,12 +112,11 @@ public class MainController extends BaseController {
 
 	@Override
 	public void receiveCommand(String enteredText) {
-		try{
+		try {
 			String translatedText = myTranslator
 					.translateUserInputIntoEnglish(enteredText);
 			myInputsToParse.add(translatedText);
-		}
-		catch (BackendException ex){
+		} catch (BackendException ex) {
 			reportErrorToView(ex);
 		}
 	}
@@ -150,11 +150,24 @@ public class MainController extends BaseController {
 			command.execute();
 		} catch (BackendException ex) {
 			reportErrorToView(ex);
-		}
-		finally{
+		} finally {
 			myExecutedCommands.add(command);
 			myCommandIsExecuting.set(false);
 		}
+	}
+
+	private void sendDefinedVariables() {
+		BaseVariableContainer variableContainer = (BaseVariableContainer) myCommandInformationHub
+				.getContainer(BaseVariableContainer.class);
+		try {
+			Map<String, Double> variableMap = variableContainer.getAllVariablesAndValues();
+			//TODO myView.setVariables(variableMap);
+			List<String> customCommandList = variableContainer.getAllCustomCommands();
+			//TODO myView.setCommands(customCommandLis);
+		} catch (BackendException e) {
+			reportErrorToView(e);
+		}
+		
 	}
 
 	@Override
@@ -204,21 +217,21 @@ public class MainController extends BaseController {
 		gridContainer.addGrid(grid, isActive);
 	}
 
-
 	@Override
 	public void setGridAsActive(int gridID) {
 		BaseGridContainer gridContainer = getGridContainer();
 		gridContainer.setGridAsActive(gridID);
 	}
 
-	private BaseGridContainer getGridContainer(){
+	private BaseGridContainer getGridContainer() {
 		BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
 				.getContainer(BaseGridContainer.class);
 		return gridContainer;
 	}
 
 	@Override
-	public IInformationContainer loadPreferences(File file) throws BackendException {
+	public IInformationContainer loadPreferences(File file)
+			throws BackendException {
 		FileInputStream fis = null;
 		ObjectInputStream in = null;
 		BaseVariableContainer returnContainer = null;
@@ -228,7 +241,8 @@ public class MainController extends BaseController {
 			returnContainer = (BaseVariableContainer) in.readObject();
 			in.close();
 		} catch (Exception ex) {
-			reportErrorToView(new BackendException(ex, "Error reading from file"));
+			reportErrorToView(new BackendException(ex,
+					"Error reading from file"));
 		}
 
 		return (IInformationContainer) returnContainer;
@@ -248,9 +262,12 @@ public class MainController extends BaseController {
 			reportErrorToView(new BackendException(ex, "Error writing to file"));
 		}
 	}
-	
+
 	public void savePreferences(String filename) throws BackendException {
-		savePreferences((IInformationContainer) myCommandInformationHub.getContainer(BaseVariableContainer.class), filename);
+		savePreferences(
+				(IInformationContainer) myCommandInformationHub
+						.getContainer(BaseVariableContainer.class),
+				filename);
 
 	}
 }
