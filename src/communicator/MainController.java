@@ -256,7 +256,7 @@ public class MainController extends BaseController {
 		try {
 			fos = new FileOutputStream(filename);
 			out = new ObjectOutputStream(fos);
-			out.writeObject((BaseUserDefinedContainer) container);
+			out.writeObject(container);
 			out.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex, "Error writing to file"));
