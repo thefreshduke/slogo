@@ -11,8 +11,8 @@ import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
-import commands.information.ICommandInformationHub;
-import commands.information.SingleViewContainerInformationHub;
+import commands.information.IInformationGateway;
+import commands.information.SingleViewInformationGateway;
 
 
 public class TurtleCommandsTest {
@@ -48,8 +48,8 @@ public class TurtleCommandsTest {
 	private void setFactory () {
 		Grid grid = new SingleGrid();
 		Turtle turtle = new Turtle(new Position(0, 0), null);
-		ICommandInformationHub hub = new SingleViewContainerInformationHub(grid, turtle);
-		CommandFactory.setInformationHub(hub);
+		IInformationGateway hub = new SingleViewInformationGateway(grid, turtle);
+		CommandFactory.setInformationGateway(hub);
 	}
 	private String processInput (String input) throws BackendException {
 
