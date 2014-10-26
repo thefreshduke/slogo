@@ -12,7 +12,7 @@ import javafx.scene.paint.Paint;
 public abstract class ScrollingBar extends Group implements UserObjects{
 	protected int myX;
 	protected int myY;
-	protected int myHeight;
+	protected int  myHeight;
 	protected int myWidth;
 	protected GUIFunction myFunction;
 	protected Slider myBar;

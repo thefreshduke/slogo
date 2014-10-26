@@ -70,17 +70,20 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 public class SlogoView {
+	
 	private GridFactory myGridFactory;
 	private GridTracker myGrids;
 	private MainController myController;
 	private TabsOfGrids myGridTabs=new TabsOfGrids();
+	private ColorSelection colorSelection;
+	
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
-	private ColorSelection colorSelection;
 	private Scene myScene;
 	private TextField commandLine;
+	
 	//used to display Turtles most recent stats
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
@@ -91,6 +94,7 @@ public class SlogoView {
 	private Stage myStage;
 	private VariableTable myVariableTable;
 	private final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
+	private final int DEFAULT_MENU_HEIGHT=30;
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public SlogoView() throws ClassNotFoundException{
@@ -183,8 +187,8 @@ public class SlogoView {
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Menu");
 		MenuBar myMenu=new MenuBar();
 		myMenu.setStyle( "-fx-border-width: 5");
-		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
-		MenuTemplate fileMenu=this.createfileMenu();
+		myMenu.setPrefSize(DEFAULT_SIZE.width, DEFAULT_MENU_HEIGHT);
+		MenuTemplate fileMenu=createfileMenu();
 		MenuTemplate languages = new MenuTemplate(myResources.getString("languages"));
 		MenuTemplate personalize=new MenuTemplate(myResources.getString("Personalize"));
 		MenuTemplate pen=new MenuTemplate(myResources.getString("pen"));
@@ -192,12 +196,10 @@ public class SlogoView {
 		MenuTemplate help = new MenuTemplate(myResources.getString("help"));
 		help.addMenuItem(myResources.getString("helpPage"), event->myUserFunctions.get("Help").doAction());
 		userCommands = new MenuTemplate(myResources.getString("userCommands"));
-
 		makeAddMenu(add);
-		this.makeLanguageMenu(LanguageMenu.class, languages);
-		this.makeMenu(PersonalizeMenu.class, personalize);
-		this.makeMenu(PenMenu.class, pen);
-
+		makeLanguageMenu(LanguageMenu.class, languages);
+		makeMenu(PersonalizeMenu.class, personalize);
+		makeMenu(PenMenu.class, pen);
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
@@ -266,37 +268,23 @@ public class SlogoView {
 	 */
 	public Grid addGrid() {
 		Grid myNewGrid;
-		try {
-			myNewGrid = myGridFactory.makeGrid("SingleGrid");
-			myGrids.setActiveGrid((SingleGrid)myNewGrid);
-			myGrids.setActiveGrid((SingleGrid)myNewGrid);
-			myGridTabs.addTab("GRID", (SingleGrid)myNewGrid);
-			myController.addGrid((SingleGrid)myNewGrid, true);
-
-			return myNewGrid;
-		} catch (InstantiationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	
+			try {
+				myNewGrid = myGridFactory.makeGrid("SingleGrid");
+				myGrids.setActiveGrid((SingleGrid)myNewGrid);
+				myGrids.setActiveGrid((SingleGrid)myNewGrid);
+				myGridTabs.addTab("GRID", (SingleGrid)myNewGrid);
+				myController.addGrid((SingleGrid)myNewGrid, true);
+				return myNewGrid;
+			} catch (InstantiationException | IllegalAccessException
+					| IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e) {
+					JOptionPane.showMessageDialog(null, "Wrong Grid Type Loaded");
+			}
+		
+		
 		return null;
 	}
-
-
 
 	/**
 	 * Creates all information on left side of screen
@@ -448,13 +436,15 @@ public class SlogoView {
 	 * @param myMenu
 	 */
 	private void makeMenu(Class myClass, MenuTemplate myMenu){
-		for (String s: myUserFunctions.keySet()){
-			Class<? extends GUIFunction> myFunctionClass=(Class<? extends GUIFunction>) myUserFunctions.get(s).getClass().getSuperclass();
+		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
+		for (String myFunctionName: myUserFunctions.keySet()){
+			Class<? extends GUIFunction> myFunctionClass=(Class<? extends GUIFunction>) myUserFunctions.get(myFunctionName).getClass().getSuperclass();
 			if (myFunctionClass.equals(myClass)){
-				myMenu.addMenuItem(s, event->myUserFunctions.get(s).doAction());
+				myMenu.addMenuItem(myResources.getString(myFunctionName), event->myUserFunctions.get(myFunctionName).doAction());
 			}
 		}
 	}
+	
 	private Collection<ScrollingBar> makeSlidingBars(){
 		Collection<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
 		ScrollingBar myPenBar=new PenScrollingBar(myResources.getString("penThickness"), 250, 20, myUserFunctions.get("penThickness"));
@@ -462,6 +452,51 @@ public class SlogoView {
 		return myListOfBars;
 	}
 
+	private void addLanguages(){
+		try {
+			Properties prop = new Properties();
+			InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/Languages.Properties");
+			prop.load(stream);
+			for(Object language : prop.keySet()){
+				myUserFunctions.put((String) language, new SetLanguage()); 
+			}
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Language File not Found, using default colors");	
+		}
+	}
+	private MenuTemplate createfileMenu(){
+		MenuTemplate file=new MenuTemplate(myResources.getString("file"));
+		file.addMenuItem(myResources.getString("export"), event->saveFileToController(saveFile()));
+		AskForInitialFile myFunction=(AskForInitialFile)myUserFunctions.get("uploadFile");
+		file.addMenuItem(myResources.getString("uploadFile"),event->checkNullFile(myFunction.sendFile()));
+		return file;
+	}
+	
+	private String saveFile(){
+		return JOptionPane.showInputDialog(null, "Name of desired file to save to:");
+	}
+	
+	private void saveFileToController(String fileName){
+		try {
+			myController.savePreferences(fileName);
+		} catch (BackendException e) {
+			JOptionPane.showMessageDialog(null, "No input");
+		}
+	}
+	
+	private void checkNullFile(File myFile){
+		if (myFile!=null){
+			try {
+				myController.loadPreferences(myFile);
+			} catch (BackendException e) {
+				JOptionPane.showMessageDialog(null, "The file was null");
+			}
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "The file was null");
+		}
+	}
+	
 	/**
 	 * Creates a list of functions to be used with the GUI's buttons, menus, etc.
 	 */
@@ -486,47 +521,5 @@ public class SlogoView {
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
 		myUserFunctions.put("clearStamp", new ClearStamps(myGrids));
 		addLanguages();
-	}
-	private void addLanguages(){
-		try {
-			Properties prop = new Properties();
-			InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/Languages.Properties");
-			prop.load(stream);
-			for(Object language : prop.keySet()){
-				myUserFunctions.put((String) language, new SetLanguage()); 
-			}
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Language File not Found, using default colors");	
-		}
-	}
-	private MenuTemplate createfileMenu(){
-		MenuTemplate file=new MenuTemplate(myResources.getString("file"));
-		file.addMenuItem(myResources.getString("export"), event->saveFileToController(saveFile()));
-		AskForInitialFile myFunction=(AskForInitialFile)myUserFunctions.get("uploadFile");
-		file.addMenuItem(myResources.getString("uploadFile"),event->checkNullFile(myFunction.sendFile()));
-		return file;
-	}
-	private String saveFile(){
-		return JOptionPane.showInputDialog(null, "Name of desired file to save to:");
-	}
-	private void saveFileToController(String fileName){
-		try {
-			myController.savePreferences(fileName);
-		} catch (BackendException e) {
-			JOptionPane.showMessageDialog(null, "No input");
-		}
-	}
-	private void checkNullFile(File myFile){
-		if (myFile!=null){
-			try {
-				myController.loadPreferences(myFile);
-			} catch (BackendException e) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, "The file was null");
-			}
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "The file was null");
-		}
 	}
 }
