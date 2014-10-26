@@ -44,8 +44,8 @@ public class TurtleList extends BaseTurtleContainer {
             myActiveTurtles.add(turtle);
             turtle.setActive();
         }
-        else{
-        	turtle.setInactive();
+        else {
+            turtle.setInactive();
         }
     }
 
@@ -66,30 +66,30 @@ public class TurtleList extends BaseTurtleContainer {
     }
 
     @Override
-    public void setTurtleAsActive(int turtleID){
-    	for(Turtle turtle : myTurtles){
-    		if(turtle.getID() == turtleID){
-    			myActiveTurtles.add(turtle);
-    			break;
-    		}
-    	}
+    public void setTurtleAsActive (int turtleID) {
+        for (Turtle turtle : myTurtles) {
+            if (turtle.getID() == turtleID) {
+                myActiveTurtles.add(turtle);
+                break;
+            }
+        }
     }
-    
-	@Override
-	public void setActiveTurtles(Collection<Integer> turtleIDs) {
-		myActiveTurtles.clear();
-		for(Turtle toBeInactiveTurtle : myActiveTurtles){
-			toBeInactiveTurtle.setInactive();
-		}
-		myActiveTurtles.clear();
-		HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
-		for (Turtle turtle : myTurtles) {
-			if (turtleIDSet.contains(turtle.getID())) {
-				turtle.setActive();
-				myActiveTurtles.add(turtle);
-			}
-		}
-	}
+
+    @Override
+    public void setActiveTurtles(Collection<Integer> turtleIDs) {
+        myActiveTurtles.clear();
+        for(Turtle toBeInactiveTurtle : myActiveTurtles){
+            toBeInactiveTurtle.setInactive();
+        }
+        myActiveTurtles.clear();
+        HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
+        for (Turtle turtle : myTurtles) {
+            if (turtleIDSet.contains(turtle.getID())) {
+                turtle.setActive();
+                myActiveTurtles.add(turtle);
+            }
+        }
+    }
 
     @Override
     public Collection<Turtle> getActiveTurtles () {
@@ -105,9 +105,9 @@ public class TurtleList extends BaseTurtleContainer {
         return turtleIDSet;
     }
 
-	@Override
-	public void clear() {
-		myTurtles.clear();
-		myActiveTurtles.clear();
-	}
+    @Override
+    public void clear() {
+        myTurtles.clear();
+        myActiveTurtles.clear();
+    }
 }

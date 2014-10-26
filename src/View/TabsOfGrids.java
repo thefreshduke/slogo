@@ -29,7 +29,7 @@ public class TabsOfGrids extends TabPane{
 	}
 	public void addTab(String gridTitle, SingleGrid grid){
 		Tab myNewTab=new Tab();
-		this.setPrefSize(grid.myWidth, grid.myHeight);
+		this.setPrefSize(grid.getMyWidth(), grid.getMyHeight());
 		myNewTab.setText(gridTitle);
 		myNewTab.setContent(grid);
 		getTabs().add(myNewTab);

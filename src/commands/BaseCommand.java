@@ -13,7 +13,7 @@ import commands.information.IInformationContainer;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  * 
  * Abstract class for all commands. All other types of commands will extend the
- * BaseCommand. 
+ * BaseCommand.
  *
  */
 public abstract class BaseCommand {
@@ -73,7 +73,8 @@ public abstract class BaseCommand {
     protected void setLeftoverCommands (String string) throws BackendException {
         if (myExpressionFlag) {
             myLeftoverString = string;
-        } else if (string != null && string != "") {
+        }
+        else if (string != null && string != "") {
             myNextCommand = CommandFactory.createCommand(string, false);
         }
     }
@@ -104,7 +105,8 @@ public abstract class BaseCommand {
                 String aggregatedWord = temporaryStringBuilder.toString().trim();
                 if (aggregatedWord.equals(COMMAND_INDICATOR)) {
                     checkStack.push(aggregatedWord);
-                } else if (aggregatedWord.equals(COMMAND_END_INDICATOR)) {
+                }
+                else if (aggregatedWord.equals(COMMAND_END_INDICATOR)) {
                     checkStack.pop();
                 }
                 if (checkStack.size() == 0) {
@@ -121,5 +123,5 @@ public abstract class BaseCommand {
         return splitInput.equals(COMMAND_INDICATOR);
     }
 
-    protected abstract void reset();
+    protected abstract void reset ();
 }

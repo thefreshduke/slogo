@@ -54,8 +54,8 @@ public class SetBackgroundImage extends PersonalizeMenu {
 	}
 	public void gridSetAction(Image img){
 		myImageView.setImage(img);
-		myImageView.setFitHeight(allGrids.getActiveGrid().myHeight);
-		myImageView.setFitWidth(allGrids.getActiveGrid().myWidth);
+		myImageView.setFitHeight(allGrids.getActiveGrid().getMyHeight());
+		myImageView.setFitWidth(allGrids.getActiveGrid().getMyWidth());
 		myImageView.setVisible(true);
 		allGrids.getActiveGrid().getChildren().removeAll(allGrids.getActiveGrid().getAllTurtles());
 		allGrids.getActiveGrid().getChildren().addAll(allGrids.getActiveGrid().getAllTurtles());

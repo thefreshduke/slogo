@@ -8,6 +8,12 @@ import turtle.Turtle;
 import GUIFunctions.BorderStyle;
 import View.Pen;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ * The Base Turtle Container contains all the turtles in each grid and
+ * defines the allowed behaviors for each container 
+ */
 public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer {
 
     public abstract void removeTurtle (int turtleID);
@@ -17,7 +23,7 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     public abstract Collection<Turtle> getAllTurtles ();
 
     public abstract Collection<Integer> getActiveTurtlesByID ();
-    
+
     public abstract void setActiveTurtles (Collection<Integer> turtleIDs);
 
     public abstract Collection<Turtle> getActiveTurtles ();
@@ -25,7 +31,7 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     public abstract Collection<Integer> getAllTurtlesByID ();
 
     public abstract void clear();
-    
+
     private interface TurtleActionWithResult {
         public Object execute (Turtle turtle);
     }
@@ -139,6 +145,6 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
         return (Position) loopOverTurtleWithResult(turtle -> turtle.undo());
     }
 
-	public abstract void setTurtleAsActive(int turtleID);
+    public abstract void setTurtleAsActive(int turtleID);
 
 }

@@ -44,6 +44,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -104,7 +105,10 @@ public class SlogoView {
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent evt){
-				myGrids.setActiveGrid(myGridTabs.getActiveGrid());
+				if (!myGrids.getActiveGrid().equals(myGridTabs.getActiveGrid())){
+					myGrids.setActiveGrid(myGridTabs.getActiveGrid());
+					myController.setGridAsActive(myGrids.getActiveGrid().getID());
+				}
 			}
 		};
 		return new KeyFrame(speed, loop);
@@ -163,6 +167,9 @@ public class SlogoView {
 	private void sendCommand(String myCommand){
 		myController.receiveCommand(myCommand);
 	}
+	public void enable(){
+		myStage.getScene().getRoot().setDisable(false);
+	}
 	private MenuBar addMenuBar(){
 		MenuBar myMenu=new MenuBar();
 		myMenu.setStyle( "-fx-border-width: 5");
@@ -172,8 +179,6 @@ public class SlogoView {
 		MenuTemplate personalize=new MenuTemplate("Personalize");
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
-
-
 		MenuTemplate help = new MenuTemplate("Help");
 		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
 
@@ -187,6 +192,11 @@ public class SlogoView {
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
+	public void setDisable(Boolean toDisable){
+		for (Node myNode: root.getChildren()){
+			myNode.setDisable(toDisable);
+		}
+	}
 	
 	private void makeLanguageMenu(Class myClass, MenuTemplate myMenu){
 		for (String myName: myUserFunctions.keySet()){
@@ -199,8 +209,7 @@ public class SlogoView {
 	
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
-		Add newAddFunction=(Add) myUserFunctions.get("addTurtle");
-		myAdd.addMenuItem("Add Turtle", event->myGrids.getActiveGrid().addTurtle());
+		myAdd.addMenuItem("Add Turtle", event->addTurtle());
 	}
 
 	private void addTurtle(){
@@ -239,7 +248,7 @@ public class SlogoView {
 	}
 
 
-
+	
 	private Pane setTextArea(){
 		Pane myTextArea=new Pane();
 		myTextArea.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");

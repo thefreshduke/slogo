@@ -41,18 +41,18 @@ public class ToggleGridLines extends PersonalizeMenu{
 	}
 	
 	public void makeGridLines(){
-		for (int i=0; i<myGrid.myHeight; i+=translate){
-			for (int j=0; j<myGrid.myWidth; j+=translate){
+		for (int i=0; i<myGrid.getMyHeight(); i+=translate){
+			for (int j=0; j<myGrid.getMyWidth(); j+=translate){
 				drawGridLine(i, j);
 			}
 		}
 	}
 	
 	private void drawGridLine(int y, int x){
-		Line verticalGridLine=new Line(x, 0, x, myGrid.myHeight);
+		Line verticalGridLine=new Line(x, 0, x, myGrid.getMyHeight());
 		verticalGridLine.setStroke(Paint.valueOf("GREY"));
 		verticalGridLine.setStyle("-fx-fill: GREY");
-		Line horizontalGridLine=new Line(0, y, myGrid.myWidth, y);
+		Line horizontalGridLine=new Line(0, y, myGrid.getMyWidth(), y);
 		horizontalGridLine.setStroke(Paint.valueOf("GREY"));
 		myGrid.getChildren().addAll(verticalGridLine, horizontalGridLine);
 		myGridLines.add(verticalGridLine);

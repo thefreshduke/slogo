@@ -45,9 +45,7 @@ public abstract class ViewCommand extends BaseCommand {
         if (!extendsGridContainer) {
             // throw exception
         }
-
-        myGridContainer = (BaseGridContainer) container;
-
+        myGridContainer = (BaseGridContainer)container;
     }
 
     protected BaseGridContainer getGridContainer () {
@@ -72,7 +70,8 @@ public abstract class ViewCommand extends BaseCommand {
             String subInput;
             if (i == 0) {
                 subInput = userInput;
-            } else {
+            }
+            else {
                 subInput = myArgumentList[i - 1].getLeftoverString();
             }
             BaseCommand argument = CommandFactory.createCommand(subInput, true);
@@ -88,5 +87,7 @@ public abstract class ViewCommand extends BaseCommand {
     protected abstract int getArgumentCount ();
 
     @Override
-    protected void reset(){}
+    protected void reset () {
+
+    }
 }

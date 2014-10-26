@@ -8,6 +8,7 @@ import View.Grid;
 import View.SingleGrid;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,10 +16,13 @@ import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class VariableTable extends TableView {
@@ -37,6 +41,16 @@ public class VariableTable extends TableView {
 		time.getKeyFrames().add(build());
 		time.play();
 		setEditable(true);
+		TableColumn myVariableName=new TableColumn("Variable Name");
+		TableColumn myValue=new TableColumn("My Value");
+		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<Variable, Double>, ObservableValue<Double>>() {
+				@Override
+				public ObservableValue<Double> call(
+						CellDataFeatures<Variable, Double> myData) {
+					return 
+				}
+			});
+		}
 
 		VBox vbox = new VBox();
 		vbox.setSpacing(5);
@@ -44,6 +58,7 @@ public class VariableTable extends TableView {
 		((Group) scene.getRoot()).getChildren().addAll(vbox);
 		newStage.setScene(scene);
 		newStage.show();
+		
 		getColumns().addAll(myColumns);
 		myStage.show();
 	}

@@ -53,5 +53,7 @@ public abstract class ControlCommand extends ModelCommand {
     }
 
     @Override
-    protected void reset(){}
+    protected void reset () {
+        
+    }
 }

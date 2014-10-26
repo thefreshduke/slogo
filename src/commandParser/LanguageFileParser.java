@@ -24,18 +24,15 @@ public class LanguageFileParser {
 
     public LanguageFileParser (File fileName) throws BackendException {
         extractFromLanguageFile(fileName);
-        SPECIAL_CHARACTERS.add("[");
-        SPECIAL_CHARACTERS.add("]");
     }
 
-    private static final Set<String> SPECIAL_CHARACTERS = new HashSet<>();
+    private static final String COMMAND_INDICATOR = "[a-zA-Z_]+(\\?)?";
     private static final char COMMENT_INDICATOR = '#';
     private static String myCommandSeparator = " ";
-    private String myEquals = "=";
-    private String myComma = ",";
     private Map<String, String> myUserInputToEnglishTranslationMap;
     private Map<String, String> myPreviousTranslationMap;
-
+    
+    
     public Map<String, String> extractFromLanguageFile (File file) throws BackendException {
         myUserInputToEnglishTranslationMap = new HashMap<>();
         ResourceBundle resourceBundle = null;
@@ -109,7 +106,10 @@ public class LanguageFileParser {
             translatedCommand = translateByRegex(command);
         }
         if(translatedCommand == null){
-            throw new BackendException(null, INVALID_COMMAND_MESSAGE);
+        	if(!command.matches(COMMAND_INDICATOR)){
+        		throw new BackendException(null, INVALID_COMMAND_MESSAGE);
+        	}
+            translatedCommand = command;
         }
         return translatedCommand;
     }
@@ -132,6 +132,6 @@ public class LanguageFileParser {
                 continue;
             }
         }
-        return rawCommand;
+        return null;
     }
 }
