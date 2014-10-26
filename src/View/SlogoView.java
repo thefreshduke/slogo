@@ -408,7 +408,7 @@ public class SlogoView {
 		myUserFunctions.put("stampTurtle", new Stamp(myGrids));
 		myUserFunctions.put("helpPage", new HelpPage());
 		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids, colorSelection));
-		myUserFunctions.put("penColor", new PenColor(myGrids));
+		myUserFunctions.put("penColor", new PenColor(myGrids,colorSelection));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPalette(colorSelection));
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
