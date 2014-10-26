@@ -14,23 +14,23 @@ import backendExceptions.BackendException;
  *         active grid, and has a one to one mapping of each grid to a turtle
  *         container. Also contains one variable container for all grids and turtles.
  */
-public class SingleViewInformationGateway implements IInformationGateway {
+public class SingleGridInformationGateway implements IInformationGateway {
 
 	private static final String INVALID_CONTAINER_TYPE_ERROR = "Invalid container type";
 	private SingleActiveGridContainer myGridContainer;
 	private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
 	private MapBasedUserDefinedContainer myVariableContainer;
 
-	public SingleViewInformationGateway() {
+	public SingleGridInformationGateway() {
 		myGridContainer = new SingleActiveGridContainer();
 		myGridToTurtlesMap = new HashMap<>();
 		myVariableContainer = new MapBasedUserDefinedContainer();
 	}
 
-	public SingleViewInformationGateway(Grid grid, Turtle turtle) {
+	public SingleGridInformationGateway(Grid grid, Turtle turtle) {
 		this();
 		myGridContainer.addGrid(grid, true);
-		BaseTurtleContainer turtleContainer = new SingleViewTurtleContainer(
+		BaseTurtleContainer turtleContainer = new SingleGridTurtleContainer(
 				turtle);
 		myGridToTurtlesMap.put(grid.getID(), turtleContainer);
 	}
@@ -49,7 +49,7 @@ public class SingleViewInformationGateway implements IInformationGateway {
 			BaseTurtleContainer turtleContainer = myGridToTurtlesMap
 					.get(activeGridID);
 			if (turtleContainer == null) {
-				turtleContainer = new SingleViewTurtleContainer();
+				turtleContainer = new SingleGridTurtleContainer();
 				myGridToTurtlesMap.put(activeGridID, turtleContainer);
 			}
 			return turtleContainer;
