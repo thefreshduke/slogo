@@ -1,4 +1,5 @@
 package View;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -19,15 +20,19 @@ public class SetPalette extends GridFunction{
 
 	@Override
 	public void doAction(List<? extends Number> newVal) {
-		int myIndex=0;
+		Iterator<Number> myIterator=(Iterator<Number>) newVal.iterator();
 		String myColor="";
-		Iterator<Number> it=(Iterator<Number>) newVal.iterator();
 		if (newVal.size()!=0){
-			myIndex=it.next().intValue();
+			int index=myIterator.next().intValue();
+			while(myIterator.hasNext()){
+				myColor+=Integer.toHexString(myIterator.next().intValue())+"";
+			}
+			if (myColor.length()!=6){
+				myColor+="00";
+			}
+			myColors.setColor(index, myColor);
 		}
-		while (it.hasNext()){
-			myColor+=it.next()+"";
-		}
-		myColors.setColor(myIndex, myColor);
+		
 	}
+
 }

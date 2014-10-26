@@ -35,12 +35,12 @@ public class VariableTable extends TableView {
 		newStage.setHeight(500);
 		Label label = new Label("My Variable Table");
 		label.setFont(new Font("Arial", 20));
-		
+
 		setEditable(false);
 		TableColumn myVariableColumn=new TableColumn("Variable");
 		TableColumn myVariableName=new TableColumn("Name");
 		TableColumn myValue=new TableColumn("Value");
-		
+
 		myValue.setCellValueFactory(new Callback<CellDataFeatures<UserInput, Double>, ObservableValue<Double>>() {
 			@Override
 			public ObservableValue<Double> call(
@@ -52,7 +52,7 @@ public class VariableTable extends TableView {
 				return null;
 			}
 		});
-		
+
 
 		myVariableName.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
 			@Override
@@ -66,11 +66,11 @@ public class VariableTable extends TableView {
 		});
 
 		myVariableColumn.getColumns().addAll(myVariableName, myValue);
-		
+
 		TableColumn myUserFunctions=new TableColumn("User Functions");
-		
+
 		myUserFunctions.setPrefWidth(200);
-		
+
 		myUserFunctions.setCellValueFactory(new Callback<CellDataFeatures<UserInput, String>, ObservableValue<String>>() {
 			@Override
 			public ObservableValue<String> call(
@@ -81,6 +81,7 @@ public class VariableTable extends TableView {
 				return null;
 			}
 		});
+		
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(build());
@@ -113,8 +114,8 @@ public class VariableTable extends TableView {
 	}
 
 	public void update(){
-		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
 		getItems().clear();
+		ObservableList<UserInput> myObservableList=FXCollections.observableArrayList();
 		for (UserInput myVar: myVariables){
 			myObservableList=FXCollections.observableArrayList();
 			myObservableList.add(myVar);

@@ -54,25 +54,28 @@ public class ColorSelection extends Pane{
 		
 		this.setPrefSize(200, 200);
 		this.getChildren().addAll(myLabels);
-		myColorPane();
 		this.getChildren().add(colorBox);
+		myColorPane();
 		
 	}
 	public List<String> getAvailableColors(){
 		return myColors;
 	}
 	
-	private void myColorPane(){
-		colorBox.getChildren().clear();
+	public void myColorPane(){
+		int myWidth=50;
+		this.getChildren().remove(colorBox);
 		colorBox=new HBox();
+		System.out.println(myColors.size());
 		for(String color: myColors){
 			Circle myCircle=new Circle();
 			myCircle.setStyle("-fx-fill: #"+color);
 			myCircle.setOnMouseClicked(event->doColorEvent(color));
-			myCircle.setRadius(10);
+			myCircle.setRadius(myWidth/myColors.size());
 			colorBox.getChildren().add(myCircle);	
 		}
-		colorBox.relocate(30,50);
+		colorBox.relocate(10,50);
+		this.getChildren().add(colorBox);
 	}
 	private void doColorEvent(String color){
 		for (ColorLabel myLabel: myLabels){
@@ -80,8 +83,10 @@ public class ColorSelection extends Pane{
 		}
 	}
 
-	public void setColor(int myIndex, String color){
-		if (myColors.contains(color)){
+	public void setColor(int myIndex, String colorLowerCase){
+		String color=colorLowerCase.toUpperCase();
+		System.out.println(color);
+		if (myColors.contains(color.toUpperCase())){
 			switchPosition(myColors.indexOf(color), color, myIndex, myColors.get(myIndex));
 		}
 		else{
@@ -94,6 +99,9 @@ public class ColorSelection extends Pane{
 	public void switchPosition(int firstIndex, String firstString, int secondIndex, String secondString){
 		myColors.set(secondIndex, firstString);
 		myColors.set(firstIndex, secondString);
+		for (String color: myColors){
+			System.out.println(color);
+		}
 	
 	}
 
