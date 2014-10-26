@@ -1,43 +1,27 @@
 package View;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
-
-import javax.imageio.IIOException;
 import javax.swing.JOptionPane;
 
 import GUIFunctions.BackgroundColor;
-import GUIFunctions.ColorFunction;
-import GUIFunctions.GUIFunction;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class ColorSelection extends Pane{
-
-	private SlogoView myView;
 	private ArrayList<String> myColors = new ArrayList<>();
-	private HashSet<ColorLabel> myLabels=new HashSet();
+	private HashSet<ColorLabel> myLabels=new HashSet<ColorLabel>();
 	private GridTracker myGrids;
 	private HBox colorBox=new HBox();
 
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
-		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids, this)));
+		myLabels.add(new ColorLabel(10, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids, this)));
 		myLabels.add(new ColorLabel(100, 0, 80, 20, "Pen Color", new PenColor(myGrids, this)));
-		
 		this.relocate(0,250);
 		try {
 			Properties prop = new Properties();
@@ -51,17 +35,14 @@ public class ColorSelection extends Pane{
 			myColors.add("FFFFFF");
 			myColors.add("000000");
 		}
-		
 		this.setPrefSize(200, 200);
 		this.getChildren().addAll(myLabels);
 		this.getChildren().add(colorBox);
 		myColorPane();
-		
 	}
 	public List<String> getAvailableColors(){
 		return myColors;
 	}
-	
 	public void myColorPane(){
 		int myWidth=50;
 		this.getChildren().remove(colorBox);
@@ -81,10 +62,8 @@ public class ColorSelection extends Pane{
 			myLabel.isActive(color);
 		}
 	}
-
 	public void setColor(int myIndex, String colorLowerCase){
 		String color=colorLowerCase.toUpperCase();
-		System.out.println(color);
 		if (myColors.contains(color.toUpperCase())){
 			switchPosition(myColors.indexOf(color), color, myIndex, myColors.get(myIndex));
 		}
@@ -94,21 +73,13 @@ public class ColorSelection extends Pane{
 		}
 		myColorPane();
 	}
-	
 	public void switchPosition(int firstIndex, String firstString, int secondIndex, String secondString){
 		myColors.set(secondIndex, firstString);
 		myColors.set(firstIndex, secondString);
 		for (String color: myColors){
 			System.out.println(color);
 		}
-	
 	}
-
-	
-
-
-	
-
 }
 
 

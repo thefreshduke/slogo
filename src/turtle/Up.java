@@ -7,6 +7,5 @@ public class Up extends MoveDirection{
 		p.setYPos(p.getYPos()-speed);
 		return p;
 	}
-
 }
 

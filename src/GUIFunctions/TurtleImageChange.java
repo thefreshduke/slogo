@@ -25,30 +25,36 @@ public class TurtleImageChange extends PersonalizeMenu{
 	}
 	@Override
 	public void doAction() {
-		
-			FileChooser fileChooser = new FileChooser();
-			fileChooser.setTitle("Select Turtle Image");
-			fileChooser.setInitialDirectory(new File("./"));
-			File file = fileChooser.showOpenDialog(myStage);
-			if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
-				BufferedImage buffer;
-				try {
-					buffer = ImageIO.read(file);
-					Image img=SwingFXUtils.toFXImage(buffer, null);
-					for (Turtle t: allGrids.getActiveGrid().getActiveTurtles()){
-						t.setImage(img);
-					}
-				} 
-				catch (IOException e) {
-				JOptionPane.showMessageDialog(null, "Please select another file");
+
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Select Turtle Image");
+		fileChooser.setInitialDirectory(new File("./"));
+		File file = fileChooser.showOpenDialog(myStage);
+		if(file != null&&(file.getName().contains(".JPG")||file.getName().contains(".png"))){
+			BufferedImage buffer;
+			try {
+				buffer = ImageIO.read(file);
+				Image img=SwingFXUtils.toFXImage(buffer, null);
+				for (Turtle t: allGrids.getActiveGrid().getActiveTurtles()){
+					t.setImage(img);
 				}
+			} 
+			catch (IOException e) {
+				showError();
 			}
-				else
-					JOptionPane.showMessageDialog(null, "Please select another file");
+		}
+		else{
+			showError();
+		}
+	}
+
+	private void showError(){
+		JOptionPane.showMessageDialog(null, "Please select another file");
+
 	}
 	@Override
 	public void doAction(List<? extends Number> newVal) {
 		// TODO Auto-generated method stub
-		
+
 	}	
 }

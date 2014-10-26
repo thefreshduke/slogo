@@ -21,9 +21,9 @@ Petra: Frontend, frontend design, GUI, buttons, grids, command history, Turtle, 
 
 Duke: Backend/Middle, containers, gateways, controller, ControlCommands, VariableCommands, JUnit tests, recursive parsing, resource bundles, overall design
 
-Rahul: Backend/Middle, save/load, ViewCommands, TurtleCommands, ControlCommands, JUnit tests, middle design, translators
+Rahul: Backend/Middle, save/load, controller, ViewCommands, TurtleCommands, ControlCommands, JUnit tests, middle design, translators
 
-Scotty: Backend/Middle, parser, factories, command hierarchies, ExpressionCommands, linguistics, JUnit tests, overall design
+Scotty: Backend/Middle, parser, factories, command hierarchies, ExpressionCommands, linguistics, JUnit tests, backend and middle design
 
 Resources
 =======

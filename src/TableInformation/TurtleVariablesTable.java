@@ -1,4 +1,4 @@
-package GUIFunctions;
+package TableInformation;
 
 import java.awt.Insets;
 import java.awt.List;
@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Properties;
+
 import turtle.Turtle;
 import View.Grid;
 import View.GridTracker;

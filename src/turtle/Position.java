@@ -1,6 +1,4 @@
 package turtle;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Position object that stores and manipulates basic location (x-, y- coordinates) and rotation
@@ -11,7 +9,6 @@ public class Position {
 	private double myYPos;
 	private double myRotate;
 
-	
 	/**
 	 * No argument constructor
 	 */
@@ -62,8 +59,6 @@ public class Position {
 		moveHorizontal(increment*(Math.cos(Math.toRadians(myRotate))));
 		moveVertical(increment*(Math.sin(Math.toRadians(myRotate))));
 	}
-
-
 	/**
 	 * Rotate by specified increment
 	 * @param rotateIncrement - rotation increment
@@ -93,27 +88,17 @@ public class Position {
 		return myYPos;
 	}
 	
-	//ZZZ Change/implement!!!
 	@Override
 	public boolean equals(Object o) {
 		return false;
 	}
 	
-	/*@Override 
-	public int hashCode() {
-		return 0;
-		
-	}*/
-	
 	public void setXPos(double xPos) {
-		myXPos = xPos;
-		
+		myXPos = xPos;	
 	}
-	
 	public void setYPos(double yPos) {
 		myYPos = yPos;
 	}
-	
 	public void setRotation (double rotateVal) {
 		myRotate = rotateVal;		
 	}
