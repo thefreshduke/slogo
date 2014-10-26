@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -11,6 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter.DEFAULT;
 
 import GUIFunctions.GUIFunction;
 import turtle.Position;
@@ -26,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class SingleGrid extends Grid {
+	private final static Dimension DEFAULT_GRID_SIZE= new Dimension(900, 400);
 	private String backgroundColor = "FFFFFF";
 	public int myHeight;
 	public int myWidth;
@@ -33,16 +36,15 @@ public class SingleGrid extends Grid {
 	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
 	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
 	private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
-
 	public SingleGrid(){
 		
 	}
-	public SingleGrid(int height, int width, KeyFrame frame, HashMap myMap, int ID){
-		this.setPrefSize(width,height);
+	public SingleGrid(KeyFrame frame, HashMap myMap, int ID){
 		this.setStyle("-fx-border-color: BLACK; -fx-border-width: 10");
 		myID=ID;
-		myHeight=height;
-		myWidth=width;
+		myHeight=DEFAULT_GRID_SIZE.height;
+		myWidth=DEFAULT_GRID_SIZE.width;
+		this.setPrefSize(myWidth, myHeight);
 		Timeline time=new Timeline();
 		time.setCycleCount(Timeline.INDEFINITE);
 		time.getKeyFrames().add(frame);
@@ -135,7 +137,8 @@ public class SingleGrid extends Grid {
 	public void setPalette(Double myRed, Double myGreen, Double myBlue) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
+	
 	
 
 	

@@ -28,8 +28,8 @@ public class TellCommand extends MultipleTurtleCommand {
 		}
 		Grid activeGrid = allGrids.get(0);
 
-		int minID = findMin(getActiveTurtleIDs());
-		int maxID = findMax(getActiveTurtleIDs());
+		int minID = findMin(getFutureActiveTurtleIDs());
+		int maxID = findMax(getFutureActiveTurtleIDs());
 
 		for (int i = minID; i <= maxID; i++) {
 			if (!myAllTurtlesID.contains(i)) {
@@ -37,7 +37,7 @@ public class TellCommand extends MultipleTurtleCommand {
 				turtle.addTurtle(newTurtle, false);
 			}
 		}
-		turtle.setActiveTurtles(getActiveTurtleIDs());
+		turtle.setActiveTurtles(getFutureActiveTurtleIDs());
 		double result = getInternalCommand().execute();
 
 		return result;
