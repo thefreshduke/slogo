@@ -54,12 +54,7 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		velocity=5;
 		setActive();
 		this.setOnMouseClicked(event-> {
-			if(active){
-				setInactive();
-			}
-			else{
-				setActive();
-			}
+			setActiveStatus(!active);
 		});
 	}
 
@@ -71,12 +66,20 @@ public class Turtle extends ImageView implements ITurtleBehavior {
 		myPosition.moveHorizontal(xIncrement);
 	}
 	
-	public void setActive(){
+	public void setActiveStatus(boolean isActive){
+		if(isActive){
+			setActive();
+		}
+		if(!isActive){
+			setInactive();
+		}
+	}
+	private void setActive(){
 		active= true;
 		glow();
 	}
 	
-	public void setInactive(){
+	private void setInactive(){
 		active = false;
 		dimmer();
 	}
