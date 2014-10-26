@@ -89,16 +89,36 @@ public class SingleGrid extends Grid {
     public void update(Collection<Turtle> activatedTurtles){
         activeTurtles.clear();
         for (Turtle active: activatedTurtles){
+        	keepTurtleInBounds(active);
             moveTurtle(active);
             getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
             activeTurtles.add(active);
         }	
     }
+    
+    public void keepTurtleInBounds(Turtle t){
+    	t.getPen().setPenDown(false);
+
+    	if(t.getXPos() > myWidth){
+    		t.setXPos(t.getXPos()%myWidth);
+//    		t.move((t.getXPos()-myWidth), t.getYPos());
+    		System.out.println("OUT OF BOUNDS!!!! xpos = " + t.getXPos());
+    		System.out.println("width = " + myWidth);
+    	}
+    	if(t.getXPos() < 0) t.move(t.getXPos()+myWidth, t.getYPos());
+    	if(t.getYPos() > this.myHeight) t.move(t.getXPos(), t.getYPos()%myHeight);
+    	if(t.getYPos() < 0) t.move(t.getXPos(), t.getYPos() + myHeight);
+    		
+    	moveTurtle(t);
+    	t.getPen().setPenDown(true);
+
+    }
    
     public void keyUpdate(){
         for (Turtle active: getActiveTurtles()){
-            moveTurtle(active);
-            System.out.println(this.getChildren());
+        	keepTurtleInBounds(active);
+//            moveTurtle(active);
+//            System.out.println(this.getChildren());
             getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
         }	
     }
