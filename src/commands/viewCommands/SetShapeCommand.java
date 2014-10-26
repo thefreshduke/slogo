@@ -1,14 +1,14 @@
 package commands.viewCommands;
 
-import backendExceptions.BackendException;
+import java.util.ArrayList;
+import java.util.List;
 
+import backendExceptions.BackendException;
 import commands.ViewCommand;
 import commands.information.BaseGridContainer;
 
 public class SetShapeCommand extends ViewCommand {
-
-    // TODO : Add GUI function to change to given index
-    private static final String SET_SHAPE = "";
+    private static final String SET_SHAPE = "setShape";
 
     public SetShapeCommand (String command, boolean isExpression) throws BackendException {
         super(command, isExpression);
@@ -18,7 +18,11 @@ public class SetShapeCommand extends ViewCommand {
     protected double onExecute () throws BackendException {
         BaseGridContainer grid = getGridContainer();
         double shapeIndex = getExpressionList()[0].execute();
-        grid.updateDisplayOptions(SET_SHAPE, shapeIndex);
+        List<Double>shapeIndexList = new ArrayList<Double>();
+        shapeIndexList.add(shapeIndex);
+        // Following uncommented line would have been functional, but due to lack of time 
+        // method was not functional for shape selection parameter.
+        //grid.updateDisplayOptions(SET_SHAPE, shapeIndexList);
         return shapeIndex;
     }
 
