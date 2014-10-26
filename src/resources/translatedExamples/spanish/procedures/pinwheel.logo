@@ -1,0 +1,18 @@
+a squiggle [ ]
+[
+  avanzar 50
+  derecha 150
+  avanzar 60                       
+  derecha 100
+  avanzar 30
+  derecha 90
+]
+
+
+a pinwheel [ ]
+[
+  repetir 18 [ squiggle ]
+]
+
+
+pinwheel

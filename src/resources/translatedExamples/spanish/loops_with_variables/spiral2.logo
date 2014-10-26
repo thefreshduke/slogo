@@ -1,0 +1,8 @@
+crear :count 1
+
+repetir 110 
+[
+  ava :count 
+  der producto :count 3
+  crear :count suma 1 :count
+]

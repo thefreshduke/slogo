@@ -1,0 +1,28 @@
+a square [ :distance ]
+[
+  repetir 4 [
+    fd :distance
+    rt 90
+  ]
+]
+
+
+a face [ ]
+[
+  plumaabajo square 100
+  plumasubido avanzar 20
+  derecha 90 avanzar 25
+  plumaabajo avanzar 50
+  plumasubido volver 75
+  izquierda 90 avanzar 65
+  derecha 90 avanzar 20
+  plumaabajo square 15
+  plumasubido avanzar 45
+  plumaabajo square 15           
+  plumasubido volver 15
+  derecha 90 avanzar 20 izquierda 45
+  plumaabajo square 20
+]
+
+
+face

@@ -1,0 +1,8 @@
+rpt 9
+[
+  rpt 180
+  [
+    ava 1 der 2
+  ]
+  der 40
+]

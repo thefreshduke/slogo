@@ -1,0 +1,10 @@
+crear :distance 10
+repetir 18
+[
+  avanzar producto 5 :distance
+  derecha 150
+  avanzar producto 6 :distance
+  derecha 100
+  avanzar producto 3 :distance
+  derecha 90
+]
