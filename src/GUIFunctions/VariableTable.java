@@ -50,8 +50,11 @@ public class VariableTable extends Pane {
 			@Override
 			public ObservableValue<Double> call(
 					CellDataFeatures<UserInput, Double> myData) {
-					Variable myVariable=(Variable)myData.getValue();
-				return new ReadOnlyObjectWrapper<Double> (myVariable.getValue());
+					if (myData.getValue() instanceof Variable){
+						Variable myVariable=(Variable)myData.getValue();
+						return new ReadOnlyObjectWrapper<Double> (myVariable.getValue());
+					}
+						return null;
 			}
 		});
 		

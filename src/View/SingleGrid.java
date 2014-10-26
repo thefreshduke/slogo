@@ -98,7 +98,6 @@ public class SingleGrid extends Grid {
     public void keyUpdate(){
         for (Turtle active: getActiveTurtles()){
             moveTurtle(active);
-            System.out.println(this.getChildren());
             getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
         }	
     }
