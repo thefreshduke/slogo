@@ -42,7 +42,7 @@ public class MainController extends BaseController {
 	private AnimationTimer myCommandParserTimer;
 	private LanguageFileParser myTranslator;
 	private CommandToClassTranslator myCommandToClassTranslator;
-	private IInformationGateway myCommandInformationHub;
+	private IInformationGateway myInformationGateway;
 
 	private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
 
@@ -59,8 +59,8 @@ public class MainController extends BaseController {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
 		myCommandToClassTranslator = new CommandToClassTranslator();
-		myCommandInformationHub = new SingleViewInformationGateway();
-		CommandFactory.setInformationHub(myCommandInformationHub);
+		myInformationGateway = new SingleViewInformationGateway();
+		CommandFactory.setInformationGateway(myInformationGateway);
 		try {
 			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
 					.translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
@@ -155,7 +155,7 @@ public class MainController extends BaseController {
 	}
 
 	private void sendDefinedVariables() {
-		BaseVariableContainer variableContainer = (BaseVariableContainer) myCommandInformationHub
+		BaseVariableContainer variableContainer = (BaseVariableContainer) myInformationGateway
 				.getContainer(BaseVariableContainer.class);
 		try {
 			Map<String, Double> variableMap = variableContainer
@@ -205,7 +205,7 @@ public class MainController extends BaseController {
 
 	@Override
 	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
-		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
+		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myInformationGateway
 				.getContainer(BaseTurtleContainer.class);
 		turtleContainer.addTurtle(turtle, isActive);
 	}
@@ -223,7 +223,7 @@ public class MainController extends BaseController {
 	}
 
 	private BaseGridContainer getGridContainer() {
-		BaseGridContainer gridContainer = (BaseGridContainer) myCommandInformationHub
+		BaseGridContainer gridContainer = (BaseGridContainer) myInformationGateway
 				.getContainer(BaseGridContainer.class);
 		return gridContainer;
 	}
@@ -264,7 +264,7 @@ public class MainController extends BaseController {
 
 	public void savePreferences(String filename) throws BackendException {
 		savePreferences(
-				(IInformationContainer) myCommandInformationHub
+				(IInformationContainer) myInformationGateway
 						.getContainer(BaseVariableContainer.class),
 				filename);
 
@@ -272,7 +272,7 @@ public class MainController extends BaseController {
 
 	@Override
 	public void setTurtleAsActive(int turtleID) {
-		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myCommandInformationHub
+		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myInformationGateway
 				.getContainer(BaseTurtleContainer.class);
 		turtleContainer.setTurtleAsActive(turtleID);
 	}

@@ -73,26 +73,13 @@ public class CommandFactory {
 		return command;
 	}
 
-	private static boolean checkIfNumerical(String string) {
-		try {
-			Double.parseDouble(string);
-			return true;
-		} catch (NumberFormatException ex) {
-			return false;
-		}
-	}
-
-	public static void setInformationHub(IInformationGateway informationHub) {
-		myInformationHub = informationHub;
+	public static void setInformationGateway(IInformationGateway informationGateway) {
+		myInformationHub = informationGateway;
 	}
 
 	public static void setCommandToClassRelation(
 			Map<String, Class> commandToClassMap) {
 		myCommandToClassMap = commandToClassMap;
-	}
-
-	private void handleError(Exception ex) {
-
 	}
 
 	private static String identifyFirstCommand(String input) {

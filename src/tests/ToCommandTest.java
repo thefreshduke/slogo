@@ -67,7 +67,7 @@ public class ToCommandTest {
         Grid grid = new SingleGrid();
         Turtle turtle = new Turtle(new Position(0, 0), null);
         IInformationGateway hub = new SingleViewInformationGateway(grid, turtle);
-        CommandFactory.setInformationHub(hub);
+        CommandFactory.setInformationGateway(hub);
     }
 
     private String processInput (String input) throws BackendException {
