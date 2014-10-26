@@ -157,7 +157,7 @@ public class SlogoView {
 	 */
 	private void sendCommandAndMakeButton(String command){
 		sendCommand(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command, 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
@@ -330,14 +330,14 @@ public class SlogoView {
 	public void makeUserCommand(String command){
 		commandLine.clear();
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
-		userCommands.addMenuItem(name, event->executeUserCommand(command));
+		userCommands.addMenuItem(name, event->executeUserCommand(commandLine.getText()));
 	}
 
 	public void executeUserCommand(String command){
-		myController.receiveCommand(commandLine.getText());
+		myController.receiveCommand(command);
 		commandLine.setText(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
-				0, 0, (event -> sendCommandAndMakeButton(commandLine.getText())), 180,10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command,
+				0, 0, (event -> sendCommandAndMakeButton(command)), 180,10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
