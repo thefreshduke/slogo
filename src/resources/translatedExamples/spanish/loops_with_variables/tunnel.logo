@@ -1,0 +1,11 @@
+crear :distance 50
+
+rpt 10
+[
+  rpt 4
+  [
+    ava :distance
+    der 90
+  ]
+  crear :distance suma :distance 10
+]

@@ -1,0 +1,7 @@
+a dash [ :count ]
+[
+  repetir :count 
+  [
+    psu ava 4 pab ava 4
+  ]      
+]
