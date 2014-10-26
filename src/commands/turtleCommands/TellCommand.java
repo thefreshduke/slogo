@@ -18,8 +18,7 @@ public class TellCommand extends MultipleTurtleCommand {
 	@Override
 	protected double onExecute() throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
-		List<Integer> myAllTurtlesID = (List<Integer>)turtle
-				.getAllTurtlesByID();
+		List<Integer> myAllTurtlesID = (List<Integer>)turtle.getAllTurtlesByID();
 
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();

@@ -412,7 +412,7 @@ public class SlogoView {
 		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids, colorSelection));
 		myUserFunctions.put("penColor", new PenColor(myGrids));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
-		myUserFunctions.put("setPalette", new SetPallete(colorSelection));
+		myUserFunctions.put("setPalette", new SetPalette(colorSelection));
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
 		myUserFunctions.put("clearStamp", new ClearStamps(myGrids));
 		addLanguages();

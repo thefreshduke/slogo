@@ -14,7 +14,5 @@ public class GUIFunctionMap {
 		pen up 
 		pen down 
 		clear
-		
-	
 	}
 }

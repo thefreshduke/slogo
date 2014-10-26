@@ -33,8 +33,8 @@ public abstract class Grid extends Pane {
 		return myID;
 	}
 	public abstract Turtle addTurtle(Turtle myTurtle);
-	public void setMap(HashMap setMyMap){
-		myMap=setMyMap;
+	public void setMap (HashMap setMyMap) {
+		myMap = setMyMap;
 	}
 	public abstract Turtle addTurtle();
 	public void makeMap(){
@@ -54,14 +54,9 @@ public abstract class Grid extends Pane {
 		}
 		
 	}
-	
-	
 	public abstract void setPalette(Double myRed, Double myGreen, Double myBlue);
 	public abstract void updateGUI(String myFunction);
 	public abstract void updateGUI(String myFunction, List<? extends Number> myNumber);
 	public abstract void sendErrorMessage(String s);
 	public abstract void update(Collection<Turtle> activatedTurtles);
-
-		
-		
 }
