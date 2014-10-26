@@ -84,8 +84,9 @@ public class SlogoView {
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
 	public SlogoView() throws ClassNotFoundException{
 		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Buttons");
-		myGridFactory=new GridFactory(DEFAULT_SIZE.height, DEFAULT_SIZE.width, this.build(5), null);
 		myGrids=new GridTracker();
+		makeListOfFunctions();
+		myGridFactory=new GridFactory(DEFAULT_SIZE.height, DEFAULT_SIZE.width, this.build(5), myUserFunctions);
 		myController=new MainController(this);
 		Timeline myTime=new Timeline();
 		myTime.setCycleCount(Timeline.INDEFINITE);
@@ -122,7 +123,6 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		addTurtle();
-		makeListOfFunctions();
 		colorSelection = new ColorSelection(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;

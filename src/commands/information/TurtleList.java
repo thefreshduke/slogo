@@ -42,6 +42,10 @@ public class TurtleList extends BaseTurtleContainer {
         myTurtles.add(turtle);
         if (isActive) {
             myActiveTurtles.add(turtle);
+            turtle.setActive();
+        }
+        else {
+            turtle.setInactive();
         }
     }
 
@@ -61,32 +65,31 @@ public class TurtleList extends BaseTurtleContainer {
         return activeTurtleIDs;
     }
 
-	@Override
-	public void setActiveTurtle(int turtleID) {
-		myActiveTurtles.clear();
-		for(Turtle toBeInactiveTurtle : myActiveTurtles){
-			toBeInactiveTurtle.setInactive();
-		}
-		for(Turtle turtle : myTurtles){
-			if(turtle.getID() == turtleID){
-				turtle.setActive();
-				myActiveTurtles.add(turtle);
-				break;
-			}
-		}
-	}
-	
-	@Override
-	public void setActiveTurtles(Collection<Integer> turtleIDs) {
-		myActiveTurtles.clear();
-		HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
-		for (Turtle turtle : myTurtles) {
-			if (turtleIDSet.contains(turtle.getID())) {
-				turtle.setActive();
-				myActiveTurtles.add(turtle);
-			}
-		}
-	}
+    @Override
+    public void setTurtleAsActive (int turtleID) {
+        for (Turtle turtle : myTurtles) {
+            if (turtle.getID() == turtleID) {
+                myActiveTurtles.add(turtle);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void setActiveTurtles(Collection<Integer> turtleIDs) {
+        myActiveTurtles.clear();
+        for(Turtle toBeInactiveTurtle : myActiveTurtles){
+            toBeInactiveTurtle.setInactive();
+        }
+        myActiveTurtles.clear();
+        HashSet<Integer> turtleIDSet = new HashSet<>(turtleIDs);
+        for (Turtle turtle : myTurtles) {
+            if (turtleIDSet.contains(turtle.getID())) {
+                turtle.setActive();
+                myActiveTurtles.add(turtle);
+            }
+        }
+    }
 
     @Override
     public Collection<Turtle> getActiveTurtles () {
@@ -100,5 +103,11 @@ public class TurtleList extends BaseTurtleContainer {
             turtleIDSet.add(turtle.getID());
         }
         return turtleIDSet;
+    }
+
+    @Override
+    public void clear() {
+        myTurtles.clear();
+        myActiveTurtles.clear();
     }
 }

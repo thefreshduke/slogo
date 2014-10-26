@@ -85,5 +85,29 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 		}
 		turtle.setActiveTurtles(getFutureActiveTurtleIDs());
 	}
+	
+	protected void storeFutureActiveIDs(String innerInput)
+			throws BackendException {
+		myTurtleIDs = innerInput.split(COMMAND_SEPARATOR);
 
+		if ((myTurtleIDs.length == 1) && (myTurtleIDs[0].equals(""))) {
+			throw new BackendException(null, INVALID_SYNTAX_FOR_ID);
+		}
+		myFutureActiveTurtleIDs = new ArrayList<>();
+		String strTurtleID = "";
+		int turtleID = 0;
+		for (int i = 0; i < myTurtleIDs.length; i++) {
+			strTurtleID = myTurtleIDs[i];
+			if (isEven(i) && !strTurtleID.equals(CONSTANT_INDICATOR)) {
+				throw new BackendException(null, INVALID_ERROR_MESSAGE);
+			} else if(!isEven(i)){
+				turtleID = Integer.parseInt(strTurtleID);
+				if (turtleID < 0) {
+					throw new BackendException(null,
+							INVALID_TURTLE_ID_NEGATIVE_VALUE);
+				}
+				myFutureActiveTurtleIDs.add(turtleID);
+			}
+		}
+	}
 }

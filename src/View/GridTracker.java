@@ -15,7 +15,6 @@ public class GridTracker extends HashSet<Grid> {
 		if (!this.contains(newActive)){
 			this.add(newActive);
 		}
-		
 		myActiveGrid=(SingleGrid) newActive;
 	}
 }

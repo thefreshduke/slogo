@@ -28,7 +28,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public class SingleGrid extends Grid {
-    private final static Dimension DEFAULT_GRID_SIZE = new Dimension(900, 400);
+	
+    private final static Dimension DEFAULT_GRID_SIZE = new Dimension(800, 500);
     private String backgroundColor = "FFFFFF";
     public int myHeight;
     public int myWidth;
@@ -37,6 +38,7 @@ public class SingleGrid extends Grid {
     private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
     private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
     public SingleGrid(){
+
 
     }
     public SingleGrid(KeyFrame frame, HashMap myMap, int ID){

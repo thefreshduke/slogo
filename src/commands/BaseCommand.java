@@ -18,7 +18,6 @@ import commands.information.IInformationContainer;
  */
 public abstract class BaseCommand {
     private BaseCommand myNextCommand;
-    private BaseCommand myInternalCommand;
     private String myLeftoverString = "";
     private boolean myExpressionFlag;
     protected final String COMMAND_DELIMITER = "\\s+";

@@ -14,7 +14,7 @@ import commands.information.IInformationContainer;
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
- * Our Command Factory uses reflection to hide implementation details and
+ * The Command Factory uses reflection to hide implementation details and
  * creates the commands from the user's inputs using a key-value system.
  * 
  * It is static because our createCommand method is recursive, so we need
@@ -29,7 +29,8 @@ public class CommandFactory {
     private static Class[] x =  { BaseVariableContainer.class };
 
 
-    public static BaseCommand createCommand (String input, boolean isExpression) throws BackendException{
+    public static BaseCommand createCommand (String input, boolean isExpression)
+            throws BackendException {
         if (input == null || input.equals("")) {
             return null;
         }
@@ -42,31 +43,37 @@ public class CommandFactory {
         Class<BaseCommand> commandClass = myCommandToClassMap.get(firstCommand);
         BaseCommand command = null;
         if (commandClass == null) {
-            BaseVariableContainer variableContainer = (BaseVariableContainer) myInformationHub.getContainer(BaseVariableContainer.class);
-            command = variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
+            BaseVariableContainer variableContainer = (BaseVariableContainer)myInformationHub
+                    .getContainer(BaseVariableContainer.class);
+            if (variableContainer.containsVariable(firstCommand)) {
+            	command = variableContainer.getCreatedCommand(firstCommand, subInput, isExpression);
+            }
         }
         else {
             try {
-                command = commandClass.getConstructor(String.class, boolean.class).newInstance(subInput, isExpression);
-            } catch (InstantiationException | IllegalAccessException
+                command = commandClass.getConstructor(String.class, boolean.class)
+                        .newInstance(subInput, isExpression);
+            }
+            catch (InstantiationException | IllegalAccessException
                     | IllegalArgumentException | InvocationTargetException
                     | NoSuchMethodException | SecurityException e) {
                 throw new BackendException(e, INVALID_COMMAND_CLASS_TYPE_MESSAGE);
             }
         }
-        if(command == null){
+        if (command == null) {
             throw new BackendException(null, INVALID_COMMAND_CLASS_TYPE_MESSAGE);
         }
-        Set<Class<? extends IInformationContainer>> containerTypes = command.getRequiredInformationTypes();
+        Set<Class<? extends IInformationContainer>> containerTypes =
+                command.getRequiredInformationTypes();
         if (containerTypes != null) {
-            Collection<IInformationContainer> containers = myInformationHub.getContainers(containerTypes);
+            Collection<IInformationContainer> containers =
+                    myInformationHub.getContainers(containerTypes);
             command.setRequiredInformation(containers);
         }
         return command;
-
     }
 
-    private static boolean checkIfNumerical(String string) {
+    private static boolean checkIfNumerical (String string) {
         try {
             Double.parseDouble(string);
             return true;
@@ -76,7 +83,7 @@ public class CommandFactory {
         }
     }
 
-    public static void setInformationHub(ICommandInformationHub informationHub) {
+    public static void setInformationHub (ICommandInformationHub informationHub) {
         myInformationHub = informationHub;
     }
 
