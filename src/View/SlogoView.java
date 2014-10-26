@@ -105,6 +105,7 @@ public class SlogoView {
 			@Override
 			public void handle(ActionEvent evt){
 				myGrids.setActiveGrid(myGridTabs.getActiveGrid());
+		
 			}
 		};
 		return new KeyFrame(speed, loop);
