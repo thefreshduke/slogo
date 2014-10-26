@@ -40,7 +40,7 @@ public class AskTest {
         IInformationGateway hub = new SingleViewInformationGateway();
         BaseGridContainer gridContainer = (BaseGridContainer)hub.getContainer(BaseGridContainer.class);
         gridContainer.addGrid(grid, true);
-        CommandFactory.setInformationHub(hub);
+        CommandFactory.setInformationGateway(hub);
         return hub;
     }
     

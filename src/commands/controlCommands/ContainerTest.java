@@ -54,7 +54,7 @@ public class ContainerTest {
                 "src/resources/languages/English.properties"));
         CommandToClassTranslator commandToClassTranslator = new CommandToClassTranslator();
         try {
-            CommandFactory.setInformationHub(hub);
+            CommandFactory.setInformationGateway(hub);
             CommandFactory.setCommandToClassRelation(commandToClassTranslator
                     .translateCommandToClass(new File(
                             "src/resources/languages/EnglishToClassName.properties")));

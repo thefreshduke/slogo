@@ -75,7 +75,7 @@ public class AskWithTest {
         IInformationGateway hub = new SingleViewInformationGateway(grid, turtle);
         BaseTurtleContainer turtleContainer = (BaseTurtleContainer)hub.getContainer(BaseTurtleContainer.class);
         turtleContainer.addTurtle(turtle2, false);
-        CommandFactory.setInformationHub(hub);
+        CommandFactory.setInformationGateway(hub);
         return hub;
     }
     
