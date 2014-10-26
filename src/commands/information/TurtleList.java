@@ -42,6 +42,10 @@ public class TurtleList extends BaseTurtleContainer {
         myTurtles.add(turtle);
         if (isActive) {
             myActiveTurtles.add(turtle);
+            turtle.setActive();
+        }
+        else{
+        	turtle.setInactive();
         }
     }
 
