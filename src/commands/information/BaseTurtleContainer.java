@@ -8,6 +8,11 @@ import turtle.Turtle;
 import GUIFunctions.BorderStyle;
 import View.Pen;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ * 
+ */
 public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformationContainer {
 
     public abstract void removeTurtle (int turtleID);
@@ -19,7 +24,7 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     public abstract Collection<Integer> getActiveTurtlesByID ();
 
     public abstract void setActiveTurtle(int turtleID);
-    
+
     public abstract void setActiveTurtles (Collection<Integer> turtleIDs);
 
     public abstract Collection<Turtle> getActiveTurtles ();
@@ -138,5 +143,4 @@ public abstract class BaseTurtleContainer implements ITurtleBehavior, IInformati
     public Position undo () {
         return (Position) loopOverTurtleWithResult(turtle -> turtle.undo());
     }
-
 }

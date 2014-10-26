@@ -26,7 +26,7 @@ public abstract class LogicCommand extends ModelCommand {
     }
 
     @Override
-    protected void reset(){
+    protected void reset () {
 
     }
 }

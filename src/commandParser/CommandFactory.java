@@ -17,7 +17,7 @@ import commands.information.IInformationContainer;
  * Our Command Factory uses reflection to hide implementation details and
  * creates the commands from the user's inputs using a key-value system.
  * 
- * It is static because our createCommand method is recursive, so we want
+ * It is static because our createCommand method is recursive, so we need
  * to avoid passing the factory to the individual commands.
  */
 public class CommandFactory {

@@ -24,7 +24,7 @@ public final class NumericalCommand extends BaseCommand {
     }
 
     @Override
-    protected void parseArguments (String userInput) throws BackendException{
+    protected void parseArguments (String userInput) throws BackendException {
         String number = userInput.split("\\s+")[0];
         myNumber = Double.parseDouble(number);
         String leftover = userInput.replaceFirst(number, "").trim();
@@ -32,14 +32,17 @@ public final class NumericalCommand extends BaseCommand {
     }
 
     @Override
-    public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes() {
+    public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
         return null;
     }
 
     @Override
-    public void setRequiredInformation(
-            Collection<IInformationContainer> containers) {}
+    public void setRequiredInformation(Collection<IInformationContainer> containers) {
+
+    }
 
     @Override
-    protected void reset(){}
+    protected void reset () {
+
+    }
 }

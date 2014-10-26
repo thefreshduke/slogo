@@ -6,6 +6,10 @@ import java.util.List;
 import turtle.Turtle;
 import View.Grid;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class BaseGridContainer implements IInformationContainer {
 
     public abstract void updateDisplayOptions (String guiCommand);
