@@ -30,6 +30,10 @@ import commands.information.IInformationGateway;
 import commands.information.MapBasedUserDefinedContainer;
 import commands.information.SingleGridInformationGateway;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class MainController extends BaseController {
 
 	private static final String DEFAULT_ENGLISH_FILE = "src/resources/languages/English.properties";

@@ -7,7 +7,6 @@ import java.util.Collection;
 
 import org.junit.Test;
 
-import turtle.Position;
 import turtle.Turtle;
 import View.Grid;
 import View.SingleGrid;
@@ -21,29 +20,35 @@ import commands.information.BaseTurtleContainer;
 import commands.information.IInformationGateway;
 import commands.information.SingleGridInformationGateway;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class AskTest {
 
-	@Test
-	public void testThatAskCreatesTurtles() throws BackendException{
-		IInformationGateway infoHub = setFactory();
-		String askCommandString = "ASK [ 0 ] [ FD 50 ]";
-		String convertedAskCommand = processInput(askCommandString);
-		BaseCommand askCommand = CommandFactory.createCommand(convertedAskCommand, false);
-		askCommand.execute();
-		BaseTurtleContainer turtleContainer = (BaseTurtleContainer)infoHub.getContainer(BaseTurtleContainer.class);
-		Collection<Turtle> turtles = turtleContainer.getAllTurtles();
-		assertEquals(turtles.size() > 0, true);
-	}
-	
+    @Test
+    public void testThatAskCreatesTurtles () throws BackendException {
+        IInformationGateway infoHub = setFactory();
+        String askCommandString = "ASK [ 0 ] [ FD 50 ]";
+        String convertedAskCommand = processInput(askCommandString);
+        BaseCommand askCommand = CommandFactory.createCommand(convertedAskCommand, false);
+        askCommand.execute();
+        BaseTurtleContainer turtleContainer = (BaseTurtleContainer)infoHub
+                .getContainer(BaseTurtleContainer.class);
+        Collection<Turtle> turtles = turtleContainer.getAllTurtles();
+        assertEquals(turtles.size() > 0, true);
+    }
+
     private IInformationGateway setFactory () {
         Grid grid = new SingleGrid();
         IInformationGateway hub = new SingleGridInformationGateway();
-        BaseGridContainer gridContainer = (BaseGridContainer)hub.getContainer(BaseGridContainer.class);
+        BaseGridContainer gridContainer = (BaseGridContainer)hub
+                .getContainer(BaseGridContainer.class);
         gridContainer.addGrid(grid, true);
         CommandFactory.setInformationGateway(hub);
         return hub;
     }
-    
+
     private String processInput (String input) throws BackendException {
 
         LanguageFileParser myTranslator =

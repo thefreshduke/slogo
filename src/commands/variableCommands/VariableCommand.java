@@ -13,6 +13,10 @@ import commands.BaseCommand;
 import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class VariableCommand extends BaseCommand {
 
     private SlogoView myView;
@@ -21,7 +25,6 @@ public abstract class VariableCommand extends BaseCommand {
 
     public VariableCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

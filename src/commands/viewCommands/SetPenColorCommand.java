@@ -7,6 +7,10 @@ import backendExceptions.BackendException;
 import commands.ViewCommand;
 import commands.information.BaseGridContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class SetPenColorCommand extends ViewCommand {
 	private static final String SET_PEN_COLOR = "penColor";
 

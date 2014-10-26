@@ -5,6 +5,10 @@ import backendExceptions.BackendException;
 import commands.TurtleQuery;
 import commands.information.BaseTurtleContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class XCorQuery extends TurtleQuery {
 
     public XCorQuery (String command, boolean isExpression) throws BackendException {

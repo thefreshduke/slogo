@@ -7,6 +7,10 @@ import javafx.scene.image.Image;
 import turtle.Position;
 import turtle.Turtle;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class TurtleFactory {
 
     private List<Turtle> myActiveTurtles = new ArrayList<Turtle>();

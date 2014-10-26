@@ -5,13 +5,16 @@ import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.information.BaseUserDefinedContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class GetVariableCommand extends VariableCommand {
 
     private String myVariable;
 
     public GetVariableCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override

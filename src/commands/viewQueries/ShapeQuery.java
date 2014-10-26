@@ -6,7 +6,7 @@ import commands.ViewQuery;
 import commands.information.BaseGridContainer;
 
 /**
- * @author TheFreshDuke
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
 public class ShapeQuery extends ViewQuery {

@@ -7,7 +7,6 @@ import backendExceptions.BackendException;
 
 import commandParser.CommandFactory;
 import commands.BaseCommand;
-import commands.LogicCommand;
 import commands.information.IInformationContainer;
 
 /**
@@ -61,7 +60,9 @@ public abstract class ExpressionCommand extends BaseCommand {
     }
 
     @Override
-    protected void reset(){}
-    
+    protected void reset () {
+
+    }
+
     protected abstract int getArgumentCount ();
 }

@@ -10,6 +10,10 @@ import backendExceptions.BackendException;
 
 import commands.information.IInformationContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class BaseController {
 
 	public BaseController (SlogoView view) {

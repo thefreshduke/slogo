@@ -11,6 +11,10 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.IInformationContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class TurtleCommand extends BaseCommand {
 	private static final String INSUFFICIENT_ARGUMENTS_PROVIDED = "Insufficient arguments provided";
 	private static final int NUM_TURTLE_CONTAINERS = 2;

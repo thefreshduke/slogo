@@ -6,6 +6,10 @@ import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.information.BaseUserDefinedContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class SetVariableCommand extends VariableCommand {
 
     private String myVariableName;

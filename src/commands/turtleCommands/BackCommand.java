@@ -5,6 +5,10 @@ import backendExceptions.BackendException;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class BackCommand extends TurtleCommand {
 
     public BackCommand (String userInput, boolean isExpression) throws BackendException {

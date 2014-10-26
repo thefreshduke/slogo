@@ -15,6 +15,10 @@ import commands.BaseCommand;
 import commands.information.BaseUserDefinedContainer;
 import commands.information.MapBasedUserDefinedContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class VariableCommandParseTest {
 
     // @Test
@@ -53,7 +57,8 @@ public class VariableCommandParseTest {
             container.addVariable(variable1, value);
             Double result = command.execute();
             assertEquals(result, new Double(70));
-        } catch (Exception ex) {
+        }
+        catch (Exception ex) {
 
         }
     }
@@ -66,9 +71,9 @@ public class VariableCommandParseTest {
             CommandFactory.setCommandToClassRelation(commandToClassTranslator
                     .translateCommandToClass(new File(
                             "src/resources/languages/EnglishToClassName.properties")));
-        } catch (BackendException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+        }
+        catch (BackendException e1) {
+
         }
         return myTranslator.translateUserInputIntoEnglish(input);
     }

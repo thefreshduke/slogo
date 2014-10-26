@@ -11,11 +11,14 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.IInformationContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class MultiTurtleCommand extends BaseCommand {
 
     public MultiTurtleCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
