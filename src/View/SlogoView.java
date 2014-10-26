@@ -81,6 +81,7 @@ public class SlogoView {
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
 	private MenuTemplate userCommands;
+	private Map<String, String> userCommandMap = new HashMap<>();
 	private ResourceBundle myResources;
 	private Stage myStage;
 	private VariableTable myVariableTable;
@@ -340,9 +341,10 @@ public class SlogoView {
 	}
 
 	public void makeUserCommand(String command){
-		commandLine.clear();
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
-		userCommands.addMenuItem(name, event->executeUserCommand(commandLine.getText()));
+		userCommandMap.put(name, commandLine.getText());
+		commandLine.clear();
+		userCommands.addMenuItem(name, event->executeUserCommand(userCommandMap.get(name)));
 	}
 
 	public void executeUserCommand(String command){
