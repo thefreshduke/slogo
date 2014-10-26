@@ -25,7 +25,7 @@ public class Pen extends Line{
 
 	public Pen(){
 		myLines=new Stack<Line>();
-		myColor="FFFFFF";
+		myColor="000000";
 		myStyle=new SolidBorderStyle();
 		penDown=true;
 		myThickness=1;

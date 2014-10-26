@@ -37,6 +37,7 @@ public class SingleGrid extends Grid {
 	private HashSet<Turtle> allTurtles=new HashSet<Turtle>();
 	private HashSet<Turtle> activeTurtles=new HashSet<Turtle>();
 	private HashMap<String, GUIFunction> myGridFunctions=new HashMap<String, GUIFunction>();
+	private boolean outOfBounds;
 	public SingleGrid(){
 
 
@@ -96,25 +97,47 @@ public class SingleGrid extends Grid {
 		}	
 	}
 
-	public void keepTurtleInBounds(Turtle t){
-		t.getPen().setPenDown(false);
-
-		if(t.getXPos() > myWidth) t.setXPos(t.getXPos()%myWidth);
-		if(t.getXPos() < 0) t.setXPos(t.getXPos()+myWidth);
-		if(t.getYPos() > myHeight) t.setYPos(t.getYPos()%myHeight);
-		if(t.getYPos() < 0) t.setYPos(t.getYPos() + myHeight);
-
-		moveTurtle(t);
-		t.getPen().setPenDown(true);
-
-	}
 
 	public void keyUpdate(){
 		for (Turtle active: getActiveTurtles()){
 			keepTurtleInBounds(active);
-			//            moveTurtle(active);
+			moveTurtle(active);
 			getChildren().add(active.getPen().drawLine(active.getXPos(), active.getYPos()));
+
 		}	
+	}
+	
+	public void keepTurtleInBounds(Turtle t){
+		boolean penStatus = t.getPen().getPenDown();
+		t.getPen().setPenDown(false);
+
+		if(t.getXPos() > myWidth){
+			t.setXPos(t.getXPos()%myWidth);
+			t.getPen().drawLine(t.getXPos(), t.getYPos());
+			t.setXPos(t.getXPos()%myWidth + 1);
+
+		}
+		if(t.getXPos() < 0){
+			t.setXPos(t.getXPos()+myWidth);
+			t.getPen().drawLine(t.getXPos(), t.getYPos());
+			t.setXPos(t.getXPos()+myWidth + 1);
+
+		}
+		if(t.getYPos() > myHeight){
+			t.setYPos(t.getYPos()%myHeight);
+			t.getPen().drawLine(t.getXPos(), t.getYPos());
+			t.setYPos(t.getYPos()%myHeight + 1);
+
+		}
+		if(t.getYPos() < 0){
+			t.setYPos(t.getYPos() + myHeight);
+			t.getPen().drawLine(t.getXPos(), t.getYPos());
+			t.setYPos(t.getYPos() + myHeight + 1);
+
+		}
+
+		t.getPen().setPenDown(penStatus);
+
 	}
 	public Collection<Turtle> getActiveTurtles(){
 		activeTurtles.clear();
