@@ -20,7 +20,7 @@ import commands.BaseCommand;
  */
 public class ExpressionCommandParseTest {
 
-    private static final double sumTestAnswer = 26.0;
+    private static final double mySumTestAnswer = 26.0;
 
     @Test
     public void testSumParses () throws BackendException, ClassNotFoundException {
@@ -29,7 +29,7 @@ public class ExpressionCommandParseTest {
         BaseCommand command = CommandFactory.createCommand(input, false);
         try {
             Double result = command.execute();
-            assertEquals(result, new Double(sumTestAnswer));
+            assertEquals(result, new Double(mySumTestAnswer));
         }
         catch (BackendException ex) {
 

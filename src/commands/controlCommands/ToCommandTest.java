@@ -57,7 +57,8 @@ public class ToCommandTest {
             BaseCommand useCommand3 = CommandFactory.createCommand(convertedUse3, false);
             Double result3 = useCommand3.execute();
             assertEquals(result3, new Double(2));
-        } catch (BackendException ex) {
+        }
+        catch (BackendException ex) {
 
         }
     }
@@ -78,7 +79,8 @@ public class ToCommandTest {
             CommandFactory.setCommandToClassRelation(commandToClassTranslator
                     .translateCommandToClass(new File(
                             "src/resources/languages/EnglishToClassName.properties")));
-        } catch (BackendException ex) {
+        }
+        catch (BackendException ex) {
 
         }
         return myTranslator.translateUserInputIntoEnglish(input);

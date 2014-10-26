@@ -40,8 +40,9 @@ public class DoCommand extends ControlCommand {
         }
         if (expressionResult < 1) {
             returnValue = 0;
-        } else {
-            int repetitionCount = (int) expressionResult;
+        }
+        else {
+            int repetitionCount = (int)expressionResult;
 
             for (int i = 1; i <= repetitionCount; i++) {
                 myVariableContainer.addVariable(myVariableName, i);
@@ -55,7 +56,8 @@ public class DoCommand extends ControlCommand {
     private void checkIfVariableExistsPreviously (BaseCommand oldCommand) throws BackendException {
         if (myVarExistsPreviously) {
             myVariableContainer.addVariable(myVariableName, oldCommand);
-        } else {
+        }
+        else {
             myVariableContainer.popOffVariable(myVariableName);
         }
     }

@@ -51,7 +51,8 @@ public abstract class ExpressionCommand extends LogicCommand {
             String subInput;
             if (i == 0) {
                 subInput = userInput;
-            } else {
+            }
+            else {
                 subInput = myArgumentList[i - 1].getLeftoverString();
             }
             if (!subInput.equals("")) {
