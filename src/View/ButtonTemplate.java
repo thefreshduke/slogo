@@ -15,13 +15,7 @@ public class ButtonTemplate extends Button implements UserObjects{
 	 * @param handler		Event for the Button to react upon
 	 */
 	public ButtonTemplate(String s, double x, double y, GUIFunction myFunction){
-		this.relocate(x, y);
-		this.setText(s);
-		this.addEvent(event->myFunction.doAction());
-		this.addEventHandler(MouseEvent.MOUSE_ENTERED, event->actionOnMouseHover());
-		this.addEventHandler(MouseEvent.MOUSE_EXITED,  event->actionOnMouseExit());
-		setStyle(textSize);
-		this.setPrefSize(75, 55);
+		this(s,x,y,myFunction,75,55);
 	}
 	public ButtonTemplate(String s, double x, double y, EventHandler myEvent, int width, int height){
 		this.relocate(x, y);
