@@ -5,7 +5,7 @@ import backendExceptions.BackendException;
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -20,7 +20,7 @@ public class DoCommand extends ControlCommand {
     private BaseCommand myLimitCommand;
     private BaseCommand myInternalCommand;
 
-    private BaseVariableContainer myVariableContainer;
+    private BaseUserDefinedContainer myVariableContainer;
     private boolean myVarExistsPreviously;
 
     public DoCommand (String userInput, boolean isExpression) throws BackendException {

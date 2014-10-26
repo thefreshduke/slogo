@@ -76,7 +76,7 @@ public class SingleViewTurtleContainer extends BaseTurtleContainer {
     }
 
     @Override
-    public void setActiveTurtles(Collection<Integer> turtleIDs) {
+    public void hardSetActiveTurtles(Collection<Integer> turtleIDs) {
         myActiveTurtles.clear();
         for(Turtle toBeInactiveTurtle : myActiveTurtles){
             toBeInactiveTurtle.setInactive();

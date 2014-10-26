@@ -22,8 +22,8 @@ import commands.expressionCommands.RemainderCommand;
 import commands.expressionCommands.SinCommand;
 import commands.expressionCommands.SumCommand;
 import commands.expressionCommands.TanCommand;
-import commands.information.BaseVariableContainer;
-import commands.information.MapBasedVariableContainer;
+import commands.information.BaseUserDefinedContainer;
+import commands.information.MapBasedUserDefinedContainer;
 
 public class ViewCommandParseTest {
 
@@ -54,7 +54,7 @@ public class ViewCommandParseTest {
     @Test
     public void testThatVariableIsGet () {
         setFactory();
-        BaseVariableContainer container = new MapBasedVariableContainer();
+        BaseUserDefinedContainer container = new MapBasedUserDefinedContainer();
         String variable1 = "variable1";
         String valueString = "SUM 10 60";
         BaseCommand value = CommandFactory.createCommand(valueString, true);

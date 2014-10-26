@@ -11,13 +11,13 @@ import commands.BaseCommand;
 import commands.NumericalCommand;
 import commands.variableCommands.CreatedCommand;
 
-public class MapBasedVariableContainer extends BaseVariableContainer {
+public class MapBasedUserDefinedContainer extends BaseUserDefinedContainer {
 
     private Map<String, BaseCommand> myVariableToValuesMap;
     private Map<String, String> myCreatedCommandMap;
     private Map<String, String[]> myCreatedCommandVariableMap;
 
-    public MapBasedVariableContainer () {
+    public MapBasedUserDefinedContainer () {
         myVariableToValuesMap = new HashMap<>();
         myCreatedCommandMap = new HashMap<>();
         myCreatedCommandVariableMap = new HashMap<>();
