@@ -1,30 +1,32 @@
 package commands.viewCommands;
 
-import backendExceptions.BackendException;
+import java.util.ArrayList;
+import java.util.List;
 
+import backendExceptions.BackendException;
 import commands.ViewCommand;
 import commands.information.BaseGridContainer;
 
 public class SetPenSizeCommand extends ViewCommand {
+	private static final String SET_PEN_SIZE = "penThickness";
+	
+	public SetPenSizeCommand (String command, boolean isExpression) throws BackendException {
+		super(command, isExpression);
+	}
 
-    // TODO : Add GUI function to change to given index
-    private static final String SET_PEN_SIZE = "penThickness";
+	@Override
+	protected double onExecute () throws BackendException {
+		BaseGridContainer grid = getGridContainer();
+		double penSizeIndex = getExpressionList()[0].execute();
+		List<Double> penSizeList = new ArrayList<Double>();
+		penSizeList.add(penSizeIndex);
+		grid.updateDisplayOptions(SET_PEN_SIZE, penSizeList);
+		return penSizeIndex;
+	}
 
-    public SetPenSizeCommand (String command, boolean isExpression) throws BackendException {
-        super(command, isExpression);
-    }
-
-    @Override
-    protected double onExecute () throws BackendException {
-        BaseGridContainer grid = getGridContainer();
-        double penSizeIndex = getExpressionList()[0].execute();
-        grid.updateDisplayOptions(SET_PEN_SIZE, penSizeIndex);
-        return penSizeIndex;
-    }
-
-    @Override
-    protected int getArgumentCount () {
-        return 1;
-    }
+	@Override
+	protected int getArgumentCount () {
+		return 1;
+	}
 
 }
