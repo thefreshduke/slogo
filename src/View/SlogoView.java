@@ -161,7 +161,6 @@ public class SlogoView {
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
-		this.disable();
 	}
 
 
@@ -193,9 +192,12 @@ public class SlogoView {
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
-	private void disable(){
-		for (Node myNode: myStage.getScene().getRoot().get
+	public void setDisable(Boolean toDisable){
+		for (Node myNode: root.getChildren()){
+			myNode.setDisable(toDisable);
+		}
 	}
+	
 	private void makeLanguageMenu(Class myClass, MenuTemplate myMenu){
 		for (String myName: myUserFunctions.keySet()){
 			if (myUserFunctions.get(myName) instanceof LanguageMenu){
