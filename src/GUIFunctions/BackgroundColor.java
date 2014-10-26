@@ -15,9 +15,11 @@ public class BackgroundColor extends ColorFunction{
 		myGrids=grid;
 		myColors=colors;
 		
+		
 	}
 	
 	public void doAction(List<? extends Number> newVal) {
+		System.out.println(myColors);
 		myGrids.getActiveGrid().setBackgroundColor(myColors.getAvailableColors().get((int)newVal.get(0)));
 		
 	}

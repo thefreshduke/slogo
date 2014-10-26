@@ -29,7 +29,7 @@ public class VariableTable extends TableView {
 		Scene scene = new Scene(new Group());
 		Stage newStage=new Stage();
 		newStage.setTitle("Variable Table");
-		newStage.setWidth(300);
+		newStage.setWidth(500);
 		newStage.setHeight(500);
 		Label label = new Label("My Variable Table");
 		label.setFont(new Font("Arial", 20));
@@ -59,15 +59,11 @@ public class VariableTable extends TableView {
 		myVariableColumn.getColumns().addAll(myVariableName, myValue);
 		
 		TableColumn myUserFunctions=new TableColumn("User Functions");
-		//myUserFunctions.ad
-		VBox vbox = new VBox();
-		vbox.setSpacing(5);
-		vbox.getChildren().addAll(label, this);
-		((Group) scene.getRoot()).getChildren().addAll(vbox);
+		((Group) scene.getRoot()).getChildren().addAll(this);
 		newStage.setScene(scene);
 		newStage.show();
 
-		getColumns().addAll(myVariableName, myValue);
+		getColumns().addAll(myVariableColumn, myUserFunctions);
 		newStage.show();
 	}
 
