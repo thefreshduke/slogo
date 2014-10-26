@@ -13,10 +13,6 @@ import commands.information.BaseTurtleContainer;
 
 public class AskCommand extends MultipleTurtleCommand {
 
-	private static final String INVALID_TURTLE_ID_NEGATIVE_VALUE = "Invalid Turtle ID: negative value";
-	private static final String MULTIPLE_ACTIVE_GRID_MESSAGE = "More than one grid is active";
-
-
 	public AskCommand (String userInput, boolean isExpression)
 			throws BackendException {
 		super(userInput, isExpression);
@@ -42,7 +38,7 @@ public class AskCommand extends MultipleTurtleCommand {
 		myTurtleIDs = innerInput.split(COMMAND_SEPARATOR);
 
 		if ((myTurtleIDs.length == 1) && (myTurtleIDs[0].equals(""))) {
-			throw new BackendException(null, "Invalid syntax for ID");
+			throw new BackendException(null, INVALID_SYNTAX_FOR_ID);
 		}
 		myFutureActiveTurtleIDs = new ArrayList<>();
 		String strTurtleID = "";

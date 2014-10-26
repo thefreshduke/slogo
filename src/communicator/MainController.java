@@ -270,4 +270,10 @@ public class MainController extends BaseController {
 				filename);
 
 	}
+
+	@Override
+	public void setTurtleAsActive(int turtleID) {
+		// TODO Auto-generated method stub
+		
+	}
 }

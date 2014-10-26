@@ -86,5 +86,7 @@ public abstract class BaseController {
 			throws BackendException;
 
 	public abstract void setGridAsActive (int gridID);
+	
+	public abstract void setTurtleAsActive(int turtleID);
 
 }
