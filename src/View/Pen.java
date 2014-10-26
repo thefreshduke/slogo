@@ -11,6 +11,7 @@ import GUIFunctions.SolidBorderStyle;
 import turtle.Position;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.StrokeLineCap;
 import javafx.scene.shape.StrokeType;
 
 //why do you not use arraylist
@@ -71,12 +72,15 @@ public class Pen extends Line{
 		}
 	}
 	private void setLineStyle(Line myLine){
+		Double[] myStyleDouble=myStyle.getStyle(myThickness);
 		myLine.setStyle("-fx-stroke: #"+myColor);
+		myLine.setStrokeLineCap(StrokeLineCap.ROUND);
 		myLine.setStrokeWidth(myThickness);
 		myLine.getStrokeDashArray().clear();
 		myLine.getStrokeDashArray().addAll(myStyle.getStyle(myThickness));
 		myLine.setVisible(penDown);
 		myLines.push(myLine);
+		
 	}
 	
 	public void setPenDown(boolean down){
