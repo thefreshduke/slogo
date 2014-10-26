@@ -1,47 +1,49 @@
 package commands.turtleCommands;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import turtle.Turtle;
-import commands.information.BaseGridContainer;
-import commands.information.BaseTurtleContainer;
-import View.Grid;
 import backendExceptions.BackendException;
 
 public class TellCommand extends MultipleTurtleCommand {
 
-    public TellCommand(String userInput, boolean isExpression)
-            throws BackendException {
+    public TellCommand(String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
     protected double onExecute() throws BackendException {
-        BaseTurtleContainer turtle = getTurtleContainer();
-        List<Integer> myAllTurtlesID = new ArrayList<>(turtle.getAllTurtlesByID());
-
-        BaseGridContainer grid = getGridContainer();
-        List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();
-        if (grid.getActiveGrids().size() != 1) {
-            throw new BackendException(null, "More than one grid is active");
-        }
-        Grid activeGrid = allGrids.get(0);
-
-
-
-        int maxID = findMax(getFutureActiveTurtleIDs());
-
-        for (int i = 0; i <= maxID; i++) {
-            if (!myAllTurtlesID.contains(i)) {
-                Turtle newTurtle = activeGrid.addTurtle();
-                turtle.addTurtle(newTurtle, false);
-            }
-        }
-        turtle.setActiveTurtles(getFutureActiveTurtleIDs());
-        double result = getInternalCommand().execute();
-
-        return result;
+        addFutureActiveTurtleTurtles();
+        String strLastActiveID = myTurtleIDs[myTurtleIDs.length - 1];
+        double lastActiveID = Double.parseDouble(strLastActiveID); 
+        return lastActiveID;
     }
 
+    @Override
+    protected void parseArguments(String userInput) throws BackendException {
+        String[] splitInput = splitByInnerListCommand(userInput);
+        String innerInput = splitInput[0];
+        myTurtleIDs = innerInput.split(COMMAND_SEPARATOR);
+
+        if ((myTurtleIDs.length == 1) && (myTurtleIDs[0].equals(""))) {
+            throw new BackendException(null, NO_SINGLE_ACTIVE_GRID);
+        }
+        myFutureActiveTurtleIDs = new ArrayList<>();
+        String strTurtleID = "";
+        int turtleID = 0;
+        for (int i = 0; i < myTurtleIDs.length; i++) {
+            strTurtleID = myTurtleIDs[i];
+            if (isEven(i) && !strTurtleID.equals(CONSTANT_INDICATOR)) {
+                throw new BackendException(null, INVALID_ERROR_MESSAGE);
+            }
+            else if (!isEven(i)) {
+                turtleID = Integer.parseInt(strTurtleID);
+                if (turtleID < 0) {
+                    throw new BackendException(null, INVALID_TURTLE_ID_NEGATIVE_VALUE);
+                }
+                myFutureActiveTurtleIDs.add(turtleID);
+            }
+        }
+        String nextCommandInput = splitInput[1];
+        setLeftoverCommands(nextCommandInput);
+    }
 }

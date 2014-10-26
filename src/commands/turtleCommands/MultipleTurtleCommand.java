@@ -14,7 +14,9 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 	private static final int EVEN_NUMBER_CHECKER = 2;
 	protected static final String CONSTANT_INDICATOR = "constant";
 	protected static final String INVALID_ERROR_MESSAGE = "Malformed input for Turtle IDs";
-	private static final String MULTIPLE_ACTIVE_GRID_MESSAGE = "More than one grid is active";
+	protected static final String NO_SINGLE_ACTIVE_GRID = "Exactly one grid is not active";
+	protected static final String INVALID_SYNTAX_FOR_ID = "Invalid syntax for ID";
+	protected static final String INVALID_TURTLE_ID_NEGATIVE_VALUE = "Invalid Turtle ID: negative value";
 	protected BaseCommand myInternalCommand;
 	protected List<Integer> myFutureActiveTurtleIDs;
 	protected String[] myTurtleIDs;
@@ -70,7 +72,7 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 		BaseGridContainer grid = getGridContainer();
 		List<Grid> allGrids = (List<Grid>)grid.getActiveGrids();
 		if (allGrids.size() != 1) {
-			throw new BackendException(null, MULTIPLE_ACTIVE_GRID_MESSAGE);
+			throw new BackendException(null, NO_SINGLE_ACTIVE_GRID);
 		}
 
 		Grid activeGrid = allGrids.get(0);
