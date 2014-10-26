@@ -35,7 +35,6 @@ public class ColorSelection extends Pane{
 
 	public ColorSelection (GridTracker grid){
 		myGrids=grid;
-		
 		myLabels.add(new ColorLabel(0, 0, 80, 20, "BackgroundColor", new BackgroundColor(myGrids, this)));
 		myLabels.add(new ColorLabel(100, 0, 80, 20, "Pen Color", new PenColor(myGrids)));
 		

@@ -81,9 +81,10 @@ public class SlogoView {
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
 	private MenuTemplate userCommands;
+	private Map<String, String> userCommandMap = new HashMap<>();
 	private ResourceBundle myResources;
 	private Stage myStage;
-	private VariableTable myVariableTable;
+	//private VariableTable myVariableTable;
 	private final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -132,7 +133,7 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		addTurtle();
-		myVariableTable=new VariableTable();
+		//myVariableTable=new VariableTable();
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -161,7 +162,7 @@ public class SlogoView {
 	 */
 	private void sendCommandAndMakeButton(String command){
 		sendCommand(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(), 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command, 0, 0, (event -> sendCommandAndMakeButton(command)), 180, 10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
@@ -210,7 +211,7 @@ public class SlogoView {
 				}
 			}
 	}
-	
+	/*
 	public void addVariables(Map<String, Double> myVariables){
 		ArrayList<Variable> myVars=new ArrayList<Variable>();
 		for (String name: myVariables.keySet()){
@@ -218,7 +219,7 @@ public class SlogoView {
 			myVars.add(myNewVariable);
 		}
 	}
-	
+	*/
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
 		myAdd.addMenuItem("Add Turtle", event->addTurtle());
@@ -340,16 +341,17 @@ public class SlogoView {
 	}
 
 	public void makeUserCommand(String command){
-		commandLine.clear();
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
-		userCommands.addMenuItem(name, event->executeUserCommand(command));
+		userCommandMap.put(name, commandLine.getText());
+		commandLine.clear();
+		userCommands.addMenuItem(name, event->executeUserCommand(userCommandMap.get(name)));
 	}
 
 	public void executeUserCommand(String command){
-		myController.receiveCommand(commandLine.getText());
+		myController.receiveCommand(command);
 		commandLine.setText(command);
-		ButtonTemplate mostRecent = new ButtonTemplate(commandLine.getText(),
-				0, 0, (event -> sendCommandAndMakeButton(commandLine.getText())), 180,10);
+		ButtonTemplate mostRecent = new ButtonTemplate(command,
+				0, 0, (event -> sendCommandAndMakeButton(command)), 180,10);
 		myCommands.add(mostRecent);
 		commandLine.clear();
 		updateCommandHistory();
