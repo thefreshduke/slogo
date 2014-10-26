@@ -20,15 +20,15 @@ import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
 import commands.information.BaseTurtleContainer;
-import commands.information.ICommandInformationHub;
+import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
-import commands.information.SingleViewContainerInformationHub;
+import commands.information.SingleViewInformationGateway;
 
 public class AskWithTest {
 
 	@Test
 	public void testAlwaysTrueAskWith() throws BackendException{
-		ICommandInformationHub infoHub = setFactory();
+		IInformationGateway infoHub = setFactory();
 		String askWithCommandString = "ASKWITH [ GREATERP 51 50 ] [ FD 50 ]";
 		String convertedAskWithCommandString = processInput(askWithCommandString);
 		BaseCommand askWithCommand = CommandFactory.createCommand(convertedAskWithCommandString, false);
@@ -48,7 +48,7 @@ public class AskWithTest {
 	
 	@Test
 	public void testXCorAskWith() throws BackendException{
-		ICommandInformationHub infoHub = setFactory();
+		IInformationGateway infoHub = setFactory();
 		String askWithCommandString = "ASKWITH [ GREATERP XCOR 50 ] [ FD 50 ]";
 		String convertedAskWithCommandString = processInput(askWithCommandString);
 		BaseCommand askWithCommand = CommandFactory.createCommand(convertedAskWithCommandString, false);
@@ -66,16 +66,16 @@ public class AskWithTest {
 		}
 	}
 	
-    private ICommandInformationHub setFactory () {
+    private IInformationGateway setFactory () {
         Grid grid = new SingleGrid();
         Turtle turtle = new Turtle(new Position(0, 0, 0), null);
         turtle.setID(1);
         Turtle turtle2 = new Turtle(new Position(51, 0, 0), null);
         turtle2.setID(2);
-        ICommandInformationHub hub = new SingleViewContainerInformationHub(grid, turtle);
+        IInformationGateway hub = new SingleViewInformationGateway(grid, turtle);
         BaseTurtleContainer turtleContainer = (BaseTurtleContainer)hub.getContainer(BaseTurtleContainer.class);
         turtleContainer.addTurtle(turtle2, false);
-        CommandFactory.setInformationHub(hub);
+        CommandFactory.setInformationGateway(hub);
         return hub;
     }
     

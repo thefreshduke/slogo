@@ -8,7 +8,7 @@ import java.util.Set;
 import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.information.BaseVariableContainer;
-import commands.information.ICommandInformationHub;
+import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
 
 /**
@@ -26,7 +26,7 @@ public class CommandFactory {
 	private static final String INVALID_COMMAND_CLASS_TYPE_MESSAGE = "Invalid command class type";
 	private static Map<String, Class> myCommandToClassMap;
 	private static String myCommandSeparator = "\\s+";
-	private static ICommandInformationHub myInformationHub;
+	private static IInformationGateway myInformationHub;
 	private static Class[] x = { BaseVariableContainer.class };
 
 	public static BaseCommand createCommand(String input, boolean isExpression)
@@ -73,26 +73,13 @@ public class CommandFactory {
 		return command;
 	}
 
-	private static boolean checkIfNumerical(String string) {
-		try {
-			Double.parseDouble(string);
-			return true;
-		} catch (NumberFormatException ex) {
-			return false;
-		}
-	}
-
-	public static void setInformationHub(ICommandInformationHub informationHub) {
-		myInformationHub = informationHub;
+	public static void setInformationGateway(IInformationGateway informationGateway) {
+		myInformationHub = informationGateway;
 	}
 
 	public static void setCommandToClassRelation(
 			Map<String, Class> commandToClassMap) {
 		myCommandToClassMap = commandToClassMap;
-	}
-
-	private void handleError(Exception ex) {
-
 	}
 
 	private static String identifyFirstCommand(String input) {
