@@ -25,6 +25,10 @@ public abstract class BaseVariableContainer implements IInformationContainer {
 
     public abstract boolean containsVariable (String variable);
     
+    public boolean containsCustomCommand(String command){
+    	return getAllCustomCommands().contains(command);
+    }
+    
     public abstract Map<String, Double> getAllVariablesAndValues() throws BackendException;
     
     public abstract List<String> getAllCustomCommands();
