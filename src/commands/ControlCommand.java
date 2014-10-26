@@ -14,7 +14,7 @@ import commands.information.IInformationContainer;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public abstract class ControlCommand extends ModelCommand {
+public abstract class ControlCommand extends BaseCommand {
 
     protected static String COMMAND_INDICATOR = "liststart";
     protected static String COMMAND_END_INDICATOR = "listend";

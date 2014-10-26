@@ -10,7 +10,7 @@ import commands.information.BaseUserDefinedContainer;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public abstract class LogicCommand extends ModelCommand {
+public abstract class LogicCommand extends BaseCommand {
     private SlogoView myView;
     private Turtle myTurtle;
     private BaseUserDefinedContainer myVariableContainer;

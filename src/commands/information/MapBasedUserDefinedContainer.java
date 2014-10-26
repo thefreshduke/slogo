@@ -37,11 +37,6 @@ public class MapBasedUserDefinedContainer extends BaseUserDefinedContainer {
     }
 
     @Override
-    public boolean containsVariable (String variable) {
-        return myVariableToValuesMap.containsKey(variable);
-    }
-
-    @Override
     public boolean addVariable (String variable, double value) throws BackendException {
         NumericalCommand number = new NumericalCommand(((Double) value).toString(), true);
         return addVariable(variable, number);
