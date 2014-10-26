@@ -10,6 +10,12 @@ import backendExceptions.BackendException;
 
 import commands.information.IInformationContainer;
 
+/**
+ * Abstract class for the Controller that provides the point-of-contact between the 
+ * FrontEnd and BackEnd. 
+ * @author Duke
+ *
+ */
 public abstract class BaseController {
 
 	public BaseController (SlogoView view) {
@@ -63,20 +69,56 @@ public abstract class BaseController {
 	 *            File of language resource to be used
 	 */
 	public abstract void loadLanguage (File file);
+	
+	/**
+	 * 
+	 * @param turtle to be added
+	 * @param gridID - grid on which turtle to be added
+	 * @param isActive - whether the added turtle is active or not via the view
+	 */
 
 	public abstract void addTurtle (Turtle turtle, int gridID, boolean isActive);
-
+	
+	/**
+	 * 
+	 * @param grid to be added
+	 * @param isActive - whether the grid is active
+	 */
 	public abstract void addGrid (Grid grid, boolean isActive);
 
+	/**
+	 * 
+	 * @return list of active turtles that can be obtained
+	 */
 	public abstract List<Turtle> getActiveTurtles ();
 
+	/**
+	 * 
+	 * @param file from which preferences are loaded
+	 * @return container with loaded information
+	 * @throws BackendException if failure to load file
+	 */
 	public abstract IInformationContainer loadPreferences (File file) throws BackendException;
 
+	/**
+	 * 
+	 * @param container that should be saved
+	 * @param filename to which container should be saved
+	 * @throws BackendException if failure to save properly
+	 */
 	public abstract void savePreferences (IInformationContainer container, String filename)
 			throws BackendException;
 
+	/**
+	 * 
+	 * @param gridID that should be set active
+	 */
 	public abstract void setGridAsActive (int gridID);
 	
+	/**
+	 * 
+	 * @param turtle that should be set active
+	 */
 	public abstract void setTurtleAsActive(int turtleID);
 
 }

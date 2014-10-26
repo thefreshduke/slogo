@@ -17,7 +17,6 @@ import turtle.Turtle;
 import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
-
 import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
@@ -30,8 +29,21 @@ import commands.information.IInformationGateway;
 import commands.information.MapBasedUserDefinedContainer;
 import commands.information.SingleGridInformationGateway;
 
+/**
+ * 
+ * @author Duke, Rahul
+ * This class is an implementation of the BaseController designed for asynchronous execution using
+ * animation timelines.  BaseController is responsible for ensuring that the different containers are 
+ * correctly updated when such information can be provided via the view. It handles error processing and 
+ * reporting to the View, as well as provides implementation details for user to load and save functions/variables
+ * using Serializable.
+ * 
+ *
+ */
 public class MainController extends BaseController {
 
+	private static final String ERROR_READING_FROM_FILE = "Error reading from file";
+	private static final String ERROR_WRITING_TO_FILE = "Error writing to file";
 	private static final String DEFAULT_ENGLISH_FILE = "src/resources/languages/English.properties";
 	private SlogoView myView;
 	private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
@@ -225,7 +237,7 @@ public class MainController extends BaseController {
 			in.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex,
-					"Error reading from file"));
+					ERROR_READING_FROM_FILE));
 		}
 		myInformationGateway.addContainer(returnContainer);
 		return (IInformationContainer) returnContainer;
@@ -242,7 +254,7 @@ public class MainController extends BaseController {
 			out.writeObject((MapBasedUserDefinedContainer) container);
 			out.close();
 		} catch (Exception ex) {
-			reportErrorToView(new BackendException(ex, "Error writing to file"));
+			reportErrorToView(new BackendException(ex, ERROR_WRITING_TO_FILE));
 		}
 	}
 
