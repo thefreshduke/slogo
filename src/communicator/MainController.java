@@ -144,7 +144,7 @@ public class MainController extends BaseController {
 	private void executeCommand(BaseCommand command) {
 		try {
 			command.execute();
-			sendDefinedVariables();
+			sendUserDefinedVariablesAndCommands();
 		} catch (BackendException ex) {
 			reportErrorToView(ex);
 		} finally {
@@ -155,7 +155,7 @@ public class MainController extends BaseController {
 		
 	}
 
-	private void sendDefinedVariables() {
+	private void sendUserDefinedVariablesAndCommands() {
 		BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) myInformationGateway
 				.getContainer(BaseUserDefinedContainer.class);
 		try {
