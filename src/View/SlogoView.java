@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.Queue;
@@ -39,6 +40,7 @@ import GUIFunctions.ToggleGridLines;
 import GUIFunctions.TurtleImageChange;
 import GUIFunctions.Undo;
 import GUIFunctions.TurtleVariablesTable;
+import GUIFunctions.UserInput;
 import GUIFunctions.Variable;
 import GUIFunctions.VariableTable;
 import communicator.MainController;
@@ -84,7 +86,7 @@ public class SlogoView {
 	private Map<String, String> userCommandMap = new HashMap<>();
 	private ResourceBundle myResources;
 	private Stage myStage;
-	//private VariableTable myVariableTable;
+	private VariableTable myVariableTable;
 	private final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -133,7 +135,7 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		addTurtle();
-		//myVariableTable=new VariableTable();
+		myVariableTable=new VariableTable();
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -211,15 +213,18 @@ public class SlogoView {
 				}
 			}
 	}
-	/*
+	
 	public void addVariables(Map<String, Double> myVariables){
-		ArrayList<Variable> myVars=new ArrayList<Variable>();
+		ArrayList<UserInput> myVars=new ArrayList<UserInput>();
 		for (String name: myVariables.keySet()){
 			Variable myNewVariable=new Variable(name, myVariables.get(name));
 			myVars.add(myNewVariable);
 		}
+		myVariableTable.addInput(myVars);
 	}
-	*/
+	public void addUserFunctions(List myFunctions){
+		myVariableTable.addInput(myFunctions);
+	}
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
 		myAdd.addMenuItem("Add Turtle", event->addTurtle());
@@ -390,9 +395,7 @@ public class SlogoView {
 		myListOfBars.add(myPenBar);
 		return myListOfBars;
 	}
-	public void addVariable(){
 
-	}
 	private void makeListOfFunctions(){
 		myUserFunctions.put("penDown", new SetPenDown(myGrids));
 		myUserFunctions.put("undo", new Undo(myGrids));
@@ -408,7 +411,7 @@ public class SlogoView {
 		myUserFunctions.put("stampTurtle", new Stamp(myGrids));
 		myUserFunctions.put("helpPage", new HelpPage());
 		myUserFunctions.put("backgroundColor", new BackgroundColor(myGrids, colorSelection));
-		myUserFunctions.put("penColor", new PenColor(myGrids));
+		myUserFunctions.put("penColor", new PenColor(myGrids,colorSelection));
 		myUserFunctions.put("penThickness", new PenThickness(myGrids));
 		myUserFunctions.put("setPalette", new SetPalette(colorSelection));
 		myUserFunctions.put("uploadFile", new AskForInitialFile());
