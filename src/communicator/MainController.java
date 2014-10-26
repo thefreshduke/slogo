@@ -27,7 +27,7 @@ import commands.information.BaseTurtleContainer;
 import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
-import commands.information.SingleViewInformationGateway;
+import commands.information.SingleGridInformationGateway;
 
 public class MainController extends BaseController {
 
@@ -59,7 +59,7 @@ public class MainController extends BaseController {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
 		myCommandToClassTranslator = new CommandToClassTranslator();
-		myInformationGateway = new SingleViewInformationGateway();
+		myInformationGateway = new SingleGridInformationGateway();
 		CommandFactory.setInformationGateway(myInformationGateway);
 		try {
 			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator

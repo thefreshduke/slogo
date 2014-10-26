@@ -18,7 +18,7 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class LanguageFileParser {
+public class LanguageFileParser extends PropertiesFileReader{
 
     private static final String INVALID_COMMAND_MESSAGE = "Invalid command provided";
 
@@ -28,10 +28,10 @@ public class LanguageFileParser {
 
     private static final String COMMAND_INDICATOR = "[a-zA-Z_]+(\\?)?";
     private static final char COMMENT_INDICATOR = '#';
-    private static String myCommandSeparator = " ";
+    private static String COMMAND_SEPARATOR = "\\s+";
+    private static String SINGLE_SPACE_SEPARATOR  = " ";
     private Map<String, String> myUserInputToEnglishTranslationMap;
     private Map<String, String> myPreviousTranslationMap;
-    
     
     public Map<String, String> extractFromLanguageFile (File file) throws BackendException {
         myUserInputToEnglishTranslationMap = new HashMap<>();
@@ -63,28 +63,9 @@ public class LanguageFileParser {
         myUserInputToEnglishTranslationMap = myPreviousTranslationMap;
     }
 
-    private ResourceBundle getBundle(File file) throws MalformedURLException {
-        File directory = file.getParentFile();
-        URL[] urls = {directory.toURI().toURL()};
-        ClassLoader loader = new URLClassLoader(urls);
-        String fileName = getFileNameWithoutExtension(file);
-        ResourceBundle rb = ResourceBundle.getBundle(fileName, Locale.getDefault(), loader);
-        return rb;
-    }
-
-    private String getFileNameWithoutExtension(File file) {
-        String fullFileName = file.getName();
-        int pos = fullFileName.lastIndexOf(".");
-        String fileNameWithoutExtension = "";
-        if (pos > 0) {
-            fileNameWithoutExtension = fullFileName.substring(0, pos);
-        }
-        return fileNameWithoutExtension;
-    }
-
     public String translateUserInputIntoEnglish (String userInput) throws BackendException{
         StringBuilder translatedUserInput = new StringBuilder();
-        String[] userInputWords = userInput.split(myCommandSeparator);
+        String[] userInputWords = userInput.split(COMMAND_SEPARATOR);
         for (String rawCommand : userInputWords) {
             String command = rawCommand.toLowerCase().trim();
             String translatedCommand = translateCommand(command);
@@ -92,7 +73,7 @@ public class LanguageFileParser {
                 translatedCommand = rawCommand;
             }
             translatedUserInput.append(translatedCommand);
-            translatedUserInput.append(myCommandSeparator);
+            translatedUserInput.append(SINGLE_SPACE_SEPARATOR);
         }
         return translatedUserInput.toString().trim();
     }

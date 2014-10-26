@@ -13,8 +13,8 @@ public class TanCommand extends OneExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double angle = executeCommand(getArgument());
+    public double onExecute () throws BackendException {
+        double angle = getArgument().execute();
         return Math.tan(Math.toRadians(angle));
     }
 }

@@ -13,8 +13,8 @@ public class RandomIntegerCommand extends OneExpressionCommand {
     }
 
     @Override
-    public double expressionExecute () throws BackendException {
-        double upperLimit = executeCommand(getArgument());
+    public double onExecute () throws BackendException {
+        double upperLimit = getArgument().execute();
         double randomOrigin = Math.random();
         return (int)randomOrigin * upperLimit;
     }

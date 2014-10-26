@@ -6,16 +6,20 @@ import java.util.HashSet;
 import java.util.Set;
 
 import backendExceptions.BackendException;
-
 import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationContainer;
 
 /**
+ * Commands for control structure. Has access to BaseUserDefinedContainer
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public abstract class ControlCommand extends ModelCommand {
+public abstract class ControlCommand extends BaseCommand {
 
+    private static final String INVALID_CONTAINERS_RECEIVED =
+            "Invalid containers received";
+    private static final String INVALID_EXTENSION_OF_VARIABLE_CONTAINER =
+            "Invalid extension of Variable Container";
     protected static String COMMAND_INDICATOR = "liststart";
     protected static String COMMAND_END_INDICATOR = "listend";
     protected static String COMMAND_SEPARATOR = " ";
@@ -33,18 +37,19 @@ public abstract class ControlCommand extends ModelCommand {
         return typeSet;
     }
 
-    public void setRequiredInformation (Collection<IInformationContainer> containers) {
+    public void setRequiredInformation (Collection<IInformationContainer> containers)
+            throws BackendException {
         if (containers.size() != 1) {
-            // throw throw new BAckendException
+            throw new BackendException(null, INVALID_CONTAINERS_RECEIVED);
         }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
         boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
                 .getClass());
         if (!extendsVariableContainer) {
-            // throw exception
+            throw new BackendException(null, INVALID_EXTENSION_OF_VARIABLE_CONTAINER);
         }
-        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) container;
+        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer)container;
         myVariableContainer = variableContainer;
     }
 
@@ -54,6 +59,6 @@ public abstract class ControlCommand extends ModelCommand {
 
     @Override
     protected void reset () {
-        
+
     }
 }

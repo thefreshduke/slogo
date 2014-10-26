@@ -22,7 +22,7 @@ import commands.BaseCommand;
 import commands.information.BaseTurtleContainer;
 import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
-import commands.information.SingleViewInformationGateway;
+import commands.information.SingleGridInformationGateway;
 
 public class AskWithTest {
 
@@ -72,7 +72,7 @@ public class AskWithTest {
         turtle.setID(1);
         Turtle turtle2 = new Turtle(new Position(51, 0, 0), null);
         turtle2.setID(2);
-        IInformationGateway hub = new SingleViewInformationGateway(grid, turtle);
+        IInformationGateway hub = new SingleGridInformationGateway(grid, turtle);
         BaseTurtleContainer turtleContainer = (BaseTurtleContainer)hub.getContainer(BaseTurtleContainer.class);
         turtleContainer.addTurtle(turtle2, false);
         CommandFactory.setInformationGateway(hub);

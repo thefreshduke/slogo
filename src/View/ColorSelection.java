@@ -66,7 +66,6 @@ public class ColorSelection extends Pane{
 		int myWidth=50;
 		this.getChildren().remove(colorBox);
 		colorBox=new HBox();
-		System.out.println(myColors.size());
 		for(String color: myColors){
 			Circle myCircle=new Circle();
 			myCircle.setStyle("-fx-fill: #"+color);
