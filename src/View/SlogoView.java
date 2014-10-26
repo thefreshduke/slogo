@@ -456,7 +456,7 @@ public class SlogoView {
 	}
 	private void checkNullFile(File myFile){
 		if (myFile!=null){
-			myController.loadLanguage(myFile);
+			myController.loadPreferences(myFile);
 		}
 		else{
 			JOptionPane.showMessageDialog(null, "The file was null");
