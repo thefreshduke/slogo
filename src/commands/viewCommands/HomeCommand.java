@@ -12,7 +12,7 @@ import commands.turtleCommands.TurtleCommand;
 public class HomeCommand extends TurtleCommand {
 
     private static final String EXACTLY_ONE_ACTIVE_GRID_IS_NOT_SET = "Exactly one active grid is not set";
-	private static final String CLEAR_GUI = "clearGUI";
+	private static final String CLEAR_GUI = "";
 
     public HomeCommand (String command, boolean isExpression) throws BackendException {
         super(command, isExpression);

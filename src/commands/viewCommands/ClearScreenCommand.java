@@ -20,6 +20,7 @@ public class ClearScreenCommand extends TurtleQuery {
         BaseTurtleContainer turtle = getTurtleContainer();
         double distanceTraveled = turtle.setPosition(0, 0);
         grid.updateDisplayOptions(CLEAR_GUI);
+        turtle.clear();
         grid.update(turtle.getActiveTurtles());
         return distanceTraveled;
     }
