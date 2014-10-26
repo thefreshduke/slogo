@@ -30,12 +30,23 @@ public interface IInformationGateway {
 			Class<? extends IInformationContainer> containerType);
 
 	/**
-	 * Gets a collection of containers corresponding to the requested container types. 
-	 * @param containerTypes The types of containers to get.
-	 * @return Collection of requested information containers. 
-	 * @throws BackendException Any exception to be thrown. 
+	 * Gets a collection of containers corresponding to the requested container
+	 * types.
+	 * 
+	 * @param containerTypes
+	 *            The types of containers to get.
+	 * @return Collection of requested information containers.
+	 * @throws BackendException
+	 *             Any exception to be thrown.
 	 */
 	public Collection<IInformationContainer> getContainers(
 			Set<Class<? extends IInformationContainer>> containerTypes)
 			throws BackendException;
+
+	/**
+	 * Adds a container to the gateway.
+	 * @param container Container to be added
+	 * @throws BackendException Any exception while adding container
+	 */
+	public void addContainer(IInformationContainer container) throws BackendException;
 }

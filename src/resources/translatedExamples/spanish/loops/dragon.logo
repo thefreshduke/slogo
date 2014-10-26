@@ -1,0 +1,18 @@
+repetir 4
+[
+  ava 100
+  der 90
+  ava 100
+  der 90
+  ava 50
+  der 90
+  ava 50
+  der 90
+  ava 100
+  der 90
+  ava 25
+  der 90
+  ava 25
+  der 90
+  ava 50
+]

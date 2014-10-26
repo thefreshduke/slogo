@@ -1,5 +1,6 @@
 package commands.information;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,9 @@ import commands.variableCommands.CreatedCommand;
  * @author Duke
  *
  */
-public class MapBasedUserDefinedContainer extends BaseUserDefinedContainer {
+public class MapBasedUserDefinedContainer extends BaseUserDefinedContainer implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Map<String, BaseCommand> myVariableToValuesMap;
 	private Map<String, String> myCreatedCommandMap;
 	private Map<String, String[]> myCreatedCommandVariableMap;

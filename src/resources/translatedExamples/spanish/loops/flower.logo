@@ -1,0 +1,13 @@
+repetir 6
+[
+  repetir 2
+  [
+    repetir 30
+    [
+      ava 1
+      der 2
+    ]
+    der 120
+  ]
+  der 60
+]

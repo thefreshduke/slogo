@@ -1,0 +1,11 @@
+a regularShape [ :distance :angle ]
+[
+  rpt cociente 360 :angle
+  [
+    ava :distance
+    der :angle
+  ]
+]
+
+lp
+regularShape

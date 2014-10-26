@@ -24,14 +24,6 @@ public abstract class BaseController {
 	public abstract void receiveCommand (String enteredText);
 
 	/**
-	 * Initializes the model.
-	 * 
-	 * @param initialTurtlePosition
-	 * @param initialOrientation
-	 */
-	protected abstract void initializeModel ();
-
-	/**
 	 * Pauses the turtle. Changes what coordinates are sent to front end.
 	 * 
 	 * @param stoppedPosition
@@ -71,8 +63,6 @@ public abstract class BaseController {
 	 *            File of language resource to be used
 	 */
 	public abstract void loadLanguage (File file);
-
-	public abstract Turtle getFirstTurtle ();
 
 	public abstract void addTurtle (Turtle turtle, int gridID, boolean isActive);
 

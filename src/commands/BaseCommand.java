@@ -1,11 +1,11 @@
 package commands;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Set;
 import java.util.Stack;
 
 import backendExceptions.BackendException;
-
 import commandParser.CommandFactory;
 import commands.information.IInformationContainer;
 
@@ -16,8 +16,9 @@ import commands.information.IInformationContainer;
  * BaseCommand.
  *
  */
-public abstract class BaseCommand {
-    private BaseCommand myNextCommand;
+public abstract class BaseCommand implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private BaseCommand myNextCommand;
     private String myLeftoverString = "";
     private boolean myExpressionFlag;
     protected final String COMMAND_DELIMITER = "\\s+";

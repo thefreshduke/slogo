@@ -1,0 +1,17 @@
+a random_in_range [ :min :max ]
+[
+  azar suma :min suma 1 diferencia :max :min
+]
+
+
+a random_move [ :fdmin :fdmax :ltmin :ltmax ]
+[
+  repeat 100
+  [
+    izq random_in_range :ltmin :ltmax
+    ava random_in_range :fdmin :fdmax
+  ]
+]
+
+
+random_move 5 15 -10 5

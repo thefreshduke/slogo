@@ -13,11 +13,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import javafx.animation.AnimationTimer;
-import model.SlogoModel;
 import turtle.Turtle;
 import View.Grid;
 import View.SlogoView;
 import backendExceptions.BackendException;
+
 import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
@@ -25,15 +25,15 @@ import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.BaseUserDefinedContainer;
-import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
+import commands.information.IInformationGateway;
+import commands.information.MapBasedUserDefinedContainer;
 import commands.information.SingleGridInformationGateway;
 
 public class MainController extends BaseController {
 
 	private static final String DEFAULT_ENGLISH_FILE = "src/resources/languages/English.properties";
 	private SlogoView myView;
-	private SlogoModel myModel;
 	private ConcurrentLinkedQueue<BaseCommand> myCommandQueue;
 	private ConcurrentLinkedQueue<String> myInputsToParse;
 	private AtomicBoolean myCommandIsExecuting;
@@ -49,13 +49,11 @@ public class MainController extends BaseController {
 	public MainController(SlogoView view) {
 		super(view);
 		myView = view;
-		myModel = new SlogoModel();
 		myCommandQueue = new ConcurrentLinkedQueue<>();
 		myInputsToParse = new ConcurrentLinkedQueue<>();
 		myCommandIsExecuting = new AtomicBoolean(false);
 		myExecutedCommands = new ArrayList<>();
 		setTimers();
-		initializeModel();
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
 		myCommandToClassTranslator = new CommandToClassTranslator();
@@ -64,8 +62,8 @@ public class MainController extends BaseController {
 		try {
 			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator
 					.translateCommandToClass(new File(ENGLISH_TO_CLASS_FILE)));
-			myTranslator = new LanguageFileParser(new File(
-					DEFAULT_ENGLISH_FILE));
+			myTranslator = new LanguageFileParser(
+					new File(DEFAULT_ENGLISH_FILE));
 		} catch (BackendException e1) {
 			reportErrorToView(e1);
 		}
@@ -118,11 +116,6 @@ public class MainController extends BaseController {
 	}
 
 	@Override
-	protected void initializeModel() {
-		myModel.initializeModel();
-	}
-
-	@Override
 	public void start() {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
@@ -144,7 +137,7 @@ public class MainController extends BaseController {
 	private void executeCommand(BaseCommand command) {
 		try {
 			command.execute();
-			sendDefinedVariables();
+			sendUserDefinedVariablesAndCommands();
 		} catch (BackendException ex) {
 			reportErrorToView(ex);
 		} finally {
@@ -152,19 +145,19 @@ public class MainController extends BaseController {
 			myCommandIsExecuting.set(false);
 			myView.setDisable(false);
 		}
-		
+
 	}
 
-	private void sendDefinedVariables() {
+	private void sendUserDefinedVariablesAndCommands() {
 		BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) myInformationGateway
 				.getContainer(BaseUserDefinedContainer.class);
 		try {
 			Map<String, Double> variableMap = variableContainer
 					.getAllVariablesAndValues();
-					myView.addVariables(variableMap);
+			myView.addVariables(variableMap);
 			List<String> customCommandList = variableContainer
 					.getAllCustomCommands();
-					myView.addUserFunctions(customCommandList);
+			myView.addUserFunctions(customCommandList);
 		} catch (BackendException e) {
 			reportErrorToView(e);
 		}
@@ -185,29 +178,14 @@ public class MainController extends BaseController {
 		}
 	}
 
-	/**
-	 * Find turtle matching specified ID
-	 * 
-	 * @param ID
-	 *            of turtle
-	 * @return turtle matching ID, else return null if no turtle match
-	 */
-	public Turtle findTurtle(int ID) {
-		return myModel.findTurtle(ID);
-	}
-
 	public List<Turtle> getActiveTurtles() {
-		return myModel.getActiveTurtles();
-	}
-
-	public Turtle getFirstTurtle() {
-		return myModel.findTurtle(0);
+		BaseTurtleContainer turtleContainer = getTurtleContainer();
+		return new ArrayList<>(turtleContainer.getActiveTurtles());
 	}
 
 	@Override
 	public void addTurtle(Turtle turtle, int gridID, boolean isActive) {
-		BaseTurtleContainer turtleContainer = (BaseTurtleContainer) myInformationGateway
-				.getContainer(BaseTurtleContainer.class);
+		BaseTurtleContainer turtleContainer = getTurtleContainer();
 		turtleContainer.addTurtle(turtle, isActive);
 	}
 
@@ -221,6 +199,11 @@ public class MainController extends BaseController {
 	public void setGridAsActive(int gridID) {
 		BaseGridContainer gridContainer = getGridContainer();
 		gridContainer.setGridAsActive(gridID);
+	}
+
+	private BaseTurtleContainer getTurtleContainer() {
+		return (BaseTurtleContainer) myInformationGateway
+				.getContainer(BaseTurtleContainer.class);
 	}
 
 	private BaseGridContainer getGridContainer() {
@@ -238,13 +221,13 @@ public class MainController extends BaseController {
 		try {
 			fis = new FileInputStream(file);
 			in = new ObjectInputStream(fis);
-			returnContainer = (BaseUserDefinedContainer) in.readObject();
+			returnContainer = (MapBasedUserDefinedContainer) in.readObject();
 			in.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex,
 					"Error reading from file"));
 		}
-
+		myInformationGateway.addContainer(returnContainer);
 		return (IInformationContainer) returnContainer;
 	}
 
@@ -256,7 +239,7 @@ public class MainController extends BaseController {
 		try {
 			fos = new FileOutputStream(filename);
 			out = new ObjectOutputStream(fos);
-			out.writeObject((BaseUserDefinedContainer) container);
+			out.writeObject((MapBasedUserDefinedContainer) container);
 			out.close();
 		} catch (Exception ex) {
 			reportErrorToView(new BackendException(ex, "Error writing to file"));

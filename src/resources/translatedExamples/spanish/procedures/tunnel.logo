@@ -1,0 +1,34 @@
+crear :distance 50
+crear :angle 10
+
+a square [ ]
+[
+  repetir 4
+  [
+    ava :distance
+    der 90
+  ]
+]
+
+a tunnel [ ]
+[
+  repetir 10
+  [
+    square
+    crear :distance suma :distance 10
+  ]
+]
+
+a warp [ ]
+[
+  repetir 10
+  [
+    square
+    der :angle
+    crear :distance suma :distance 10
+  ]
+]
+
+
+lp
+tunnel
