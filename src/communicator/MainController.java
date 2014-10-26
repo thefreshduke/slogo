@@ -25,9 +25,9 @@ import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.information.BaseVariableContainer;
-import commands.information.ICommandInformationHub;
+import commands.information.IInformationGateway;
 import commands.information.IInformationContainer;
-import commands.information.SingleViewContainerInformationHub;
+import commands.information.SingleViewInformationGateway;
 
 public class MainController extends BaseController {
 
@@ -42,7 +42,7 @@ public class MainController extends BaseController {
 	private AnimationTimer myCommandParserTimer;
 	private LanguageFileParser myTranslator;
 	private CommandToClassTranslator myCommandToClassTranslator;
-	private ICommandInformationHub myCommandInformationHub;
+	private IInformationGateway myCommandInformationHub;
 
 	private static final String ENGLISH_TO_CLASS_FILE = "src/resources/languages/EnglishToClassName.properties";
 
@@ -59,7 +59,7 @@ public class MainController extends BaseController {
 		myCommandParserTimer.start();
 		myCommandExecutionTimer.start();
 		myCommandToClassTranslator = new CommandToClassTranslator();
-		myCommandInformationHub = new SingleViewContainerInformationHub();
+		myCommandInformationHub = new SingleViewInformationGateway();
 		CommandFactory.setInformationHub(myCommandInformationHub);
 		try {
 			CommandFactory.setCommandToClassRelation(myCommandToClassTranslator

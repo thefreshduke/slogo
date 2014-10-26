@@ -18,14 +18,14 @@ import commandParser.LanguageFileParser;
 import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
-import commands.information.ICommandInformationHub;
-import commands.information.SingleViewContainerInformationHub;
+import commands.information.IInformationGateway;
+import commands.information.SingleViewInformationGateway;
 
 public class AskTest {
 
 	@Test
 	public void testThatAskCreatesTurtles() throws BackendException{
-		ICommandInformationHub infoHub = setFactory();
+		IInformationGateway infoHub = setFactory();
 		String askCommandString = "ASK [ 0 ] [ FD 50 ]";
 		String convertedAskCommand = processInput(askCommandString);
 		BaseCommand askCommand = CommandFactory.createCommand(convertedAskCommand, false);
@@ -35,9 +35,9 @@ public class AskTest {
 		assertEquals(turtles.size() > 0, true);
 	}
 	
-    private ICommandInformationHub setFactory () {
+    private IInformationGateway setFactory () {
         Grid grid = new SingleGrid();
-        ICommandInformationHub hub = new SingleViewContainerInformationHub();
+        IInformationGateway hub = new SingleViewInformationGateway();
         BaseGridContainer gridContainer = (BaseGridContainer)hub.getContainer(BaseGridContainer.class);
         gridContainer.addGrid(grid, true);
         CommandFactory.setInformationHub(hub);
