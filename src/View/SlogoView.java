@@ -120,9 +120,9 @@ public class SlogoView {
 	 * @throws ClassNotFoundException 
 	 */
 	public void initialize(Stage mainStage) {
+		makeListOfFunctions();
 		addGrid();
 		addTurtle();
-		makeListOfFunctions();
 		colorSelection = new ColorSelection(myGrids);
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;

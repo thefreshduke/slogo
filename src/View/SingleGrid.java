@@ -52,6 +52,7 @@ public class SingleGrid extends Grid {
 		myGridFunctions=myMap;
 		
 	}
+	
 	public Collection<Turtle> getAllTurtles(){
 		return allTurtles;
 	}
