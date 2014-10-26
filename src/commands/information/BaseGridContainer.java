@@ -63,5 +63,9 @@ public abstract class BaseGridContainer implements IInformationContainer {
 	 */
 	public abstract Collection<Grid> getActiveGrids();
 
+	/**
+	 * Tells grid(s) to update its turtles. 
+	 * @param turtles Turtles to update.
+	 */
 	public abstract void update(Collection<Turtle> turtles);
 }

@@ -19,12 +19,12 @@ public class SingleViewInformationGateway implements IInformationGateway {
 	private static final String INVALID_CONTAINER_TYPE_ERROR = "Invalid container type";
 	private SingleActiveGridContainer myGridContainer;
 	private Map<Integer, BaseTurtleContainer> myGridToTurtlesMap;
-	private MapBasedVariableContainer myVariableContainer;
+	private MapBasedUserDefinedContainer myVariableContainer;
 
 	public SingleViewInformationGateway() {
 		myGridContainer = new SingleActiveGridContainer();
 		myGridToTurtlesMap = new HashMap<>();
-		myVariableContainer = new MapBasedVariableContainer();
+		myVariableContainer = new MapBasedUserDefinedContainer();
 	}
 
 	public SingleViewInformationGateway(Grid grid, Turtle turtle) {
@@ -57,7 +57,7 @@ public class SingleViewInformationGateway implements IInformationGateway {
 		if (BaseGridContainer.class.isAssignableFrom(containerType)) {
 			return myGridContainer;
 		}
-		if (BaseVariableContainer.class.isAssignableFrom(containerType)) {
+		if (BaseUserDefinedContainer.class.isAssignableFrom(containerType)) {
 			return myVariableContainer;
 		}
 		return null;

@@ -188,7 +188,7 @@ public class SlogoView {
 		MenuTemplate pen=new MenuTemplate("Pen");
 		MenuTemplate add=new MenuTemplate("Add");
 		MenuTemplate help = new MenuTemplate("Help");
-		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
+		help.addMenuItem("Help Page", event->myUserFunctions.get("helpPage").doAction());
 
 		userCommands = new MenuTemplate("User Commands");
 

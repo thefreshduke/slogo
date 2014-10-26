@@ -2,13 +2,10 @@ package commands.viewCommands;
 
 import backendExceptions.BackendException;
 
-import commands.ViewCommand;
-import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+import commands.turtleCommands.TurtleCommand;
 
-public class HideTurtleCommand extends ViewCommand {
-
-    // TODO string to add for hide turtle.
-    private static final String HIDE_TURTLE = "";
+public class HideTurtleCommand extends TurtleCommand {
 
     public HideTurtleCommand (String command, boolean isExpression) throws BackendException {
         super(command, isExpression);
@@ -16,8 +13,8 @@ public class HideTurtleCommand extends ViewCommand {
 
     @Override
     protected double onExecute () throws BackendException {
-        BaseGridContainer grid = getGridContainer();
-        grid.updateDisplayOptions(HIDE_TURTLE);
+        BaseTurtleContainer turtle = getTurtleContainer();
+        turtle.setVisibility(false);
         return 0;
     }
 

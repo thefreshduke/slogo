@@ -12,8 +12,8 @@ import commandParser.CommandFactory;
 import commandParser.CommandToClassTranslator;
 import commandParser.LanguageFileParser;
 import commands.BaseCommand;
-import commands.information.BaseVariableContainer;
-import commands.information.MapBasedVariableContainer;
+import commands.information.BaseUserDefinedContainer;
+import commands.information.MapBasedUserDefinedContainer;
 
 public class VariableCommandParseTest {
 
@@ -43,7 +43,7 @@ public class VariableCommandParseTest {
 
     @Test
     public void testThatVariableIsGet () throws BackendException {
-        BaseVariableContainer container = new MapBasedVariableContainer();
+        BaseUserDefinedContainer container = new MapBasedUserDefinedContainer();
         String variable1 = "varx";
         String valueString = "SUM 10 60";
         valueString = processInput(valueString);

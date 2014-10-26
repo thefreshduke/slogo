@@ -10,14 +10,14 @@ import View.SlogoView;
 import backendExceptions.BackendException;
 
 import commands.BaseCommand;
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationContainer;
 
 public abstract class VariableCommand extends BaseCommand {
 
     private SlogoView myView;
     private Turtle myTurtle;
-    private BaseVariableContainer myVariableContainer;
+    private BaseUserDefinedContainer myVariableContainer;
 
     public VariableCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -27,7 +27,7 @@ public abstract class VariableCommand extends BaseCommand {
     @Override
     public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
         Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
-        typeSet.add(BaseVariableContainer.class);
+        typeSet.add(BaseUserDefinedContainer.class);
         return typeSet;
     }
 
@@ -37,16 +37,16 @@ public abstract class VariableCommand extends BaseCommand {
         }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
-        boolean extendsVariableContainer = BaseVariableContainer.class.isAssignableFrom(container
+        boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
                 .getClass());
         if (!extendsVariableContainer) {
             // throw exception
         }
-        BaseVariableContainer variableContainer = (BaseVariableContainer) container;
+        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) container;
         myVariableContainer = variableContainer;
     }
 
-    protected BaseVariableContainer getVariableContainer () {
+    protected BaseUserDefinedContainer getVariableContainer () {
         return myVariableContainer;
     }
     

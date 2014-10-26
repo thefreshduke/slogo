@@ -4,7 +4,7 @@ import turtle.Turtle;
 import View.SlogoView;
 import backendExceptions.BackendException;
 
-import commands.information.BaseVariableContainer;
+import commands.information.BaseUserDefinedContainer;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -13,7 +13,7 @@ import commands.information.BaseVariableContainer;
 public abstract class LogicCommand extends ModelCommand {
     private SlogoView myView;
     private Turtle myTurtle;
-    private BaseVariableContainer myVariableContainer;
+    private BaseUserDefinedContainer myVariableContainer;
 
     public LogicCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
