@@ -5,6 +5,10 @@ import backendExceptions.BackendException;
 import commands.ViewQuery;
 import commands.information.BaseGridContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ClearStampsCommand extends ViewQuery {
 	private static final String CLEAR_STAMPS = "clearStamps";
 

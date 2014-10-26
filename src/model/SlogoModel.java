@@ -8,6 +8,10 @@ import turtle.Turtle;
 import commands.information.BaseUserDefinedContainer;
 import commands.information.MapBasedUserDefinedContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class SlogoModel {
     private static final String INITIAL_TURTLE_SPRITE = "bowser.png";
     private Turtle myTurtle;

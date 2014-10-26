@@ -1,0 +1,7 @@
+repetir 11 [
+   haz [ :t 360 ] 
+   [
+      ava 1
+      der / sin :t 2
+   ]
+]

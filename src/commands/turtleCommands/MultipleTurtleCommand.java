@@ -10,6 +10,10 @@ import commands.BaseCommand;
 import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public abstract class MultipleTurtleCommand extends TurtleCommand {
 	private static final int EVEN_NUMBER_CHECKER = 2;
 	protected static final String CONSTANT_INDICATOR = "constant";
@@ -22,7 +26,7 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 	protected String[] myTurtleIDs;
 
 
-	public MultipleTurtleCommand(String userInput, boolean isExpression)
+	public MultipleTurtleCommand (String userInput, boolean isExpression)
 			throws BackendException {
 		super(userInput, isExpression);
 	}
@@ -37,32 +41,32 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 		return maxValue;
 	}
 
-	protected boolean isEven(int number) {
+	protected boolean isEven (int number) {
 		return number % EVEN_NUMBER_CHECKER == 0;
 	}
 
-	public List<Integer> getFutureActiveTurtleIDs() {
+	public List<Integer> getFutureActiveTurtleIDs () {
 		return myFutureActiveTurtleIDs;
 	}
 
-	public void setFutureActiveTurtleIDs(List<Integer> tempActiveTurtleIDs) {
+	public void setFutureActiveTurtleIDs (List<Integer> tempActiveTurtleIDs) {
 		myFutureActiveTurtleIDs = tempActiveTurtleIDs;
 	}
 
-	public BaseCommand getInternalCommand() {
+	public BaseCommand getInternalCommand () {
 		return myInternalCommand;
 	}
 
-	public void setInternalCommand(BaseCommand internalCommand) {
+	public void setInternalCommand (BaseCommand internalCommand) {
 		myInternalCommand = internalCommand;
 	}
 
 	@Override
-	protected int getArgumentCount() {
+	protected int getArgumentCount () {
 		return 0;
 	}
 
-	protected void addFutureActiveTurtleTurtles() throws BackendException {
+	protected void addFutureActiveTurtleTurtles () throws BackendException {
 		BaseTurtleContainer turtle = getTurtleContainer();
 		List<Integer> myAllTurtlesID = new ArrayList<>(turtle
 				.getAllTurtlesByID());
@@ -86,7 +90,7 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 		turtle.hardSetActiveTurtles(getFutureActiveTurtleIDs());
 	}
 	
-	protected void storeFutureActiveIDs(String innerInput)
+	protected void storeFutureActiveIDs (String innerInput)
 			throws BackendException {
 		myTurtleIDs = innerInput.split(COMMAND_SEPARATOR);
 
@@ -100,7 +104,8 @@ public abstract class MultipleTurtleCommand extends TurtleCommand {
 			strTurtleID = myTurtleIDs[i];
 			if (isEven(i) && !strTurtleID.equals(CONSTANT_INDICATOR)) {
 				throw new BackendException(null, INVALID_ERROR_MESSAGE);
-			} else if(!isEven(i)){
+			}
+			else if (!isEven(i)) {
 				turtleID = Integer.parseInt(strTurtleID);
 				if (turtleID < 0) {
 					throw new BackendException(null,

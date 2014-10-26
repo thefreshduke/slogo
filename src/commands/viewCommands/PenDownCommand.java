@@ -5,6 +5,10 @@ import backendExceptions.BackendException;
 import commands.ViewCommand;
 import commands.information.BaseGridContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class PenDownCommand extends ViewCommand {
 
     private static final String PEN_DOWN = "penDown";

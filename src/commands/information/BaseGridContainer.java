@@ -7,9 +7,10 @@ import turtle.Turtle;
 import View.Grid;
 
 /**
- * @author Rahul Harikrishnan, Duke Kim, $cotty $haw In order for all the basic
- *         commands to work, all grid containers must extend from this base
- *         class. Should contain all grids.
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ * 
+ * In order for all the basic commands to work, all grid containers must
+ * extend from this base class. Should contain all grids.
  */
 public abstract class BaseGridContainer implements IInformationContainer {
 

@@ -12,6 +12,10 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.turtleCommands.TurtleCommand;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class HomeCommand extends TurtleQuery {
 
     private static final String EXACTLY_ONE_ACTIVE_GRID_IS_NOT_SET = "Exactly one active grid is not set";

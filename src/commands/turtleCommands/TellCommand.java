@@ -2,9 +2,9 @@ package commands.turtleCommands;
 
 import java.util.ArrayList;
 import backendExceptions.BackendException;
+
 /**
- * 
- * @author Rahul
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
 public class TellCommand extends MultipleTurtleCommand {

@@ -5,6 +5,10 @@ import backendExceptions.BackendException;
 import commands.ViewQuery;
 import commands.information.BaseGridContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ShowingQuery extends ViewQuery {
 
     // TODO add the string of function to be called.

@@ -11,6 +11,10 @@ import backendExceptions.BackendException;
 import commands.BaseCommand;
 import commands.information.BaseUserDefinedContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class CreatedCommand extends VariableCommand {
 
     private Map<String, BaseCommand> myNewVariableToCommandMap;
@@ -40,7 +44,8 @@ public class CreatedCommand extends VariableCommand {
             if (variableContainer.containsVariable(variable)) {
                 BaseCommand oldCommand = variableContainer.getValue(variable);
                 myOldExistingVariableMap.put(variable, oldCommand);
-            } else {
+            }
+            else {
                 myNonExistingVariables.add(variable);
             }
             double newCommandResult = myNewVariableToCommandMap.get(variable).execute();

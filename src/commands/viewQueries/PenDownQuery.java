@@ -5,6 +5,10 @@ import backendExceptions.BackendException;
 import commands.ViewQuery;
 import commands.information.BaseGridContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class PenDownQuery extends ViewQuery {
 
     private static final String IS_PEN_DOWN = "";

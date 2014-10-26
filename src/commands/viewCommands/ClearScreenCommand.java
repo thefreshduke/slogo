@@ -6,6 +6,10 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.turtleCommands.TurtleCommand;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ClearScreenCommand extends TurtleQuery {
 
     private static final String CLEAR_GUI = "clear";

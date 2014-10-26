@@ -6,6 +6,10 @@ import commands.information.BaseGridContainer;
 import commands.information.BaseTurtleContainer;
 import commands.turtleCommands.TurtleCommand;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class ShowTurtleCommand extends TurtleCommand {
 
     public ShowTurtleCommand (String command, boolean isExpression) throws BackendException {

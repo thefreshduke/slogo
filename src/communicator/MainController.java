@@ -30,14 +30,12 @@ import commands.information.MapBasedUserDefinedContainer;
 import commands.information.SingleGridInformationGateway;
 
 /**
- * 
  * @author Duke, Rahul
  * This class is an implementation of the BaseController designed for asynchronous execution using
  * animation timelines.  BaseController is responsible for ensuring that the different containers are 
  * correctly updated when such information can be provided via the view. It handles error processing and 
  * reporting to the View, as well as provides implementation details for user to load and save functions/variables
  * using Serializable.
- * 
  *
  */
 public class MainController extends BaseController {

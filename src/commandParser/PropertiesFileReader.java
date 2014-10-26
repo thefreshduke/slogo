@@ -7,9 +7,13 @@ import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class PropertiesFileReader {
 
-    protected ResourceBundle getBundle(File file) throws MalformedURLException {
+    protected ResourceBundle getBundle (File file) throws MalformedURLException {
         File directory = file.getParentFile();
         URL[] urls = {directory.toURI().toURL()};
         ClassLoader loader = new URLClassLoader(urls);
@@ -18,7 +22,7 @@ public class PropertiesFileReader {
         return rb;
     }
 
-    protected String getFileNameWithoutExtension(File file) {
+    protected String getFileNameWithoutExtension (File file) {
         String fullFileName = file.getName();
         int pos = fullFileName.lastIndexOf(".");
         String fileNameWithoutExtension = "";

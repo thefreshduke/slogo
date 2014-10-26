@@ -8,6 +8,10 @@ import backendExceptions.BackendException;
 import commands.TurtleQuery;
 import commands.information.BaseTurtleContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class IDCommand extends TurtleQuery {
 
     public IDCommand (String userInput, boolean isExpression) throws BackendException {

@@ -4,6 +4,10 @@ import backendExceptions.BackendException;
 import commands.ViewQuery;
 import commands.information.BaseGridContainer;
 
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class StampCommand extends ViewQuery {
     private static final String STAMP_TURTLE = "stampTurtle";
     
