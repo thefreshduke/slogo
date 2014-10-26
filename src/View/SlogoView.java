@@ -17,6 +17,7 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
+import sun.security.tools.policytool.Resources;
 import backendExceptions.BackendException;
 import GUIFunctions.Add;
 import GUIFunctions.AddTurtle;
@@ -177,18 +178,18 @@ public class SlogoView {
 		myStage.getScene().getRoot().setDisable(false);
 	}
 	private MenuBar addMenuBar(){
+		myResources = ResourceBundle.getBundle(DEFAULT_RESOURCE_PACKAGE+"Menu");
 		MenuBar myMenu=new MenuBar();
 		myMenu.setStyle( "-fx-border-width: 5");
 		myMenu.setPrefSize(DEFAULT_SIZE.width, 30);
 		MenuTemplate fileMenu=this.createfileMenu();
-		MenuTemplate languages = new MenuTemplate("Languages");
-		MenuTemplate personalize=new MenuTemplate("Personalize");
-		MenuTemplate pen=new MenuTemplate("Pen");
-		MenuTemplate add=new MenuTemplate("Add");
-		MenuTemplate help = new MenuTemplate("Help");
-		help.addMenuItem("Help Page", event->myUserFunctions.get("Help").doAction());
-
-		userCommands = new MenuTemplate("User Commands");
+		MenuTemplate languages = new MenuTemplate(myResources.getString("languages"));
+		MenuTemplate personalize=new MenuTemplate(myResources.getString("Personalize"));
+		MenuTemplate pen=new MenuTemplate(myResources.getString("pen"));
+		MenuTemplate add=new MenuTemplate(myResources.getString("add"));
+		MenuTemplate help = new MenuTemplate(myResources.getString("help"));
+		help.addMenuItem(myResources.getString("helpPage"), event->myUserFunctions.get("Help").doAction());
+		userCommands = new MenuTemplate(myResources.getString("userCommands"));
 
 		makeAddMenu(add);
 		this.makeLanguageMenu(LanguageMenu.class, languages);
@@ -249,8 +250,8 @@ public class SlogoView {
 
 	}
 	private void makeAddMenu(MenuTemplate myAdd){
-		myAdd.addMenuItem("Add Grid", event->addGrid());
-		myAdd.addMenuItem("Add Turtle", event->addTurtle());
+		myAdd.addMenuItem(myResources.getString("addgrid"), event->addGrid());
+		myAdd.addMenuItem(myResources.getString("addturtle"), event->addTurtle());
 	}
 
 	private void addTurtle(){
@@ -314,6 +315,7 @@ public class SlogoView {
 	}
 	
 	private Button makeEnterButton(){
+		myResources = Resources.getBundle(DEFAULT_RESOURCE_PACKAGE + "Buttons");
 		String[] value=myResources.getString("enter").split(";");
 		Button enter = new Button (value[0]);
 		enter.relocate(Double.parseDouble(value[1]), Double.parseDouble(value[2]));
@@ -497,8 +499,8 @@ public class SlogoView {
 		}
 	}
 	private MenuTemplate createfileMenu(){
-		MenuTemplate file=new MenuTemplate("File");
-		file.addMenuItem("Export", event->saveFileToController(saveFile()));
+		MenuTemplate file=new MenuTemplate(myResources.getString("file"));
+		file.addMenuItem(myResources.getString("export"), event->saveFileToController(saveFile()));
 		AskForInitialFile myFunction=(AskForInitialFile)myUserFunctions.get("uploadFile");
 		file.addMenuItem(myResources.getString("uploadFile"),event->checkNullFile(myFunction.sendFile()));
 		return file;
