@@ -1,7 +1,11 @@
 package GUIFunctions;
 
 import java.io.File;
+import java.io.InputStream;
 import java.util.List;
+import java.util.Properties;
+
+import javax.swing.JOptionPane;
 
 import View.SingleGrid;
 import communicator.MainController;
@@ -10,14 +14,10 @@ public class SetLanguage extends LanguageMenu {
 	
 	@Override
 	public File doAction(String s) {
-		AllLanguages myNewLanguage=new AllLanguages(s);
-		try {
-			return myNewLanguage.getLanguageFile();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
+		File file = new File("src/resources/languages/"+s+".properties");
+		return file;
+		
+		
 	}
 
 	@Override

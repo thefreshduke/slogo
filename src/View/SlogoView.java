@@ -180,56 +180,31 @@ public class SlogoView {
 		userCommands = new MenuTemplate("User Commands");
 
 		makeAddMenu(add);
-		this.makeMenu(LanguageMenu.class, languages);
+		this.makeLanguageMenu(LanguageMenu.class, languages);
 		this.makeMenu(PersonalizeMenu.class, personalize);
 		this.makeMenu(PenMenu.class, pen);
 
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
+	
+	private void makeLanguageMenu(Class myClass, MenuTemplate myMenu){
+		for (String myName: myUserFunctions.keySet()){
+			if (myUserFunctions.get(myName) instanceof LanguageMenu){
+					LanguageMenu languageFunction=(LanguageMenu) myUserFunctions.get(myName);
+					myMenu.addMenuItem(myName, event->myController.loadLanguage(languageFunction.doAction(myResources.getString(myName))));
+				}
+			}
+		}
+	
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
 		Add newAddFunction=(Add) myUserFunctions.get("addTurtle");
 		myAdd.addMenuItem("Add Turtle", event->myGrids.getActiveGrid().addTurtle());
 	}
 
-	private HashMap<String, GUIFunction> makePenMap(){
-		HashMap<String, GUIFunction> myMap=new HashMap<String, GUIFunction>();
-
-		return myMap;
-
-	}
-	private void makeMenuItems(HashMap<String, GUIFunction> myMap, MenuTemplate myMenu){
-		for (String name: myMap.keySet()){
-			myMenu.addMenuItem(name, event->myMap.get(name).doAction());
-		}
-	}
-	private void createMenuItems(MenuTemplate pMenu, String resource, HashMap<String, GUIFunction> myMap){
-		/*
-		ResourceBundle personalizeItems=ResourceBundle.getBundle("/resources/Personalize.Properties");
-		for (String s: myMap.keySet()){
-			pMenu.addMenuItem(personalizeItems.getString(s), event->myMap.get(s).doAction());
-		}
-		 */
-
-	}
-
-
-	public HashMap<String, GUIFunction> makePersonalizeMap(){
-		HashMap<String, GUIFunction> myMap=new HashMap<String, GUIFunction>();
-
-		return myMap;
-	}
-
-	private void createMenuItemsUnderFile(MenuTemplate fileMenu) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException{
-		fileMenu.addMenuItem("Export to XML", null);
-		fileMenu.addMenuItem("Import to XML", null);
-		fileMenu.addMenuItem("Add Grid", event->addGrid());
-	}
 	private void addTurtle(){
 		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
-
-
 	}
 	public Grid addGrid() {
 		Grid myNewGrid;
@@ -393,7 +368,7 @@ public class SlogoView {
 		return myListOfBars;
 	}
 	public void addVariable(){
-		
+
 	}
 	private void makeListOfFunctions(){
 		myUserFunctions.put("penDown", new SetPenDown(myGrids));
