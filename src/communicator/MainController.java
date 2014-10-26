@@ -144,6 +144,7 @@ public class MainController extends BaseController {
 	private void executeCommand(BaseCommand command) {
 		try {
 			command.execute();
+			sendDefinedVariables();
 		} catch (BackendException ex) {
 			reportErrorToView(ex);
 		} finally {
@@ -160,10 +161,10 @@ public class MainController extends BaseController {
 		try {
 			Map<String, Double> variableMap = variableContainer
 					.getAllVariablesAndValues();
-			// TODO myView.setVariables(variableMap);
+					myView.addVariables(variableMap);
 			List<String> customCommandList = variableContainer
 					.getAllCustomCommands();
-			// TODO myView.setCommands(customCommandLis);
+					myView.addUserFunctions(customCommandList);
 		} catch (BackendException e) {
 			reportErrorToView(e);
 		}
