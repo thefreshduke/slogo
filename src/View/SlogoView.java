@@ -104,7 +104,10 @@ public class SlogoView {
 		final EventHandler<ActionEvent> loop=new EventHandler<ActionEvent>(){
 			@Override
 			public void handle(ActionEvent evt){
-				myGrids.setActiveGrid(myGridTabs.getActiveGrid());
+				if (!myGrids.getActiveGrid().equals(myGridTabs.getActiveGrid())){
+					myGrids.setActiveGrid(myGridTabs.getActiveGrid());
+					myController.setGridAsActive(myGrids.getActiveGrid().getID());
+				}
 		
 			}
 		};
