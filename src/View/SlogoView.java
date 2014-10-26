@@ -83,7 +83,7 @@ public class SlogoView {
 	private MenuTemplate userCommands;
 	private ResourceBundle myResources;
 	private Stage myStage;
-	private VariableTable myVariableTable;
+	//private VariableTable myVariableTable;
 	private final static Dimension DEFAULT_SIZE=new Dimension(1000,600);
 	private static final int MAX_COMMAND_HISTORY = 5;
 	public static final String DEFAULT_RESOURCE_PACKAGE = "resources/";
@@ -132,7 +132,7 @@ public class SlogoView {
 	public void initialize(Stage mainStage) {
 		addGrid();
 		addTurtle();
-		myVariableTable=new VariableTable();
+		//myVariableTable=new VariableTable();
 		myGridFactory.setGridMap(myUserFunctions);
 		myStage=mainStage;
 		BorderPane mainLayout=new BorderPane();
@@ -210,7 +210,7 @@ public class SlogoView {
 				}
 			}
 	}
-	
+	/*
 	public void addVariables(Map<String, Double> myVariables){
 		ArrayList<Variable> myVars=new ArrayList<Variable>();
 		for (String name: myVariables.keySet()){
@@ -218,7 +218,7 @@ public class SlogoView {
 			myVars.add(myNewVariable);
 		}
 	}
-	
+	*/
 	private void makeAddMenu(MenuTemplate myAdd){
 		myAdd.addMenuItem("Add Grid", event->addGrid());
 		myAdd.addMenuItem("Add Turtle", event->addTurtle());
