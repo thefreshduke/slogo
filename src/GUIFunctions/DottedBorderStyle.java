@@ -10,9 +10,7 @@ public class DottedBorderStyle extends BorderStyle {
 		return myDashes;
 	}
 	public Double[] getStyle(int thickness){
-		double howThick=thickness;
-		Double[] myDashes={howThick*1, 5*
-				howThick};
+		Double[] myDashes={1d, 5d};
 		return myDashes;
 	}
 }
