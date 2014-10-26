@@ -18,7 +18,8 @@ import commands.information.IInformationContainer;
  */
 public abstract class ViewCommand extends BaseCommand {
 
-    private BaseGridContainer myGridContainer;
+    private static final String INVALID_NUMBER_OF_ARGUMENTS_PROVIDED = "Invalid number of arguments provided";
+	private BaseGridContainer myGridContainer;
     private BaseCommand[] myArgumentList;
 
     public ViewCommand (String command, boolean isExpression) throws BackendException {
@@ -57,7 +58,7 @@ public abstract class ViewCommand extends BaseCommand {
         int argumentCount = getArgumentCount();
 
         if (argumentCount < 0) {
-            // TODO: make separate exception
+        	throw new BackendException(null, INVALID_NUMBER_OF_ARGUMENTS_PROVIDED);
         }
 
         if (argumentCount == 0) {

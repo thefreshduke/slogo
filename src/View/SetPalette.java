@@ -26,7 +26,7 @@ public class SetPalette extends GridFunction{
 			myIndex=it.next().intValue();
 		}
 		while (it.hasNext()){
-			myColor+=it.next()+"";
+			myColor+=it.next().intValue()+"";
 		}
 		myColors.setColor(myIndex, myColor);
 	}
