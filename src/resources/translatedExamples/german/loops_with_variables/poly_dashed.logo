@@ -1,0 +1,13 @@
+machen :distance 100
+machen :angle 90
+
+tunmal [ :k quotient 360 :angle ]
+[
+  vor :distance
+  rt :angle
+  wennsonst gleich? quotient :k 2 0 [
+    stob
+  ] [
+    stun
+  ]
+]

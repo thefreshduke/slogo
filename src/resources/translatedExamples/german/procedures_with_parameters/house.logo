@@ -1,0 +1,29 @@
+zu poly [ :numsides :length ]
+[
+  wh :numsides
+  [
+    vor :length 
+    rt quotient 360 :numsides
+  ]
+]
+
+zu square [ :side ]
+[
+  poly 4 :side
+]
+
+zu triangle [ :side ]
+[
+  poly 3 :side
+]
+
+
+zu house [ :size ]
+[
+  square :size
+  vor :size rt 30
+  triangle :size
+]
+
+
+house

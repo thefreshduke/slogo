@@ -1,0 +1,9 @@
+repetir 16 
+[
+  ava azar 50
+  siotro menos? azar 10 5 [
+    der 60
+  ] [
+    der 60
+  ]
+]

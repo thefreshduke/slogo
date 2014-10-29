@@ -1,0 +1,20 @@
+a slice [ ]
+[
+  der 30
+  ava 50
+  izq 105
+  ava 25
+  vol 25
+  der 105
+  vol 50
+]
+
+a pizza [ ]
+[
+  repetir 12
+  [
+    slice
+  ]
+]
+
+pizza

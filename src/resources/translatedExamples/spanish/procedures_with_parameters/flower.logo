@@ -1,0 +1,28 @@
+a arc [ :incr :degrees ]
+[
+  repetir cociente :degrees 2
+  [
+    ava :incr der 2
+  ]
+]
+
+a petal [ :size ]
+[
+  repetir 2
+  [
+    arc :size 60
+    der 120
+  ]
+]
+
+a flower [ :length ]
+[
+  repetir 6
+  [
+    petal :length
+    der 60
+  ]
+]
+
+
+flower 100

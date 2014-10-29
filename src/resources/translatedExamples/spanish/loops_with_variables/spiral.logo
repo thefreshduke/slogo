@@ -1,0 +1,7 @@
+crear :count 1
+repetir 200 
+[
+  ava :count 
+  der 89
+  crear :count suma 1 :count
+]

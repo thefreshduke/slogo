@@ -1,71 +1,64 @@
 package commands;
 
-import java.util.Stack;
-import communicator.IVariableContainer;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import backendExceptions.BackendException;
-import View.SlogoView;
-import turtle.Turtle;
+import commands.information.BaseUserDefinedContainer;
+import commands.information.IInformationContainer;
 
-public abstract class ControlCommand extends ModelCommand {
-	
-    protected static char COMMAND_INDICATOR = '[';
-    protected static char COMMAND_END_INDICATOR = ']';
-	private SlogoView myView;
-	private Turtle myTurtle;
-	private IVariableContainer myVariableContainer;
-	
-	public ControlCommand(String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
-	
-	// Create static factory to generate commands
-	protected void findBrackets(String userInput) {
-		//Factory.makeCommand(substring);
-		// TODO: Resource File reference to bracket
-		
-		int beginIndex = userInput.indexOf('[');
-		// TODO: Take matching bracket from resource file for 
-		// closing bracket
-		int endIndex = findLastIndexOfCharacter(userInput, ']');
-	}
-	
-	@Override
-	public final double execute(SlogoView view, Turtle turtle, IVariableContainer variableContainer) throws BackendException {
-		myView = view;
-		myTurtle = turtle;
-		myVariableContainer = variableContainer;
-		return execute(null);
-	}
+/**
+ * Commands for control structure. Has access to BaseUserDefinedContainer
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
+public abstract class ControlCommand extends BaseCommand {
 
-	protected double executeCommand(BaseCommand command, IVariableContainer variableContainer) throws BackendException{
-		return command.execute(myView, myTurtle, myVariableContainer);
-	}
-	
-	public abstract double execute(IVariableContainer variableContainer) throws BackendException;
-	
-	protected int findLastIndexOfCharacter(String userInput, char character) {
-		for (int i = userInput.length()-1; i >= 0; i--) {
-			if (userInput.charAt(i) == character) {
-				return i;
-			}
-		}
-		return -1;
-	}
-	
-    protected int findClosingBracketIndex(String input){
-        Stack<Character> checkStack = new Stack<>();
-        for(int i=0; i < input.length(); i++){
-            char character = input.charAt(i);
-            if(character == COMMAND_INDICATOR){
-                checkStack.push(character);
-            }
-            else if(character == COMMAND_END_INDICATOR){
-                checkStack.pop();
-            }
-            if(checkStack.size() == 0){
-                return i;
-            }
+    private static final String INVALID_CONTAINERS_RECEIVED =
+            "Invalid containers received";
+    private static final String INVALID_EXTENSION_OF_VARIABLE_CONTAINER =
+            "Invalid extension of Variable Container";
+    protected static String COMMAND_INDICATOR = "liststart";
+    protected static String COMMAND_END_INDICATOR = "listend";
+    protected static String COMMAND_SEPARATOR = " ";
+    protected static String VARIABLE_INDICATOR = "variable";
+    private BaseUserDefinedContainer myVariableContainer;
+
+    public ControlCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
+
+    @Override
+    public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
+        Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
+        typeSet.add(BaseUserDefinedContainer.class);
+        return typeSet;
+    }
+
+    public void setRequiredInformation (Collection<IInformationContainer> containers)
+            throws BackendException {
+        if (containers.size() != 1) {
+            throw new BackendException(null, INVALID_CONTAINERS_RECEIVED);
         }
-        return -1;
+        ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
+        IInformationContainer container = containerList.get(0);
+        boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
+                .getClass());
+        if (!extendsVariableContainer) {
+            throw new BackendException(null, INVALID_EXTENSION_OF_VARIABLE_CONTAINER);
+        }
+        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer)container;
+        myVariableContainer = variableContainer;
+    }
+
+    protected BaseUserDefinedContainer getVariableContainer () {
+        return myVariableContainer;
+    }
+
+    @Override
+    protected void reset () {
+
     }
 }

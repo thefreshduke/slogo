@@ -1,0 +1,7 @@
+repetir 200
+[
+  # note, variable set to 0 first time seen
+  crear :dist + :dist 1
+  ava :dist
+  der 89
+]

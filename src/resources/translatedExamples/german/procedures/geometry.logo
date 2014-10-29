@@ -1,0 +1,24 @@
+zu triangle [ ]
+[ 
+  wh 3 [
+    vor 50 
+    rt 120
+  ]
+]
+
+zu circle [ ]
+[
+  wh 360 [
+    vor 1 
+    rt 1
+  ]
+]
+
+zu square [ ]
+[
+  wh 4 [
+    vor 100
+    rt 90
+  ]
+  vor 100
+]

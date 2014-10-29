@@ -1,0 +1,30 @@
+a poly [ :length :angle ]
+[
+  repetir 100
+  [
+    ava :length 
+    der :angle
+  ]
+]
+
+
+a outlinepoly [ :length :angle ]
+[
+  repetir 100
+  [
+    ava :length 
+    der :angle
+    ava :length 
+    der producto 2 :angle
+  ]
+]
+
+
+# try these
+# outlinepoly 50 45
+# outlinepoly 50 125
+# outlinepoly 50 144
+
+# poly 50 60
+# poly 50 135
+# poly 50 144

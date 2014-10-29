@@ -1,0 +1,28 @@
+zu arc [ :incr :degrees ]
+[
+  wh quotient :degrees 2
+  [
+    vor :incr rt 2
+  ]
+]
+
+zu petal [ :size ]
+[
+  wh 2
+  [
+    arc :size 60
+    rt 120
+  ]
+]
+
+zu flower [ :length ]
+[
+  wh 6
+  [
+    petal :length
+    rt 60
+  ]
+]
+
+
+flower 100

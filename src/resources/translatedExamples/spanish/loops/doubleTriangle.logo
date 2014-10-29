@@ -1,0 +1,21 @@
+ponxy -300 0
+repetir 8
+[
+  avanzar 50
+  repetir 3
+  [
+    ava 50
+    der 120
+  ]
+]
+
+ponxy -300 0
+repetir 8
+[
+  avanzar 50
+  repetir 3
+  [
+    ava 50
+    izq 120
+  ]
+]

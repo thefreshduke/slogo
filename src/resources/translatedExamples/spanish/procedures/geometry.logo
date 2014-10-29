@@ -1,0 +1,24 @@
+a triangle [ ]
+[ 
+  repetir 3 [
+    ava 50 
+    der 120
+  ]
+]
+
+a circle [ ]
+[
+  repetir 360 [
+    ava 1 
+    der 1
+  ]
+]
+
+a square [ ]
+[
+  repetir 4 [
+    ava 100
+    der 90
+  ]
+  ava 100
+]

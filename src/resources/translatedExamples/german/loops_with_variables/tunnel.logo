@@ -1,0 +1,11 @@
+machen :distance 50
+
+wh 10
+[
+  wh 4
+  [
+    vor :distance
+    rt 90
+  ]
+  machen :distance summe :distance 10
+]

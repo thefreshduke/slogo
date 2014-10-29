@@ -1,32 +1,34 @@
 package commands.turtleCommands;
 
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+
+/**
+ * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ *
+ */
 public class TowardsCommand extends TurtleCommand {
 
-	public TowardsCommand(String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
+    public TowardsCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
 
-	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double currentXPos = turtle.getXPos();
-		double currentYPos = turtle.getYPos();
-		double newXPos = executeCommand(getExpressionList()[0]);
-		double newYPos = executeCommand(getExpressionList()[1]);
-		double angleRadians = Math.atan(((currentYPos-newYPos)/ (currentXPos - newXPos)));
-		double angleDegrees = Math.toDegrees(angleRadians);
-		System.out.println(angleDegrees);
+    @Override
+    protected int getArgumentCount () {
+        return 2;
+    }
 
-		//TODO: Figure out if angle computations work out correctly
-		turtle.setRotation(angleDegrees);
-		return angleDegrees;
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseGridContainer grid = getGridContainer();
+        BaseTurtleContainer turtle = getTurtleContainer();
+        double newXPos = getExpressionList()[0].execute();
+        double newYPos = getExpressionList()[1].execute();
+        double degreesTurned = turtle.towardsPosition(newXPos, newYPos);
+        grid.update(turtle.getActiveTurtles());
 
-	@Override
-	protected int getArgumentCount() {
-		return 2;
-	}
+        return degreesTurned;
+    }
 }

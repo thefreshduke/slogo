@@ -1,0 +1,7 @@
+machen :count 1
+wh 200 
+[
+  vor :count 
+  rt 89
+  machen :count summe 1 :count
+]

@@ -1,0 +1,14 @@
+crear :x 20 
+rpt :x 
+[ 
+  ava :x 
+  rpt :x 
+  [ 
+    ava 50 
+    der 80
+    ava 20
+    izq 160
+  ]
+  der 90
+  ava 10
+]

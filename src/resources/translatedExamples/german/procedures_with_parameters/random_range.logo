@@ -1,0 +1,17 @@
+zu random_in_range [ :min :max ]
+[
+  zf summe :min summe 1 differenz :max :min
+]
+
+
+zu random_move [ :fdmin :fdmax :ltmin :ltmax ]
+[
+  wh 100
+  [
+    lk random_in_range :ltmin :ltmax
+    vor random_in_range :fdmin :fdmax
+  ]
+]
+
+
+random_move 5 15 -10 5

@@ -1,26 +1,32 @@
 package commands.turtleCommands;
 
 import backendExceptions.BackendException;
-import turtle.Turtle;
-import View.SlogoView;
 
+import commands.information.BaseGridContainer;
+import commands.information.BaseTurtleContainer;
+/**
+ * 
+ * @author Rahul
+ *
+ */
 public class SetHeadingCommand extends TurtleCommand {
 
-	public SetHeadingCommand(String userInput, boolean isExpression) throws BackendException {
-		super(userInput, isExpression);
-	}
-	
-	@Override
-	public double execute(SlogoView view, Turtle turtle) throws BackendException {
-		double currentRotate = turtle.getOrientation();
-		double absoluteRotate = executeCommand(getExpressionList()[0]);
-		turtle.setRotation(absoluteRotate);
-		view.update(turtle.getXPos(), turtle.getYPos());
-		return (absoluteRotate - currentRotate);
-	}
+    public SetHeadingCommand (String userInput, boolean isExpression) throws BackendException {
+        super(userInput, isExpression);
+    }
 
-	@Override
-	protected int getArgumentCount() {
-		return 1;
-	}
+    @Override
+    protected double onExecute () throws BackendException {
+        BaseTurtleContainer turtle = getTurtleContainer();
+        BaseGridContainer grid = getGridContainer();
+        double absHeading = (getExpressionList()[0]).execute();
+        double rotatedDegrees = turtle.setHeading(absHeading);
+        grid.update(turtle.getActiveTurtles());
+        return rotatedDegrees;
+    }
+
+    @Override
+    protected int getArgumentCount () {
+        return 1;
+    }
 }

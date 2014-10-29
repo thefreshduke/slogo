@@ -1,0 +1,8 @@
+machen :distance 100
+machen :angle 90
+
+wh quotient 360 :angle
+[
+  vor :distance
+  rt :angle
+]

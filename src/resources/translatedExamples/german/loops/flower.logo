@@ -1,0 +1,13 @@
+wiederholen 6
+[
+  wiederholen 2
+  [
+    wiederholen 30
+    [
+      vor 1
+      rt 2
+    ]
+    rt 120
+  ]
+  rt 60
+]

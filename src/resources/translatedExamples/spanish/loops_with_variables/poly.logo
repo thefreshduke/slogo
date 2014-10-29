@@ -1,0 +1,8 @@
+crear :distance 100
+crear :angle 90
+
+repetir cociente 360 :angle
+[
+  ava :distance
+  der :angle
+]
