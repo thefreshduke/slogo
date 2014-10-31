@@ -1,6 +1,5 @@
 package TableInformation;
 
-import GUIFunctions.EditingCell;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 

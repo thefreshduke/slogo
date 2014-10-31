@@ -95,7 +95,6 @@ public class TurtleVariablesTable extends TableView{
 		}
 
 	}
-
 	private void moveTurtle(Column myColumn, CellEditEvent<Turtle, Object> myTurtle){
 		for (Grid grid: allGrids){
 			SingleGrid myGrid=(SingleGrid) grid;
@@ -109,6 +108,7 @@ public class TurtleVariablesTable extends TableView{
 			}
 		}
 	}
+	
 	private boolean makeMap() {
 		Properties prop = new Properties();
 		InputStream stream = getClass().getClassLoader().getResourceAsStream("./resources/VariablesForTable.Properties");
@@ -124,7 +124,6 @@ public class TurtleVariablesTable extends TableView{
 			try {
 				myClass = (Class<? extends Column>) Class.forName(myValues[1]);
 			} catch (ClassNotFoundException e) {
-				System.out.println(myValues[1]);
 				return false;
 			}		
 			Column myNewColumn;

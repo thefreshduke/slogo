@@ -1,6 +1,5 @@
 package TableInformation;
 
-import GUIFunctions.EditingCell;
 import turtle.Turtle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 

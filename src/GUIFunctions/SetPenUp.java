@@ -14,11 +14,9 @@ public class SetPenUp extends BottomFunctions{
 
 	@Override
 	public void doAction() {
-	
 		for (Pen p: allGrids.getActiveGrid().getActivePens()){
 			p.setPenDown(false);
 		}
-		
 	}
 
 	@Override

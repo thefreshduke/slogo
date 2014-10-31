@@ -1,5 +1,6 @@
 package GUIFunctions;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.scene.Node;
@@ -13,11 +14,13 @@ public class ClearStamps extends BottomFunctions{
 	@Override
 	public void doAction() {
 		SingleGrid active=allGrids.getActiveGrid();
+		ArrayList<Node> listToRemove=new ArrayList();
 		for (Node myStamp: active.getChildren()) {
 			if (myStamp instanceof StampImage) {
-				active.getChildren().remove(myStamp);
+				listToRemove.add(myStamp);
 			}
 		}
+		allGrids.getActiveGrid().getChildren().removeAll(listToRemove);
 	}
 
 	@Override

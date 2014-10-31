@@ -19,6 +19,8 @@ import javax.swing.JOptionPane;
 
 import sun.security.tools.policytool.Resources;
 import backendExceptions.BackendException;
+import Buttons.ButtonFactory;
+import Buttons.ButtonFactoryChooser;
 import GUIFunctions.Add;
 import GUIFunctions.AddTurtle;
 import GUIFunctions.AskForInitialFile;
@@ -70,20 +72,19 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 public class SlogoView {
-	
+
 	private GridFactory myGridFactory;
 	private GridTracker myGrids;
 	private MainController myController;
 	private TabsOfGrids myGridTabs=new TabsOfGrids();
 	private ColorSelection colorSelection;
-	
 	//a Group for all the components of the GUI to be added to
 	private Group root=new Group();
 	//an ArrayList of all the working commands given by the user
 	public Queue<ButtonTemplate> myCommands=new LinkedList<ButtonTemplate>();
 	private Scene myScene;
 	private TextField commandLine;
-	
+
 	//used to display Turtles most recent stats
 	HashMap<String, GUIFunction> myUserFunctions=new HashMap<String, GUIFunction>();
 	private VBox commandHistoryBox;
@@ -150,7 +151,7 @@ public class SlogoView {
 		mainLayout.setTop(addMenuBar());
 		mainLayout.setCenter(myGrids.getActiveGrid());
 		mainLayout.setLeft(setTextArea());
-		mainLayout.setBottom(addButtons());
+		mainLayout.setBottom(addBottomPanel());
 		root.getChildren().add(mainLayout);
 		root.getChildren().add(myGridTabs);
 		myScene=new Scene(root, DEFAULT_SIZE.width, DEFAULT_SIZE.height);
@@ -203,7 +204,7 @@ public class SlogoView {
 		myMenu.getMenus().addAll(fileMenu, languages, userCommands, pen, personalize, help, add);
 		return myMenu;
 	}
-	
+
 	/**
 	 * Disables all of the buttons on the GUI. Used when a command is sent
 	 *  to the backend to prevent concurrency issues.
@@ -214,21 +215,21 @@ public class SlogoView {
 			myNode.setDisable(toDisable);
 		}
 	}
-	
+
 	private void makeLanguageMenu(Class myClass, MenuTemplate myMenu){
 		for (String myName: myUserFunctions.keySet()){
 			if (myUserFunctions.get(myName) instanceof LanguageMenu){
-					LanguageMenu languageFunction=(LanguageMenu) myUserFunctions.get(myName);
-					myMenu.addMenuItem(myName, event->myController.loadLanguage(languageFunction.doAction(myResources.getString(myName))));
-				}
+				LanguageMenu languageFunction=(LanguageMenu) myUserFunctions.get(myName);
+				myMenu.addMenuItem(myName, event->myController.loadLanguage(languageFunction.doAction(myResources.getString(myName))));
 			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param myVariables
 	 */
-	
+
 	public void addVariables(Map<String, Double> myVariables){
 		ArrayList<UserInput> myVars=new ArrayList<UserInput>();
 		for (String name: myVariables.keySet()){
@@ -238,7 +239,7 @@ public class SlogoView {
 
 		myVariableTable.addVariables(myVars);
 	}
-	
+
 	/**
 	 * 
 	 * @param myFunctions
@@ -249,7 +250,7 @@ public class SlogoView {
 			UserInput myUserInput=new Function(myName);
 			myInputs.add(myUserInput);
 		}
-		
+
 		myVariableTable.addInputs(myInputs);
 
 	}
@@ -261,28 +262,28 @@ public class SlogoView {
 	private void addTurtle(){
 		myController.addTurtle(myGrids.getActiveGrid().addTurtle(), myGrids.getActiveGrid().getID(), true);
 	}
-	
+
 	/**
 	 * Used to create the original grid and any additional grids the user wants.
 	 * @return
 	 */
-	public Grid addGrid() {
+	private Grid addGrid() {
 		Grid myNewGrid;
-	
-			try {
-				myNewGrid = myGridFactory.makeGrid("SingleGrid");
-				myGrids.setActiveGrid((SingleGrid)myNewGrid);
-				myGrids.setActiveGrid((SingleGrid)myNewGrid);
-				myGridTabs.addTab("GRID", (SingleGrid)myNewGrid);
-				myController.addGrid((SingleGrid)myNewGrid, true);
-				return myNewGrid;
-			} catch (InstantiationException | IllegalAccessException
-					| IllegalArgumentException | InvocationTargetException
-					| NoSuchMethodException | SecurityException e) {
-					JOptionPane.showMessageDialog(null, "Wrong Grid Type Loaded");
-			}
-		
-		
+
+		try {
+			myNewGrid = myGridFactory.makeGrid("SingleGrid");
+			myGrids.setActiveGrid((SingleGrid)myNewGrid);
+			myGrids.setActiveGrid((SingleGrid)myNewGrid);
+			myGridTabs.addTab("GRID", (SingleGrid)myNewGrid);
+			myController.addGrid((SingleGrid)myNewGrid, true);
+			return myNewGrid;
+		} catch (InstantiationException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException e) {
+			JOptionPane.showMessageDialog(null, "Wrong Grid Type Loaded");
+		}
+
+
 		return null;
 	}
 
@@ -303,7 +304,7 @@ public class SlogoView {
 				history,  colorSelection, commandHistoryBox);
 		return myTextArea;
 	}
-	
+
 	private Button makeEnterButton(){
 		myResources = Resources.getBundle(DEFAULT_RESOURCE_PACKAGE + "Buttons");
 		String[] value=myResources.getString("enter").split(";");
@@ -323,7 +324,7 @@ public class SlogoView {
 		return makeCommand;
 
 	}
-	
+
 	private Text makeCommandHistoryLabel(){
 		Text history = new Text("  Command History");
 		history.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -336,7 +337,7 @@ public class SlogoView {
 		commandHistoryBox.setSpacing(10);		
 		commandHistoryBox.relocate(0, 380);
 	}
-	
+
 	private void createCommandLineWithLabel(Pane textArea){
 		Label label = new Label("Commands:");
 		label.setTextFill(Color.WHITE);
@@ -361,13 +362,24 @@ public class SlogoView {
 	 * Creates buttons on bottom of GUI
 	 * @return
 	 */
-	private Pane addButtons() {
+	private Pane addBottomPanel() {
 		Pane myButtonPanel=new Pane();
 		myButtonPanel.setPrefSize(DEFAULT_SIZE.width, 75);
 		myButtonPanel.setStyle("-fx-background-color: #000080; -fx-border-color: BLACK; -fx-border-width: 5");
-		myButtonPanel.getChildren().addAll(this.makeButtons(BottomFunctions.class, "BottomPanel"));
+		myButtonPanel.getChildren().addAll(makeBottomPanelButtons("MyButtonBottomPanel"));
 		myButtonPanel.getChildren().addAll(this.makeSlidingBars());
 		return myButtonPanel;
+	}
+	private ArrayList<Button> makeBottomPanelButtons(String location){
+		ButtonFactoryChooser myButtonChooser=new ButtonFactoryChooser();
+		ButtonFactory darkButtonFactory=myButtonChooser.getButtonFactory("Buttons.DarkButtonFactory", location);
+		ArrayList<Button> myButtons=new ArrayList<Button>();
+		for (Object key: darkButtonFactory.getPropertiesFile().keySet()){
+			System.out.println((String) key);
+			Button toAdd=darkButtonFactory.makeButton((String) key, myGrids);
+			myButtons.add(toAdd);
+		}
+		return myButtons;	
 	}
 
 
@@ -382,10 +394,10 @@ public class SlogoView {
 		}
 	}
 
-/**
- * allows the user to save a set of instructions as a menu item for easy access later
- * @param command
- */
+	/**
+	 * allows the user to save a set of instructions as a menu item for easy access later
+	 * @param command
+	 */
 
 	private void makeUserCommand(String command){
 		String name = JOptionPane.showInputDialog("Give a Name for your Command");
@@ -429,7 +441,7 @@ public class SlogoView {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * Creates all of the menus for the GUI from a resource file
 	 * @param myClass
@@ -444,7 +456,7 @@ public class SlogoView {
 			}
 		}
 	}
-	
+
 	private Collection<ScrollingBar> makeSlidingBars(){
 		Collection<ScrollingBar> myListOfBars=new ArrayList<ScrollingBar>();
 		ScrollingBar myPenBar=new PenScrollingBar(myResources.getString("penThickness"), 250, 20, myUserFunctions.get("penThickness"));
@@ -471,11 +483,11 @@ public class SlogoView {
 		file.addMenuItem(myResources.getString("uploadFile"),event->checkNullFile(myFunction.sendFile()));
 		return file;
 	}
-	
+
 	private String saveFile(){
 		return JOptionPane.showInputDialog(null, "Name of desired file to save to:");
 	}
-	
+
 	private void saveFileToController(String fileName){
 		try {
 			myController.savePreferences(fileName);
@@ -483,7 +495,7 @@ public class SlogoView {
 			JOptionPane.showMessageDialog(null, "No input");
 		}
 	}
-	
+
 	private void checkNullFile(File myFile){
 		if (myFile!=null){
 			try {
@@ -496,7 +508,7 @@ public class SlogoView {
 			JOptionPane.showMessageDialog(null, "The file was null");
 		}
 	}
-	
+
 	/**
 	 * Creates a list of functions to be used with the GUI's buttons, menus, etc.
 	 */

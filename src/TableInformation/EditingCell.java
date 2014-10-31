@@ -1,4 +1,4 @@
-package GUIFunctions;
+package TableInformation;
 
 
 import turtle.Turtle;
