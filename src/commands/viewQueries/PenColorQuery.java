@@ -20,7 +20,9 @@ public class PenColorQuery extends ViewQuery {
     @Override
     protected double onExecute () throws BackendException {
         BaseGridContainer grid = getGridContainer();
-        grid.updateDisplayOptions(PEN_COLOR);
+       // grid.updateDisplayOptions(PEN_COLOR);
+       // Need to return a double, but updateDisplayOptions does not return a double 
+       // hence returning incorrect default value
         return 0;
     }
 }

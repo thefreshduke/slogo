@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Rahul Harikrishnan
 package commands.turtleCommands;
 
 import backendExceptions.BackendException;
@@ -19,14 +21,14 @@ public class ForwardCommand extends TurtleCommand {
     protected double onExecute () throws BackendException {
         BaseTurtleContainer turtle = getTurtleContainer();
         BaseGridContainer grid = getGridContainer();
-        double movedDistance = getExpressionList()[0].execute();
-        turtle.moveTowardsHeading(movedDistance);
+        double forwardDistance = getExpressionList()[0].execute();
+        turtle.moveTowardsHeading(forwardDistance);
         grid.update(turtle.getActiveTurtles());
-        return movedDistance;
+        return forwardDistance;
     }
 
     @Override
-    protected int getArgumentCount () {
+    protected int getExpressionCount () {
         return 1;
     }
 }

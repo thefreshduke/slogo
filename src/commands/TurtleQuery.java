@@ -16,7 +16,7 @@ public abstract class TurtleQuery extends TurtleCommand {
 
     @Override
     protected void parseArguments (String userInput) throws BackendException {
-        int argumentCount = getArgumentCount();
+        int argumentCount = getExpressionCount();
         if (argumentCount!= 0) {
             throw new BackendException(null, INVALID_ARGUMENT_COUNT_FOR_TURTLE_QUERY);
         }
@@ -26,7 +26,7 @@ public abstract class TurtleQuery extends TurtleCommand {
     }
 
     @Override
-    protected int getArgumentCount () {
+    protected int getExpressionCount () {
         return 0;
     }
 }

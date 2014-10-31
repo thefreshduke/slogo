@@ -20,8 +20,9 @@ public class PenDownQuery extends ViewQuery {
     @Override
     protected double onExecute () throws BackendException {
         BaseGridContainer grid = getGridContainer();
-        grid.updateDisplayOptions(IS_PEN_DOWN);
-        // TODO get value from gridContainer and output
+        // grid.updateDisplayOptions(IS_PEN_DOWN);
+        // TODO get value from gridContainer and output. updateDisplayOptions doesn't 
+        // return a double yet so incorrectly returning default value.
         return 0;
     }
 }

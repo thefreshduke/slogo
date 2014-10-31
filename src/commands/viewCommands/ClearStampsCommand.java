@@ -10,7 +10,7 @@ import commands.information.BaseGridContainer;
  *
  */
 public class ClearStampsCommand extends ViewQuery {
-	private static final String CLEAR_STAMPS = "clearStamps";
+	private static final String CLEAR_STAMPS = "clearStamp";
 
 	public ClearStampsCommand (String command, boolean isExpression) throws BackendException {
 		super(command, isExpression);

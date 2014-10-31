@@ -1,3 +1,5 @@
+// This entire file is part of my masterpiece.
+// Rahul Harikrishnan
 package commands.turtleCommands;
 
 import java.util.Collection;
@@ -12,10 +14,15 @@ import commands.information.BaseTurtleContainer;
 import commands.information.IInformationContainer;
 
 /**
- * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
+ * Abstract TurtleCommand class that can be extended for any Turtle commands.  The parsing method 
+ * can be overridden if necessary, but the onExecute() and getArgumentCount() abstract
+ * methods must be implemented in any TurtleCommand extending subclass.
+ * @author Rahul
  *
  */
 public abstract class TurtleCommand extends BaseCommand {
+	private static final String NULL_CONTAINER = "One or more containers are null and not set";
+	private static final String INSUFFICIENT_CONTAINERS_PROVIDED = "Insufficient containers provided";
 	private static final String INSUFFICIENT_ARGUMENTS_PROVIDED = "Insufficient arguments provided";
 	private static final int NUM_TURTLE_CONTAINERS = 2;
 	private BaseCommand[] myArgumentList;
@@ -26,6 +33,12 @@ public abstract class TurtleCommand extends BaseCommand {
 		super(userInput, isExpression);
 	}
 
+	/**
+	 * Gets the required IInformationContainer objects for all Turtle Commands, to ensure that 
+	 * only the necessary container objects are accessed by Turtle subclasses.  This method
+	 * is called from the CommandFactory upon creation of the specific Command class object to get
+	 * the appropriate container types. 
+	 */
 	@Override
 	public Set<Class<? extends IInformationContainer>> getRequiredInformationTypes () {
 		Set<Class<? extends IInformationContainer>> typeSet = new HashSet<>();
@@ -34,36 +47,58 @@ public abstract class TurtleCommand extends BaseCommand {
 		return typeSet;
 	}
 
+	/**
+	 * Set the required container types for the TurtleCommand via checking class types, as well
+	 * as throws exceptions if containers are not properly set.
+	 */
 	@Override
-	public void setRequiredInformation (Collection<IInformationContainer> containers) {
+	public void setRequiredInformation (Collection<IInformationContainer> containers) 
+			throws BackendException {
 		if (containers.size() != NUM_TURTLE_CONTAINERS) {
-			// throw
+			throw new BackendException(null, INSUFFICIENT_CONTAINERS_PROVIDED);
 		}
-		// ArrayList<IInformationContainer> containerList = new
-		// ArrayList<>(containers);
+
+		if (myGridContainer == null || myTurtleContainer == null) {
+			throw new BackendException(null, NULL_CONTAINER);
+		}
+
 		for (IInformationContainer container : containers) {
 			if (BaseGridContainer.class.isAssignableFrom(container.getClass())) {
-				myGridContainer = (BaseGridContainer) container;
-			} else if (BaseTurtleContainer.class.isAssignableFrom(container.getClass())) {
-				myTurtleContainer = (BaseTurtleContainer) container;
+				myGridContainer = (BaseGridContainer)container;
+			} 
+			else if (BaseTurtleContainer.class.isAssignableFrom(container.getClass())) {
+				myTurtleContainer = (BaseTurtleContainer)container;
 			}
 		}
-		if (myGridContainer == null || myTurtleContainer == null) {
-			// throw exception
-		}
-	}
 
+	}
+	
+	/**
+	 * Returns the BaseTurtleContainer object that is used by the commands to 
+	 * manipulate the location of turtles (movement and position-setting). 
+	 * @return BaseTurtleContainer
+	 */
 	protected BaseTurtleContainer getTurtleContainer () {
 		return myTurtleContainer;
 	}
 
+	/**
+	 * Returns the BaseGridContainer object that is used by the commands to 
+	 * perform manipulations on the grid, such as updating the locations
+	 * of the active turtles
+	 * @return BaseGridContainer
+	 */
 	protected BaseGridContainer getGridContainer () {
 		return myGridContainer;
 	}
 
+	/**
+	 * Parsing algorithm that creates BaseCommand object for each expression
+	 * using the number of expressions (getExpressionCount()) for the command.
+	 */
 	@Override
 	protected void parseArguments (String userInput) throws BackendException {
-		int argumentCount = getArgumentCount();
+		int argumentCount = getExpressionCount();
 		if (argumentCount < 0) {
 			throw new BackendException(null, INSUFFICIENT_ARGUMENTS_PROVIDED);
 		} 
@@ -73,25 +108,36 @@ public abstract class TurtleCommand extends BaseCommand {
 		}
 
 		myArgumentList = new BaseCommand[argumentCount];
-		for (int i = 0; i < argumentCount; i++) {
-			String subInput;
-			if (i == 0) {
-				subInput = userInput;
-			} else {
-				subInput = myArgumentList[i - 1].getLeftoverString();
-			}
+		String subInput = userInput;
+		for (int i = 1; i < argumentCount; i++) {
+			subInput = myArgumentList[i - 1].getLeftoverString();
 			BaseCommand argument = CommandFactory.createCommand(subInput, true);
 			myArgumentList[i] = argument;
 		}
+
 		setLeftoverCommands(myArgumentList[myArgumentList.length - 1].getLeftoverString());
 	}
 
+	/**
+	 * Returns the list of expressions returned as BaseCommand objects which can 
+	 * be executed to produce doubles used in computing a result.
+	 * @return array of BaseCommand expressions
+	 */
 	protected BaseCommand[] getExpressionList () {
 		return myArgumentList;
 	}
+	
+	/**
+	 * Gets the argument count/number of expressions that the command takes. This is used to 
+	 * create the appropriate number of expressions for the given command.
+	 * @return argument count
+	 */
+	protected abstract int getExpressionCount ();
 
-	protected abstract int getArgumentCount ();
-
+	/**
+	 * If commands were to modified during execution, this reset method would have
+	 * implementation details that reverts the command to its pre-execution state.
+	 */
 	@Override
-	protected void reset(){}
+	protected void reset () { }
 }

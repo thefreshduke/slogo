@@ -26,7 +26,7 @@ public class SetHeadingCommand extends TurtleCommand {
     }
 
     @Override
-    protected int getArgumentCount () {
+    protected int getExpressionCount () {
         return 1;
     }
 }

@@ -22,7 +22,7 @@ public class ShapeQuery extends ViewQuery {
     @Override
     protected double onExecute () throws BackendException {
         BaseGridContainer grid = getGridContainer();
-        grid.updateDisplayOptions(GET_SHAPE_INDEX);
+        // grid.updateDisplayOptions(GET_SHAPE_INDEX); Not implemented as front end GUI function yet
         // TODO Change default return value
         return 0;
     }
