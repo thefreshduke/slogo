@@ -1,3 +1,7 @@
+//Parts of this class are my masterpiece including the following functions: sendCommandAndMakeButton,
+//updateCommandHistory, and makeUserCommand
+//Jack Baskin
+
 package View;
 
 import java.awt.Dimension;
@@ -394,7 +398,7 @@ public class SlogoView {
 		userCommands.addMenuItem(name, event->executeUserCommand(userCommandMap.get(name)));
 	}
 
-	private void executeUserCommand(String command){
+	public void executeUserCommand(String command){
 		myController.receiveCommand(command);
 		commandLine.setText(command);
 		ButtonTemplate mostRecent = new ButtonTemplate(command,
