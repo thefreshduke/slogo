@@ -1,10 +1,10 @@
 package commands.controlCommands;
 
 import backendExceptions.BackendException;
-
 import commandParser.CommandFactory;
 import commands.BaseCommand;
 import commands.ControlCommand;
+import commands.information.BaseUserDefinedContainer;
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -21,7 +21,7 @@ public class IfElseCommand extends ControlCommand {
     }
 
     @Override
-    protected double onExecute () throws BackendException {
+    protected double executeControl (BaseUserDefinedContainer userDefinedContainer) throws BackendException {
         double returnValue;
         if (myExpression.execute() != 0) {
             returnValue = myIfCommand.execute();

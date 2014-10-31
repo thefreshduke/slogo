@@ -1,14 +1,16 @@
+// This entire file is part of my masterpiece.
+// Duke Kim
+
 package commands.controlCommands;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
 import backendExceptions.BackendException;
-
 import commands.ControlCommand;
 import commands.information.BaseUserDefinedContainer;
+
 
 /**
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
@@ -20,6 +22,8 @@ public class ToCommand extends ControlCommand {
     private static final String INVALID_ERROR_MESSAGE = "Invalid variable list for To command";
     private static final String REPEATED_VARIABLE_ERROR_MESSAGE = "Variable repeated in To command";
     private static final int EVEN_NUMBER_CHECKER = 2;
+    private static final String EMPTY_STRING = "";
+    private static final int VALID_INNER_ARGUMENTS_LENGTH = 2;
     private static final String INSUFFICIENT_COMMANDS_ENTERED = "Insufficient commands entered";
 
     private String myCommandName;
@@ -34,9 +38,9 @@ public class ToCommand extends ControlCommand {
     }
 
     @Override
-    protected double onExecute () throws BackendException {
-        BaseUserDefinedContainer variableContainer = getVariableContainer();
-        variableContainer.addNewCommand(myCommandName, myInternalCommand, myVariables);
+    protected double executeControl (BaseUserDefinedContainer userDefinedContainer)
+                                                                                   throws BackendException {
+        userDefinedContainer.addNewCommand(myCommandName, myInternalCommand, myVariables);
         return 1;
     }
 
@@ -44,19 +48,18 @@ public class ToCommand extends ControlCommand {
     protected void parseArguments (String userInput) throws BackendException {
 
         String[] innerArguments = userInput.trim().split(COMMAND_SEPARATOR, 2);
-        if (innerArguments.length < 2) {
-            throw new BackendException(null, INSUFFICIENT_COMMANDS_ENTERED);
-        }
+        if (innerArguments.length < VALID_INNER_ARGUMENTS_LENGTH) { throw new BackendException(
+                                                                                               null,
+                                                                                               INSUFFICIENT_COMMANDS_ENTERED); }
         myCommandName = innerArguments[0];
 
         String innerListCommands = innerArguments[1].trim();
         String[] splitString = splitByInnerListCommand(innerListCommands);
         String variables = splitString[0];
-        if (!variables.equals("")) {
+        if (!variables.equals(EMPTY_STRING)) {
             String[] unfilteredVariableList = variables.split(COMMAND_SEPARATOR);
-            if (!isEven(unfilteredVariableList.length)) {
-                throw new BackendException(null, INVALID_ERROR_MESSAGE);
-            }
+            if (!isEven(unfilteredVariableList.length)) { throw new BackendException(null,
+                                                                                     INVALID_ERROR_MESSAGE); }
             myTempRepeatChecker = new HashSet<>();
             myVariableList = new ArrayList<>();
             addWordsToVariablesCollection(unfilteredVariableList);
@@ -71,16 +74,15 @@ public class ToCommand extends ControlCommand {
     }
 
     private void addWordsToVariablesCollection (String[] unfilteredVariableList)
-            throws BackendException {
+                                                                                throws BackendException {
         for (int i = 0; i < unfilteredVariableList.length; i++) {
             String word = unfilteredVariableList[i].trim();
             if (isEven(i) && !word.equals(VARIABLE_INDICATOR)) {
                 throw new BackendException(null, INVALID_ERROR_MESSAGE);
             }
             else if (!isEven(i)) {
-                if (myTempRepeatChecker.contains(word)) {
-                    throw new BackendException(null, REPEATED_VARIABLE_ERROR_MESSAGE);
-                }
+                if (myTempRepeatChecker.contains(word)) { throw new BackendException(null,
+                                                                                     REPEATED_VARIABLE_ERROR_MESSAGE); }
                 myVariableList.add(word);
                 myTempRepeatChecker.add(word);
             }

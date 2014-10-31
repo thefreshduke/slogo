@@ -30,8 +30,8 @@ public class ForCommand extends ControlCommand {
     }
 
     @Override
-    protected double onExecute () throws BackendException {
-        myVariableContainer = getVariableContainer();
+    protected double executeControl (BaseUserDefinedContainer userDefinedContainer) throws BackendException {
+        myVariableContainer = userDefinedContainer;
         double returnValue = 0;
         int startValue = (int)myStartCommand.execute();
         int stopValue = (int)myEndCommand.execute();

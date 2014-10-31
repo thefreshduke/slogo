@@ -1,16 +1,20 @@
+// This entire file is part of my masterpiece.
+// Duke Kim
+
 package commands;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
-
 import backendExceptions.BackendException;
 import commands.information.BaseUserDefinedContainer;
 import commands.information.IInformationContainer;
 
+
 /**
  * Commands for control structure. Has access to BaseUserDefinedContainer
+ * 
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
@@ -24,7 +28,7 @@ public abstract class ControlCommand extends BaseCommand {
     protected static String COMMAND_END_INDICATOR = "listend";
     protected static String COMMAND_SEPARATOR = " ";
     protected static String VARIABLE_INDICATOR = "variable";
-    private BaseUserDefinedContainer myVariableContainer;
+    private BaseUserDefinedContainer myUserDefinedContainer;
 
     public ControlCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
@@ -38,24 +42,26 @@ public abstract class ControlCommand extends BaseCommand {
     }
 
     public void setRequiredInformation (Collection<IInformationContainer> containers)
-            throws BackendException {
-        if (containers.size() != 1) {
-            throw new BackendException(null, INVALID_CONTAINERS_RECEIVED);
-        }
+                                                                                     throws BackendException {
+        if (containers.size() != 1) { throw new BackendException(null, INVALID_CONTAINERS_RECEIVED); }
         ArrayList<IInformationContainer> containerList = new ArrayList<>(containers);
         IInformationContainer container = containerList.get(0);
-        boolean extendsVariableContainer = BaseUserDefinedContainer.class.isAssignableFrom(container
-                .getClass());
-        if (!extendsVariableContainer) {
-            throw new BackendException(null, INVALID_EXTENSION_OF_VARIABLE_CONTAINER);
-        }
-        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer)container;
-        myVariableContainer = variableContainer;
+        boolean extendsVariableContainer =
+                BaseUserDefinedContainer.class.isAssignableFrom(container
+                        .getClass());
+        if (!extendsVariableContainer) { throw new BackendException(null,
+                                                                    INVALID_EXTENSION_OF_VARIABLE_CONTAINER); }
+        BaseUserDefinedContainer variableContainer = (BaseUserDefinedContainer) container;
+        myUserDefinedContainer = variableContainer;
     }
 
-    protected BaseUserDefinedContainer getVariableContainer () {
-        return myVariableContainer;
+    @Override
+    protected double onExecute () throws BackendException {
+        return executeControl(myUserDefinedContainer);
     }
+
+    protected abstract double executeControl (BaseUserDefinedContainer userDefinedContainer)
+                                                                                            throws BackendException;
 
     @Override
     protected void reset () {

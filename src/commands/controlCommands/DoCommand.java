@@ -28,8 +28,8 @@ public class DoCommand extends ControlCommand {
     }
 
     @Override
-    protected double onExecute () throws BackendException {
-        myVariableContainer = getVariableContainer();
+    protected double executeControl (BaseUserDefinedContainer userDefinedContainer) throws BackendException {
+        myVariableContainer = userDefinedContainer;
         double returnValue = 0;
         double expressionResult = myLimitCommand.execute();
         myVarExistsPreviously = false;
