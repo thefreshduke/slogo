@@ -2,7 +2,7 @@ package turtle;
 
 /**
  * Position object that stores and manipulates basic location (x-, y- coordinates) and rotation
- * orientation (degrees).  Can be extended to incorporate a z-coordinate for a 3D rendering.
+ * orientation (degrees).
  */
 public class Position {
 	private double myXPos;

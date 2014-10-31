@@ -24,7 +24,7 @@ public abstract class TurtleCommand extends BaseCommand {
 	private static final String NULL_CONTAINER = "One or more containers are null and not set";
 	private static final String INSUFFICIENT_CONTAINERS_PROVIDED = "Insufficient containers provided";
 	private static final String INSUFFICIENT_ARGUMENTS_PROVIDED = "Insufficient arguments provided";
-	private static final int NUM_TURTLE_CONTAINERS = 2;
+	private static final int NUM_CONTAINERS = 2;
 	private BaseCommand[] myArgumentList;
 	private BaseGridContainer myGridContainer;
 	private BaseTurtleContainer myTurtleContainer;
@@ -54,25 +54,24 @@ public abstract class TurtleCommand extends BaseCommand {
 	@Override
 	public void setRequiredInformation (Collection<IInformationContainer> containers) 
 			throws BackendException {
-		if (containers.size() != NUM_TURTLE_CONTAINERS) {
+		if (containers.size() != NUM_CONTAINERS) 
 			throw new BackendException(null, INSUFFICIENT_CONTAINERS_PROVIDED);
-		}
-
-		if (myGridContainer == null || myTurtleContainer == null) {
-			throw new BackendException(null, NULL_CONTAINER);
-		}
 
 		for (IInformationContainer container : containers) {
-			if (BaseGridContainer.class.isAssignableFrom(container.getClass())) {
+			if (BaseGridContainer.class.isAssignableFrom(container.getClass())) 
 				myGridContainer = (BaseGridContainer)container;
-			} 
-			else if (BaseTurtleContainer.class.isAssignableFrom(container.getClass())) {
+
+			else if (BaseTurtleContainer.class.isAssignableFrom(container.getClass()))
 				myTurtleContainer = (BaseTurtleContainer)container;
-			}
 		}
+		// Check to see if any of the containers are null after assigning them. Might seem logical
+		// to move this to the top. However, would always throw an exception if placed before 
+		// container assignment.
+		if (myGridContainer == null || myTurtleContainer == null) 
+			throw new BackendException(null, NULL_CONTAINER);
 
 	}
-	
+
 	/**
 	 * Returns the BaseTurtleContainer object that is used by the commands to 
 	 * manipulate the location of turtles (movement and position-setting). 
@@ -99,24 +98,25 @@ public abstract class TurtleCommand extends BaseCommand {
 	@Override
 	protected void parseArguments (String userInput) throws BackendException {
 		int argumentCount = getExpressionCount();
-		if (argumentCount < 0) {
+		
+		if (argumentCount < 0) 
 			throw new BackendException(null, INSUFFICIENT_ARGUMENTS_PROVIDED);
-		} 
-		if (argumentCount == 0) {
-			setLeftoverCommands(userInput);
-			return;
-		}
-
+		
 		myArgumentList = new BaseCommand[argumentCount];
-		String subInput = userInput;
-		for (int i = 1; i < argumentCount; i++) {
-			subInput = myArgumentList[i - 1].getLeftoverString();
+
+		String subInput = "";
+		for (int i = 0; i < argumentCount; i++) {
+			subInput = (i == 0)  ? userInput : myArgumentList[i - 1].getLeftoverString();
 			BaseCommand argument = CommandFactory.createCommand(subInput, true);
 			myArgumentList[i] = argument;
 		}
 
-		setLeftoverCommands(myArgumentList[myArgumentList.length - 1].getLeftoverString());
+		if (argumentCount == 0) 
+			setLeftoverCommands(userInput);
+		else 
+			setLeftoverCommands(myArgumentList[myArgumentList.length - 1].getLeftoverString());
 	}
+
 
 	/**
 	 * Returns the list of expressions returned as BaseCommand objects which can 
@@ -126,7 +126,7 @@ public abstract class TurtleCommand extends BaseCommand {
 	protected BaseCommand[] getExpressionList () {
 		return myArgumentList;
 	}
-	
+
 	/**
 	 * Gets the argument count/number of expressions that the command takes. This is used to 
 	 * create the appropriate number of expressions for the given command.
