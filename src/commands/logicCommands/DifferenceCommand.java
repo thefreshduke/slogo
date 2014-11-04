@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,9 +6,9 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class GreaterCommand extends TwoExpressionCommand {
+public class DifferenceCommand extends TwoExpressionLogicCommand {
 
-    public GreaterCommand (String userInput, boolean isExpression) throws BackendException {
+    public DifferenceCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
@@ -16,7 +16,7 @@ public class GreaterCommand extends TwoExpressionCommand {
     public double onExecute () throws BackendException {
         double firstExpression = getFirstExpression().execute();
         double secondExpression = getSecondExpression().execute();
-        double result = (firstExpression > secondExpression) ? 1 : 0;
+        double result = firstExpression - secondExpression;
         return result;
     }
 }

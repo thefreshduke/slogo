@@ -52,7 +52,4 @@ public abstract class VariableCommand extends BaseCommand {
     protected BaseUserDefinedContainer getVariableContainer () {
         return myVariableContainer;
     }
-    
-    @Override
-	protected void reset(){}
 }

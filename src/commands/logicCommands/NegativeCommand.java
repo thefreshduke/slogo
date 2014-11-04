@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,15 +6,15 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class NaturalLogCommand extends OneExpressionCommand {
+public class NegativeCommand extends OneExpressionLogicCommand {
 
-    public NaturalLogCommand (String userInput, boolean isExpression) throws BackendException {
+    public NegativeCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
     public double onExecute () throws BackendException {
-        double result = Math.log(getArgument().execute());
+        double result = -getArgument().execute();
         return result;
     }
 }

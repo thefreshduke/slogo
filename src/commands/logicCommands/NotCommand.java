@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,7 +6,7 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class NotCommand extends OneExpressionCommand {
+public class NotCommand extends OneExpressionLogicCommand {
 
     public NotCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);

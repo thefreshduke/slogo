@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,15 +6,15 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class ArcTanCommand extends OneExpressionCommand {
+public class SinCommand extends OneExpressionLogicCommand {
 
-    public ArcTanCommand (String userInput, boolean isExpression) throws BackendException {
+    public SinCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
     public double onExecute () throws BackendException {
         double angle = getArgument().execute();
-        return Math.atan(Math.toRadians(angle));
+        return Math.sin(Math.toRadians(angle));
     }
 }

@@ -21,7 +21,7 @@ public abstract class ViewCommand extends BaseCommand {
     private static final String INVALID_EXTENSION_OF_GRID_CONTAINER = "Invalid extension of Grid Container";
     private static final String INVALID_CONTAINERS_RECEIVED = "Invalid containers received";
     private static final String INVALID_NUMBER_OF_ARGUMENTS_PROVIDED = "Invalid number of arguments provided";
-	private BaseGridContainer myGridContainer;
+    private BaseGridContainer myGridContainer;
     private BaseCommand[] myArgumentList;
 
     public ViewCommand (String command, boolean isExpression) throws BackendException {
@@ -58,7 +58,7 @@ public abstract class ViewCommand extends BaseCommand {
         int argumentCount = getArgumentCount();
 
         if (argumentCount < 0) {
-        	throw new BackendException(null, INVALID_NUMBER_OF_ARGUMENTS_PROVIDED);
+            throw new BackendException(null, INVALID_NUMBER_OF_ARGUMENTS_PROVIDED);
         }
 
         if (argumentCount == 0) {
@@ -86,9 +86,4 @@ public abstract class ViewCommand extends BaseCommand {
     }
 
     protected abstract int getArgumentCount ();
-
-    @Override
-    protected void reset () {
-
-    }
 }

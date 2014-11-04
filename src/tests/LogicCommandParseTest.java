@@ -1,3 +1,6 @@
+// This entire file is part of my masterpiece.
+// Scotty Shaw
+
 package tests;
 
 import static org.junit.Assert.assertEquals;
@@ -18,7 +21,7 @@ import commands.BaseCommand;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class ExpressionCommandParseTest {
+public class LogicCommandParseTest {
 
     private static final double mySumTestAnswer = 26.0;
 

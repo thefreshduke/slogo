@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,7 +6,7 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class SumCommand extends TwoExpressionCommand {
+public class SumCommand extends TwoExpressionLogicCommand {
 
     public SumCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);

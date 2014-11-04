@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,9 +6,9 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class ProductCommand extends TwoExpressionCommand {
+public class QuotientCommand extends TwoExpressionLogicCommand {
 
-    public ProductCommand (String userInput, boolean isExpression) throws BackendException {
+    public QuotientCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
@@ -16,7 +16,7 @@ public class ProductCommand extends TwoExpressionCommand {
     public double onExecute () throws BackendException {
         double firstExpression = getFirstExpression().execute();
         double secondExpression = getSecondExpression().execute();
-        double result = firstExpression * secondExpression;
+        double result = firstExpression / secondExpression;
         return result;
     }
 }

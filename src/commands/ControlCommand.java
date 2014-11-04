@@ -56,9 +56,4 @@ public abstract class ControlCommand extends BaseCommand {
     protected BaseUserDefinedContainer getVariableContainer () {
         return myVariableContainer;
     }
-
-    @Override
-    protected void reset () {
-
-    }
 }

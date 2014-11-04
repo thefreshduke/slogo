@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -8,14 +8,14 @@ import commands.BaseCommand;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public abstract class TwoExpressionCommand extends ExpressionCommand {
+public abstract class TwoExpressionLogicCommand extends LogicCommand {
 
-    public TwoExpressionCommand (String userInput, boolean isExpression) throws BackendException {
+    public TwoExpressionLogicCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
     }
 
     @Override
-    protected final int getArgumentCount () {
+    protected final int getExpressionCount () {
         return 2;
     }
 

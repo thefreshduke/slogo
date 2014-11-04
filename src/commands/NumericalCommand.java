@@ -40,9 +40,4 @@ public final class NumericalCommand extends BaseCommand {
     public void setRequiredInformation(Collection<IInformationContainer> containers) {
 
     }
-
-    @Override
-    protected void reset () {
-
-    }
 }

@@ -91,7 +91,4 @@ public abstract class TurtleCommand extends BaseCommand {
 	}
 
 	protected abstract int getArgumentCount ();
-
-	@Override
-	protected void reset(){}
 }

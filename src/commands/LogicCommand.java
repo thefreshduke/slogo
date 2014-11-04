@@ -24,9 +24,4 @@ public abstract class LogicCommand extends BaseCommand {
     protected double executeCommand (BaseCommand command) throws BackendException {
         return command.onExecute();
     }
-
-    @Override
-    protected void reset () {
-
-    }
 }

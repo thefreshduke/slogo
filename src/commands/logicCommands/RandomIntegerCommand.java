@@ -1,4 +1,4 @@
-package commands.expressionCommands;
+package commands.logicCommands;
 
 import backendExceptions.BackendException;
 
@@ -6,7 +6,7 @@ import backendExceptions.BackendException;
  * @author Rahul Harikrishnan, Duke Kim, $cotty $haw
  *
  */
-public class RandomIntegerCommand extends OneExpressionCommand {
+public class RandomIntegerCommand extends OneExpressionLogicCommand {
 
     public RandomIntegerCommand (String userInput, boolean isExpression) throws BackendException {
         super(userInput, isExpression);
