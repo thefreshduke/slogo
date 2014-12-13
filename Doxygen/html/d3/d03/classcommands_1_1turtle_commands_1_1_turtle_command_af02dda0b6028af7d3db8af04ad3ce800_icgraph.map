@@ -1,9 +1,0 @@
-<map id="commands.turtleCommands.TurtleCommand.getExpressionList" name="commands.turtleCommands.TurtleCommand.getExpressionList">
-<area shape="rect" id="node2" href="$df/d1b/classcommands_1_1turtle_commands_1_1_back_command.html#a2f60b951011f138ae8916447519fe166" title="commands.turtleCommands.\lBackCommand.onExecute" alt="" coords="305,5,516,46"/>
-<area shape="rect" id="node3" href="$da/db6/classcommands_1_1turtle_commands_1_1_forward_command.html#a804cd1b0300e3c10498b66ea5edeb18c" title="commands.turtleCommands.\lForwardCommand.onExecute" alt="" coords="305,70,516,111"/>
-<area shape="rect" id="node4" href="$dd/db2/classcommands_1_1turtle_commands_1_1_right_command.html#a0eddcf5dbe1361c0dab5433a3f42aae7" title="commands.turtleCommands.\lRightCommand.onExecute" alt="" coords="305,135,516,177"/>
-<area shape="rect" id="node5" href="$d5/d5b/classcommands_1_1turtle_commands_1_1_set_heading_command.html#a5e2f849ee53234e4f095c3a5db842222" title="commands.turtleCommands.\lSetHeadingCommand.onExecute" alt="" coords="293,201,528,242"/>
-<area shape="rect" id="node6" href="$db/d66/classcommands_1_1turtle_commands_1_1_left_command.html#ad05f5e31458463730a6a78444f481db3" title="commands.turtleCommands.\lLeftCommand.onExecute" alt="" coords="305,266,516,307"/>
-<area shape="rect" id="node7" href="$d2/d96/classcommands_1_1turtle_commands_1_1_towards_command.html#acf88e2411c3dbf606349900a9dea4727" title="commands.turtleCommands.\lTowardsCommand.onExecute" alt="" coords="305,331,516,373"/>
-<area shape="rect" id="node8" href="$d9/d14/classcommands_1_1turtle_commands_1_1_set_position_command.html#a1ff02e56e7927a1002a7412040c98e77" title="commands.turtleCommands.\lSetPositionCommand.onExecute" alt="" coords="295,397,527,438"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="commands.information.BaseUserDefinedContainer.containsVariable" name="commands.information.BaseUserDefinedContainer.containsVariable">
-<area shape="rect" id="node2" href="$d8/d84/classcommands_1_1control_commands_1_1_do_command.html#aa4653733a73cf8ab1e68e8cb66ddb817" title="commands.controlCommands.\lDoCommand.onExecute" alt="" coords="341,5,561,46"/>
-<area shape="rect" id="node3" href="$da/dbb/classcommands_1_1control_commands_1_1_for_command.html#af28d867a7450dc1e8c13ab56e62570d6" title="commands.controlCommands.\lForCommand.onExecute" alt="" coords="341,70,561,111"/>
-<area shape="rect" id="node4" href="$de/de4/classcommands_1_1variable_commands_1_1_created_command.html#aabf56d02933dddd1de08692a1b416c98" title="commands.variableCommands.\lCreatedCommand.setNewVariables" alt="" coords="326,135,575,177"/>
-<area shape="rect" id="node5" href="$de/de4/classcommands_1_1variable_commands_1_1_created_command.html#a1a15495411a7de97970a003a442dd3a0" title="commands.variableCommands.\lCreatedCommand.onExecute" alt="" coords="624,135,851,177"/>
-</map>

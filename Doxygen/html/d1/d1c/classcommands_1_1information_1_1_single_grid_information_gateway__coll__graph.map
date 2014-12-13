@@ -1,8 +1,0 @@
-<map id="commands.information.SingleGridInformationGateway" name="commands.information.SingleGridInformationGateway">
-<area shape="rect" id="node2" href="$dd/df5/interfacecommands_1_1information_1_1_i_information_gateway.html" title="commands.information.IInformation\lGateway" alt="" coords="840,5,1091,46"/>
-<area shape="rect" id="node3" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html" title="commands.information.Base\lUserDefinedContainer" alt="" coords="598,34,805,75"/>
-<area shape="rect" id="node4" href="$d4/d4e/interfacecommands_1_1information_1_1_i_information_container.html" title="commands.information.IInformation\lContainer" alt="" coords="5,66,256,107"/>
-<area shape="rect" id="node7" href="$d4/d37/classcommands_1_1information_1_1_base_grid_container.html" title="commands.information.Base\lGridContainer" alt="" coords="366,78,573,119"/>
-<area shape="rect" id="node6" href="$da/d10/classcommands_1_1information_1_1_single_active_grid_container.html" title="commands.information.Single\lActiveGridContainer" alt="" coords="858,134,1073,175"/>
-<area shape="rect" id="node9" href="$d0/d92/class_view_1_1_grid.html" title="View.Grid" alt="" coords="429,195,509,221"/>
-</map>

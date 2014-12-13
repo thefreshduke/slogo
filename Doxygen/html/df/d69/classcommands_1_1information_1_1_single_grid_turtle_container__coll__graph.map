@@ -1,5 +1,0 @@
-<map id="commands.information.SingleGridTurtleContainer" name="commands.information.SingleGridTurtleContainer">
-<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html" title="commands.information.Base\lTurtleContainer" alt="" coords="135,99,341,141"/>
-<area shape="rect" id="node3" href="$d8/db5/interfacecommands_1_1information_1_1_i_turtle_behavior.html" title="commands.information.ITurtle\lBehavior" alt="" coords="5,6,216,47"/>
-<area shape="rect" id="node4" href="$d4/d4e/interfacecommands_1_1information_1_1_i_information_container.html" title="commands.information.IInformation\lContainer" alt="" coords="241,6,492,47"/>
-</map>

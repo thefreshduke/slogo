@@ -1,7 +1,0 @@
-<map id="commands.information.BaseTurtleContainer.setPenBorderStyle" name="commands.information.BaseTurtleContainer.setPenBorderStyle">
-<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#ae3f987ec79fb3318d8c3a1c8bd65f67b" title="commands.information.Base\lTurtleContainer.loopOverTurtle" alt="" coords="294,81,506,122"/>
-<area shape="rect" id="node5" href="$df/dcb/classturtle_1_1_turtle.html#ae68ac0a6037cd692976775eb575942d0" title="turtle.Turtle.setPenBorder\lStyle" alt="" coords="307,146,493,187"/>
-<area shape="rect" id="node3" href="$d1/d39/interfacecommands_1_1information_1_1_base_turtle_container_1_1_turtle_action_with_result.html#a5043750fe9ea0b38e426614c999c9d60" title="commands.information.Base\lTurtleContainer.TurtleActionWith\lResult.execute" alt="" coords="555,5,778,61"/>
-<area shape="rect" id="node4" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a704eca72b47c6a35888f2868beaec2d3" title="commands.information.Base\lTurtleContainer.getActiveTurtles" alt="" coords="555,85,778,126"/>
-<area shape="rect" id="node6" href="$dc/d19/class_view_1_1_pen.html#a50b3f45e35e03cb690bad13109656e12" title="View.Pen.setBorderStyle" alt="" coords="578,153,755,180"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="commands.information.BaseTurtleContainer.getActiveTurtlesByID" name="commands.information.BaseTurtleContainer.getActiveTurtlesByID">
-<area shape="rect" id="node2" href="$d6/de1/classcommands_1_1turtle_commands_1_1_ask_command.html#af55174501ae461af21d6546f83cdc521" title="commands.turtleCommands.\lAskCommand.onExecute" alt="" coords="304,5,515,46"/>
-<area shape="rect" id="node3" href="$d5/d06/classcommands_1_1turtle_commands_1_1_ask_with_command.html#a07b217e59066d96b04c498c1be9b905a" title="commands.turtleCommands.\lAskWithCommand.onExecute" alt="" coords="304,70,515,111"/>
-</map>

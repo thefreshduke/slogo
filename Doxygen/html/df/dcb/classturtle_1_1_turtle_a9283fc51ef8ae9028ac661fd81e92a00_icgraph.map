@@ -1,5 +1,0 @@
-<map id="turtle.Turtle.setRotation" name="turtle.Turtle.setRotation">
-<area shape="rect" id="node2" href="$d3/d88/classmodel_1_1_slogo_model.html#a0ecb7b4d14308a155afdbe1313ec555f" title="model.SlogoModel.hardSet\lTurtle" alt="" coords="231,5,425,46"/>
-<area shape="rect" id="node3" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a908b5c21435a1b8bae56d8f3d83fc12e" title="commands.information.Base\lTurtleContainer.setRotation" alt="" coords="225,70,431,111"/>
-<area shape="rect" id="node4" href="$df/dcb/classturtle_1_1_turtle.html#a5f1e98a10bb09ba8a75ec2c1dffdeb06" title="turtle.Turtle.towardsPosition" alt="" coords="229,136,427,163"/>
-</map>

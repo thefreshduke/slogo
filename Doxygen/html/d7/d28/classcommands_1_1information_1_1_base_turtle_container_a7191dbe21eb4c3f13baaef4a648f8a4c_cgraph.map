@@ -1,7 +1,0 @@
-<map id="commands.information.BaseTurtleContainer.getYPos" name="commands.information.BaseTurtleContainer.getYPos">
-<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#a735b5aa0bce5a53d2c75322fb2ad9130" title="turtle.Turtle.getYPos" alt="" coords="293,5,443,32"/>
-<area shape="rect" id="node4" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#ae3f987ec79fb3318d8c3a1c8bd65f67b" title="commands.information.Base\lTurtleContainer.loopOverTurtle" alt="" coords="262,57,474,98"/>
-<area shape="rect" id="node3" href="$d1/dbe/classturtle_1_1_position.html#a3a68708e4dc3290c4ef0ecd511cc8c1f" title="turtle.Position.getYPos" alt="" coords="552,5,717,32"/>
-<area shape="rect" id="node5" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a704eca72b47c6a35888f2868beaec2d3" title="commands.information.Base\lTurtleContainer.getActiveTurtles" alt="" coords="523,57,746,98"/>
-<area shape="rect" id="node6" href="$d1/d39/interfacecommands_1_1information_1_1_base_turtle_container_1_1_turtle_action_with_result.html#a5043750fe9ea0b38e426614c999c9d60" title="commands.information.Base\lTurtleContainer.TurtleActionWith\lResult.execute" alt="" coords="523,121,746,177"/>
-</map>

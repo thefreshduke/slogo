@@ -1,5 +1,0 @@
-<map id="commands.BaseCommand.execute" name="commands.BaseCommand.execute">
-<area shape="rect" id="node2" href="$da/d90/classcommands_1_1_base_command.html#a90abff4a812d84d0454cb095e03c6e08" title="commands.BaseCommand.get\lNextCommand" alt="" coords="330,5,553,46"/>
-<area shape="rect" id="node3" href="$da/d90/classcommands_1_1_base_command.html#aad4544c0bd9d40769d8997e4d6d97b08" title="commands.BaseCommand.onExecute" alt="" coords="307,71,575,97"/>
-<area shape="rect" id="node4" href="$da/d90/classcommands_1_1_base_command.html#a37ff254bd611b07ea38aaaf85447a2c3" title="commands.BaseCommand.reset" alt="" coords="324,121,559,148"/>
-</map>

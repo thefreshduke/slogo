@@ -1,6 +1,0 @@
-<map id="commands.controlCommands.DoCommand" name="commands.controlCommands.DoCommand">
-<area shape="rect" id="node2" href="$da/d8a/classcommands_1_1_control_command.html" title="commands.ControlCommand" alt="" coords="701,88,912,115"/>
-<area shape="rect" id="node3" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="312,44,509,71"/>
-<area shape="rect" id="node5" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html" title="commands.information.Base\lUserDefinedContainer" alt="" coords="307,114,514,155"/>
-<area shape="rect" id="node6" href="$d4/d4e/interfacecommands_1_1information_1_1_i_information_container.html" title="commands.information.IInformation\lContainer" alt="" coords="5,114,256,155"/>
-</map>

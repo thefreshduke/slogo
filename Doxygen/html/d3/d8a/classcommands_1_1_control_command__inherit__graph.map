@@ -1,9 +1,0 @@
-<map id="commands.ControlCommand" name="commands.ControlCommand">
-<area shape="rect" id="node4" href="$d8/d84/classcommands_1_1control_commands_1_1_do_command.html" title="commands.controlCommands.\lDoCommand" alt="" coords="654,5,874,46"/>
-<area shape="rect" id="node5" href="$da/dbb/classcommands_1_1control_commands_1_1_for_command.html" title="commands.controlCommands.\lForCommand" alt="" coords="654,70,874,111"/>
-<area shape="rect" id="node6" href="$d5/d60/classcommands_1_1control_commands_1_1_if_command.html" title="commands.controlCommands.\lIfCommand" alt="" coords="654,135,874,177"/>
-<area shape="rect" id="node7" href="$d8/d8f/classcommands_1_1control_commands_1_1_if_else_command.html" title="commands.controlCommands.\lIfElseCommand" alt="" coords="654,201,874,242"/>
-<area shape="rect" id="node8" href="$d0/da1/classcommands_1_1control_commands_1_1_repeat_command.html" title="commands.controlCommands.\lRepeatCommand" alt="" coords="654,266,874,307"/>
-<area shape="rect" id="node9" href="$d9/d3f/classcommands_1_1control_commands_1_1_to_command.html" title="commands.controlCommands.\lToCommand" alt="" coords="654,331,874,373"/>
-<area shape="rect" id="node2" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="149,176,347,203"/>
-</map>
