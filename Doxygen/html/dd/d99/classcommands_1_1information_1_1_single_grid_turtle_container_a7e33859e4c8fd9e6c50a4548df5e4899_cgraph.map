@@ -1,0 +1,7 @@
+<map id="commands.information.SingleGridTurtleContainer.addTurtle" name="commands.information.SingleGridTurtleContainer.addTurtle">
+<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#a6dfb634504ad14e4496e33c5afd16bd8" title="turtle.Turtle.setActiveStatus" alt="" coords="270,31,469,57"/>
+<area shape="rect" id="node3" href="$df/dcb/classturtle_1_1_turtle.html#a21b702dbca940199ef74f67be4ba7905" title="turtle.Turtle.setActive" alt="" coords="523,5,680,32"/>
+<area shape="rect" id="node5" href="$df/dcb/classturtle_1_1_turtle.html#af9e8089cba994a27cc2fba25f3c9347d" title="turtle.Turtle.setInactive" alt="" coords="518,56,685,83"/>
+<area shape="rect" id="node4" href="$df/dcb/classturtle_1_1_turtle.html#aa707cc43bd4b23536dddc369e17e4d35" title="turtle.Turtle.glow" alt="" coords="745,5,871,32"/>
+<area shape="rect" id="node6" href="$df/dcb/classturtle_1_1_turtle.html#ab7604e0b3263bdce34b92cfbfc39eaf0" title="turtle.Turtle.dimmer" alt="" coords="734,56,882,83"/>
+</map>

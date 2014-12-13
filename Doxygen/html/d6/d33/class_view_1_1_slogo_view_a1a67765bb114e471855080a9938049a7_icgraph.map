@@ -1,0 +1,7 @@
+<map id="View.SlogoView.sendCommandAndMakeButton" name="View.SlogoView.sendCommandAndMakeButton">
+<area shape="rect" id="node2" href="$d6/d33/class_view_1_1_slogo_view.html#a468acf266470c356f2f36e7eb2f327e8" title="View.SlogoView.createCommand\lLineWithLabel" alt="" coords="275,5,506,46"/>
+<area shape="rect" id="node6" href="$d6/d33/class_view_1_1_slogo_view.html#acaa2b33418cebb60111d0acfef03e832" title="View.SlogoView.executeUser\lCommand" alt="" coords="289,70,492,111"/>
+<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#ac64a43649ed5417854c37ec25320e925" title="View.SlogoView.setTextArea" alt="" coords="555,12,752,39"/>
+<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="800,12,973,39"/>
+<area shape="rect" id="node5" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1022,12,1146,39"/>
+</map>

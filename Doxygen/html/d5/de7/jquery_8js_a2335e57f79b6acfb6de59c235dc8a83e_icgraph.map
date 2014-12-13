@@ -1,0 +1,9 @@
+<map id="p" name="p">
+<area shape="rect" id="node2" href="$d8/d40/class_g_u_i_functions_1_1_set_pen_up.html#a66b0a694c32b985e22e6814d48fa7a5c" title="GUIFunctions.SetPenUp.do\lAction" alt="" coords="94,5,287,46"/>
+<area shape="rect" id="node3" href="$d0/d77/class_g_u_i_functions_1_1_pen_style.html#a8e84d8f42da0306329a5e0266012b118" title="GUIFunctions.PenStyle.do\lAction" alt="" coords="98,70,283,111"/>
+<area shape="rect" id="node4" href="$da/d16/class_g_u_i_functions_1_1_pen_color.html#a40da853af47e7550f10ebb66756a8548" title="GUIFunctions.PenColor.do\lAction" alt="" coords="98,135,283,177"/>
+<area shape="rect" id="node5" href="$d0/d30/classturtle_1_1_left.html#a62cdfb6f69dfab320b057de821a4f015" title="turtle.Left.move" alt="" coords="129,201,253,228"/>
+<area shape="rect" id="node6" href="$d4/db5/classturtle_1_1_down.html#a13de87a6a6ac547adb82232c64968916" title="turtle.Down.move" alt="" coords="123,252,258,279"/>
+<area shape="rect" id="node7" href="$d9/d75/classturtle_1_1_right.html#a84d248152f585b2ad868acfbf548afc7" title="turtle.Right.move" alt="" coords="125,303,257,329"/>
+<area shape="rect" id="node8" href="$df/d4e/classturtle_1_1_up.html#a2a4bb4d5da9f09e70c1ef4baa33e6c02" title="turtle.Up.move" alt="" coords="131,353,250,380"/>
+</map>

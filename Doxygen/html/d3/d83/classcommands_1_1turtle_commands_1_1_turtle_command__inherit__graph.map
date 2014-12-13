@@ -1,0 +1,24 @@
+<map id="commands.turtleCommands.TurtleCommand" name="commands.turtleCommands.TurtleCommand">
+<area shape="rect" id="node4" href="$d5/d06/classcommands_1_1turtle_commands_1_1_ask_with_command.html" title="commands.turtleCommands.\lAskWithCommand" alt="" coords="667,6,877,47"/>
+<area shape="rect" id="node5" href="$df/d1b/classcommands_1_1turtle_commands_1_1_back_command.html" title="commands.turtleCommands.\lBackCommand" alt="" coords="667,71,877,113"/>
+<area shape="rect" id="node6" href="$da/db6/classcommands_1_1turtle_commands_1_1_forward_command.html" title="commands.turtleCommands.\lForwardCommand" alt="" coords="667,137,877,178"/>
+<area shape="rect" id="node7" href="$db/d66/classcommands_1_1turtle_commands_1_1_left_command.html" title="commands.turtleCommands.\lLeftCommand" alt="" coords="667,202,877,243"/>
+<area shape="rect" id="node8" href="$d9/d20/classcommands_1_1turtle_commands_1_1_multiple_turtle_command.html" title="commands.turtleCommands.\lMultipleTurtleCommand" alt="" coords="667,267,877,309"/>
+<area shape="rect" id="node11" href="$dd/db2/classcommands_1_1turtle_commands_1_1_right_command.html" title="commands.turtleCommands.\lRightCommand" alt="" coords="667,333,877,374"/>
+<area shape="rect" id="node12" href="$d5/d5b/classcommands_1_1turtle_commands_1_1_set_heading_command.html" title="commands.turtleCommands.\lSetHeadingCommand" alt="" coords="667,398,877,439"/>
+<area shape="rect" id="node13" href="$d9/d14/classcommands_1_1turtle_commands_1_1_set_position_command.html" title="commands.turtleCommands.\lSetPositionCommand" alt="" coords="667,463,877,505"/>
+<area shape="rect" id="node14" href="$d2/d96/classcommands_1_1turtle_commands_1_1_towards_command.html" title="commands.turtleCommands.\lTowardsCommand" alt="" coords="667,529,877,570"/>
+<area shape="rect" id="node15" href="$d0/d90/classcommands_1_1_turtle_query.html" title="commands.TurtleQuery" alt="" coords="687,595,857,621"/>
+<area shape="rect" id="node23" href="$dd/d47/classcommands_1_1view_commands_1_1_hide_turtle_command.html" title="commands.viewCommands.Hide\lTurtleCommand" alt="" coords="656,646,888,687"/>
+<area shape="rect" id="node24" href="$df/d5c/classcommands_1_1view_commands_1_1_show_turtle_command.html" title="commands.viewCommands.Show\lTurtleCommand" alt="" coords="653,711,891,753"/>
+<area shape="rect" id="node2" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="149,373,347,400"/>
+<area shape="rect" id="node9" href="$d6/de1/classcommands_1_1turtle_commands_1_1_ask_command.html" title="commands.turtleCommands.\lAskCommand" alt="" coords="955,231,1165,273"/>
+<area shape="rect" id="node10" href="$d3/d71/classcommands_1_1turtle_commands_1_1_tell_command.html" title="commands.turtleCommands.\lTellCommand" alt="" coords="955,297,1165,338"/>
+<area shape="rect" id="node16" href="$d4/d3f/classcommands_1_1turtle_commands_1_1_i_d_command.html" title="commands.turtleCommands.\lIDCommand" alt="" coords="955,391,1165,433"/>
+<area shape="rect" id="node17" href="$d5/dea/classcommands_1_1turtle_commands_1_1_number_of_turtles_command.html" title="commands.turtleCommands.\lNumberOfTurtlesCommand" alt="" coords="955,457,1165,498"/>
+<area shape="rect" id="node18" href="$df/d55/classcommands_1_1view_commands_1_1_clear_screen_command.html" title="commands.viewCommands.Clear\lScreenCommand" alt="" coords="942,522,1178,563"/>
+<area shape="rect" id="node19" href="$db/dc5/classcommands_1_1view_commands_1_1_home_command.html" title="commands.viewCommands.Home\lCommand" alt="" coords="939,587,1181,629"/>
+<area shape="rect" id="node20" href="$df/d9a/classcommands_1_1view_queries_1_1_heading_query.html" title="commands.viewQueries.Heading\lQuery" alt="" coords="945,653,1175,694"/>
+<area shape="rect" id="node21" href="$d2/d08/classcommands_1_1view_queries_1_1_x_cor_query.html" title="commands.viewQueries.XCor\lQuery" alt="" coords="957,718,1163,759"/>
+<area shape="rect" id="node22" href="$dd/d29/classcommands_1_1view_queries_1_1_y_cor_query.html" title="commands.viewQueries.YCor\lQuery" alt="" coords="957,783,1163,825"/>
+</map>

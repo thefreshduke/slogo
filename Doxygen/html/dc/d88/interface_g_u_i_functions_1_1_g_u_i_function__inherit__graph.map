@@ -1,0 +1,27 @@
+<map id="GUIFunctions.GUIFunction" name="GUIFunctions.GUIFunction">
+<area shape="rect" id="node2" href="$de/d3e/class_g_u_i_functions_1_1_add.html" title="GUIFunctions.Add" alt="" coords="277,212,411,239"/>
+<area shape="rect" id="node4" href="$d0/dec/class_g_u_i_functions_1_1_ask_for_initial_file.html" title="GUIFunctions.AskForInitialFile" alt="" coords="241,364,447,391"/>
+<area shape="rect" id="node5" href="$de/dbd/class_g_u_i_functions_1_1_grid_function.html" title="GUIFunctions.GridFunction" alt="" coords="250,415,438,441"/>
+<area shape="rect" id="node24" href="$d7/d53/class_g_u_i_functions_1_1_help_page.html" title="GUIFunctions.HelpPage" alt="" coords="259,465,429,492"/>
+<area shape="rect" id="node25" href="$d5/da9/class_g_u_i_functions_1_1_language_menu.html" title="GUIFunctions.LanguageMenu" alt="" coords="241,541,447,568"/>
+<area shape="rect" id="node3" href="$da/d9b/class_g_u_i_functions_1_1_add_turtle.html" title="GUIFunctions.AddTurtle" alt="" coords="521,132,689,159"/>
+<area shape="rect" id="node6" href="$d3/dc6/class_g_u_i_functions_1_1_bottom_functions.html" title="GUIFunctions.BottomFunctions" alt="" coords="497,183,714,209"/>
+<area shape="rect" id="node13" href="$d4/df9/class_g_u_i_functions_1_1_color_function.html" title="GUIFunctions.ColorFunction" alt="" coords="508,339,703,365"/>
+<area shape="rect" id="node16" href="$d5/dfa/class_g_u_i_functions_1_1_pen_thickness.html" title="GUIFunctions.PenThickness" alt="" coords="508,389,703,416"/>
+<area shape="rect" id="node17" href="$da/dc9/class_g_u_i_functions_1_1_personalize_menu.html" title="GUIFunctions.PersonalizeMenu" alt="" coords="497,440,714,467"/>
+<area shape="rect" id="node21" href="$d7/d63/class_view_1_1_pen_menu.html" title="View.PenMenu" alt="" coords="549,491,662,517"/>
+<area shape="rect" id="node23" href="$db/dd1/class_view_1_1_set_palette.html" title="View.SetPalette" alt="" coords="545,541,665,568"/>
+<area shape="rect" id="node7" href="$d6/d9d/class_g_u_i_functions_1_1_clear_function.html" title="GUIFunctions.ClearFunction" alt="" coords="775,5,969,32"/>
+<area shape="rect" id="node8" href="$db/d29/class_g_u_i_functions_1_1_clear_stamps.html" title="GUIFunctions.ClearStamps" alt="" coords="776,56,968,83"/>
+<area shape="rect" id="node9" href="$d2/dd2/class_g_u_i_functions_1_1_set_pen_down.html" title="GUIFunctions.SetPenDown" alt="" coords="777,107,967,133"/>
+<area shape="rect" id="node10" href="$d8/d40/class_g_u_i_functions_1_1_set_pen_up.html" title="GUIFunctions.SetPenUp" alt="" coords="785,157,959,184"/>
+<area shape="rect" id="node11" href="$de/def/class_g_u_i_functions_1_1_stamp.html" title="GUIFunctions.Stamp" alt="" coords="796,208,948,235"/>
+<area shape="rect" id="node12" href="$d1/de7/class_g_u_i_functions_1_1_undo.html" title="GUIFunctions.Undo" alt="" coords="801,259,943,285"/>
+<area shape="rect" id="node14" href="$dd/d80/class_g_u_i_functions_1_1_background_color.html" title="GUIFunctions.BackgroundColor" alt="" coords="763,309,981,336"/>
+<area shape="rect" id="node15" href="$da/d16/class_g_u_i_functions_1_1_pen_color.html" title="GUIFunctions.PenColor" alt="" coords="789,360,955,387"/>
+<area shape="rect" id="node18" href="$dc/d8a/class_g_u_i_functions_1_1_set_background_image.html" title="GUIFunctions.SetBackground\lImage" alt="" coords="769,411,975,453"/>
+<area shape="rect" id="node19" href="$d8/df7/class_g_u_i_functions_1_1_toggle_grid_lines.html" title="GUIFunctions.ToggleGridLines" alt="" coords="768,477,976,504"/>
+<area shape="rect" id="node20" href="$db/dd9/class_g_u_i_functions_1_1_turtle_image_change.html" title="GUIFunctions.TurtleImage\lChange" alt="" coords="781,529,963,570"/>
+<area shape="rect" id="node22" href="$d0/d77/class_g_u_i_functions_1_1_pen_style.html" title="GUIFunctions.PenStyle" alt="" coords="789,595,955,621"/>
+<area shape="rect" id="node26" href="$d9/d52/class_g_u_i_functions_1_1_set_language.html" title="GUIFunctions.SetLanguage" alt="" coords="508,592,703,619"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="model.SlogoModel.hardSetTurtle" name="model.SlogoModel.hardSetTurtle">
+<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#a9283fc51ef8ae9028ac661fd81e92a00" title="turtle.Turtle.setRotation" alt="" coords="248,31,419,57"/>
+<area shape="rect" id="node4" href="$df/dcb/classturtle_1_1_turtle.html#a5db281fc734edd965ff0faddbab871d7" title="turtle.Turtle.setXPos" alt="" coords="259,132,408,159"/>
+<area shape="rect" id="node9" href="$df/dcb/classturtle_1_1_turtle.html#a1107426e66ec049d5e3d1c1783a463db" title="turtle.Turtle.setYPos" alt="" coords="259,208,407,235"/>
+<area shape="rect" id="node3" href="$d1/dbe/classturtle_1_1_position.html#a761d5437c7bc66aa635b95d005e23c96" title="turtle.Position.setRotation" alt="" coords="467,5,653,32"/>
+<area shape="rect" id="node5" href="$d1/dbe/classturtle_1_1_position.html#af03c1c3b306f6c12d2ec52a00fde50eb" title="turtle.Position.setXPos" alt="" coords="477,56,643,83"/>
+<area shape="rect" id="node6" href="$d1/dbe/classturtle_1_1_position.html#a1d079c846ce96bf1c57da388c46669e1" title="turtle.Position.getXPos" alt="" coords="477,107,643,133"/>
+<area shape="rect" id="node7" href="$d1/dbe/classturtle_1_1_position.html#a3a68708e4dc3290c4ef0ecd511cc8c1f" title="turtle.Position.getYPos" alt="" coords="477,157,643,184"/>
+<area shape="rect" id="node8" href="$d1/dbe/classturtle_1_1_position.html#a7bfd27ea2bf5e22d8de4a4e87b4df2ec" title="turtle.Position.getRotate" alt="" coords="472,208,648,235"/>
+<area shape="rect" id="node10" href="$d1/dbe/classturtle_1_1_position.html#a7c26cf9316a28fb4821731864ed28c95" title="turtle.Position.setYPos" alt="" coords="478,259,642,285"/>
+</map>

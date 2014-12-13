@@ -1,0 +1,5 @@
+<map id="View.SlogoView.saveFileToController" name="View.SlogoView.saveFileToController">
+<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a050d887bccb0ef44c52984470e329bc6" title="communicator.MainController.save\lPreferences" alt="" coords="240,5,483,46"/>
+<area shape="rect" id="node3" href="$d9/d00/classcommunicator_1_1_main_controller.html#a65cd5059a843dc8261445e09403810fb" title="communicator.MainController.report\lErrorToView" alt="" coords="531,5,783,46"/>
+<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#abe7981d0dd5275d2a4fbce6444b0c6f9" title="View.SlogoView.showError" alt="" coords="833,12,1018,39"/>
+</map>
