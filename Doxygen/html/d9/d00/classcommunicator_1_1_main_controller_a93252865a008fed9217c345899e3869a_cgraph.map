@@ -1,0 +1,16 @@
+<map id="communicator.MainController.executeCommand" name="communicator.MainController.executeCommand">
+<area shape="rect" id="node2" href="$da/d90/classcommands_1_1_base_command.html#a68a349a085c4b05af0a55943da86598b" title="commands.BaseCommand.execute" alt="" coords="321,96,573,123"/>
+<area shape="rect" id="node6" href="$d9/d00/classcommunicator_1_1_main_controller.html#a65cd5059a843dc8261445e09403810fb" title="communicator.MainController.report\lErrorToView" alt="" coords="633,173,885,214"/>
+<area shape="rect" id="node8" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93c06bf29d915465f289df78a653e44c" title="communicator.MainController.send\lUserDefinedVariablesAndCommands" alt="" coords="317,245,576,286"/>
+<area shape="rect" id="node15" href="$d6/d33/class_view_1_1_slogo_view.html#a1a17d5b15c98f706f7ed91ca9d8e341c" title="View.SlogoView.setDisable" alt="" coords="352,311,541,337"/>
+<area shape="rect" id="node3" href="$da/d90/classcommands_1_1_base_command.html#a90abff4a812d84d0454cb095e03c6e08" title="commands.BaseCommand.get\lNextCommand" alt="" coords="647,5,870,46"/>
+<area shape="rect" id="node4" href="$da/d90/classcommands_1_1_base_command.html#aad4544c0bd9d40769d8997e4d6d97b08" title="commands.BaseCommand.onExecute" alt="" coords="625,71,893,97"/>
+<area shape="rect" id="node5" href="$da/d90/classcommands_1_1_base_command.html#a37ff254bd611b07ea38aaaf85447a2c3" title="commands.BaseCommand.reset" alt="" coords="641,121,876,148"/>
+<area shape="rect" id="node7" href="$d6/d33/class_view_1_1_slogo_view.html#abe7981d0dd5275d2a4fbce6444b0c6f9" title="View.SlogoView.showError" alt="" coords="942,180,1127,207"/>
+<area shape="rect" id="node9" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#aadcdc884269f34620215ca47d2cc70b4" title="commands.information.Base\lUserDefinedContainer.getAllVariables\lAndValues" alt="" coords="629,237,889,293"/>
+<area shape="rect" id="node10" href="$d6/d33/class_view_1_1_slogo_view.html#a8b4cd9aa5be55a1fded4a81d05eaef49" title="View.SlogoView.addVariables" alt="" coords="657,317,861,344"/>
+<area shape="rect" id="node12" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#a2c1da98631c577bddaaa7f4ad5ae8aaa" title="commands.information.Base\lUserDefinedContainer.getAllCustom\lCommands" alt="" coords="633,368,885,424"/>
+<area shape="rect" id="node13" href="$d6/d33/class_view_1_1_slogo_view.html#a6955cd9bb756387808caf0cad5a15396" title="View.SlogoView.addUserFunctions" alt="" coords="641,448,877,475"/>
+<area shape="rect" id="node11" href="$dc/d54/class_table_information_1_1_variable_table.html#ad455cb9722ba6a9fc1b9bb9358a8d56f" title="TableInformation.Variable\lTable.addVariables" alt="" coords="943,310,1126,351"/>
+<area shape="rect" id="node14" href="$dc/d54/class_table_information_1_1_variable_table.html#ab2f0b0ff6afc9f1f05ac429934013aed" title="TableInformation.Variable\lTable.addInputs" alt="" coords="943,441,1126,482"/>
+</map>

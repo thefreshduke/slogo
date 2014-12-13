@@ -1,0 +1,7 @@
+<map id="GUIFunctions.PersonalizeMenu" name="GUIFunctions.PersonalizeMenu">
+<area shape="rect" id="node4" href="$dc/d8a/class_g_u_i_functions_1_1_set_background_image.html" title="GUIFunctions.SetBackground\lImage" alt="" coords="745,5,951,46"/>
+<area shape="rect" id="node5" href="$d8/df7/class_g_u_i_functions_1_1_toggle_grid_lines.html" title="GUIFunctions.ToggleGridLines" alt="" coords="744,71,952,97"/>
+<area shape="rect" id="node6" href="$db/dd9/class_g_u_i_functions_1_1_turtle_image_change.html" title="GUIFunctions.TurtleImage\lChange" alt="" coords="757,122,939,163"/>
+<area shape="rect" id="node2" href="$de/dbd/class_g_u_i_functions_1_1_grid_function.html" title="GUIFunctions.GridFunction" alt="" coords="241,71,429,97"/>
+<area shape="rect" id="node3" href="$d1/df5/interface_g_u_i_functions_1_1_g_u_i_function.html" title="GUIFunctions.GUIFunction" alt="" coords="6,71,191,97"/>
+</map>

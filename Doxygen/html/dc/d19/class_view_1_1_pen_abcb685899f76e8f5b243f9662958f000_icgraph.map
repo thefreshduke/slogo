@@ -1,0 +1,6 @@
+<map id="View.Pen.undo" name="View.Pen.undo">
+<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#a394e0b21ab48eb684f1bb454989edaf6" title="turtle.Turtle.penUndo" alt="" coords="193,15,349,41"/>
+<area shape="rect" id="node4" href="$d1/de7/class_g_u_i_functions_1_1_undo.html#abc375040abaf5731ac96ef7d7c02aa24" title="GUIFunctions.Undo.undoLine" alt="" coords="168,67,373,93"/>
+<area shape="rect" id="node3" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a55afe0fc58417bc135b159e944101fc4" title="commands.information.Base\lTurtleContainer.penUndo" alt="" coords="422,5,629,46"/>
+<area shape="rect" id="node5" href="$d1/de7/class_g_u_i_functions_1_1_undo.html#a611c153735c5cbdbbfd8f55faa0adaae" title="GUIFunctions.Undo.doAction" alt="" coords="424,71,627,97"/>
+</map>

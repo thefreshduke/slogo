@@ -1,0 +1,5 @@
+<map id="commands.information.BaseGridContainer.setGridAsActive" name="commands.information.BaseGridContainer.setGridAsActive">
+<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a5f47f446231c8725088701e8adc79eee" title="communicator.MainController.set\lGridAsActive" alt="" coords="270,5,503,46"/>
+<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#acfc9a29c260e063a27320bd12275a939" title="View.SlogoView.build" alt="" coords="552,12,704,39"/>
+<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#a426ca98709fa7bf17d4e233519c504b4" title="View.SlogoView.SlogoView" alt="" coords="752,12,939,39"/>
+</map>

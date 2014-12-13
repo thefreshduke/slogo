@@ -1,0 +1,6 @@
+<map id="turtle.Position.rotate" name="turtle.Position.rotate">
+<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#a3d8a29c0ff3f9e6dcd59e5b9f5302b64" title="turtle.Turtle.rotate" alt="" coords="209,45,346,72"/>
+<area shape="rect" id="node3" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a73435663cdaa03ca3d95c938c0dac073" title="commands.information.Base\lTurtleContainer.rotate" alt="" coords="395,38,602,79"/>
+<area shape="rect" id="node4" href="$db/d66/classcommands_1_1turtle_commands_1_1_left_command.html#ad05f5e31458463730a6a78444f481db3" title="commands.turtleCommands.\lLeftCommand.onExecute" alt="" coords="651,5,861,46"/>
+<area shape="rect" id="node5" href="$dd/db2/classcommands_1_1turtle_commands_1_1_right_command.html#a0eddcf5dbe1361c0dab5433a3f42aae7" title="commands.turtleCommands.\lRightCommand.onExecute" alt="" coords="651,70,861,111"/>
+</map>
