@@ -1,0 +1,8 @@
+<map id="turtle.Turtle.moveTowardsHeading" name="turtle.Turtle.moveTowardsHeading">
+<area shape="rect" id="node2" href="$d1/dbe/classturtle_1_1_position.html#a7bfd27ea2bf5e22d8de4a4e87b4df2ec" title="turtle.Position.getRotate" alt="" coords="237,5,413,32"/>
+<area shape="rect" id="node3" href="$d1/dbe/classturtle_1_1_position.html#a1d079c846ce96bf1c57da388c46669e1" title="turtle.Position.getXPos" alt="" coords="242,56,409,83"/>
+<area shape="rect" id="node4" href="$d1/dbe/classturtle_1_1_position.html#a3a68708e4dc3290c4ef0ecd511cc8c1f" title="turtle.Position.getYPos" alt="" coords="243,107,408,133"/>
+<area shape="rect" id="node5" href="$d1/dbe/classturtle_1_1_position.html#ad1cf245ca8d3e765bac5cc391bf621e1" title="turtle.Position.move" alt="" coords="250,157,401,184"/>
+<area shape="rect" id="node6" href="$d1/dbe/classturtle_1_1_position.html#a62d4a90a8c507a6b714315b13203ddf2" title="turtle.Position.moveHorizontal" alt="" coords="462,132,677,159"/>
+<area shape="rect" id="node7" href="$d1/dbe/classturtle_1_1_position.html#af9d8009ae592a947ee9b50c54e4f7a4b" title="turtle.Position.moveVertical" alt="" coords="471,183,668,209"/>
+</map>

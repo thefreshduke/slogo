@@ -1,0 +1,21 @@
+<map id="View.SingleGrid.getActiveTurtles" name="View.SingleGrid.getActiveTurtles">
+<area shape="rect" id="node2" href="$d6/d9d/class_g_u_i_functions_1_1_clear_function.html#a684c4fdd50edd2b578f9b206ac24c849" title="GUIFunctions.ClearFunction.do\lAction" alt="" coords="242,5,457,46"/>
+<area shape="rect" id="node3" href="$d1/de7/class_g_u_i_functions_1_1_undo.html#a611c153735c5cbdbbfd8f55faa0adaae" title="GUIFunctions.Undo.doAction" alt="" coords="248,71,451,97"/>
+<area shape="rect" id="node4" href="$de/def/class_g_u_i_functions_1_1_stamp.html#a69dfe4c5eb6d919cfca99f2097ce7e3e" title="GUIFunctions.Stamp.doAction" alt="" coords="243,121,455,148"/>
+<area shape="rect" id="node5" href="$db/dd9/class_g_u_i_functions_1_1_turtle_image_change.html#a912cba03d10e5081a69b6aa8b80277e6" title="GUIFunctions.TurtleImage\lChange.doAction" alt="" coords="258,173,441,214"/>
+<area shape="rect" id="node6" href="$d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd" title="View.SingleGrid.getActivePens" alt="" coords="242,239,457,265"/>
+<area shape="rect" id="node12" href="$d9/db1/class_view_1_1_single_grid.html#a4c6eabf92c3205a22dc266cf0923f836" title="View.SingleGrid.keyUpdate" alt="" coords="253,296,445,323"/>
+<area shape="rect" id="node13" href="$d5/d30/class_view_1_1_tabs_of_grids.html#addda546d87ab37b3c6d812b33c0118c9" title="View.TabsOfGrids.setUpKey\lBoardHandler" alt="" coords="525,358,718,399"/>
+<area shape="rect" id="node18" href="$d3/d42/class_table_information_1_1_turtle_variables_table.html#a12ef059be78468fe0f09b5bf41d11d4c" title="TableInformation.TurtleVariables\lTable.moveTurtle" alt="" coords="238,415,461,457"/>
+<area shape="rect" id="node7" href="$d2/dd2/class_g_u_i_functions_1_1_set_pen_down.html#ac016088490fad0f1986cea6015a74a5d" title="GUIFunctions.SetPenDown.do\lAction" alt="" coords="516,31,727,73"/>
+<area shape="rect" id="node8" href="$d8/d40/class_g_u_i_functions_1_1_set_pen_up.html#a66b0a694c32b985e22e6814d48fa7a5c" title="GUIFunctions.SetPenUp.do\lAction" alt="" coords="525,97,718,138"/>
+<area shape="rect" id="node9" href="$d5/dfa/class_g_u_i_functions_1_1_pen_thickness.html#af0b6030ff3fbeb35d4cae430fb2635ac" title="GUIFunctions.PenThickness.do\lAction" alt="" coords="514,162,729,203"/>
+<area shape="rect" id="node10" href="$da/d16/class_g_u_i_functions_1_1_pen_color.html#a40da853af47e7550f10ebb66756a8548" title="GUIFunctions.PenColor.do\lAction" alt="" coords="529,227,714,269"/>
+<area shape="rect" id="node11" href="$d0/d77/class_g_u_i_functions_1_1_pen_style.html#a8e84d8f42da0306329a5e0266012b118" title="GUIFunctions.PenStyle.do\lAction" alt="" coords="529,293,714,334"/>
+<area shape="rect" id="node14" href="$d5/d30/class_view_1_1_tabs_of_grids.html#aa186cd880ee36327ffc0d66951a23fb5" title="View.TabsOfGrids.addTab" alt="" coords="804,365,983,392"/>
+<area shape="rect" id="node15" href="$d6/d33/class_view_1_1_slogo_view.html#a5759fa529a24ab1e80d37348f3dd395b" title="View.SlogoView.addGrid" alt="" coords="1054,365,1226,392"/>
+<area shape="rect" id="node16" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="1275,365,1448,392"/>
+<area shape="rect" id="node17" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1497,365,1621,392"/>
+<area shape="rect" id="node19" href="$d3/d42/class_table_information_1_1_turtle_variables_table.html#a3a32e6fd761411925b48c0fa60c29431" title="TableInformation.TurtleVariables\lTable.setColumnEditable" alt="" coords="510,423,733,465"/>
+<area shape="rect" id="node20" href="$d3/d42/class_table_information_1_1_turtle_variables_table.html#a6bac7fbbffde239e6438ea163f812b08" title="TableInformation.TurtleVariables\lTable.TurtleVariablesTable" alt="" coords="782,423,1005,465"/>
+</map>

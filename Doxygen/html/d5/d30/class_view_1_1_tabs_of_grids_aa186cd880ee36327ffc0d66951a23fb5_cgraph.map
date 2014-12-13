@@ -1,0 +1,27 @@
+<map id="View.TabsOfGrids.addTab" name="View.TabsOfGrids.addTab">
+<area shape="rect" id="node2" href="$d5/d30/class_view_1_1_tabs_of_grids.html#a108cf54cfaac21aea75babd7f7dd68b7" title="View.TabsOfGrids.disable\lTabPanes" alt="" coords="245,5,424,46"/>
+<area shape="rect" id="node3" href="$d9/db1/class_view_1_1_single_grid.html#ae8506f6c15fbb963a16613ed3410d8b6" title="View.SingleGrid.getMyHeight" alt="" coords="233,71,437,97"/>
+<area shape="rect" id="node4" href="$d9/db1/class_view_1_1_single_grid.html#abf0fa2de53fc785c35795d2b13ad4c24" title="View.SingleGrid.getMyWidth" alt="" coords="236,121,433,148"/>
+<area shape="rect" id="node5" href="$d5/d30/class_view_1_1_tabs_of_grids.html#ab9e29f9dc0e03a6d3a49d56f3dffc81d" title="View.TabsOfGrids.setGrid\lTabsFocused" alt="" coords="245,173,424,214"/>
+<area shape="rect" id="node6" href="$d5/d30/class_view_1_1_tabs_of_grids.html#addda546d87ab37b3c6d812b33c0118c9" title="View.TabsOfGrids.setUpKey\lBoardHandler" alt="" coords="238,238,431,279"/>
+<area shape="rect" id="node7" href="$d9/db1/class_view_1_1_single_grid.html#a63dce7bacaea4b387aeef30975ad678b" title="View.SingleGrid.getActive\lTurtles" alt="" coords="731,207,914,249"/>
+<area shape="rect" id="node8" href="$d9/db1/class_view_1_1_single_grid.html#a4c6eabf92c3205a22dc266cf0923f836" title="View.SingleGrid.keyUpdate" alt="" coords="485,272,677,299"/>
+<area shape="rect" id="node9" href="$d9/db1/class_view_1_1_single_grid.html#a9093eac50d88370f86cb4757b996210e" title="View.SingleGrid.keepTurtle\lInBounds" alt="" coords="729,371,917,413"/>
+<area shape="rect" id="node25" href="$d9/db1/class_view_1_1_single_grid.html#a7fced187abf44b802950675ee590f493" title="View.SingleGrid.moveTurtle" alt="" coords="726,273,919,300"/>
+<area shape="rect" id="node10" href="$dc/d19/class_view_1_1_pen.html#a9baa63a91f8cd62a806147fdeaf44865" title="View.Pen.drawLine" alt="" coords="995,581,1133,608"/>
+<area shape="rect" id="node13" href="$df/dcb/classturtle_1_1_turtle.html#a0b8bdf8fc097cab5bf51d46567c2d749" title="turtle.Turtle.getPen" alt="" coords="993,531,1135,557"/>
+<area shape="rect" id="node14" href="$dc/d19/class_view_1_1_pen.html#a837537c2d8cd3a98e918a3ab6d72ebd9" title="View.Pen.getPenDown" alt="" coords="983,429,1145,456"/>
+<area shape="rect" id="node15" href="$df/dcb/classturtle_1_1_turtle.html#aa576ade68e2f453b037ea2a3c456d466" title="turtle.Turtle.getXPos" alt="" coords="989,328,1139,355"/>
+<area shape="rect" id="node17" href="$df/dcb/classturtle_1_1_turtle.html#a735b5aa0bce5a53d2c75322fb2ad9130" title="turtle.Turtle.getYPos" alt="" coords="989,227,1139,253"/>
+<area shape="rect" id="node19" href="$dc/d19/class_view_1_1_pen.html#a8709e1eb5749d8575a4ba9a26acffa0f" title="View.Pen.setPenDown" alt="" coords="983,480,1145,507"/>
+<area shape="rect" id="node20" href="$df/dcb/classturtle_1_1_turtle.html#a5db281fc734edd965ff0faddbab871d7" title="turtle.Turtle.setXPos" alt="" coords="989,277,1139,304"/>
+<area shape="rect" id="node23" href="$df/dcb/classturtle_1_1_turtle.html#a1107426e66ec049d5e3d1c1783a463db" title="turtle.Turtle.setYPos" alt="" coords="990,379,1138,405"/>
+<area shape="rect" id="node11" href="$dc/d19/class_view_1_1_pen.html#ad2b5fd226e4003bbb48f13018bc72916" title="View.Pen.setLineStyle" alt="" coords="1216,581,1376,608"/>
+<area shape="rect" id="node12" href="$dc/d86/class_g_u_i_functions_1_1_border_style.html#a20c91294c08c9b4b555f41cdf5941e45" title="GUIFunctions.BorderStyle.get\lStyle" alt="" coords="1433,574,1642,615"/>
+<area shape="rect" id="node16" href="$d1/dbe/classturtle_1_1_position.html#a1d079c846ce96bf1c57da388c46669e1" title="turtle.Position.getXPos" alt="" coords="1213,328,1379,355"/>
+<area shape="rect" id="node18" href="$d1/dbe/classturtle_1_1_position.html#a3a68708e4dc3290c4ef0ecd511cc8c1f" title="turtle.Position.getYPos" alt="" coords="1213,227,1379,253"/>
+<area shape="rect" id="node21" href="$d1/dbe/classturtle_1_1_position.html#a7bfd27ea2bf5e22d8de4a4e87b4df2ec" title="turtle.Position.getRotate" alt="" coords="1208,176,1384,203"/>
+<area shape="rect" id="node22" href="$d1/dbe/classturtle_1_1_position.html#af03c1c3b306f6c12d2ec52a00fde50eb" title="turtle.Position.setXPos" alt="" coords="1213,277,1379,304"/>
+<area shape="rect" id="node24" href="$d1/dbe/classturtle_1_1_position.html#a7c26cf9316a28fb4821731864ed28c95" title="turtle.Position.setYPos" alt="" coords="1214,379,1378,405"/>
+<area shape="rect" id="node26" href="$df/dcb/classturtle_1_1_turtle.html#af4afc304cb9394e02381563fad7c34ce" title="turtle.Turtle.getOrientation" alt="" coords="969,176,1159,203"/>
+</map>

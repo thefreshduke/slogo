@@ -1,0 +1,9 @@
+<map id="communicator.MainController.getGridContainer" name="communicator.MainController.getGridContainer">
+<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a98cd8689b5d896054e50172fefb556c4" title="communicator.MainController.addGrid" alt="" coords="289,5,551,32"/>
+<area shape="rect" id="node6" href="$d9/d00/classcommunicator_1_1_main_controller.html#a5f47f446231c8725088701e8adc79eee" title="communicator.MainController.set\lGridAsActive" alt="" coords="303,57,537,98"/>
+<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#a5759fa529a24ab1e80d37348f3dd395b" title="View.SlogoView.addGrid" alt="" coords="601,5,773,32"/>
+<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="828,5,1001,32"/>
+<area shape="rect" id="node5" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1057,5,1181,32"/>
+<area shape="rect" id="node7" href="$d6/d33/class_view_1_1_slogo_view.html#acfc9a29c260e063a27320bd12275a939" title="View.SlogoView.build" alt="" coords="611,64,763,91"/>
+<area shape="rect" id="node8" href="$d6/d33/class_view_1_1_slogo_view.html#a426ca98709fa7bf17d4e233519c504b4" title="View.SlogoView.SlogoView" alt="" coords="821,64,1008,91"/>
+</map>

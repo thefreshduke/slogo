@@ -1,0 +1,6 @@
+<map id="View.SlogoView.checkNullFile" name="View.SlogoView.checkNullFile">
+<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a687d62c9fabb703033a144bf30437415" title="communicator.MainController.load\lPreferences" alt="" coords="256,38,496,79"/>
+<area shape="rect" id="node3" href="$dd/df5/interfacecommands_1_1information_1_1_i_information_gateway.html#afcf67bea7af57e3487ab183f73dc07be" title="commands.information.IInformation\lGateway.addContainer" alt="" coords="545,5,796,46"/>
+<area shape="rect" id="node4" href="$d9/d00/classcommunicator_1_1_main_controller.html#a65cd5059a843dc8261445e09403810fb" title="communicator.MainController.report\lErrorToView" alt="" coords="545,70,797,111"/>
+<area shape="rect" id="node5" href="$d6/d33/class_view_1_1_slogo_view.html#abe7981d0dd5275d2a4fbce6444b0c6f9" title="View.SlogoView.showError" alt="" coords="846,77,1031,104"/>
+</map>
