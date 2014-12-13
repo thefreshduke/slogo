@@ -1,9 +1,0 @@
-<map id="commands.viewCommands.SetPenColorCommand.onExecute" name="commands.viewCommands.SetPenColorCommand.onExecute">
-<area shape="rect" id="node2" href="$da/d90/classcommands_1_1_base_command.html#a68a349a085c4b05af0a55943da86598b" title="commands.BaseCommand.execute" alt="" coords="281,71,533,97"/>
-<area shape="rect" id="node6" href="$de/d53/classcommands_1_1_view_command.html#a0d1f20b664d16af5ddd93941b6178637" title="commands.ViewCommand.get\lExpressionList" alt="" coords="297,122,516,163"/>
-<area shape="rect" id="node7" href="$de/d53/classcommands_1_1_view_command.html#a32c2e34744e1d5c26ad5825a77e24ac1" title="commands.ViewCommand.get\lGridContainer" alt="" coords="297,187,516,229"/>
-<area shape="rect" id="node8" href="$d4/d37/classcommands_1_1information_1_1_base_grid_container.html#a7236ecf27bd2b6a6af63209fdb651131" title="commands.information.Base\lGridContainer.updateDisplayOptions" alt="" coords="280,253,533,294"/>
-<area shape="rect" id="node3" href="$da/d90/classcommands_1_1_base_command.html#a90abff4a812d84d0454cb095e03c6e08" title="commands.BaseCommand.get\lNextCommand" alt="" coords="605,5,827,46"/>
-<area shape="rect" id="node4" href="$da/d90/classcommands_1_1_base_command.html#aad4544c0bd9d40769d8997e4d6d97b08" title="commands.BaseCommand.onExecute" alt="" coords="582,71,850,97"/>
-<area shape="rect" id="node5" href="$da/d90/classcommands_1_1_base_command.html#a37ff254bd611b07ea38aaaf85447a2c3" title="commands.BaseCommand.reset" alt="" coords="599,121,833,148"/>
-</map>

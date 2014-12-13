@@ -1,6 +1,0 @@
-<map id="commands.information.BaseTurtleContainer.setVisibility" name="commands.information.BaseTurtleContainer.setVisibility">
-<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#ae3f987ec79fb3318d8c3a1c8bd65f67b" title="commands.information.Base\lTurtleContainer.loopOverTurtle" alt="" coords="262,49,474,90"/>
-<area shape="rect" id="node5" href="$df/dcb/classturtle_1_1_turtle.html#ad4dfb04902d608e2f19920540a4e54ca" title="turtle.Turtle.setVisibility" alt="" coords="283,115,453,141"/>
-<area shape="rect" id="node3" href="$d1/d39/interfacecommands_1_1information_1_1_base_turtle_container_1_1_turtle_action_with_result.html#a5043750fe9ea0b38e426614c999c9d60" title="commands.information.Base\lTurtleContainer.TurtleActionWith\lResult.execute" alt="" coords="523,5,746,61"/>
-<area shape="rect" id="node4" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a704eca72b47c6a35888f2868beaec2d3" title="commands.information.Base\lTurtleContainer.getActiveTurtles" alt="" coords="523,85,746,126"/>
-</map>

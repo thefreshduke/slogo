@@ -1,7 +1,0 @@
-<map id="View.SingleGrid.keyUpdate" name="View.SingleGrid.keyUpdate">
-<area shape="rect" id="node2" href="$d5/d30/class_view_1_1_tabs_of_grids.html#addda546d87ab37b3c6d812b33c0118c9" title="View.TabsOfGrids.setUpKey\lBoardHandler" alt="" coords="246,5,439,46"/>
-<area shape="rect" id="node3" href="$d5/d30/class_view_1_1_tabs_of_grids.html#aa186cd880ee36327ffc0d66951a23fb5" title="View.TabsOfGrids.addTab" alt="" coords="488,12,667,39"/>
-<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#a5759fa529a24ab1e80d37348f3dd395b" title="View.SlogoView.addGrid" alt="" coords="715,12,887,39"/>
-<area shape="rect" id="node5" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="936,12,1109,39"/>
-<area shape="rect" id="node6" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1158,12,1282,39"/>
-</map>

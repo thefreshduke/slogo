@@ -1,7 +1,0 @@
-<map id="View.UserObjects" name="View.UserObjects">
-<area shape="rect" id="node2" href="$d8/d2a/class_view_1_1_button_template.html" title="View.ButtonTemplate" alt="" coords="4,80,157,107"/>
-<area shape="rect" id="node3" href="$d3/d56/class_view_1_1_menu_item_template.html" title="View.MenuItemTemplate" alt="" coords="183,80,359,107"/>
-<area shape="rect" id="node4" href="$d7/d52/class_view_1_1_menu_template.html" title="View.MenuTemplate" alt="" coords="383,80,529,107"/>
-<area shape="rect" id="node5" href="$db/dce/class_view_1_1_scrolling_bar.html" title="View.ScrollingBar" alt="" coords="553,80,683,107"/>
-<area shape="rect" id="node6" href="$d0/d93/class_view_1_1_pen_scrolling_bar.html" title="View.PenScrollingBar" alt="" coords="541,155,695,181"/>
-</map>

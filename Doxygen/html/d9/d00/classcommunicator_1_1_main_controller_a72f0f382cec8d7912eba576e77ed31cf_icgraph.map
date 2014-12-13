@@ -1,7 +1,0 @@
-<map id="communicator.MainController.getTurtleContainer" name="communicator.MainController.getTurtleContainer">
-<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93573f54d48c3a5154789c8267ef4834" title="communicator.MainController.add\lTurtle" alt="" coords="288,5,525,46"/>
-<area shape="rect" id="node6" href="$d9/d00/classcommunicator_1_1_main_controller.html#a0b1541b8d548e7beffbf192b599ecd80" title="communicator.MainController.get\lActiveTurtles" alt="" coords="289,70,524,111"/>
-<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#a05ea476b14d0f5b642dbcd4449cdb9cb" title="View.SlogoView.addTurtle" alt="" coords="574,12,754,39"/>
-<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="803,12,976,39"/>
-<area shape="rect" id="node5" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1025,12,1149,39"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="backendExceptions.BackendException" name="backendExceptions.BackendException">
-<area shape="rect" id="node3" href="$d1/dd1/classbackend_exceptions_1_1_slogo_class_not_found_exception.html" title="backendExceptions.SlogoClass\lNotFoundException" alt="" coords="413,5,632,46"/>
-<area shape="rect" id="node4" href="$df/dc0/classbackend_exceptions_1_1_slogo_command_not_extends_base_exception.html" title="backendExceptions.SlogoCommand\lNotExtendsBaseException" alt="" coords="397,70,649,111"/>
-<area shape="rect" id="node5" href="$d0/d10/classbackend_exceptions_1_1_slogo_file_not_found_exception.html" title="backendExceptions.SlogoFile\lNotFoundException" alt="" coords="420,135,625,177"/>
-<area shape="rect" id="node6" href="$d6/dbf/classbackend_exceptions_1_1_slogo_i_o_exception.html" title="backendExceptions.SlogoIOException" alt="" coords="393,201,653,228"/>
-</map>

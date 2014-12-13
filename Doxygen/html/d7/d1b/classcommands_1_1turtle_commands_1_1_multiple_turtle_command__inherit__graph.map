@@ -1,6 +1,0 @@
-<map id="commands.turtleCommands.MultipleTurtleCommand" name="commands.turtleCommands.MultipleTurtleCommand">
-<area shape="rect" id="node5" href="$d6/de1/classcommands_1_1turtle_commands_1_1_ask_command.html" title="commands.turtleCommands.\lAskCommand" alt="" coords="5,337,215,378"/>
-<area shape="rect" id="node6" href="$d3/d71/classcommands_1_1turtle_commands_1_1_tell_command.html" title="commands.turtleCommands.\lTellCommand" alt="" coords="240,337,449,378"/>
-<area shape="rect" id="node2" href="$d3/d03/classcommands_1_1turtle_commands_1_1_turtle_command.html" title="commands.turtleCommands.\lTurtleCommand" alt="" coords="123,155,332,197"/>
-<area shape="rect" id="node3" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="129,80,327,107"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="GUIFunctions.PenColor.doAction" name="GUIFunctions.PenColor.doAction">
-<area shape="rect" id="node2" href="$d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f" title="View.GridTracker.getActiveGrid" alt="" coords="241,5,455,32"/>
-<area shape="rect" id="node3" href="$d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd" title="View.SingleGrid.getActivePens" alt="" coords="241,56,455,83"/>
-<area shape="rect" id="node4" href="$d9/db1/class_view_1_1_single_grid.html#a9bc0c792d3ba336bddf804936337af7c" title="View.SingleGrid.getPens" alt="" coords="509,27,683,53"/>
-<area shape="rect" id="node5" href="$d9/db1/class_view_1_1_single_grid.html#a63dce7bacaea4b387aeef30975ad678b" title="View.SingleGrid.getActive\lTurtles" alt="" coords="505,78,687,119"/>
-</map>
