@@ -1,9 +1,0 @@
-<map id="turtle.Turtle.towardsPosition" name="turtle.Turtle.towardsPosition">
-<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#a569289374749eb6dcf64e0ed1ec7b9b2" title="turtle.Turtle.getXYCoordinates" alt="" coords="253,56,464,83"/>
-<area shape="rect" id="node7" href="$df/dcb/classturtle_1_1_turtle.html#a9283fc51ef8ae9028ac661fd81e92a00" title="turtle.Turtle.setRotation" alt="" coords="273,107,444,133"/>
-<area shape="rect" id="node3" href="$df/dcb/classturtle_1_1_turtle.html#aa576ade68e2f453b037ea2a3c456d466" title="turtle.Turtle.getXPos" alt="" coords="530,5,681,32"/>
-<area shape="rect" id="node5" href="$df/dcb/classturtle_1_1_turtle.html#a735b5aa0bce5a53d2c75322fb2ad9130" title="turtle.Turtle.getYPos" alt="" coords="531,56,680,83"/>
-<area shape="rect" id="node4" href="$d1/dbe/classturtle_1_1_position.html#a1d079c846ce96bf1c57da388c46669e1" title="turtle.Position.getXPos" alt="" coords="747,5,914,32"/>
-<area shape="rect" id="node6" href="$d1/dbe/classturtle_1_1_position.html#a3a68708e4dc3290c4ef0ecd511cc8c1f" title="turtle.Position.getYPos" alt="" coords="748,56,913,83"/>
-<area shape="rect" id="node8" href="$d1/dbe/classturtle_1_1_position.html#a761d5437c7bc66aa635b95d005e23c96" title="turtle.Position.setRotation" alt="" coords="512,107,699,133"/>
-</map>

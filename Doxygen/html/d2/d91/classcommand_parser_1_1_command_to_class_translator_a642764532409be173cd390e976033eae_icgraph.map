@@ -1,9 +1,0 @@
-<map id="commandParser.CommandToClassTranslator.translateCommandToClass" name="commandParser.CommandToClassTranslator.translateCommandToClass">
-<area shape="rect" id="node2" href="$dd/d30/classtests_1_1_ask_test.html#a8d408863dc53f60d7a73c7dad924325a" title="tests.AskTest.processInput" alt="" coords="339,16,531,43"/>
-<area shape="rect" id="node4" href="$d9/d76/classtests_1_1_turtle_commands_test.html#a26b7fee4439a47d622fb58826d281a1f" title="tests.TurtleCommandsTest.process\lInput" alt="" coords="312,70,557,111"/>
-<area shape="rect" id="node6" href="$d3/d0c/classtests_1_1_ask_with_test.html#a9d43a79de385803c300e7b2cf0c13b00" title="tests.AskWithTest.process\lInput" alt="" coords="341,135,528,177"/>
-<area shape="rect" id="node3" href="$dd/d30/classtests_1_1_ask_test.html#a35ae726a31ba673fc7d80bcbc4a69e24" title="tests.AskTest.testThatAsk\lCreatesTurtles" alt="" coords="623,5,809,46"/>
-<area shape="rect" id="node5" href="$d9/d76/classtests_1_1_turtle_commands_test.html#a7f4c719ee0d2a11ff4b04f38b5cda951" title="tests.TurtleCommandsTest.test\lToParsing" alt="" coords="606,70,826,111"/>
-<area shape="rect" id="node7" href="$d3/d0c/classtests_1_1_ask_with_test.html#a54f2ed263239909256bb93e91afc3ecc" title="tests.AskWithTest.testAlways\lTrueAskWith" alt="" coords="613,135,819,177"/>
-<area shape="rect" id="node8" href="$d3/d0c/classtests_1_1_ask_with_test.html#a49a8519276b23ed93a3f90d7c2058fc5" title="tests.AskWithTest.testXCor\lAskWith" alt="" coords="621,201,811,242"/>
-</map>

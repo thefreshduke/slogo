@@ -1,7 +1,0 @@
-<map id="commands.controlCommands.ContainerTest.processInput" name="commands.controlCommands.ContainerTest.processInput">
-<area shape="rect" id="node2" href="$da/dc6/classcommand_parser_1_1_command_factory.html#aee6c4eac0b9f39d4cbaaa390da2e46ab" title="commandParser.CommandFactory.set\lCommandToClassRelation" alt="" coords="275,5,541,46"/>
-<area shape="rect" id="node3" href="$da/dc6/classcommand_parser_1_1_command_factory.html#ad69817a49aeef55b4a7d69e23b437be9" title="commandParser.CommandFactory.set\lInformationGateway" alt="" coords="275,70,541,111"/>
-<area shape="rect" id="node4" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#ae28bcd29168ebd799eed22a0661dc383" title="commandParser.LanguageFile\lParser.translateUserInputIntoEnglish" alt="" coords="281,135,535,177"/>
-<area shape="rect" id="node5" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#ae72a7da2ee20fd99c35ef282d1b455d5" title="commandParser.LanguageFile\lParser.translateCommand" alt="" coords="589,135,803,177"/>
-<area shape="rect" id="node6" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#abe53661bbe3e228951f62d97bddc5eb1" title="commandParser.LanguageFile\lParser.translateByRegex" alt="" coords="851,135,1064,177"/>
-</map>

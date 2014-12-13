@@ -1,5 +1,0 @@
-<map id="GUIFunctions.TurtleImageChange.doAction" name="GUIFunctions.TurtleImageChange.doAction">
-<area shape="rect" id="node2" href="$d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f" title="View.GridTracker.getActiveGrid" alt="" coords="238,5,453,32"/>
-<area shape="rect" id="node3" href="$d9/db1/class_view_1_1_single_grid.html#a63dce7bacaea4b387aeef30975ad678b" title="View.SingleGrid.getActive\lTurtles" alt="" coords="254,57,437,98"/>
-<area shape="rect" id="node4" href="$db/dd9/class_g_u_i_functions_1_1_turtle_image_change.html#ae4957e10bcfe8ada274406d5ee00bc72" title="GUIFunctions.TurtleImage\lChange.showError" alt="" coords="254,122,437,163"/>
-</map>

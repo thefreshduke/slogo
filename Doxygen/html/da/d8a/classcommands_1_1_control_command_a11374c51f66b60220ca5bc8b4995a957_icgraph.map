@@ -1,5 +1,0 @@
-<map id="commands.ControlCommand.getVariableContainer" name="commands.ControlCommand.getVariableContainer">
-<area shape="rect" id="node2" href="$d8/d84/classcommands_1_1control_commands_1_1_do_command.html#aa4653733a73cf8ab1e68e8cb66ddb817" title="commands.controlCommands.\lDoCommand.onExecute" alt="" coords="291,5,511,46"/>
-<area shape="rect" id="node3" href="$da/dbb/classcommands_1_1control_commands_1_1_for_command.html#af28d867a7450dc1e8c13ab56e62570d6" title="commands.controlCommands.\lForCommand.onExecute" alt="" coords="291,70,511,111"/>
-<area shape="rect" id="node4" href="$d9/d3f/classcommands_1_1control_commands_1_1_to_command.html#aaa1e763acd090eb71157bbaa75f0d7fb" title="commands.controlCommands.\lToCommand.onExecute" alt="" coords="291,135,511,177"/>
-</map>

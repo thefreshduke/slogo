@@ -1,5 +1,0 @@
-<map id="commands.information.BaseTurtleContainer.setPosition" name="commands.information.BaseTurtleContainer.setPosition">
-<area shape="rect" id="node2" href="$df/d55/classcommands_1_1view_commands_1_1_clear_screen_command.html#ae22b9c821c2d07903bdcea4eaad1f959" title="commands.viewCommands.Clear\lScreenCommand.onExecute" alt="" coords="265,5,501,46"/>
-<area shape="rect" id="node3" href="$d9/d14/classcommands_1_1turtle_commands_1_1_set_position_command.html#a1ff02e56e7927a1002a7412040c98e77" title="commands.turtleCommands.\lSetPositionCommand.onExecute" alt="" coords="267,70,499,111"/>
-<area shape="rect" id="node4" href="$db/dc5/classcommands_1_1view_commands_1_1_home_command.html#a91670541a28ed18996a9bc3433029857" title="commands.viewCommands.Home\lCommand.onExecute" alt="" coords="261,135,504,177"/>
-</map>

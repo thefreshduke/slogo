@@ -1,5 +1,0 @@
-<map id="commands.variableCommands.CreatedCommand.revertVariables" name="commands.variableCommands.CreatedCommand.revertVariables">
-<area shape="rect" id="node2" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#a649c0be733d7500611b12da612ac4913" title="commands.information.Base\lUserDefinedContainer.addVariable" alt="" coords="313,5,554,46"/>
-<area shape="rect" id="node3" href="$d2/d4f/classcommands_1_1variable_commands_1_1_variable_command.html#ae837bcbd49f0ccbd6fa5a46c15c181ab" title="commands.variableCommands.\lVariableCommand.getVariableContainer" alt="" coords="294,70,573,111"/>
-<area shape="rect" id="node4" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#a3a3cf23996f51aad8e2ad7cf14af1949" title="commands.information.Base\lUserDefinedContainer.popOffVariable" alt="" coords="304,135,563,177"/>
-</map>

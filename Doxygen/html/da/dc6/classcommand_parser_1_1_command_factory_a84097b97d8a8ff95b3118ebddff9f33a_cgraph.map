@@ -1,9 +1,0 @@
-<map id="commandParser.CommandFactory.createCommand" name="commandParser.CommandFactory.createCommand">
-<area shape="rect" id="node2" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#abbef8e1f3137aa92b5ca708b18981aac" title="commands.information.Base\lUserDefinedContainer.containsCustom\lCommand" alt="" coords="351,5,622,61"/>
-<area shape="rect" id="node4" href="$dd/df5/interfacecommands_1_1information_1_1_i_information_gateway.html#a7288ceac89a0755490d929dc28df39f0" title="commands.information.IInformation\lGateway.getContainers" alt="" coords="361,85,612,126"/>
-<area shape="rect" id="node5" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#a22a65948b69ed0032f4d904e13c69491" title="commands.information.Base\lUserDefinedContainer.getCreated\lCommand" alt="" coords="367,149,606,205"/>
-<area shape="rect" id="node6" href="$da/d90/classcommands_1_1_base_command.html#a03dca0b542f5be4aa804297cea2688b5" title="commands.BaseCommand.get\lRequiredInformationTypes" alt="" coords="375,229,598,270"/>
-<area shape="rect" id="node7" href="$da/dc6/classcommand_parser_1_1_command_factory.html#a5c750e1a1a32bd314bf662dd5cfdc951" title="commandParser.CommandFactory.identify\lFirstCommand" alt="" coords="341,294,632,335"/>
-<area shape="rect" id="node8" href="$da/d90/classcommands_1_1_base_command.html#aa64b92d5d7753574941c38218a271b0d" title="commands.BaseCommand.set\lRequiredInformation" alt="" coords="376,359,597,401"/>
-<area shape="rect" id="node3" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html#a2c1da98631c577bddaaa7f4ad5ae8aaa" title="commands.information.Base\lUserDefinedContainer.getAllCustom\lCommands" alt="" coords="681,5,933,61"/>
-</map>

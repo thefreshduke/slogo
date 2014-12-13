@@ -1,8 +1,0 @@
-<map id="turtle.Turtle.getXYCoordinates" name="turtle.Turtle.getXYCoordinates">
-<area shape="rect" id="node2" href="$df/dcb/classturtle_1_1_turtle.html#ab4ccc5acaf4924205497db6d8a8125b9" title="turtle.Turtle.setPosition" alt="" coords="280,77,448,104"/>
-<area shape="rect" id="node7" href="$df/dcb/classturtle_1_1_turtle.html#a5f1e98a10bb09ba8a75ec2c1dffdeb06" title="turtle.Turtle.towardsPosition" alt="" coords="265,128,463,155"/>
-<area shape="rect" id="node3" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a5d86cfae201525f3446fc58eb5c7df7c" title="commands.information.Base\lTurtleContainer.setPosition" alt="" coords="513,70,719,111"/>
-<area shape="rect" id="node4" href="$df/d55/classcommands_1_1view_commands_1_1_clear_screen_command.html#ae22b9c821c2d07903bdcea4eaad1f959" title="commands.viewCommands.Clear\lScreenCommand.onExecute" alt="" coords="771,5,1007,46"/>
-<area shape="rect" id="node5" href="$d9/d14/classcommands_1_1turtle_commands_1_1_set_position_command.html#a1ff02e56e7927a1002a7412040c98e77" title="commands.turtleCommands.\lSetPositionCommand.onExecute" alt="" coords="773,70,1005,111"/>
-<area shape="rect" id="node6" href="$db/dc5/classcommands_1_1view_commands_1_1_home_command.html#a91670541a28ed18996a9bc3433029857" title="commands.viewCommands.Home\lCommand.onExecute" alt="" coords="768,135,1011,177"/>
-</map>
