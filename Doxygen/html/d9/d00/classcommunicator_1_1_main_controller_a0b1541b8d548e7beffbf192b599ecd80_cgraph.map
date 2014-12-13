@@ -1,5 +1,0 @@
-<map id="communicator.MainController.getActiveTurtles" name="communicator.MainController.getActiveTurtles">
-<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a704eca72b47c6a35888f2868beaec2d3" title="commands.information.Base\lTurtleContainer.getActiveTurtles" alt="" coords="294,5,517,46"/>
-<area shape="rect" id="node3" href="$d9/d00/classcommunicator_1_1_main_controller.html#a72f0f382cec8d7912eba576e77ed31cf" title="communicator.MainController.get\lTurtleContainer" alt="" coords="288,70,523,111"/>
-<area shape="rect" id="node4" href="$dd/df5/interfacecommands_1_1information_1_1_i_information_gateway.html#a6cc32177bef6b1d98f96ecab8af478e8" title="commands.information.IInformation\lGateway.getContainer" alt="" coords="571,70,821,111"/>
-</map>

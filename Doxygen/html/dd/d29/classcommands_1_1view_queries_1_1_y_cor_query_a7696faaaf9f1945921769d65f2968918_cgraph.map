@@ -1,9 +1,0 @@
-<map id="commands.viewQueries.YCorQuery.onExecute" name="commands.viewQueries.YCorQuery.onExecute">
-<area shape="rect" id="node2" href="$d3/d03/classcommands_1_1turtle_commands_1_1_turtle_command.html#a82f290b3a2e14029a8a525bafa35994f" title="commands.turtleCommands.\lTurtleCommand.getTurtleContainer" alt="" coords="262,5,506,46"/>
-<area shape="rect" id="node3" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a7191dbe21eb4c3f13baaef4a648f8a4c" title="commands.information.Base\lTurtleContainer.getYPos" alt="" coords="281,70,487,111"/>
-<area shape="rect" id="node4" href="$df/dcb/classturtle_1_1_turtle.html#a735b5aa0bce5a53d2c75322fb2ad9130" title="turtle.Turtle.getYPos" alt="" coords="587,47,736,73"/>
-<area shape="rect" id="node6" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#ae3f987ec79fb3318d8c3a1c8bd65f67b" title="commands.information.Base\lTurtleContainer.loopOverTurtle" alt="" coords="555,101,767,142"/>
-<area shape="rect" id="node5" href="$d1/dbe/classturtle_1_1_position.html#a3a68708e4dc3290c4ef0ecd511cc8c1f" title="turtle.Position.getYPos" alt="" coords="845,43,1011,69"/>
-<area shape="rect" id="node7" href="$d1/d39/interfacecommands_1_1information_1_1_base_turtle_container_1_1_turtle_action_with_result.html#a5043750fe9ea0b38e426614c999c9d60" title="commands.information.Base\lTurtleContainer.TurtleActionWith\lResult.execute" alt="" coords="817,93,1039,149"/>
-<area shape="rect" id="node8" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#a704eca72b47c6a35888f2868beaec2d3" title="commands.information.Base\lTurtleContainer.getActiveTurtles" alt="" coords="817,173,1039,214"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="View.SlogoView.addVariables" name="View.SlogoView.addVariables">
-<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93c06bf29d915465f289df78a653e44c" title="communicator.MainController.send\lUserDefinedVariablesAndCommands" alt="" coords="259,5,517,46"/>
-<area shape="rect" id="node3" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93252865a008fed9217c345899e3869a" title="communicator.MainController.execute\lCommand" alt="" coords="565,5,829,46"/>
-<area shape="rect" id="node4" href="$d9/d00/classcommunicator_1_1_main_controller.html#af264c9f29730dceac2573645019a401a" title="communicator.MainController.set\lTimers" alt="" coords="878,5,1111,46"/>
-<area shape="rect" id="node5" href="$d9/d00/classcommunicator_1_1_main_controller.html#aeeb4240e58af659d4b448cbfc3fbe76f" title="communicator.MainController.\lMainController" alt="" coords="1160,5,1373,46"/>
-</map>

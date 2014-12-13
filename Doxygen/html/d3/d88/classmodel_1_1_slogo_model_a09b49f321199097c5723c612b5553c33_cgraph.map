@@ -1,5 +1,0 @@
-<map id="model.SlogoModel.initializeModel" name="model.SlogoModel.initializeModel">
-<area shape="rect" id="node2" href="$d3/d88/classmodel_1_1_slogo_model.html#ae121977c3f78f385b680ffa1e61d539c" title="model.SlogoModel.initialize\lTurtle" alt="" coords="248,5,443,46"/>
-<area shape="rect" id="node3" href="$d6/d94/classmodel_1_1_turtle_factory.html#a8136ab15d06d4567b883a359727a6b87" title="model.TurtleFactory.create\lTurtle" alt="" coords="491,5,680,46"/>
-<area shape="rect" id="node4" href="$df/dcb/classturtle_1_1_turtle.html#a00d4640d9156c2612f3472800fd26428" title="turtle.Turtle.setID" alt="" coords="728,12,859,39"/>
-</map>

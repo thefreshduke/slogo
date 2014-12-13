@@ -1,9 +1,0 @@
-<map id="commands.turtleCommands.NumberOfTurtlesCommand" name="commands.turtleCommands.NumberOfTurtlesCommand">
-<area shape="rect" id="node2" href="$d0/d90/classcommands_1_1_turtle_query.html" title="commands.TurtleQuery" alt="" coords="947,85,1117,112"/>
-<area shape="rect" id="node3" href="$d3/d03/classcommands_1_1turtle_commands_1_1_turtle_command.html" title="commands.turtleCommands.\lTurtleCommand" alt="" coords="685,78,896,119"/>
-<area shape="rect" id="node4" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="312,44,509,71"/>
-<area shape="rect" id="node6" href="$d4/d37/classcommands_1_1information_1_1_base_grid_container.html" title="commands.information.Base\lGridContainer" alt="" coords="307,95,514,137"/>
-<area shape="rect" id="node7" href="$d4/d4e/interfacecommands_1_1information_1_1_i_information_container.html" title="commands.information.IInformation\lContainer" alt="" coords="5,95,256,137"/>
-<area shape="rect" id="node8" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html" title="commands.information.Base\lTurtleContainer" alt="" coords="307,161,514,202"/>
-<area shape="rect" id="node9" href="$d8/db5/interfacecommands_1_1information_1_1_i_turtle_behavior.html" title="commands.information.ITurtle\lBehavior" alt="" coords="25,162,237,203"/>
-</map>

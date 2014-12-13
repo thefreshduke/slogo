@@ -1,5 +1,0 @@
-<map id="turtle.Turtle.setVisibility" name="turtle.Turtle.setVisibility">
-<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#abaad2067c7aa6d30d7307d9ec89dcb09" title="commands.information.Base\lTurtleContainer.setVisibility" alt="" coords="225,38,431,79"/>
-<area shape="rect" id="node3" href="$dd/d47/classcommands_1_1view_commands_1_1_hide_turtle_command.html#ae576730cb9ad5d764e58521e520ae61a" title="commands.viewCommands.Hide\lTurtleCommand.onExecute" alt="" coords="483,5,715,46"/>
-<area shape="rect" id="node4" href="$df/d5c/classcommands_1_1view_commands_1_1_show_turtle_command.html#a0b9a1c9976d375d5a7d63b03b0ed83d4" title="commands.viewCommands.Show\lTurtleCommand.onExecute" alt="" coords="480,70,717,111"/>
-</map>

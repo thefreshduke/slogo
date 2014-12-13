@@ -1,7 +1,0 @@
-<map id="TableInformation.VariableTable.addInputs" name="TableInformation.VariableTable.addInputs">
-<area shape="rect" id="node2" href="$d6/d33/class_view_1_1_slogo_view.html#a6955cd9bb756387808caf0cad5a15396" title="View.SlogoView.addUserFunctions" alt="" coords="238,12,474,39"/>
-<area shape="rect" id="node3" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93c06bf29d915465f289df78a653e44c" title="communicator.MainController.send\lUserDefinedVariablesAndCommands" alt="" coords="523,5,781,46"/>
-<area shape="rect" id="node4" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93252865a008fed9217c345899e3869a" title="communicator.MainController.execute\lCommand" alt="" coords="829,5,1093,46"/>
-<area shape="rect" id="node5" href="$d9/d00/classcommunicator_1_1_main_controller.html#af264c9f29730dceac2573645019a401a" title="communicator.MainController.set\lTimers" alt="" coords="1142,5,1375,46"/>
-<area shape="rect" id="node6" href="$d9/d00/classcommunicator_1_1_main_controller.html#aeeb4240e58af659d4b448cbfc3fbe76f" title="communicator.MainController.\lMainController" alt="" coords="1424,5,1637,46"/>
-</map>

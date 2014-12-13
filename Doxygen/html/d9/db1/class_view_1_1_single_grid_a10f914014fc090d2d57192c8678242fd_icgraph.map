@@ -1,7 +1,0 @@
-<map id="View.SingleGrid.getActivePens" name="View.SingleGrid.getActivePens">
-<area shape="rect" id="node2" href="$d2/dd2/class_g_u_i_functions_1_1_set_pen_down.html#ac016088490fad0f1986cea6015a74a5d" title="GUIFunctions.SetPenDown.do\lAction" alt="" coords="272,5,483,46"/>
-<area shape="rect" id="node3" href="$d8/d40/class_g_u_i_functions_1_1_set_pen_up.html#a66b0a694c32b985e22e6814d48fa7a5c" title="GUIFunctions.SetPenUp.do\lAction" alt="" coords="281,70,474,111"/>
-<area shape="rect" id="node4" href="$d5/dfa/class_g_u_i_functions_1_1_pen_thickness.html#af0b6030ff3fbeb35d4cae430fb2635ac" title="GUIFunctions.PenThickness.do\lAction" alt="" coords="270,135,485,177"/>
-<area shape="rect" id="node5" href="$da/d16/class_g_u_i_functions_1_1_pen_color.html#a40da853af47e7550f10ebb66756a8548" title="GUIFunctions.PenColor.do\lAction" alt="" coords="285,201,470,242"/>
-<area shape="rect" id="node6" href="$d0/d77/class_g_u_i_functions_1_1_pen_style.html#a8e84d8f42da0306329a5e0266012b118" title="GUIFunctions.PenStyle.do\lAction" alt="" coords="285,266,470,307"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="commands.information.BaseGridContainer.addGrid" name="commands.information.BaseGridContainer.addGrid">
-<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a98cd8689b5d896054e50172fefb556c4" title="communicator.MainController.addGrid" alt="" coords="262,8,525,35"/>
-<area shape="rect" id="node6" href="$dd/d30/classtests_1_1_ask_test.html#afb0073941794dce7b5990575b51f7fcb" title="tests.AskTest.setFactory" alt="" coords="305,60,481,87"/>
-<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#a5759fa529a24ab1e80d37348f3dd395b" title="View.SlogoView.addGrid" alt="" coords="581,5,753,32"/>
-<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="808,5,981,32"/>
-<area shape="rect" id="node5" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1030,5,1154,32"/>
-<area shape="rect" id="node7" href="$dd/d30/classtests_1_1_ask_test.html#a35ae726a31ba673fc7d80bcbc4a69e24" title="tests.AskTest.testThatAsk\lCreatesTurtles" alt="" coords="573,57,760,98"/>
-</map>

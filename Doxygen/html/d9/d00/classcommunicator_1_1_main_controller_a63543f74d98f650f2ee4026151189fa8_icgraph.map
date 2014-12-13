@@ -1,8 +1,0 @@
-<map id="communicator.MainController.receiveCommand" name="communicator.MainController.receiveCommand">
-<area shape="rect" id="node2" href="$d6/d33/class_view_1_1_slogo_view.html#acaa2b33418cebb60111d0acfef03e832" title="View.SlogoView.executeUser\lCommand" alt="" coords="596,5,799,46"/>
-<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#a1a67765bb114e471855080a9938049a7" title="View.SlogoView.sendCommand\lAndMakeButton" alt="" coords="313,63,533,105"/>
-<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#a468acf266470c356f2f36e7eb2f327e8" title="View.SlogoView.createCommand\lLineWithLabel" alt="" coords="582,70,813,111"/>
-<area shape="rect" id="node5" href="$d6/d33/class_view_1_1_slogo_view.html#ac64a43649ed5417854c37ec25320e925" title="View.SlogoView.setTextArea" alt="" coords="861,77,1059,104"/>
-<area shape="rect" id="node6" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="1107,77,1280,104"/>
-<area shape="rect" id="node7" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1329,77,1453,104"/>
-</map>

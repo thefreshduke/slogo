@@ -1,5 +1,0 @@
-<map id="turtle.Turtle.moveTowardsHeading" name="turtle.Turtle.moveTowardsHeading">
-<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#afe6445eeeaaa24a41e6579a12baffa74" title="commands.information.Base\lTurtleContainer.moveTowardsHeading" alt="" coords="238,38,498,79"/>
-<area shape="rect" id="node3" href="$df/d1b/classcommands_1_1turtle_commands_1_1_back_command.html#a2f60b951011f138ae8916447519fe166" title="commands.turtleCommands.\lBackCommand.onExecute" alt="" coords="547,5,757,46"/>
-<area shape="rect" id="node4" href="$da/db6/classcommands_1_1turtle_commands_1_1_forward_command.html#a804cd1b0300e3c10498b66ea5edeb18c" title="commands.turtleCommands.\lForwardCommand.onExecute" alt="" coords="547,70,757,111"/>
-</map>

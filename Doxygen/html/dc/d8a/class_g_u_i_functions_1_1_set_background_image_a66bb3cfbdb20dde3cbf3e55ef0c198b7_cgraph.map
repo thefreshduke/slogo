@@ -1,9 +1,0 @@
-<map id="GUIFunctions.SetBackgroundImage.doAction" name="GUIFunctions.SetBackgroundImage.doAction">
-<area shape="rect" id="node2" href="$d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f" title="View.GridTracker.getActiveGrid" alt="" coords="518,5,733,32"/>
-<area shape="rect" id="node3" href="$dc/d8a/class_g_u_i_functions_1_1_set_background_image.html#a99d94e1ecf90e9c6b550220a1a92e69a" title="GUIFunctions.SetBackground\lImage.gridSetAction" alt="" coords="262,89,469,130"/>
-<area shape="rect" id="node4" href="$d9/db1/class_view_1_1_single_grid.html#ae8506f6c15fbb963a16613ed3410d8b6" title="View.SingleGrid.getMyHeight" alt="" coords="523,56,727,83"/>
-<area shape="rect" id="node5" href="$d9/db1/class_view_1_1_single_grid.html#abf0fa2de53fc785c35795d2b13ad4c24" title="View.SingleGrid.getMyWidth" alt="" coords="527,107,724,133"/>
-<area shape="rect" id="node6" href="$d9/db1/class_view_1_1_single_grid.html#a4f5ac29735861f044f439278afea0957" title="View.SingleGrid.getAllTurtles" alt="" coords="525,157,725,184"/>
-<area shape="rect" id="node7" href="$d9/db1/class_view_1_1_single_grid.html#a925405ab0fe1325224799d84745a44c1" title="View.SingleGrid.getAllPens" alt="" coords="530,208,721,235"/>
-<area shape="rect" id="node8" href="$d9/db1/class_view_1_1_single_grid.html#a9bc0c792d3ba336bddf804936337af7c" title="View.SingleGrid.getPens" alt="" coords="782,208,957,235"/>
-</map>

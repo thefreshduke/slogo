@@ -1,5 +1,0 @@
-<map id="commands.turtleCommands.MultipleTurtleCommand.isEven" name="commands.turtleCommands.MultipleTurtleCommand.isEven">
-<area shape="rect" id="node2" href="$d3/d71/classcommands_1_1turtle_commands_1_1_tell_command.html#a47570a60c12af864e1bcb2d78f93b0e6" title="commands.turtleCommands.\lTellCommand.parseArguments" alt="" coords="288,5,507,46"/>
-<area shape="rect" id="node3" href="$d9/d20/classcommands_1_1turtle_commands_1_1_multiple_turtle_command.html#a891885ef3196dad3d7af54b07f754844" title="commands.turtleCommands.\lMultipleTurtleCommand.storeFuture\lActiveIDs" alt="" coords="273,69,522,125"/>
-<area shape="rect" id="node4" href="$d6/de1/classcommands_1_1turtle_commands_1_1_ask_command.html#a2444c2d94060a5150ea6023855af37c3" title="commands.turtleCommands.\lAskCommand.parseArguments" alt="" coords="571,77,794,118"/>
-</map>
