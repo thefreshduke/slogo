@@ -1,0 +1,12 @@
+<map id="View.SlogoView.setDisable" name="View.SlogoView.setDisable">
+<area shape="rect" id="node2" href="$d9/d00/classcommunicator_1_1_main_controller.html#a93252865a008fed9217c345899e3869a" title="communicator.MainController.execute\lCommand" alt="" coords="243,5,507,46"/>
+<area shape="rect" id="node3" href="$d9/d00/classcommunicator_1_1_main_controller.html#af264c9f29730dceac2573645019a401a" title="communicator.MainController.set\lTimers" alt="" coords="555,18,789,59"/>
+<area shape="rect" id="node5" href="$d9/d00/classcommunicator_1_1_main_controller.html#a63543f74d98f650f2ee4026151189fa8" title="communicator.MainController.receive\lCommand" alt="" coords="245,122,504,163"/>
+<area shape="rect" id="node4" href="$d9/d00/classcommunicator_1_1_main_controller.html#aeeb4240e58af659d4b448cbfc3fbe76f" title="communicator.MainController.\lMainController" alt="" coords="847,18,1060,59"/>
+<area shape="rect" id="node6" href="$d6/d33/class_view_1_1_slogo_view.html#acaa2b33418cebb60111d0acfef03e832" title="View.SlogoView.executeUser\lCommand" alt="" coords="852,109,1055,150"/>
+<area shape="rect" id="node7" href="$d6/d33/class_view_1_1_slogo_view.html#a1a67765bb114e471855080a9938049a7" title="View.SlogoView.sendCommand\lAndMakeButton" alt="" coords="562,167,782,209"/>
+<area shape="rect" id="node8" href="$d6/d33/class_view_1_1_slogo_view.html#a468acf266470c356f2f36e7eb2f327e8" title="View.SlogoView.createCommand\lLineWithLabel" alt="" coords="838,174,1069,215"/>
+<area shape="rect" id="node9" href="$d6/d33/class_view_1_1_slogo_view.html#ac64a43649ed5417854c37ec25320e925" title="View.SlogoView.setTextArea" alt="" coords="1117,181,1315,208"/>
+<area shape="rect" id="node10" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="1363,181,1536,208"/>
+<area shape="rect" id="node11" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="1585,181,1709,208"/>
+</map>

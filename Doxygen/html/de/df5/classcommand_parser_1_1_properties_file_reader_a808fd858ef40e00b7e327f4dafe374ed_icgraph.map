@@ -1,0 +1,14 @@
+<map id="commandParser.PropertiesFileReader.getFileNameWithoutExtension" name="commandParser.PropertiesFileReader.getFileNameWithoutExtension">
+<area shape="rect" id="node2" href="$de/df5/classcommand_parser_1_1_properties_file_reader.html#a15d7cd93d303f1f3588d3327465b5f12" title="commandParser.Properties\lFileReader.getBundle" alt="" coords="272,103,467,145"/>
+<area shape="rect" id="node3" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#a7d5ae3b56b32e0641c85ea6b04edf379" title="commandParser.LanguageFile\lParser.extractFromLanguageFile" alt="" coords="531,70,757,111"/>
+<area shape="rect" id="node6" href="$d2/d91/classcommand_parser_1_1_command_to_class_translator.html#a642764532409be173cd390e976033eae" title="commandParser.CommandToClass\lTranslator.translateCommandToClass" alt="" coords="515,162,773,203"/>
+<area shape="rect" id="node4" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#ae21b9e88b5107237955898fda7e8ff5f" title="commandParser.LanguageFile\lParser.LanguageFileParser" alt="" coords="837,5,1051,46"/>
+<area shape="rect" id="node5" href="$d9/d00/classcommunicator_1_1_main_controller.html#a0bba9c29f17d2fefc61a1d608c273b27" title="communicator.MainController.load\lLanguage" alt="" coords="824,70,1064,111"/>
+<area shape="rect" id="node7" href="$dd/d30/classtests_1_1_ask_test.html#a8d408863dc53f60d7a73c7dad924325a" title="tests.AskTest.processInput" alt="" coords="848,136,1040,163"/>
+<area shape="rect" id="node9" href="$d9/d76/classtests_1_1_turtle_commands_test.html#a26b7fee4439a47d622fb58826d281a1f" title="tests.TurtleCommandsTest.process\lInput" alt="" coords="821,187,1067,229"/>
+<area shape="rect" id="node11" href="$d3/d0c/classtests_1_1_ask_with_test.html#a9d43a79de385803c300e7b2cf0c13b00" title="tests.AskWithTest.process\lInput" alt="" coords="851,253,1037,294"/>
+<area shape="rect" id="node8" href="$dd/d30/classtests_1_1_ask_test.html#a35ae726a31ba673fc7d80bcbc4a69e24" title="tests.AskTest.testThatAsk\lCreatesTurtles" alt="" coords="1132,122,1319,163"/>
+<area shape="rect" id="node10" href="$d9/d76/classtests_1_1_turtle_commands_test.html#a7f4c719ee0d2a11ff4b04f38b5cda951" title="tests.TurtleCommandsTest.test\lToParsing" alt="" coords="1115,187,1335,229"/>
+<area shape="rect" id="node12" href="$d3/d0c/classtests_1_1_ask_with_test.html#a54f2ed263239909256bb93e91afc3ecc" title="tests.AskWithTest.testAlways\lTrueAskWith" alt="" coords="1123,253,1328,294"/>
+<area shape="rect" id="node13" href="$d3/d0c/classtests_1_1_ask_with_test.html#a49a8519276b23ed93a3f90d7c2058fc5" title="tests.AskWithTest.testXCor\lAskWith" alt="" coords="1130,318,1321,359"/>
+</map>

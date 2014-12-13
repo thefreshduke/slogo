@@ -1,0 +1,17 @@
+<map id="communicator.MainController" name="communicator.MainController">
+<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html" title="View.SlogoView" alt="" coords="2123,836,2242,862"/>
+<area shape="rect" id="node2" href="$da/d25/classcommunicator_1_1_base_controller.html" title="communicator.BaseController" alt="" coords="1227,9,1439,36"/>
+<area shape="rect" id="node5" href="$dc/d54/class_table_information_1_1_variable_table.html" title="TableInformation.Variable\lTable" alt="" coords="734,724,917,766"/>
+<area shape="rect" id="node26" href="$da/d31/class_view_1_1_color_selection.html" title="View.ColorSelection" alt="" coords="1749,966,1896,993"/>
+<area shape="rect" id="node33" href="$d0/d92/class_view_1_1_grid.html" title="View.Grid" alt="" coords="388,1146,468,1173"/>
+<area shape="rect" id="node32" href="$d9/db1/class_view_1_1_single_grid.html" title="View.SingleGrid" alt="" coords="766,1125,885,1152"/>
+<area shape="rect" id="node13" href="$dc/dbd/class_view_1_1_grid_factory.html" title="View.GridFactory" alt="" coords="762,1298,889,1325"/>
+<area shape="rect" id="node18" href="$d7/d52/class_view_1_1_menu_template.html" title="View.MenuTemplate" alt="" coords="1749,708,1896,734"/>
+<area shape="rect" id="node20" href="$dd/dfc/interface_view_1_1_user_objects.html" title="View.UserObjects" alt="" coords="1267,708,1399,734"/>
+<area shape="rect" id="node21" href="$d5/d30/class_view_1_1_tabs_of_grids.html" title="View.TabsOfGrids" alt="" coords="1758,809,1887,836"/>
+<area shape="rect" id="node30" href="$d7/d98/class_view_1_1_grid_tracker.html" title="View.GridTracker" alt="" coords="1271,1125,1396,1152"/>
+<area shape="rect" id="node45" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html" title="commandParser.LanguageFile\lParser" alt="" coords="1227,322,1440,363"/>
+<area shape="rect" id="node40" href="$d2/d91/classcommand_parser_1_1_command_to_class_translator.html" title="commandParser.CommandToClass\lTranslator" alt="" coords="1211,126,1455,167"/>
+<area shape="rect" id="node41" href="$de/df5/classcommand_parser_1_1_properties_file_reader.html" title="commandParser.Properties\lFileReader" alt="" coords="728,292,923,334"/>
+<area shape="rect" id="node42" href="$dd/df5/interfacecommands_1_1information_1_1_i_information_gateway.html" title="commands.information.IInformation\lGateway" alt="" coords="1208,60,1459,102"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="View.SlogoView.addMenuBar" name="View.SlogoView.addMenuBar">
+<area shape="rect" id="node2" href="$d7/d52/class_view_1_1_menu_template.html#a36b57849adefaed2c993b566b36117fc" title="View.MenuTemplate.addMenuItem" alt="" coords="561,60,799,86"/>
+<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#a94e611bbf375514e3fa7b29042a51652" title="View.SlogoView.createfileMenu" alt="" coords="276,136,492,162"/>
+<area shape="rect" id="node6" href="$d6/d33/class_view_1_1_slogo_view.html#a7c3c0d79f810cf238ca386b75f12876e" title="View.SlogoView.makeAddMenu" alt="" coords="275,34,493,61"/>
+<area shape="rect" id="node7" href="$d6/d33/class_view_1_1_slogo_view.html#a8ae824124d33ee8cc64ad232b3751863" title="View.SlogoView.makeLanguageMenu" alt="" coords="256,186,512,213"/>
+<area shape="rect" id="node9" href="$d6/d33/class_view_1_1_slogo_view.html#a1e19e84acd176c9ac6fe027e1ecae216" title="View.SlogoView.makeMenu" alt="" coords="287,85,481,112"/>
+<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#aa2d332f7f13c1e73d0d08f90eda894fc" title="View.SlogoView.saveFile" alt="" coords="594,110,766,137"/>
+<area shape="rect" id="node5" href="$d0/dec/class_g_u_i_functions_1_1_ask_for_initial_file.html#a3494792f1fb4a3e7c698a3e98e896ae6" title="GUIFunctions.AskForInitial\lFile.sendFile" alt="" coords="587,162,773,203"/>
+<area shape="rect" id="node8" href="$d5/da9/class_g_u_i_functions_1_1_language_menu.html#a47430a240fe8ac9f5631f089a81ff80e" title="GUIFunctions.LanguageMenu.do\lAction" alt="" coords="567,227,793,268"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="View.SlogoView.build" name="View.SlogoView.build">
+<area shape="rect" id="node2" href="$d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f" title="View.GridTracker.getActiveGrid" alt="" coords="215,5,430,32"/>
+<area shape="rect" id="node3" href="$d5/d30/class_view_1_1_tabs_of_grids.html#af8af94baac6e068e15173384481341c9" title="View.TabsOfGrids.getActiveGrid" alt="" coords="213,56,432,83"/>
+<area shape="rect" id="node4" href="$d0/d92/class_view_1_1_grid.html#a41a30a88e387ffd4c232201536049709" title="View.Grid.getID" alt="" coords="263,107,382,133"/>
+<area shape="rect" id="node5" href="$d7/d98/class_view_1_1_grid_tracker.html#a10f28999bec118593817f480836c5a94" title="View.GridTracker.setActiveGrid" alt="" coords="216,157,429,184"/>
+<area shape="rect" id="node6" href="$d9/d00/classcommunicator_1_1_main_controller.html#a5f47f446231c8725088701e8adc79eee" title="communicator.MainController.set\lGridAsActive" alt="" coords="206,209,439,250"/>
+<area shape="rect" id="node7" href="$d9/d00/classcommunicator_1_1_main_controller.html#ac535ad5404d0e180a1de6526a967a581" title="communicator.MainController.get\lGridContainer" alt="" coords="488,175,723,217"/>
+<area shape="rect" id="node8" href="$d4/d37/classcommands_1_1information_1_1_base_grid_container.html#a8e6f306cdcef5b2cc076521e40de0138" title="commands.information.Base\lGridContainer.setGridAsActive" alt="" coords="498,241,713,282"/>
+</map>

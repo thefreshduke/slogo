@@ -1,0 +1,12 @@
+<map id="View.SlogoView.SlogoView" name="View.SlogoView.SlogoView">
+<area shape="rect" id="node2" href="$d6/d33/class_view_1_1_slogo_view.html#acfc9a29c260e063a27320bd12275a939" title="View.SlogoView.build" alt="" coords="261,136,413,163"/>
+<area shape="rect" id="node10" href="$d6/d33/class_view_1_1_slogo_view.html#ad6bced2aad0ccaef7521c9840ab53a5f" title="View.SlogoView.makeListOf\lFunctions" alt="" coords="240,213,435,254"/>
+<area shape="rect" id="node3" href="$d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f" title="View.GridTracker.getActiveGrid" alt="" coords="493,5,707,32"/>
+<area shape="rect" id="node4" href="$d5/d30/class_view_1_1_tabs_of_grids.html#af8af94baac6e068e15173384481341c9" title="View.TabsOfGrids.getActiveGrid" alt="" coords="491,56,709,83"/>
+<area shape="rect" id="node5" href="$d7/d98/class_view_1_1_grid_tracker.html#a10f28999bec118593817f480836c5a94" title="View.GridTracker.setActiveGrid" alt="" coords="493,107,707,133"/>
+<area shape="rect" id="node6" href="$d9/d00/classcommunicator_1_1_main_controller.html#a5f47f446231c8725088701e8adc79eee" title="communicator.MainController.set\lGridAsActive" alt="" coords="483,158,717,199"/>
+<area shape="rect" id="node9" href="$d0/d92/class_view_1_1_grid.html#a41a30a88e387ffd4c232201536049709" title="View.Grid.getID" alt="" coords="541,224,659,251"/>
+<area shape="rect" id="node7" href="$d9/d00/classcommunicator_1_1_main_controller.html#ac535ad5404d0e180a1de6526a967a581" title="communicator.MainController.get\lGridContainer" alt="" coords="765,125,1000,166"/>
+<area shape="rect" id="node8" href="$d4/d37/classcommands_1_1information_1_1_base_grid_container.html#a8e6f306cdcef5b2cc076521e40de0138" title="commands.information.Base\lGridContainer.setGridAsActive" alt="" coords="775,190,990,231"/>
+<area shape="rect" id="node11" href="$d6/d33/class_view_1_1_slogo_view.html#a70321c45a395aea8955b429fc3c754ed" title="View.SlogoView.addLanguages" alt="" coords="492,275,708,301"/>
+</map>

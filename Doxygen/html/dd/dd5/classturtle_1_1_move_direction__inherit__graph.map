@@ -1,0 +1,7 @@
+<map id="turtle.MoveDirection" name="turtle.MoveDirection">
+<area shape="rect" id="node2" href="$d4/db5/classturtle_1_1_down.html" title="turtle.Down" alt="" coords="5,80,99,107"/>
+<area shape="rect" id="node3" href="$d0/d30/classturtle_1_1_left.html" title="turtle.Left" alt="" coords="123,80,207,107"/>
+<area shape="rect" id="node4" href="$d8/d04/classturtle_1_1_null_direction.html" title="turtle.NullDirection" alt="" coords="232,80,372,107"/>
+<area shape="rect" id="node5" href="$d9/d75/classturtle_1_1_right.html" title="turtle.Right" alt="" coords="398,80,489,107"/>
+<area shape="rect" id="node6" href="$df/d4e/classturtle_1_1_up.html" title="turtle.Up" alt="" coords="514,80,592,107"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="GUIFunctions.AskForInitialFile.sendFile" name="GUIFunctions.AskForInitialFile.sendFile">
+<area shape="rect" id="node2" href="$d6/d33/class_view_1_1_slogo_view.html#a94e611bbf375514e3fa7b29042a51652" title="View.SlogoView.createfileMenu" alt="" coords="240,12,456,39"/>
+<area shape="rect" id="node3" href="$d6/d33/class_view_1_1_slogo_view.html#a7c84b547efa8603bbd40e36795873355" title="View.SlogoView.addMenuBar" alt="" coords="504,12,707,39"/>
+<area shape="rect" id="node4" href="$d6/d33/class_view_1_1_slogo_view.html#acfeff052503655d2ac419d2bf4ea9bd5" title="View.SlogoView.initialize" alt="" coords="755,12,928,39"/>
+<area shape="rect" id="node5" href="$db/d27/class_view_1_1_slogo.html#a6ab76a53160b61d8501aec91c55b85c8" title="View.Slogo.start" alt="" coords="977,12,1101,39"/>
+</map>

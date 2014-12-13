@@ -1,0 +1,5 @@
+<map id="tests.AskWithTest.setFactory" name="tests.AskWithTest.setFactory">
+<area shape="rect" id="node2" href="$d7/d28/classcommands_1_1information_1_1_base_turtle_container.html#ac2cb88e2ac1647e0035de6e5b1e89c0e" title="commands.information.Base\lTurtleContainer.addTurtle" alt="" coords="286,5,493,46"/>
+<area shape="rect" id="node3" href="$df/dcb/classturtle_1_1_turtle.html#a00d4640d9156c2612f3472800fd26428" title="turtle.Turtle.setID" alt="" coords="324,71,455,97"/>
+<area shape="rect" id="node4" href="$da/dc6/classcommand_parser_1_1_command_factory.html#ad69817a49aeef55b4a7d69e23b437be9" title="commandParser.CommandFactory.set\lInformationGateway" alt="" coords="257,122,522,163"/>
+</map>
