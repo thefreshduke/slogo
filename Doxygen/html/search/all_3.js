@@ -13,8 +13,8 @@ var searchData=
   ['differencecommand',['DifferenceCommand',['../d2/dc4/classcommands_1_1expression_commands_1_1_difference_command.html#aec1ed3f6367d79bc7b17322b4440bccc',1,'commands::expressionCommands::DifferenceCommand']]],
   ['differencecommand_2ejava',['DifferenceCommand.java',['../dc/d46/_difference_command_8java.html',1,'']]],
   ['dimmer',['dimmer',['../df/dcb/classturtle_1_1_turtle.html#ab7604e0b3263bdce34b92cfbfc39eaf0',1,'turtle::Turtle']]],
-  ['direction',['direction',['../d2/d61/classturtle_1_1_direction.html#af07a0ac9f04f4da0ae8a1ba021329f0a',1,'turtle.Direction.direction()'],['../d2/d61/classturtle_1_1_direction.html#a838797f9eab6866aab990525be8104eb',1,'turtle.Direction.Direction(KeyCode e)']]],
   ['direction',['Direction',['../d2/d61/classturtle_1_1_direction.html',1,'turtle']]],
+  ['direction',['direction',['../d2/d61/classturtle_1_1_direction.html#af07a0ac9f04f4da0ae8a1ba021329f0a',1,'turtle.Direction.direction()'],['../d2/d61/classturtle_1_1_direction.html#a838797f9eab6866aab990525be8104eb',1,'turtle.Direction.Direction(KeyCode e)']]],
   ['direction_2ejava',['Direction.java',['../d0/d2e/_direction_8java.html',1,'']]],
   ['disabletabpanes',['disableTabPanes',['../d5/d30/class_view_1_1_tabs_of_grids.html#a108cf54cfaac21aea75babd7f7dd68b7',1,'View::TabsOfGrids']]],
   ['displaycommand',['DisplayCommand',['../d4/d41/classcommands_1_1_display_command.html',1,'commands']]],
@@ -26,11 +26,12 @@ var searchData=
   ['docommand_2ejava',['DoCommand.java',['../d4/d94/_do_command_8java.html',1,'']]],
   ['doeditingfunction',['doEditingFunction',['../d5/db3/class_table_information_1_1_active_column.html#a29027fa461498c435af39eccf4362b7f',1,'TableInformation.ActiveColumn.doEditingFunction()'],['../df/dc5/class_table_information_1_1_column.html#abda874c5e4fbe461f9f16331fe71a036',1,'TableInformation.Column.doEditingFunction()'],['../d8/d31/class_table_information_1_1_i_d_column.html#a70dffa64f551012914fd803f4e53146d',1,'TableInformation.IDColumn.doEditingFunction()'],['../dc/d79/class_table_information_1_1_x_column.html#a12d0f88571fd3a3361f7068dd433b9c3',1,'TableInformation.XColumn.doEditingFunction()'],['../d9/d9e/class_table_information_1_1_y_column.html#a9930f44781f56557fb34fab33d9ae626',1,'TableInformation.YColumn.doEditingFunction()']]],
   ['dofunction',['doFunction',['../d5/db3/class_table_information_1_1_active_column.html#ab7e07f739e5cced2b0825d0ed02aff4a',1,'TableInformation.ActiveColumn.doFunction()'],['../df/dc5/class_table_information_1_1_column.html#afc6a4306b62365fdeb8e292f47e1867e',1,'TableInformation.Column.doFunction()'],['../d8/d31/class_table_information_1_1_i_d_column.html#ae0de19022e15942d1debfe1ea85e8d0a',1,'TableInformation.IDColumn.doFunction()'],['../dc/d79/class_table_information_1_1_x_column.html#ad7d6f1be9fd7b8eb6075ffed82ed237e',1,'TableInformation.XColumn.doFunction()'],['../d9/d9e/class_table_information_1_1_y_column.html#a1d35eb1cefe567b33da728d66792b9ae',1,'TableInformation.YColumn.doFunction()']]],
-  ['dottedborderstyle',['DottedBorderStyle',['../de/d4b/class_g_u_i_functions_1_1_dotted_border_style.html#aec702a77ef684ff05d85dc227b57dafe',1,'GUIFunctions::DottedBorderStyle']]],
   ['dottedborderstyle',['DottedBorderStyle',['../de/d4b/class_g_u_i_functions_1_1_dotted_border_style.html',1,'GUIFunctions']]],
+  ['dottedborderstyle',['DottedBorderStyle',['../de/d4b/class_g_u_i_functions_1_1_dotted_border_style.html#aec702a77ef684ff05d85dc227b57dafe',1,'GUIFunctions::DottedBorderStyle']]],
   ['dottedborderstyle_2ejava',['DottedBorderStyle.java',['../d2/d6e/_dotted_border_style_8java.html',1,'']]],
   ['down',['Down',['../d4/db5/classturtle_1_1_down.html',1,'turtle']]],
   ['down_2ejava',['Down.java',['../dd/d70/_down_8java.html',1,'']]],
   ['drawgridline',['drawGridLine',['../d8/df7/class_g_u_i_functions_1_1_toggle_grid_lines.html#a1417481b2244a2a27dfc2e797f24363a',1,'GUIFunctions::ToggleGridLines']]],
-  ['drawline',['drawLine',['../dc/d19/class_view_1_1_pen.html#a9baa63a91f8cd62a806147fdeaf44865',1,'View::Pen']]]
+  ['drawline',['drawLine',['../dc/d19/class_view_1_1_pen.html#a9baa63a91f8cd62a806147fdeaf44865',1,'View::Pen']]],
+  ['dynsections_2ejs',['dynsections.js',['../d7/dc3/dynsections_8js.html',1,'']]]
 ];

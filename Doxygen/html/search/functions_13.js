@@ -9,5 +9,6 @@ var searchData=
   ['updategui',['updateGUI',['../d0/d92/class_view_1_1_grid.html#a15a068afbcf686ce25fbeff06ad8e689',1,'View.Grid.updateGUI(String myFunction)'],['../d0/d92/class_view_1_1_grid.html#a972ad944ffdcd7e16fbd8032cf43133e',1,'View.Grid.updateGUI(String myFunction, List&lt;?extends Number &gt; myNumber)'],['../d9/db1/class_view_1_1_single_grid.html#ace2190667a566098df5b61ff4309c981',1,'View.SingleGrid.updateGUI(String myFunction)'],['../d9/db1/class_view_1_1_single_grid.html#aff517cf5cb564030be99eb071dee620a',1,'View.SingleGrid.updateGUI(String myFunction, List&lt;?extends Number &gt; myNumber)']]],
   ['updateitem',['updateItem',['../d2/d41/class_g_u_i_functions_1_1_editing_cell.html#a76e23144049184b01d1d4cde789f3f9f',1,'GUIFunctions::EditingCell']]],
   ['updatelist',['updateList',['../d3/d42/class_table_information_1_1_turtle_variables_table.html#a41e8a91ad2bd210a046c64a2574574bf',1,'TableInformation::TurtleVariablesTable']]],
+  ['updatestripes',['updateStripes',['../d7/dc3/dynsections_8js.html#a8f7493ad859d4fbf2523917511ee7177',1,'dynsections.js']]],
   ['updatevariables',['updateVariables',['../dc/d54/class_table_information_1_1_variable_table.html#a3d8722236a395bb0579454116316c6b8',1,'TableInformation::VariableTable']]]
 ];

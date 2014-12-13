@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="../../files.html"><span>File&#160;List</span></a></li>
+      <li><a href="../../globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -109,21 +110,22 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    @Override</div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="../../da/d16/class_g_u_i_functions_1_1_pen_color.html#a40da853af47e7550f10ebb66756a8548">   21</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="../../da/d16/class_g_u_i_functions_1_1_pen_color.html#a40da853af47e7550f10ebb66756a8548">doAction</a>(List&lt;? extends Number&gt; newVal) {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="../../dc/d19/class_view_1_1_pen.html">Pen</a> p: <a class="code" href="../../de/dbd/class_g_u_i_functions_1_1_grid_function.html#a32fa9f332c1a54851870924b714371a4">allGrids</a>.<a class="code" href="../../d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f">getActiveGrid</a>().<a class="code" href="../../d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd">getActivePens</a>()){</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            p.setColor(myColors.<a class="code" href="../../da/d31/class_view_1_1_color_selection.html#afa190585564a3012cefc95efffb0705d">getAvailableColors</a>().get(newVal.get(0).intValue()));</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="../../dc/d19/class_view_1_1_pen.html">Pen</a> <a class="code" href="../../d5/de7/jquery_8js.html#a2335e57f79b6acfb6de59c235dc8a83e">p</a>: <a class="code" href="../../de/dbd/class_g_u_i_functions_1_1_grid_function.html#a32fa9f332c1a54851870924b714371a4">allGrids</a>.<a class="code" href="../../d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f">getActiveGrid</a>().<a class="code" href="../../d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd">getActivePens</a>()){</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <a class="code" href="../../d5/de7/jquery_8js.html#a2335e57f79b6acfb6de59c235dc8a83e">p</a>.setColor(myColors.<a class="code" href="../../da/d31/class_view_1_1_color_selection.html#afa190585564a3012cefc95efffb0705d">getAvailableColors</a>().get(newVal.get(0).intValue()));</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    @Override</div>
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="../../da/d16/class_g_u_i_functions_1_1_pen_color.html#a81e4ea7b716fb3275991c9a85ed0f193">   28</a></span>&#160;    <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code" href="../../da/d16/class_g_u_i_functions_1_1_pen_color.html#a81e4ea7b716fb3275991c9a85ed0f193">doAction</a>(String myColor) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="../../dc/d19/class_view_1_1_pen.html">Pen</a> p: <a class="code" href="../../de/dbd/class_g_u_i_functions_1_1_grid_function.html#a32fa9f332c1a54851870924b714371a4">allGrids</a>.<a class="code" href="../../d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f">getActiveGrid</a>().<a class="code" href="../../d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd">getActivePens</a>()){</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            p.setColor(myColor);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">for</span> (<a class="code" href="../../dc/d19/class_view_1_1_pen.html">Pen</a> <a class="code" href="../../d5/de7/jquery_8js.html#a2335e57f79b6acfb6de59c235dc8a83e">p</a>: <a class="code" href="../../de/dbd/class_g_u_i_functions_1_1_grid_function.html#a32fa9f332c1a54851870924b714371a4">allGrids</a>.<a class="code" href="../../d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f">getActiveGrid</a>().<a class="code" href="../../d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd">getActivePens</a>()){</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="../../d5/de7/jquery_8js.html#a2335e57f79b6acfb6de59c235dc8a83e">p</a>.setColor(myColor);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 <div class="ttc" id="class_g_u_i_functions_1_1_pen_color_html"><div class="ttname"><a href="../../da/d16/class_g_u_i_functions_1_1_pen_color.html">GUIFunctions.PenColor</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d2a/_pen_color_8java_source.html#l00009">PenColor.java:9</a></div></div>
 <div class="ttc" id="class_view_1_1_single_grid_html_a10f914014fc090d2d57192c8678242fd"><div class="ttname"><a href="../../d9/db1/class_view_1_1_single_grid.html#a10f914014fc090d2d57192c8678242fd">View.SingleGrid.getActivePens</a></div><div class="ttdeci">Collection&lt; Pen &gt; getActivePens()</div><div class="ttdef"><b>Definition:</b> <a href="../../d7/d3c/_single_grid_8java_source.html#l00158">SingleGrid.java:158</a></div></div>
+<div class="ttc" id="jquery_8js_html_a2335e57f79b6acfb6de59c235dc8a83e"><div class="ttname"><a href="../../d5/de7/jquery_8js.html#a2335e57f79b6acfb6de59c235dc8a83e">p</a></div><div class="ttdeci">function p(by, bw, bv)</div><div class="ttdef"><b>Definition:</b> <a href="../../d5/de7/jquery_8js_source.html#l00028">jquery.js:28</a></div></div>
 <div class="ttc" id="class_g_u_i_functions_1_1_color_function_html"><div class="ttname"><a href="../../d4/df9/class_g_u_i_functions_1_1_color_function.html">GUIFunctions.ColorFunction</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d8b/_color_function_8java_source.html#l00005">ColorFunction.java:5</a></div></div>
 <div class="ttc" id="class_g_u_i_functions_1_1_pen_color_html_a42853e400f39263e32d349a8c9825534"><div class="ttname"><a href="../../da/d16/class_g_u_i_functions_1_1_pen_color.html#a42853e400f39263e32d349a8c9825534">GUIFunctions.PenColor.myColors</a></div><div class="ttdeci">ColorSelection myColors</div><div class="ttdef"><b>Definition:</b> <a href="../../d4/d2a/_pen_color_8java_source.html#l00010">PenColor.java:10</a></div></div>
 <div class="ttc" id="class_view_1_1_grid_tracker_html"><div class="ttname"><a href="../../d7/d98/class_view_1_1_grid_tracker.html">View.GridTracker</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d2/dd0/_grid_tracker_8java_source.html#l00005">GridTracker.java:5</a></div></div>
@@ -140,7 +142,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 13 2014 03:33:15 for slogo_team13 by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 13 2014 03:34:26 for slogo_team13 by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

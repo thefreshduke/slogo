@@ -6,5 +6,6 @@ var searchData=
   ['displaycommand_2ejava',['DisplayCommand.java',['../d3/d0d/_display_command_8java.html',1,'']]],
   ['docommand_2ejava',['DoCommand.java',['../d4/d94/_do_command_8java.html',1,'']]],
   ['dottedborderstyle_2ejava',['DottedBorderStyle.java',['../d2/d6e/_dotted_border_style_8java.html',1,'']]],
-  ['down_2ejava',['Down.java',['../dd/d70/_down_8java.html',1,'']]]
+  ['down_2ejava',['Down.java',['../dd/d70/_down_8java.html',1,'']]],
+  ['dynsections_2ejs',['dynsections.js',['../d7/dc3/dynsections_8js.html',1,'']]]
 ];
