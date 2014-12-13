@@ -1,0 +1,6 @@
+<map id="commands.viewCommands.SetPenSizeCommand" name="commands.viewCommands.SetPenSizeCommand">
+<area shape="rect" id="node2" href="$de/d53/classcommands_1_1_view_command.html" title="commands.ViewCommand" alt="" coords="51,205,245,232"/>
+<area shape="rect" id="node3" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="5,107,203,133"/>
+<area shape="rect" id="node5" href="$d4/d37/classcommands_1_1information_1_1_base_grid_container.html" title="commands.information.Base\lGridContainer" alt="" coords="373,99,579,141"/>
+<area shape="rect" id="node6" href="$d4/d4e/interfacecommands_1_1information_1_1_i_information_container.html" title="commands.information.IInformation\lContainer" alt="" coords="351,6,601,47"/>
+</map>

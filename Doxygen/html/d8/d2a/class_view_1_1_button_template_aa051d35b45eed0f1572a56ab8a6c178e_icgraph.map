@@ -1,0 +1,5 @@
+<map id="View.ButtonTemplate.setStyle" name="View.ButtonTemplate.setStyle">
+<area shape="rect" id="node2" href="$d8/d2a/class_view_1_1_button_template.html#a4ec961c3666848bf1df1282f52642ee2" title="View.ButtonTemplate.action\lOnMouseExit" alt="" coords="266,5,465,46"/>
+<area shape="rect" id="node3" href="$d8/d2a/class_view_1_1_button_template.html#aecb10bf57a7b3b25a5e60ae882def9a5" title="View.ButtonTemplate.action\lOnMouseHover" alt="" coords="266,70,465,111"/>
+<area shape="rect" id="node4" href="$d8/d2a/class_view_1_1_button_template.html#afc72112f492d3a01828263e4bbd6e310" title="View.ButtonTemplate.Button\lTemplate" alt="" coords="264,135,467,177"/>
+</map>

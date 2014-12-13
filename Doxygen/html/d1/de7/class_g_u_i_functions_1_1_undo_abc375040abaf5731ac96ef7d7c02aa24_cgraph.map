@@ -1,0 +1,5 @@
+<map id="GUIFunctions.Undo.undoLine" name="GUIFunctions.Undo.undoLine">
+<area shape="rect" id="node2" href="$d7/d98/class_view_1_1_grid_tracker.html#af7c2413584c58030e606ae6692ea564f" title="View.GridTracker.getActiveGrid" alt="" coords="259,5,474,32"/>
+<area shape="rect" id="node3" href="$df/dcb/classturtle_1_1_turtle.html#a0b8bdf8fc097cab5bf51d46567c2d749" title="turtle.Turtle.getPen" alt="" coords="295,56,438,83"/>
+<area shape="rect" id="node4" href="$dc/d19/class_view_1_1_pen.html#abcb685899f76e8f5b243f9662958f000" title="View.Pen.undo" alt="" coords="309,107,424,133"/>
+</map>

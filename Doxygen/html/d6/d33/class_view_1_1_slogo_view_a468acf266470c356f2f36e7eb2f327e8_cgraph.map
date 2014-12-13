@@ -1,0 +1,11 @@
+<map id="View.SlogoView.createCommandLineWithLabel" name="View.SlogoView.createCommandLineWithLabel">
+<area shape="rect" id="node2" href="$d6/d33/class_view_1_1_slogo_view.html#a1a67765bb114e471855080a9938049a7" title="View.SlogoView.sendCommand\lAndMakeButton" alt="" coords="286,97,506,138"/>
+<area shape="rect" id="node3" href="$d9/d00/classcommunicator_1_1_main_controller.html#a63543f74d98f650f2ee4026151189fa8" title="communicator.MainController.receive\lCommand" alt="" coords="555,63,813,105"/>
+<area shape="rect" id="node10" href="$d6/d33/class_view_1_1_slogo_view.html#ae43c4fa1c72ae66403b040613e9ba285" title="View.SlogoView.updateCommand\lHistory" alt="" coords="567,129,801,170"/>
+<area shape="rect" id="node4" href="$d9/d00/classcommunicator_1_1_main_controller.html#a65cd5059a843dc8261445e09403810fb" title="communicator.MainController.report\lErrorToView" alt="" coords="862,5,1114,46"/>
+<area shape="rect" id="node6" href="$d6/d33/class_view_1_1_slogo_view.html#a1a17d5b15c98f706f7ed91ca9d8e341c" title="View.SlogoView.setDisable" alt="" coords="893,71,1083,97"/>
+<area shape="rect" id="node7" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#ae28bcd29168ebd799eed22a0661dc383" title="commandParser.LanguageFile\lParser.translateUserInputIntoEnglish" alt="" coords="861,122,1115,163"/>
+<area shape="rect" id="node5" href="$d6/d33/class_view_1_1_slogo_view.html#abe7981d0dd5275d2a4fbce6444b0c6f9" title="View.SlogoView.showError" alt="" coords="1177,12,1362,39"/>
+<area shape="rect" id="node8" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#ae72a7da2ee20fd99c35ef282d1b455d5" title="commandParser.LanguageFile\lParser.translateCommand" alt="" coords="1163,122,1376,163"/>
+<area shape="rect" id="node9" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html#abe53661bbe3e228951f62d97bddc5eb1" title="commandParser.LanguageFile\lParser.translateByRegex" alt="" coords="1424,122,1637,163"/>
+</map>

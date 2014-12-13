@@ -1,0 +1,26 @@
+<map id="commands.LogicCommand" name="commands.LogicCommand">
+<area shape="rect" id="node2" href="$da/d90/classcommands_1_1_base_command.html" title="commands.BaseCommand" alt="" coords="1979,352,2176,379"/>
+<area shape="rect" id="node4" href="$d4/d05/classcommands_1_1information_1_1_base_user_defined_container.html" title="commands.information.Base\lUserDefinedContainer" alt="" coords="1974,81,2181,122"/>
+<area shape="rect" id="node5" href="$d4/d4e/interfacecommands_1_1information_1_1_i_information_container.html" title="commands.information.IInformation\lContainer" alt="" coords="1416,5,1667,46"/>
+<area shape="rect" id="node6" href="$d6/d33/class_view_1_1_slogo_view.html" title="View.SlogoView" alt="" coords="2018,876,2137,903"/>
+<area shape="rect" id="node41" href="$d9/d00/classcommunicator_1_1_main_controller.html" title="communicator.MainController" alt="" coords="2453,1333,2664,1360"/>
+<area shape="rect" id="node8" href="$dc/d54/class_table_information_1_1_variable_table.html" title="TableInformation.Variable\lTable" alt="" coords="729,1142,911,1183"/>
+<area shape="rect" id="node29" href="$da/d31/class_view_1_1_color_selection.html" title="View.ColorSelection" alt="" coords="1468,859,1615,885"/>
+<area shape="rect" id="node36" href="$d0/d92/class_view_1_1_grid.html" title="View.Grid" alt="" coords="388,505,468,532"/>
+<area shape="rect" id="node35" href="$d9/db1/class_view_1_1_single_grid.html" title="View.SingleGrid" alt="" coords="761,573,879,600"/>
+<area shape="rect" id="node16" href="$dc/dbd/class_view_1_1_grid_factory.html" title="View.GridFactory" alt="" coords="757,1021,883,1048"/>
+<area shape="rect" id="node21" href="$d7/d52/class_view_1_1_menu_template.html" title="View.MenuTemplate" alt="" coords="1468,1161,1615,1188"/>
+<area shape="rect" id="node23" href="$dd/dfc/interface_view_1_1_user_objects.html" title="View.UserObjects" alt="" coords="1089,1173,1221,1200"/>
+<area shape="rect" id="node24" href="$d5/d30/class_view_1_1_tabs_of_grids.html" title="View.TabsOfGrids" alt="" coords="1477,1224,1606,1251"/>
+<area shape="rect" id="node33" href="$d7/d98/class_view_1_1_grid_tracker.html" title="View.GridTracker" alt="" coords="1092,705,1217,732"/>
+<area shape="rect" id="node54" href="$df/dcb/classturtle_1_1_turtle.html" title="turtle.Turtle" alt="" coords="2030,223,2125,249"/>
+<area shape="rect" id="node42" href="$da/d25/classcommunicator_1_1_base_controller.html" title="communicator.BaseController" alt="" coords="1971,1209,2183,1236"/>
+<area shape="rect" id="node43" href="$d2/d91/classcommand_parser_1_1_command_to_class_translator.html" title="commandParser.CommandToClass\lTranslator" alt="" coords="1955,1326,2199,1367"/>
+<area shape="rect" id="node44" href="$de/df5/classcommand_parser_1_1_properties_file_reader.html" title="commandParser.Properties\lFileReader" alt="" coords="1444,1341,1639,1382"/>
+<area shape="rect" id="node48" href="$d8/d54/classcommand_parser_1_1_language_file_parser.html" title="commandParser.LanguageFile\lParser" alt="" coords="1971,1261,2184,1302"/>
+<area shape="rect" id="node45" href="$dd/df5/interfacecommands_1_1information_1_1_i_information_gateway.html" title="commands.information.IInformation\lGateway" alt="" coords="1952,1391,2203,1433"/>
+<area shape="rect" id="node55" href="$d8/db5/interfacecommands_1_1information_1_1_i_turtle_behavior.html" title="commands.information.ITurtle\lBehavior" alt="" coords="1435,274,1647,315"/>
+<area shape="rect" id="node57" href="$dc/d19/class_view_1_1_pen.html" title="View.Pen" alt="" coords="1502,71,1581,97"/>
+<area shape="rect" id="node60" href="$dc/d86/class_g_u_i_functions_1_1_border_style.html" title="GUIFunctions.BorderStyle" alt="" coords="1063,121,1247,148"/>
+<area shape="rect" id="node61" href="$d1/dbe/classturtle_1_1_position.html" title="turtle.Position" alt="" coords="1486,121,1597,148"/>
+</map>

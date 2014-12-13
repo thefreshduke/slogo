@@ -1,0 +1,4 @@
+<map id="commands.information.BaseTurtleContainer.rotate" name="commands.information.BaseTurtleContainer.rotate">
+<area shape="rect" id="node2" href="$db/d66/classcommands_1_1turtle_commands_1_1_left_command.html#ad05f5e31458463730a6a78444f481db3" title="commands.turtleCommands.\lLeftCommand.onExecute" alt="" coords="261,5,472,46"/>
+<area shape="rect" id="node3" href="$dd/db2/classcommands_1_1turtle_commands_1_1_right_command.html#a0eddcf5dbe1361c0dab5433a3f42aae7" title="commands.turtleCommands.\lRightCommand.onExecute" alt="" coords="261,70,472,111"/>
+</map>
